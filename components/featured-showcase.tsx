@@ -1,15 +1,12 @@
 "use client"
 
-import { useState, useEffect, useRef, SetStateAction } from "react"
+import { useState, useEffect, useRef } from "react"
 import { Button } from "@/components/ui/button"
 import { PlayCircle, Info } from "lucide-react"
 import Link from "next/link"
 
 export default function FeaturedShowcase() {
   const [currentIndex, setCurrentIndex] = useState(0)
-  const [mouseX, setMouseX] = useState(0)
-  const [mouseY, setMouseY] = useState(0)
-  const [lastMouseX, setLastMouseX] = useState(0)
   const [isHovered, setIsHovered] = useState(false)
   const containerRef = useRef<HTMLDivElement>(null)
 
@@ -20,6 +17,7 @@ export default function FeaturedShowcase() {
       description:
         "In the year 2150, a team of scientists discovers a way to manipulate quantum reality, but their breakthrough threatens to unravel the fabric of existence itself.",
       image: "/placeholder.svg?height=600&width=1200",
+      poster: "/placeholder.svg?height=300&width=200",
       type: "Movie",
       releaseDate: "January 15, 2025",
       status: "arrived",
@@ -31,6 +29,7 @@ export default function FeaturedShowcase() {
       description:
         "In a cyberpunk metropolis ruled by corporate AI, a group of hackers fights to expose the dark secrets of the system that controls their lives.",
       image: "/placeholder.svg?height=600&width=1200",
+      poster: "/placeholder.svg?height=300&width=200",
       type: "Series",
       releaseDate: "February 3, 2025",
       status: "arrived",
@@ -42,6 +41,7 @@ export default function FeaturedShowcase() {
       description:
         "An interstellar saga following the crew of the starship Artemis as they navigate uncharted space and encounter ancient civilizations.",
       image: "/placeholder.svg?height=600&width=1200",
+      poster: "/placeholder.svg?height=300&width=200",
       type: "Series",
       releaseDate: "June 18, 2025",
       status: "upcoming",
@@ -50,45 +50,6 @@ export default function FeaturedShowcase() {
   ]
 
   const featured = featuredContent[currentIndex]
-
-  // Mouse movement effect (parallax and content change)
-  useEffect(() => {
-    let timeoutId: string | number | NodeJS.Timeout | null | undefined = null
-    const threshold = 150 // Pixels to move before changing content
-    const debounceTime = 500 // Milliseconds to debounce mouse movement
-
-    const handleMouseMove = (e: MouseEvent) => {
-      if (!containerRef.current) return
-
-      const rect = containerRef.current.getBoundingClientRect()
-      const centerX = rect.left + rect.width / 2
-      const centerY = rect.top + rect.height / 2
-
-      // Calculate distance from center for parallax effect
-      setMouseX((e.clientX - centerX) / 50)
-      setMouseY((e.clientY - centerY) / 50)
-
-      // Detect significant horizontal movement for content change
-      const deltaX = e.clientX - lastMouseX
-      if (Math.abs(deltaX) > threshold && !timeoutId) {
-        timeoutId = setTimeout(() => {
-          setCurrentIndex((prevIndex) =>
-            deltaX > 0
-              ? (prevIndex + 1) % featuredContent.length // Move right: next item
-              : (prevIndex - 1 + featuredContent.length) % featuredContent.length // Move left: previous item
-          )
-          setLastMouseX(e.clientX) // Update last mouse position
-          timeoutId = null // Reset timeout
-        }, debounceTime)
-      }
-    }
-
-    window.addEventListener("mousemove", handleMouseMove)
-    return () => {
-      window.removeEventListener("mousemove", handleMouseMove)
-      if (timeoutId) clearTimeout(timeoutId)
-    }
-  }, [lastMouseX, featuredContent.length])
 
   // Automatic content switching every 5 seconds
   useEffect(() => {
@@ -110,10 +71,10 @@ export default function FeaturedShowcase() {
     >
       <div className="absolute inset-0">
         <div
-          className="absolute inset-0 bg-cover bg-center transition-transform duration-200 ease-out"
+          className="absolute inset-0 bg-cover bg-center transition-opacity duration-500"
           style={{
             backgroundImage: `url(${featured.image})`,
-            transform: `translateX(${mouseX}px) translateY(${mouseY}px) scale(1.05)`,
+            transform: `scale(1.05)`,
           }}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent" />
