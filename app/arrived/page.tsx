@@ -8,8 +8,10 @@ import { Input } from "@/components/ui/input"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import MovieCard from "@/components/movie-card"
 
+type ContentType = "all" | "movies" | "series";
+
 export default function ArrivedPage() {
-  const [contentType, setContentType] = useState("all")
+  const [contentType, setContentType] = useState<ContentType>("all")
 
   const arrivedContent = [
     {
@@ -126,7 +128,11 @@ export default function ArrivedPage() {
             <Filter className="h-4 w-4" />
             Filters
           </Button>
-          <Tabs value={contentType} onValueChange={setContentType} className="w-[300px]">
+          <Tabs
+            value={contentType}
+            onValueChange={(value) => setContentType(value as ContentType)}
+            className="w-[300px]"
+          >
             <TabsList className="grid w-full grid-cols-3 bg-gray-900">
               <TabsTrigger value="all">All</TabsTrigger>
               <TabsTrigger value="movies">Movies</TabsTrigger>
@@ -140,7 +146,7 @@ export default function ArrivedPage() {
             <MovieCard
               key={index}
               title={movie.title}
-              type={movie.type}
+              type={movie.type as "Movie" | "Series"}
               image={movie.image}
               rating={movie.rating}
               releaseDate={movie.releaseDate}
