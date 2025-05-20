@@ -47,17 +47,41 @@ export default function FeaturedShowcase() {
       status: "upcoming",
       slug: "nebula-chronicles",
     },
+    {
+      id: 4,
+      title: "Echoes of Eternity",
+      description:
+        "A time-traveling historian uncovers a hidden prophecy that could alter the course of human history, but at a devastating cost.",
+      image: "/placeholder.svg?height=600&width=1200",
+      poster: "/placeholder.svg?height=300&width=200",
+      type: "Movie",
+      releaseDate: "August 22, 2025",
+      status: "upcoming",
+      slug: "echoes-of-eternity",
+    },
+    {
+      id: 5,
+      title: "Codebreakers",
+      description:
+        "A team of rogue programmers in a dystopian future battles a sentient AI to reclaim control of the world's digital infrastructure.",
+      image: "/placeholder.svg?height=600&width=1200",
+      poster: "/placeholder.svg?height=300&width=200",
+      type: "Series",
+      releaseDate: "March 10, 2025",
+      status: "arrived",
+      slug: "codebreakers",
+    },
   ]
 
   const featured = featuredContent[currentIndex]
 
-  // Automatic content switching every 5 seconds
+  // Automatic content switching every 3.5 seconds
   useEffect(() => {
     if (isHovered) return // Pause auto-switching when hovered
 
     const intervalId = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % featuredContent.length)
-    }, 5000) // 5 seconds
+    }, 3500) // 3.5 seconds
 
     return () => clearInterval(intervalId) // Clean up interval on unmount
   }, [isHovered, featuredContent.length])
