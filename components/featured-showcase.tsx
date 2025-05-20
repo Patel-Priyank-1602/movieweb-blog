@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect, useRef, SetStateAction } from "react"
 import { Button } from "@/components/ui/button"
 import { PlayCircle, Info } from "lucide-react"
 import Link from "next/link"
@@ -9,6 +9,8 @@ export default function FeaturedShowcase() {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [mouseX, setMouseX] = useState(0)
   const [mouseY, setMouseY] = useState(0)
+  const [lastMouseX, setLastMouseX] = useState(0)
+  const [isHovered, setIsHovered] = useState(false)
   const containerRef = useRef<HTMLDivElement>(null)
 
   const featuredContent = [
@@ -49,7 +51,12 @@ export default function FeaturedShowcase() {
 
   const featured = featuredContent[currentIndex]
 
+  // Mouse movement effect (parallax and content change)
   useEffect(() => {
+    let timeoutId: string | number | NodeJS.Timeout | null | undefined = null
+    const threshold = 150 // Pixels to move before changing content
+    const debounceTime = 500 // Milliseconds to debounce mouse movement
+
     const handleMouseMove = (e: MouseEvent) => {
       if (!containerRef.current) return
 
@@ -57,19 +64,50 @@ export default function FeaturedShowcase() {
       const centerX = rect.left + rect.width / 2
       const centerY = rect.top + rect.height / 2
 
-      // Calculate distance from center (normalized)
+      // Calculate distance from center for parallax effect
       setMouseX((e.clientX - centerX) / 50)
       setMouseY((e.clientY - centerY) / 50)
+
+      // Detect significant horizontal movement for content change
+      const deltaX = e.clientX - lastMouseX
+      if (Math.abs(deltaX) > threshold && !timeoutId) {
+        timeoutId = setTimeout(() => {
+          setCurrentIndex((prevIndex) =>
+            deltaX > 0
+              ? (prevIndex + 1) % featuredContent.length // Move right: next item
+              : (prevIndex - 1 + featuredContent.length) % featuredContent.length // Move left: previous item
+          )
+          setLastMouseX(e.clientX) // Update last mouse position
+          timeoutId = null // Reset timeout
+        }, debounceTime)
+      }
     }
 
     window.addEventListener("mousemove", handleMouseMove)
     return () => {
       window.removeEventListener("mousemove", handleMouseMove)
+      if (timeoutId) clearTimeout(timeoutId)
     }
-  }, [])
+  }, [lastMouseX, featuredContent.length])
+
+  // Automatic content switching every 5 seconds
+  useEffect(() => {
+    if (isHovered) return // Pause auto-switching when hovered
+
+    const intervalId = setInterval(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % featuredContent.length)
+    }, 5000) // 5 seconds
+
+    return () => clearInterval(intervalId) // Clean up interval on unmount
+  }, [isHovered, featuredContent.length])
 
   return (
-    <div ref={containerRef} className="relative w-full h-[70vh] overflow-hidden">
+    <div
+      ref={containerRef}
+      className="relative w-full h-[70vh] overflow-hidden"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
       <div className="absolute inset-0">
         <div
           className="absolute inset-0 bg-cover bg-center transition-transform duration-200 ease-out"
@@ -116,7 +154,10 @@ export default function FeaturedShowcase() {
           {featuredContent.map((_, index) => (
             <button
               key={index}
-              onClick={() => setCurrentIndex(index)}
+              onClick={() => {
+                setCurrentIndex(index)
+                setIsHovered(true) // Pause auto-switching on manual selection
+              }}
               className={`w-3 h-3 rounded-full ${index === currentIndex ? "bg-white" : "bg-gray-600"}`}
               aria-label={`View featured content ${index + 1}`}
             />

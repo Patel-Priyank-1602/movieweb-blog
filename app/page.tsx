@@ -12,14 +12,34 @@ import { Badge } from "@/components/ui/badge"
 export default function Home() {
   const [contentType, setContentType] = useState("all")
 
-  const arrivedContent = [
+  type ContentType = "Movie" | "Series";
+  type ContentStatus = "arrived" | "upcoming";
+
+  interface ArrivedContent {
+    title: string;
+    type: ContentType;
+    image: string;
+    rating: number;
+    releaseDate: string;
+    status: "arrived";
+  }
+
+  interface UpcomingContent {
+    title: string;
+    type: ContentType;
+    image: string;
+    releaseDate: string;
+    status: "upcoming";
+  }
+
+  const arrivedContent: ArrivedContent[] = [
     {
       title: "Quantum Horizon",
       type: "Movie",
       image: "/placeholder.svg?height=450&width=300",
       rating: 4.8,
       releaseDate: "Jan 15, 2025",
-      status: "arrived" as const,
+      status: "arrived",
     },
     {
       title: "Neon Dynasty",
@@ -27,7 +47,7 @@ export default function Home() {
       image: "/placeholder.svg?height=450&width=300",
       rating: 4.5,
       releaseDate: "Feb 3, 2025",
-      status: "arrived" as const,
+      status: "arrived",
     },
     {
       title: "Ethereal Echoes",
@@ -35,7 +55,7 @@ export default function Home() {
       image: "/placeholder.svg?height=450&width=300",
       rating: 4.2,
       releaseDate: "Mar 22, 2025",
-      status: "arrived" as const,
+      status: "arrived",
     },
     {
       title: "Celestial Odyssey",
@@ -43,7 +63,7 @@ export default function Home() {
       image: "/placeholder.svg?height=450&width=300",
       rating: 4.7,
       releaseDate: "Apr 5, 2025",
-      status: "arrived" as const,
+      status: "arrived",
     },
     {
       title: "Temporal Paradox",
@@ -51,47 +71,47 @@ export default function Home() {
       image: "/placeholder.svg?height=450&width=300",
       rating: 4.4,
       releaseDate: "May 1, 2025",
-      status: "arrived" as const,
+      status: "arrived",
     },
-  ]
+  ];
 
-  const upcomingContent = [
+  const upcomingContent: UpcomingContent[] = [
     {
       title: "Nebula Chronicles",
       type: "Series",
       image: "/placeholder.svg?height=450&width=300",
       releaseDate: "Jun 18, 2025",
-      status: "upcoming" as const,
+      status: "upcoming",
     },
     {
       title: "Astral Convergence",
       type: "Movie",
       image: "/placeholder.svg?height=450&width=300",
       releaseDate: "Jul 30, 2025",
-      status: "upcoming" as const,
+      status: "upcoming",
     },
     {
       title: "Synthetic Dreams",
       type: "Series",
       image: "/placeholder.svg?height=450&width=300",
       releaseDate: "Aug 12, 2025",
-      status: "upcoming" as const,
+      status: "upcoming",
     },
     {
       title: "Prism Protocol",
       type: "Movie",
       image: "/placeholder.svg?height=450&width=300",
       releaseDate: "Sep 25, 2025",
-      status: "upcoming" as const,
+      status: "upcoming",
     },
     {
       title: "Void Whispers",
       type: "Series",
       image: "/placeholder.svg?height=450&width=300",
       releaseDate: "Oct 31, 2025",
-      status: "upcoming" as const,
+      status: "upcoming",
     },
-  ]
+  ];
 
   // Filter content based on selected type
   const filteredArrived =
