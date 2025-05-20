@@ -16,7 +16,7 @@ export default function FeaturedShowcase() {
       title: "Quantum Horizon",
       description:
         "In the year 2150, a team of scientists discovers a way to manipulate quantum reality, but their breakthrough threatens to unravel the fabric of existence itself.",
-      image: "/placeholder.svg?height=600&width=1200",
+      image: "/series/sttt.jpeg?height=800&width=1600",
       poster: "/placeholder.svg?height=300&width=200",
       type: "Movie",
       releaseDate: "January 15, 2025",

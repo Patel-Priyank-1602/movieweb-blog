@@ -164,8 +164,8 @@ function getMovieData(slug: string, status: string) {
     "quantum-horizon": {
       title: "Quantum Horizon",
       type: "Movie",
-      posterImage: "/placeholder.svg?height=450&width=300",
-      coverImage: "/placeholder.svg?height=600&width=1200",
+      posterImage: "/series/stc.jpeg?height=450&width=300",
+      coverImage: "/series/st.jpeg?height=600&width=1200",
       releaseDate: "January 15, 2025",
       director: "Alexandra Chen",
       productionCompany: "Nebula Studios",
