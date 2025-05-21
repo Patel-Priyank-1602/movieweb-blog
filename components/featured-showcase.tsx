@@ -39,7 +39,7 @@ export default function FeaturedShowcase() {
       title: "Alice in Borderland",
       description:
         "In the third season, survivors of the deadly games must face new challenges as they uncover the truth behind the mysterious world they're trapped in.",
-      image: "/placeholder.svg?height=600&width=1200",
+      image: "/series/aibbb.jpeg?height=600&width=1200",
       type: "Series",
       releaseDate: "August 25, 2025",
       status: "upcoming",

@@ -460,8 +460,8 @@ function getMovieData(slug: string, status: string) {
     "alice-in-borderland": {
       title: "Alice in Borderland",
       type: "Series",
-      posterImage: "/placeholder.svg?height=450&width=300",
-      coverImage: "/placeholder.svg?height=600&width=1200",
+      posterImage: "/series/aibb.jpeg?height=450&width=300",
+      coverImage: "/series/aib.jpeg?height=600&width=1200",
       releaseDate: "August 25, 2025",
       director: "Shinsuke Sato",
       productionCompany: "Netflix",

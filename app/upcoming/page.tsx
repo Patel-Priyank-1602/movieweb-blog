@@ -78,14 +78,14 @@ export default function UpcomingPage() {
     {
       title: "Stranger Things",
       type: "Series",
-      image: "/placeholder.svg?height=450&width=300",
+      image: "/series/stttt.jpeg?height=450&width=300",
       releaseDate: "Dec 15, 2025",
       status: "upcoming" as const,
     },
     {
       title: "Alice in Borderland",
       type: "Series",
-      image: "/placeholder.svg?height=450&width=300",
+      image: "/series/aibb.jpeg?height=450&width=300",
       releaseDate: "Aug 25, 2025",
       status: "upcoming" as const,
     },
