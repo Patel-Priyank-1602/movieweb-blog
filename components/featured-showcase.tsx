@@ -1,12 +1,13 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { Button } from "@/components/ui/button"
 import { PlayCircle, Info } from "lucide-react"
 import Link from "next/link"
 
 export default function FeaturedShowcase() {
   const [currentIndex, setCurrentIndex] = useState(0)
+  const containerRef = useRef<HTMLDivElement>(null)
 
   const featuredContent = [
     {
@@ -75,15 +76,37 @@ export default function FeaturedShowcase() {
 
   // Auto-rotate featured content every 3.5 seconds
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % featuredContent.length)
-    }, 3500)
+    let interval: NodeJS.Timeout
 
-    return () => clearInterval(interval)
+    const startInterval = () => {
+      interval = setInterval(() => {
+        setCurrentIndex((prevIndex) => (prevIndex + 1) % featuredContent.length)
+      }, 3500)
+    }
+
+    // Start the interval initially
+    startInterval()
+
+    // Get the container element
+    const container = containerRef.current
+
+    // Add event listeners to pause/resume on hover
+    if (container) {
+      container.addEventListener("mouseenter", () => clearInterval(interval))
+      container.addEventListener("mouseleave", startInterval)
+    }
+
+    return () => {
+      clearInterval(interval)
+      if (container) {
+        container.removeEventListener("mouseenter", () => clearInterval(interval))
+        container.removeEventListener("mouseleave", startInterval)
+      }
+    }
   }, [featuredContent.length])
 
   return (
-    <div className="relative w-full h-[70vh] overflow-hidden">
+    <div className="relative w-full h-[70vh] overflow-hidden" ref={containerRef}>
       <div className="absolute inset-0">
         <div
           className="absolute inset-0 bg-cover bg-center transition-opacity duration-1000"

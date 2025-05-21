@@ -279,7 +279,7 @@ export default function Home() {
                 </Link>
               </div>
 
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 md:gap-4 lg:gap-6">
+              <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 md:gap-4 lg:gap-6">
                 {arrivedContent.slice(0, 5).map((movie, index) => (
                   <MovieCard
                     key={index}
@@ -317,7 +317,7 @@ export default function Home() {
                 </Link>
               </div>
 
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 md:gap-4 lg:gap-6">
+              <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 md:gap-4 lg:gap-6">
                 {upcomingContent.slice(0, 5).map((movie, index) => (
                   <MovieCard
                     key={index}

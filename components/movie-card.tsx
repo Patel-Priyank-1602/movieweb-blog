@@ -24,6 +24,9 @@ export default function MovieCard({ title, type, image, rating, releaseDate, sta
   return (
     <Card className="overflow-hidden bg-gray-900 border-gray-800 transition-all duration-300 hover:shadow-xl hover:shadow-primary/10">
       <div className="relative aspect-[2/3] group">
+        <Link href={`/${status}/${slug}`} className="block sm:hidden absolute inset-0 z-10">
+          <span className="sr-only">View {title}</span>
+        </Link>
         <Image src={image || "/placeholder.svg"} alt={title} fill className="object-cover" />
         <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
           <Button
@@ -50,7 +53,7 @@ export default function MovieCard({ title, type, image, rating, releaseDate, sta
       </div>
       <CardContent className="p-2 sm:p-4">
         <div className="space-y-1 sm:space-y-2">
-          <div className="flex items-center justify-between">
+          <div className="hidden sm:flex items-center justify-between">
             <Badge variant="secondary" className="bg-gray-800 text-gray-300 hover:bg-gray-800 text-xs">
               {type}
             </Badge>
@@ -62,13 +65,13 @@ export default function MovieCard({ title, type, image, rating, releaseDate, sta
             )}
           </div>
           <h3 className="font-semibold text-sm sm:text-lg leading-tight line-clamp-1">{title}</h3>
-          <div className="flex items-center gap-1 text-gray-400 text-xs sm:text-sm">
+          <div className="hidden sm:flex items-center gap-1 text-gray-400 text-xs sm:text-sm">
             <CalendarIcon className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
             <span className="line-clamp-1">{releaseDate}</span>
           </div>
         </div>
       </CardContent>
-      <CardFooter className="p-2 pt-0 sm:p-4 sm:pt-0">
+      <CardFooter className="hidden sm:block p-2 pt-0 sm:p-4 sm:pt-0">
         <Link href={`/${status}/${slug}`} className="w-full">
           <Button variant="ghost" size="sm" className="w-full justify-start hover:text-primary text-xs sm:text-sm">
             More Details

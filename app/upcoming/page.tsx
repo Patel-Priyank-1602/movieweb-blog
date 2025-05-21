@@ -166,7 +166,7 @@ export default function UpcomingPage() {
           </Tabs>
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 md:gap-4 lg:gap-6">
+        <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 md:gap-4 lg:gap-6">
           {filteredContent.map((movie, index) => (
             <MovieCard
               key={index}
