@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Link from "next/link"
 import { ChevronRight, Film, TrendingUp } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -8,121 +8,214 @@ import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import FeaturedShowcase from "@/components/featured-showcase"
 import MovieCard from "@/components/movie-card"
 import { Badge } from "@/components/ui/badge"
+import Loading from "./loading"
 
 export default function Home() {
   const [contentType, setContentType] = useState("all")
+  const [isLoading, setIsLoading] = useState(true)
 
-  type ContentType = "Movie" | "Series";
-  type ContentStatus = "arrived" | "upcoming";
+  useEffect(() => {
+    // Simulate loading time
+    const timer = setTimeout(() => {
+      setIsLoading(false)
+    }, 2000)
 
-  interface ArrivedContent {
-    title: string;
-    type: ContentType;
-    image: string;
-    rating: number;
-    releaseDate: string;
-    status: "arrived";
-  }
+    return () => clearTimeout(timer)
+  }, [])
 
-  interface UpcomingContent {
-    title: string;
-    type: ContentType;
-    image: string;
-    releaseDate: string;
-    status: "upcoming";
-  }
-
-  const arrivedContent: ArrivedContent[] = [
+  const arrivedMovies = [
     {
-      title: "Quantum Horizon",
+      title: "Raid 2",
       type: "Movie",
       image: "/placeholder.svg?height=450&width=300",
       rating: 4.8,
-      releaseDate: "Jan 15, 2025",
-      status: "arrived",
+      releaseDate: "Mar 10, 2025",
+      status: "released" as const,
     },
     {
-      title: "Neon Dynasty",
-      type: "Series",
+      title: "Thunderbolt",
+      type: "Movie",
+      image: "/placeholder.svg?height=450&width=300",
+      rating: 4.6,
+      releaseDate: "Feb 18, 2025",
+      status: "released" as const,
+    },
+    {
+      title: "Chhava",
+      type: "Movie",
+      image: "/placeholder.svg?height=450&width=300",
+      rating: 4.3,
+      releaseDate: "Jan 25, 2025",
+      status: "released" as const,
+    },
+    {
+      title: "Final Destination",
+      type: "Movie",
       image: "/placeholder.svg?height=450&width=300",
       rating: 4.5,
-      releaseDate: "Feb 3, 2025",
-      status: "arrived",
+      releaseDate: "Apr 12, 2025",
+      status: "released" as const,
     },
-    {
-      title: "Ethereal Echoes",
-      type: "Movie",
-      image: "/placeholder.svg?height=450&width=300",
-      rating: 4.2,
-      releaseDate: "Mar 22, 2025",
-      status: "arrived",
-    },
-    {
-      title: "Celestial Odyssey",
-      type: "Series",
-      image: "/placeholder.svg?height=450&width=300",
-      rating: 4.7,
-      releaseDate: "Apr 5, 2025",
-      status: "arrived",
-    },
-    {
-      title: "Temporal Paradox",
-      type: "Movie",
-      image: "/placeholder.svg?height=450&width=300",
-      rating: 4.4,
-      releaseDate: "May 1, 2025",
-      status: "arrived",
-    },
-  ];
+  ]
 
-  const upcomingContent: UpcomingContent[] = [
+  const upcomingMovies = [
     {
-      title: "Nebula Chronicles",
-      type: "Series",
-      image: "/placeholder.svg?height=450&width=300",
-      releaseDate: "Jun 18, 2025",
-      status: "upcoming",
-    },
-    {
-      title: "Astral Convergence",
+      title: "Mission Impossible: Final Reckoning",
       type: "Movie",
       image: "/placeholder.svg?height=450&width=300",
       releaseDate: "Jul 30, 2025",
-      status: "upcoming",
+      status: "upcoming" as const,
     },
     {
-      title: "Synthetic Dreams",
-      type: "Series",
-      image: "/placeholder.svg?height=450&width=300",
-      releaseDate: "Aug 12, 2025",
-      status: "upcoming",
-    },
-    {
-      title: "Prism Protocol",
+      title: "Jurassic World: Rebirth",
       type: "Movie",
       image: "/placeholder.svg?height=450&width=300",
-      releaseDate: "Sep 25, 2025",
-      status: "upcoming",
+      releaseDate: "Aug 15, 2025",
+      status: "upcoming" as const,
     },
     {
-      title: "Void Whispers",
-      type: "Series",
+      title: "Superman",
+      type: "Movie",
+      image: "/placeholder.svg?height=450&width=300",
+      releaseDate: "Oct 10, 2025",
+      status: "upcoming" as const,
+    },
+    {
+      title: "Fantastic 4",
+      type: "Movie",
+      image: "/placeholder.svg?height=450&width=300",
+      releaseDate: "Nov 8, 2025",
+      status: "upcoming" as const,
+    },
+    {
+      title: "War 2",
+      type: "Movie",
+      image: "/placeholder.svg?height=450&width=300",
+      releaseDate: "Sep 5, 2025",
+      status: "upcoming" as const,
+    },
+    {
+      title: "The Conjuring",
+      type: "Movie",
       image: "/placeholder.svg?height=450&width=300",
       releaseDate: "Oct 31, 2025",
-      status: "upcoming",
+      status: "upcoming" as const,
     },
-  ];
+    {
+      title: "Avatar 3",
+      type: "Movie",
+      image: "/placeholder.svg?height=450&width=300",
+      releaseDate: "Dec 20, 2025",
+      status: "upcoming" as const,
+    },
+  ]
 
-  // Filter content based on selected type
-  const filteredArrived =
-    contentType === "all"
-      ? arrivedContent
-      : arrivedContent.filter((item) => (contentType === "movies" ? item.type === "Movie" : item.type === "Series"))
+  const arrivedSeries = [
+    {
+      title: "You",
+      type: "Series",
+      image: "/placeholder.svg?height=450&width=300",
+      rating: 4.7,
+      releaseDate: "Feb 10, 2025",
+      status: "released" as const,
+    },
+    {
+      title: "Adolescence",
+      type: "Series",
+      image: "/placeholder.svg?height=450&width=300",
+      rating: 4.2,
+      releaseDate: "Mar 5, 2025",
+      status: "released" as const,
+    },
+    {
+      title: "Pataal Lok",
+      type: "Series",
+      image: "/placeholder.svg?height=450&width=300",
+      rating: 4.9,
+      releaseDate: "Jan 15, 2025",
+      status: "released" as const,
+    },
+    {
+      title: "The Last of Us",
+      type: "Series",
+      image: "/placeholder.svg?height=450&width=300",
+      rating: 4.8,
+      releaseDate: "Apr 2, 2025",
+      status: "released" as const,
+    },
+    {
+      title: "Daredevil",
+      type: "Series",
+      image: "/placeholder.svg?height=450&width=300",
+      rating: 4.6,
+      releaseDate: "May 1, 2025",
+      status: "released" as const,
+    },
+  ]
 
-  const filteredUpcoming =
+  const upcomingSeries = [
+    {
+      title: "Stranger Things",
+      type: "Series",
+      image: "/placeholder.svg?height=450&width=300",
+      releaseDate: "Dec 15, 2025",
+      status: "upcoming" as const,
+    },
+    {
+      title: "Alice in Borderland",
+      type: "Series",
+      image: "/placeholder.svg?height=450&width=300",
+      releaseDate: "Aug 25, 2025",
+      status: "upcoming" as const,
+    },
+    {
+      title: "Panchayat",
+      type: "Series",
+      image: "/placeholder.svg?height=450&width=300",
+      releaseDate: "Jun 20, 2025",
+      status: "upcoming" as const,
+    },
+    {
+      title: "Squid Game",
+      type: "Series",
+      image: "/placeholder.svg?height=450&width=300",
+      releaseDate: "Sep 15, 2025",
+      status: "upcoming" as const,
+    },
+    {
+      title: "Wednesday",
+      type: "Series",
+      image: "/placeholder.svg?height=450&width=300",
+      releaseDate: "Oct 25, 2025",
+      status: "upcoming" as const,
+    },
+    {
+      title: "Family Man",
+      type: "Series",
+      image: "/placeholder.svg?height=450&width=300",
+      releaseDate: "Nov 10, 2025",
+      status: "upcoming" as const,
+    },
+  ]
+
+  // Combine and filter content based on selected type
+  const arrivedContent =
     contentType === "all"
-      ? upcomingContent
-      : upcomingContent.filter((item) => (contentType === "movies" ? item.type === "Movie" : item.type === "Series"))
+      ? [...arrivedMovies, ...arrivedSeries]
+      : contentType === "movies"
+        ? arrivedMovies
+        : arrivedSeries
+
+  const upcomingContent =
+    contentType === "all"
+      ? [...upcomingMovies, ...upcomingSeries]
+      : contentType === "movies"
+        ? upcomingMovies
+        : upcomingSeries
+
+  if (isLoading) {
+    return <Loading />
+  }
 
   return (
     <div className="flex flex-col min-h-screen bg-black text-white">
@@ -136,8 +229,8 @@ export default function Home() {
             <Link href="/" className="text-sm font-medium text-white">
               Home
             </Link>
-            <Link href="/arrived" className="text-sm font-medium text-gray-400 transition-colors hover:text-white">
-              Arrived
+            <Link href="/released" className="text-sm font-medium text-gray-400 transition-colors hover:text-white">
+              Released
             </Link>
             <Link href="/upcoming" className="text-sm font-medium text-gray-400 transition-colors hover:text-white">
               Upcoming
@@ -177,28 +270,28 @@ export default function Home() {
                     variant="outline"
                     className="bg-green-900/30 text-green-400 hover:bg-green-900/30 border-green-800"
                   >
-                    Arrived
+                    Released
                   </Badge>
                   <span>Already Released</span>
                 </h3>
-                <Link href="/arrived" className="text-sm text-primary flex items-center">
+                <Link href="/released" className="text-sm text-primary flex items-center">
                   View all <ChevronRight className="h-4 w-4" />
                 </Link>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
-                {filteredArrived.map((movie, index) => (
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 md:gap-4 lg:gap-6">
+                {arrivedContent.slice(0, 5).map((movie, index) => (
                   <MovieCard
                     key={index}
                     title={movie.title}
-                    type={movie.type}
+                    type={movie.type as "Movie" | "Series"}
                     image={movie.image}
                     rating={movie.rating}
                     releaseDate={movie.releaseDate}
-                    status={movie.status}
+                    status="released"
                   />
                 ))}
-                {filteredArrived.length === 0 && (
+                {arrivedContent.length === 0 && (
                   <div className="col-span-full py-12 text-center">
                     <p className="text-gray-400">
                       No {contentType === "movies" ? "movies" : "series"} available in this category.
@@ -224,18 +317,18 @@ export default function Home() {
                 </Link>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
-                {filteredUpcoming.map((movie, index) => (
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 md:gap-4 lg:gap-6">
+                {upcomingContent.slice(0, 5).map((movie, index) => (
                   <MovieCard
                     key={index}
                     title={movie.title}
-                    type={movie.type}
+                    type={movie.type as "Movie" | "Series"}
                     image={movie.image}
                     releaseDate={movie.releaseDate}
-                    status={movie.status}
+                    status="upcoming"
                   />
                 ))}
-                {filteredUpcoming.length === 0 && (
+                {upcomingContent.length === 0 && (
                   <div className="col-span-full py-12 text-center">
                     <p className="text-gray-400">
                       No {contentType === "movies" ? "movies" : "series"} available in this category.

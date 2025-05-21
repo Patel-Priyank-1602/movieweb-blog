@@ -1,85 +1,120 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Link from "next/link"
 import { ArrowLeft, Filter, Search } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import MovieCard from "@/components/movie-card"
+import Loading from "../loading"
 
 export default function UpcomingPage() {
   const [contentType, setContentType] = useState("all")
+  const [isLoading, setIsLoading] = useState(true)
 
-  const upcomingContent = [
+  useEffect(() => {
+    // Simulate loading time
+    const timer = setTimeout(() => {
+      setIsLoading(false)
+    }, 1500)
+
+    return () => clearTimeout(timer)
+  }, [])
+
+  const upcomingMovies = [
     {
-      title: "Nebula Chronicles",
-      type: "Series",
-      image: "/placeholder.svg?height=450&width=300",
-      releaseDate: "Jun 18, 2025",
-      status: "upcoming" as const,
-    },
-    {
-      title: "Astral Convergence",
+      title: "Mission Impossible: Final Reckoning",
       type: "Movie",
       image: "/placeholder.svg?height=450&width=300",
       releaseDate: "Jul 30, 2025",
       status: "upcoming" as const,
     },
     {
-      title: "Synthetic Dreams",
-      type: "Series",
-      image: "/placeholder.svg?height=450&width=300",
-      releaseDate: "Aug 12, 2025",
-      status: "upcoming" as const,
-    },
-    {
-      title: "Prism Protocol",
+      title: "Jurassic World: Rebirth",
       type: "Movie",
       image: "/placeholder.svg?height=450&width=300",
-      releaseDate: "Sep 25, 2025",
+      releaseDate: "Aug 15, 2025",
       status: "upcoming" as const,
     },
     {
-      title: "Void Whispers",
-      type: "Series",
+      title: "Superman",
+      type: "Movie",
+      image: "/placeholder.svg?height=450&width=300",
+      releaseDate: "Oct 10, 2025",
+      status: "upcoming" as const,
+    },
+    {
+      title: "Fantastic 4",
+      type: "Movie",
+      image: "/placeholder.svg?height=450&width=300",
+      releaseDate: "Nov 8, 2025",
+      status: "upcoming" as const,
+    },
+    {
+      title: "War 2",
+      type: "Movie",
+      image: "/placeholder.svg?height=450&width=300",
+      releaseDate: "Sep 5, 2025",
+      status: "upcoming" as const,
+    },
+    {
+      title: "The Conjuring",
+      type: "Movie",
       image: "/placeholder.svg?height=450&width=300",
       releaseDate: "Oct 31, 2025",
       status: "upcoming" as const,
     },
     {
-      title: "Holographic Memories",
+      title: "Avatar 3",
       type: "Movie",
       image: "/placeholder.svg?height=450&width=300",
-      releaseDate: "Jun 5, 2025",
+      releaseDate: "Dec 20, 2025",
       status: "upcoming" as const,
     },
+  ]
+
+  const upcomingSeries = [
     {
-      title: "Quantum Nexus",
+      title: "Stranger Things",
       type: "Series",
       image: "/placeholder.svg?height=450&width=300",
-      releaseDate: "Jul 15, 2025",
+      releaseDate: "Dec 15, 2025",
       status: "upcoming" as const,
     },
     {
-      title: "Celestial Architects",
-      type: "Movie",
-      image: "/placeholder.svg?height=450&width=300",
-      releaseDate: "Aug 28, 2025",
-      status: "upcoming" as const,
-    },
-    {
-      title: "Neural Cascade",
+      title: "Alice in Borderland",
       type: "Series",
       image: "/placeholder.svg?height=450&width=300",
-      releaseDate: "Sep 10, 2025",
+      releaseDate: "Aug 25, 2025",
       status: "upcoming" as const,
     },
     {
-      title: "Chronos Paradox",
-      type: "Movie",
+      title: "Panchayat",
+      type: "Series",
       image: "/placeholder.svg?height=450&width=300",
-      releaseDate: "Nov 15, 2025",
+      releaseDate: "Jun 20, 2025",
+      status: "upcoming" as const,
+    },
+    {
+      title: "Squid Game",
+      type: "Series",
+      image: "/placeholder.svg?height=450&width=300",
+      releaseDate: "Sep 15, 2025",
+      status: "upcoming" as const,
+    },
+    {
+      title: "Wednesday",
+      type: "Series",
+      image: "/placeholder.svg?height=450&width=300",
+      releaseDate: "Oct 25, 2025",
+      status: "upcoming" as const,
+    },
+    {
+      title: "Family Man",
+      type: "Series",
+      image: "/placeholder.svg?height=450&width=300",
+      releaseDate: "Nov 10, 2025",
       status: "upcoming" as const,
     },
   ]
@@ -87,8 +122,14 @@ export default function UpcomingPage() {
   // Filter content based on selected type
   const filteredContent =
     contentType === "all"
-      ? upcomingContent
-      : upcomingContent.filter((item) => (contentType === "movies" ? item.type === "Movie" : item.type === "Series"))
+      ? [...upcomingMovies, ...upcomingSeries]
+      : contentType === "movies"
+        ? upcomingMovies
+        : upcomingSeries
+
+  if (isLoading) {
+    return <Loading />
+  }
 
   return (
     <div className="min-h-screen bg-black text-white">
@@ -125,15 +166,15 @@ export default function UpcomingPage() {
           </Tabs>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 md:gap-4 lg:gap-6">
           {filteredContent.map((movie, index) => (
             <MovieCard
               key={index}
               title={movie.title}
-              type={movie.type}
+              type={movie.type as "Movie" | "Series"}
               image={movie.image}
               releaseDate={movie.releaseDate}
-              status={movie.status}
+              status="upcoming"
             />
           ))}
           {filteredContent.length === 0 && (

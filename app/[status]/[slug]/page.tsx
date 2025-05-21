@@ -1,6 +1,6 @@
 import Link from "next/link"
 import Image from "next/image"
-import { ArrowLeft, Calendar, Film, Star, Users } from "lucide-react"
+import { ArrowLeft, Calendar, Film, Star, Users, Play } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 
@@ -12,14 +12,15 @@ interface MovieDetailsProps {
 }
 
 export default function MovieDetailsPage({ params }: MovieDetailsProps) {
-  // Fetch movie data based on slug and status
+  // In a real app, you would fetch this data from an API or database
+  // For now, we'll use mock data based on the slug
   const movieData = getMovieData(params.slug, params.status)
 
   if (!movieData) {
     return (
       <div className="min-h-screen bg-black text-white flex items-center justify-center">
         <div className="text-center">
-          <h1 className="text-3xl font-bold mb-4">Movie not found</h1>
+          <h1 className="text-3xl font-bold mb-4">Content not found</h1>
           <Link href="/">
             <Button>Return to Home</Button>
           </Link>
@@ -74,6 +75,15 @@ export default function MovieDetailsPage({ params }: MovieDetailsProps) {
                   className="object-cover"
                 />
               </div>
+
+              <div className="mt-6">
+                <a href={movieData.trailerUrl} target="_blank" rel="noopener noreferrer">
+                  <Button className="w-full gap-2">
+                    <Play className="h-4 w-4" />
+                    Watch Trailer
+                  </Button>
+                </a>
+              </div>
             </div>
 
             <div className="w-full md:w-2/3 lg:w-3/4 space-y-6">
@@ -82,12 +92,12 @@ export default function MovieDetailsPage({ params }: MovieDetailsProps) {
                   <Badge
                     variant="outline"
                     className={
-                      params.status === "arrived"
+                      params.status === "released"
                         ? "bg-green-900/30 text-green-400 hover:bg-green-900/30 border-green-800"
                         : "bg-blue-900/30 text-blue-400 hover:bg-blue-900/30 border-blue-800"
                     }
                   >
-                    {params.status === "arrived" ? "Released" : "Upcoming"}
+                    {params.status === "released" ? "Released" : "Upcoming"}
                   </Badge>
                   <Badge variant="secondary" className="bg-gray-800 text-gray-300 hover:bg-gray-800">
                     {movieData.type}
@@ -100,7 +110,7 @@ export default function MovieDetailsPage({ params }: MovieDetailsProps) {
 
                 <div className="flex items-center gap-2 text-yellow-500">
                   <Star className="h-5 w-5 fill-yellow-500" />
-                  <span className="text-lg font-medium">{movieData.imdbRating || "N/A"} / 10</span>
+                  <span className="text-lg font-medium">{movieData.imdbRating} / 10</span>
                   <span className="text-sm text-gray-400">IMDb Rating</span>
                 </div>
               </div>
@@ -136,19 +146,9 @@ export default function MovieDetailsPage({ params }: MovieDetailsProps) {
                 <p className="text-gray-300 leading-relaxed">{movieData.description}</p>
               </div>
 
-              <div className="flex gap-4">
-                {movieData.trailerLink && (
-                  <Button
-                    size="lg"
-                    variant="outline"
-                    className="gap-2 border-gray-600 hover:bg-gray-800"
-                    asChild
-                  >
-                    <Link href={movieData.trailerLink} target="_blank" rel="noopener noreferrer">
-                      Watch Trailer on YouTube
-                    </Link>
-                  </Button>
-                )}
+              <div className="flex items-center gap-2">
+                <span className="text-gray-400">Release Date:</span>
+                <span className="font-semibold">{movieData.releaseDate}</span>
               </div>
             </div>
           </div>
@@ -161,328 +161,366 @@ export default function MovieDetailsPage({ params }: MovieDetailsProps) {
 function getMovieData(slug: string, status: string) {
   // This would normally come from a database or API
   const moviesData = {
-    "quantum-horizon": {
-      title: "Quantum Horizon",
-      type: "Movie",
-      posterImage: "/series/stc.jpeg?height=450&width=300",
-      coverImage: "/series/st.jpeg?height=600&width=1200",
-      releaseDate: "January 15, 2025",
-      director: "Alexandra Chen",
-      productionCompany: "Nebula Studios",
-      imdbRating: 8.7,
-      duration: "2h 15m",
-      genre: "Sci-Fi/Thriller",
-      description:
-        "In the year 2150, a team of scientists discovers a way to manipulate quantum reality, but their breakthrough threatens to unravel the fabric of existence itself. As they delve deeper into the quantum realm, they face ethical dilemmas and unforeseen consequences that could change humanity forever.",
-      trailerLink: "https://www.youtube.com/watch?v=quantum-horizon-trailer"
-    },
-    "neon-dynasty": {
-      title: "Neon Dynasty",
-      type: "Series",
-      posterImage: "/placeholder.svg?height=450&width=300",
-      coverImage: "/placeholder.svg?height=600&width=1200",
-      releaseDate: "February 3, 2025",
-      director: "Hiroshi Nakamura",
-      productionCompany: "Cyber Visions Entertainment",
-      imdbRating: 9.2,
-      duration: "8 Episodes",
-      genre: "Cyberpunk/Drama",
-      description:
-        "In a cyberpunk metropolis ruled by corporate AI, a group of hackers fights to expose the dark secrets of the system that controls their lives. As they navigate the neon-lit streets and digital landscapes, they discover conspiracies that go deeper than they ever imagined.",
-      trailerLink: "https://www.youtube.com/watch?v=neon-dynasty-trailer"
-    },
-    "ethereal-echoes": {
-      title: "Ethereal Echoes",
-      type: "Movie",
-      posterImage: "/placeholder.svg?height=450&width=300",
-      coverImage: "/placeholder.svg?height=600&width=1200",
-      releaseDate: "March 22, 2025",
-      director: "Sophia Williams",
-      productionCompany: "Dreamscape Pictures",
-      imdbRating: 8.4,
-      duration: "1h 58m",
-      genre: "Fantasy/Adventure",
-      description:
-        "When a young musician discovers she can travel between dimensions through sound, she embarks on a journey to save a dying world whose fate is mysteriously tied to her own. Her melodies become the key to unlocking ancient powers and healing the rifts between worlds.",
-      trailerLink: "https://www.youtube.com/watch?v=ethereal-echoes-trailer"
-    },
-    "nebula-chronicles": {
-      title: "Nebula Chronicles",
-      type: "Series",
-      posterImage: "/placeholder.svg?height=450&width=300",
-      coverImage: "/placeholder.svg?height=600&width=1200",
-      releaseDate: "June 18, 2025",
-      director: "Marcus Johnson",
-      productionCompany: "Stellar Entertainment",
-      imdbRating: 9.0,
-      duration: "10 Episodes",
-      genre: "Space Opera/Adventure",
-      description:
-        "An interstellar saga following the crew of the starship Artemis as they navigate uncharted space and encounter ancient civilizations. Their mission of exploration becomes one of survival as they uncover secrets that have remained hidden for millennia.",
-      trailerLink: "https://www.youtube.com/watch?v=nebula-chronicles-trailer"
-    },
-    "astral-convergence": {
-      title: "Astral Convergence",
-      type: "Movie",
-      posterImage: "/placeholder.svg?height=450&width=300",
-      coverImage: "/placeholder.svg?height=600&width=1200",
-      releaseDate: "July 30, 2025",
-      director: "Elena Rodriguez",
-      productionCompany: "Cosmic Films",
-      imdbRating: 8.8,
-      duration: "2h 30m",
-      genre: "Sci-Fi/Mystery",
-      description:
-        "When multiple realities begin to collapse into one another, a physicist must work with her alternate selves to prevent the complete destruction of the multiverse. As the boundaries between worlds blur, she confronts versions of her life that could have been.",
-      trailerLink: "https://www.youtube.com/watch?v=astral-convergence-trailer"
-    },
-    "synthetic-dreams": {
-      title: "Synthetic Dreams",
-      type: "Series",
-      posterImage: "/placeholder.svg?height=450&width=300",
-      coverImage: "/placeholder.svg?height=600&width=1200",
-      releaseDate: "August 12, 2025",
-      director: "David Kim",
-      productionCompany: "Neural Network Productions",
-      imdbRating: 8.6,
-      duration: "8 Episodes",
-      genre: "Sci-Fi/Drama",
-      description:
-        "In a world where dreams can be programmed and shared, a dream designer discovers a pattern of nightmares that seems to predict real-world disasters. As she investigates, she finds herself caught in a conspiracy that blurs the line between reality and simulation.",
-      trailerLink: "https://www.youtube.com/watch?v=synthetic-dreams-trailer"
-    },
-    "prism-protocol": {
-      title: "Prism Protocol",
-      type: "Movie",
-      posterImage: "/placeholder.svg?height=450&width=300",
-      coverImage: "/placeholder.svg?height=600&width=1200",
-      releaseDate: "September 25, 2025",
-      director: "Michael Torres",
-      productionCompany: "Spectrum Films",
-      imdbRating: 8.3,
-      duration: "2h 10m",
-      genre: "Thriller/Sci-Fi",
-      description:
-        "A security expert with synesthesia is recruited to test a new quantum encryption system, only to discover that the technology has been compromised by an entity that may not be human. Her unique perception becomes both her greatest asset and her greatest vulnerability.",
-      trailerLink: "https://www.youtube.com/watch?v=prism-protocol-trailer"
-    },
-    "void-whispers": {
-      title: "Void Whispers",
-      type: "Series",
-      posterImage: "/placeholder.svg?height=450&width=300",
-      coverImage: "/placeholder.svg?height=600&width=1200",
-      releaseDate: "October 31, 2025",
-      director: "Sarah Chen",
-      productionCompany: "Eclipse Entertainment",
-      imdbRating: 9.1,
-      duration: "6 Episodes",
-      genre: "Horror/Sci-Fi",
-      description:
-        "When a deep space mining operation encounters an ancient signal, the crew begins experiencing hallucinations that seem to predict their deaths. As they race back to Earth, they must determine if they've discovered an alien intelligence or unleashed something far more sinister.",
-      trailerLink: "https://www.youtube.com/watch?v=void-whispers-trailer"
-    },
-    "celestial-odyssey": {
-      title: "Celestial Odyssey",
-      type: "Series",
-      posterImage: "/placeholder.svg?height=450&width=300",
-      coverImage: "/placeholder.svg?height=600&width=1200",
-      releaseDate: "April 5, 2025",
-      director: "Jonathan Wright",
-      productionCompany: "Astral Media",
-      imdbRating: 8.9,
-      duration: "12 Episodes",
-      genre: "Space Opera/Adventure",
-      description:
-        "Following the journey of the starship Elysium as it embarks on humanity's first mission to a nearby star system. The crew must navigate not only the dangers of deep space but also the complex politics and personal conflicts that threaten their mission from within.",
-      trailerLink: "https://www.youtube.com/watch?v=celestial-odyssey-trailer"
-    },
-    "temporal-paradox": {
-      title: "Temporal Paradox",
-      type: "Movie",
-      posterImage: "/placeholder.svg?height=450&width=300",
-      coverImage: "/placeholder.svg?height=600&width=1200",
-      releaseDate: "May 1, 2025",
-      director: "Thomas Reynolds",
-      productionCompany: "Chronos Pictures",
-      imdbRating: 8.5,
-      duration: "2h 25m",
-      genre: "Sci-Fi/Mystery",
-      description:
-        "A physicist discovers a way to send messages to her past self, creating a series of cascading timeline changes that have unexpected consequences. As she tries to fix the damage, she uncovers a conspiracy that spans multiple timelines and threatens the very fabric of reality.",
-      trailerLink: "https://www.youtube.com/watch?v=temporal-paradox-trailer"
-    },
-    "echoes-of-eternity": {
-      title: "Echoes of Eternity",
-      type: "Movie",
-      posterImage: "/placeholder.svg?height=450&width=300",
-      coverImage: "/placeholder.svg?height=600&width=1200",
-      releaseDate: "August 22, 2025",
-      director: "Unknown",
-      productionCompany: "Unknown",
-      imdbRating: 4.8,
-      duration: "Unknown",
-      genre: "Sci-Fi/Adventure",
-      description:
-        "A time-traveling historian uncovers a hidden prophecy that could alter the course of human history, but at a devastating cost.",
-      trailerLink: "https://www.youtube.com/watch?v=echoes-of-eternity-trailer"
-    },
-    "codebreakers": {
-      title: "Codebreakers",
-      type: "Movie",
-      posterImage: "/placeholder.svg?height=450&width=300",
-      coverImage: "/placeholder.svg?height=600&width=1200",
-      releaseDate: "January 15, 2025",
-      director: "Unknown",
-      productionCompany: "Unknown",
-      imdbRating: null,
-      duration: "Unknown",
-      genre: "Sci-Fi/Thriller",
-      description:
-        "In the year 2150, a team of scientists discovers a way to manipulate quantum reality, but their breakthrough threatens to unravel the fabric of existence itself.",
-      trailerLink: "https://www.youtube.com/watch?v=codebreakers-trailer"
-    },
-    "luminous-descent": {
-      title: "Luminous Descent",
-      type: "Movie",
-      posterImage: "/placeholder.svg?height=450&width=300",
-      coverImage: "/placeholder.svg?height=600&width=1200",
-      releaseDate: "January 30, 2025",
-      director: "Unknown",
-      productionCompany: "Unknown",
-      imdbRating: 4.1,
-      duration: "Unknown",
-      genre: "Sci-Fi/Drama",
-      description: "A journey into the unknown where a mysterious light guides explorers through a realm of lost memories, challenging their understanding of reality and self.",
-      trailerLink: "https://www.youtube.com/watch?v=luminous-descent-trailer"
-    },
-    "fractal-minds": {
-      title: "Fractal Minds",
-      type: "Series",
-      posterImage: "/placeholder.svg?height=450&width=300",
-      coverImage: "/placeholder.svg?height=600&width=1200",
-      releaseDate: "February 15, 2025",
-      director: "Unknown",
-      productionCompany: "Unknown",
-      imdbRating: 4.6,
-      duration: "Unknown",
-      genre: "Sci-Fi/Mystery",
-      description: "A group of neuroscientists experiments with consciousness, uncovering fractal patterns in the mind that reveal hidden truths about human existence.",
-      trailerLink: "https://www.youtube.com/watch?v=fractal-minds-trailer"
-    },
-    "stellar-enigma": {
-      title: "Stellar Enigma",
+    // Movies - Released
+    "raid-2": {
+      title: "Raid 2",
       type: "Movie",
       posterImage: "/placeholder.svg?height=450&width=300",
       coverImage: "/placeholder.svg?height=600&width=1200",
       releaseDate: "March 10, 2025",
-      director: "Unknown",
-      productionCompany: "Unknown",
-      imdbRating: 4.3,
-      duration: "Unknown",
-      genre: "Sci-Fi/Adventure",
-      description: "An astronaut encounters a cosmic anomaly that holds the key to an ancient stellar mystery, forcing a choice between knowledge and survival.",
-      trailerLink: "https://www.youtube.com/watch?v=stellar-enigma-trailer"
+      director: "Rajkumar Gupta",
+      productionCompany: "T-Series Films",
+      imdbRating: 8.7,
+      duration: "2h 25m",
+      genre: "Action/Crime",
+      description:
+        "Following the success of the first film, Raid 2 continues the story of an honest income tax officer who takes on powerful corrupt individuals. This time, he faces an even more dangerous network of corruption that reaches the highest levels of government.",
+      cast: ["Ajay Devgn", "Ileana D'Cruz", "Saurabh Shukla", "Amit Sial", "Pushpa Joshi"],
+      trailerUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
     },
-    "cybernetic-dawn": {
-      title: "Cybernetic Dawn",
-      type: "Series",
-      posterImage: "/placeholder.svg?height=450&width=300",
-      coverImage: "/placeholder.svg?height=600&width=1200",
-      releaseDate: "April 20, 2025",
-      director: "Unknown",
-      productionCompany: "Unknown",
-      imdbRating: 4.9,
-      duration: "Unknown",
-      genre: "Cyberpunk/Sci-Fi",
-      description: "In a future where cybernetic enhancements are ubiquitous, a rogue AI sparks a rebellion that threatens to redefine humanity’s evolution.",
-      trailerLink: "https://www.youtube.com/watch?v=cybernetic-dawn-trailer"
-    },
-    "quantum-entanglement": {
-      title: "Quantum Entanglement",
+    thunderbolt: {
+      title: "Thunderbolt",
       type: "Movie",
       posterImage: "/placeholder.svg?height=450&width=300",
       coverImage: "/placeholder.svg?height=600&width=1200",
-      releaseDate: "May 5, 2025",
-      director: "Unknown",
-      productionCompany: "Unknown",
-      imdbRating: 4.5,
-      duration: "Unknown",
-      genre: "Sci-Fi/Thriller",
-      description: "A physicist’s experiment with quantum entanglement unlocks a connection to parallel universes, but each interaction risks destabilizing reality.",
-      trailerLink: "https://www.youtube.com/watch?v=quantum-entanglement-trailer"
+      releaseDate: "February 18, 2025",
+      director: "Michael Bay",
+      productionCompany: "Paramount Pictures",
+      imdbRating: 7.8,
+      duration: "2h 10m",
+      genre: "Action/Sci-Fi",
+      description:
+        "When a brilliant engineer develops a revolutionary technology that harnesses lightning as an unlimited energy source, powerful interests will stop at nothing to control it. As global powers race to acquire the technology, the inventor must protect his creation from falling into the wrong hands.",
+      cast: ["Chris Hemsworth", "Zoe Saldana", "Idris Elba", "Rebecca Ferguson", "John Boyega"],
+      trailerUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
     },
-    "holographic-memories": {
-      title: "Holographic Memories",
+    chhava: {
+      title: "Chhava",
       type: "Movie",
       posterImage: "/placeholder.svg?height=450&width=300",
       coverImage: "/placeholder.svg?height=600&width=1200",
-      releaseDate: "June 5, 2025",
-      director: "Unknown",
-      productionCompany: "Unknown",
-      imdbRating: null,
-      duration: "Unknown",
-      genre: "Sci-Fi/Drama",
-      description: "A scientist develops a technology to relive holographic memories, but discovers that altering the past within these projections has unforeseen consequences in the present.",
-      trailerLink: "https://www.youtube.com/watch?v=holographic-memories-trailer"
+      releaseDate: "January 25, 2025",
+      director: "Laxman Utekar",
+      productionCompany: "Maddock Films",
+      imdbRating: 8.2,
+      duration: "2h 35m",
+      genre: "Historical/Drama",
+      description:
+        "Based on the life of Chhatrapati Sambhaji Maharaj, the son and successor of Chhatrapati Shivaji Maharaj. The film portrays his courage, military genius, and the challenges he faced while defending the Maratha kingdom against powerful enemies.",
+      cast: ["Vicky Kaushal", "Rashmika Mandanna", "Akshaye Khanna", "Ashutosh Rana", "Divya Dutta"],
+      trailerUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
     },
-    "quantum-nexus": {
-      title: "Quantum Nexus",
-      type: "Series",
-      posterImage: "/placeholder.svg?height=450&width=300",
-      coverImage: "/placeholder.svg?height=600&width=1200",
-      releaseDate: "July 15, 2025",
-      director: "Unknown",
-      productionCompany: "Unknown",
-      imdbRating: null,
-      duration: "Unknown",
-      genre: "Sci-Fi/Adventure",
-      description: "A team of explorers discovers a quantum nexus connecting multiple dimensions, leading to a race against time to prevent a catastrophic collapse of realities.",
-      trailerLink: "https://www.youtube.com/watch?v=quantum-nexus-trailer"
-    },
-    "celestial-architects": {
-      title: "Celestial Architects",
+    "final-destination": {
+      title: "Final Destination",
       type: "Movie",
       posterImage: "/placeholder.svg?height=450&width=300",
       coverImage: "/placeholder.svg?height=600&width=1200",
-      releaseDate: "August 28, 2025",
-      director: "Unknown",
-      productionCompany: "Unknown",
-      imdbRating: null,
-      duration: "Unknown",
-      genre: "Sci-Fi/Fantasy",
-      description: "A group of cosmic engineers tasked with designing new worlds uncovers a hidden blueprint that could either save or doom the universe.",
-      trailerLink: "https://www.youtube.com/watch?v=celestial-architects-trailer"
+      releaseDate: "April 12, 2025",
+      director: "Zach Lipovsky",
+      productionCompany: "New Line Cinema",
+      imdbRating: 7.5,
+      duration: "1h 55m",
+      genre: "Horror/Thriller",
+      description:
+        "The latest installment in the popular horror franchise follows a new group of survivors who cheat death after one of them has a premonition about a catastrophic event. As they begin to die in increasingly elaborate and gruesome ways, they race to find a way to break the cycle of death.",
+      cast: ["Angourie Rice", "Justice Smith", "Madelyn Cline", "Danny Ramirez", "Kaitlyn Dever"],
+      trailerUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
     },
-    "neural-cascade": {
-      title: "Neural Cascade",
-      type: "Series",
-      posterImage: "/placeholder.svg?height=450&width=300",
-      coverImage: "/placeholder.svg?height=600&width=1200",
-      releaseDate: "September 10, 2025",
-      director: "Unknown",
-      productionCompany: "Unknown",
-      imdbRating: null,
-      duration: "Unknown",
-      genre: "Sci-Fi/Thriller",
-      description: "A neural network experiment goes awry, causing a cascade of shared consciousness across a city, forcing a hacker to unravel the mystery before minds are lost forever.",
-      trailerLink: "https://www.youtube.com/watch?v=neural-cascade-trailer"
-    },
-    "chronos-paradox": {
-      title: "Chronos Paradox",
-      type: "Movie",
-      posterImage: "/placeholder.svg?height=450&width=300",
-      coverImage: "/placeholder.svg?height=600&width=1200",
-      releaseDate: "November 15, 2025",
-      director: "Unknown",
-      productionCompany: "Unknown",
-      imdbRating: null,
-      duration: "Unknown",
-      genre: "Sci-Fi/Mystery",
-      description: "A time traveler becomes trapped in a loop where each cycle reveals a paradox that threatens to erase their existence, forcing a desperate search for a way out.",
-      trailerLink: "https://www.youtube.com/watch?v=chronos-paradox-trailer"
-    }
-  }
 
+    // Movies - Upcoming
+    "mission-impossible-final-reckoning": {
+      title: "Mission Impossible: Final Reckoning",
+      type: "Movie",
+      posterImage: "/placeholder.svg?height=450&width=300",
+      coverImage: "/placeholder.svg?height=600&width=1200",
+      releaseDate: "July 30, 2025",
+      director: "Christopher McQuarrie",
+      productionCompany: "Paramount Pictures",
+      imdbRating: 9.0,
+      duration: "2h 30m",
+      genre: "Action/Spy",
+      description:
+        "In the epic conclusion to the Mission Impossible saga, Ethan Hunt faces his most personal mission yet as he confronts enemies from his past while trying to prevent a global catastrophe. With the IMF disbanded and his allies scattered, Hunt must rely on new allies and old friends to complete his final mission.",
+      cast: ["Tom Cruise", "Rebecca Ferguson", "Simon Pegg", "Ving Rhames", "Hayley Atwell"],
+      trailerUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    },
+    "jurassic-world-rebirth": {
+      title: "Jurassic World: Rebirth",
+      type: "Movie",
+      posterImage: "/placeholder.svg?height=450&width=300",
+      coverImage: "/placeholder.svg?height=600&width=1200",
+      releaseDate: "August 15, 2025",
+      director: "Colin Trevorrow",
+      productionCompany: "Universal Pictures",
+      imdbRating: 8.5,
+      duration: "2h 20m",
+      genre: "Adventure/Sci-Fi",
+      description:
+        "Ten years after the events of Jurassic World Dominion, dinosaurs have adapted to living alongside humans in various ecosystems around the world. When a new genetic breakthrough threatens to upset this delicate balance, a team of scientists and adventurers must prevent a new extinction event that could wipe out both dinosaurs and humanity.",
+      cast: ["Chris Pratt", "Bryce Dallas Howard", "Sam Neill", "Laura Dern", "DeWanda Wise"],
+      trailerUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    },
+    superman: {
+      title: "Superman",
+      type: "Movie",
+      posterImage: "/placeholder.svg?height=450&width=300",
+      coverImage: "/placeholder.svg?height=600&width=1200",
+      releaseDate: "October 10, 2025",
+      director: "James Gunn",
+      productionCompany: "DC Studios",
+      imdbRating: 8.8,
+      duration: "2h 15m",
+      genre: "Superhero/Action",
+      description:
+        "A bold reimagining of the Superman story, focusing on a younger Clark Kent as he balances his Kryptonian heritage with his human upbringing. As he emerges as Earth's greatest protector, he faces threats both alien and human while defining what it means to be a hero in the modern world.",
+      cast: ["David Corenswet", "Rachel Brosnahan", "Nicholas Hoult", "Isabela Merced", "Nathan Fillion"],
+      trailerUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    },
+    "fantastic-4": {
+      title: "Fantastic 4",
+      type: "Movie",
+      posterImage: "/placeholder.svg?height=450&width=300",
+      coverImage: "/placeholder.svg?height=600&width=1200",
+      releaseDate: "November 8, 2025",
+      director: "Matt Shakman",
+      productionCompany: "Marvel Studios",
+      imdbRating: 8.6,
+      duration: "2h 10m",
+      genre: "Superhero/Adventure",
+      description:
+        "Marvel's First Family finally joins the MCU in this origin story set in the 1960s. When four explorers gain extraordinary abilities after exposure to cosmic rays, they must learn to harness their new powers while facing threats from both Earth and beyond, including the mysterious ruler of Latveria.",
+      cast: ["Pedro Pascal", "Vanessa Kirby", "Joseph Quinn", "Ebon Moss-Bachrach", "Ralph Ineson"],
+      trailerUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    },
+    "war-2": {
+      title: "War 2",
+      type: "Movie",
+      posterImage: "/placeholder.svg?height=450&width=300",
+      coverImage: "/placeholder.svg?height=600&width=1200",
+      releaseDate: "September 5, 2025",
+      director: "Ayan Mukerji",
+      productionCompany: "YRF Films",
+      imdbRating: 8.4,
+      duration: "2h 30m",
+      genre: "Action/Thriller",
+      description:
+        "The sequel to the blockbuster action film continues the story of India's elite agents as they face a new international threat. When a rogue agent threatens global security, Kabir must team up with a new partner to stop a conspiracy that could trigger a world war.",
+      cast: ["Hrithik Roshan", "Jr NTR", "Kiara Advani", "Sharvari Wagh", "Ronit Roy"],
+      trailerUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    },
+    "the-conjuring": {
+      title: "The Conjuring",
+      type: "Movie",
+      posterImage: "/placeholder.svg?height=450&width=300",
+      coverImage: "/placeholder.svg?height=600&width=1200",
+      releaseDate: "October 31, 2025",
+      director: "Michael Chaves",
+      productionCompany: "New Line Cinema",
+      imdbRating: 8.3,
+      duration: "2h 5m",
+      genre: "Horror/Supernatural",
+      description:
+        "The next chapter in the Conjuring Universe follows paranormal investigators Ed and Lorraine Warren as they take on their most terrifying case yet. Based on another true case from their files, the Warrens face a demonic entity that has haunted a family for generations, revealing dark secrets about the history of the occult in America.",
+      cast: ["Patrick Wilson", "Vera Farmiga", "Mckenna Grace", "Julian Hilliard", "Ruairi O'Connor"],
+      trailerUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    },
+    "avatar-3": {
+      title: "Avatar 3",
+      type: "Movie",
+      posterImage: "/placeholder.svg?height=450&width=300",
+      coverImage: "/placeholder.svg?height=600&width=1200",
+      releaseDate: "December 20, 2025",
+      director: "James Cameron",
+      productionCompany: "20th Century Studios",
+      imdbRating: 9.2,
+      duration: "3h 10m",
+      genre: "Sci-Fi/Adventure",
+      description:
+        "Return to Pandora as Jake Sully and Neytiri continue their journey, exploring new regions of the planet and facing a threat that tests the bonds of their family and the Na'vi people. This third installment introduces the Ash People, a fire-based Na'vi tribe, and delves deeper into the conflict between humans and the indigenous population of Pandora.",
+      cast: ["Sam Worthington", "Zoe Saldana", "Sigourney Weaver", "Stephen Lang", "Kate Winslet"],
+      trailerUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    },
+
+    // Series - Released
+    you: {
+      title: "You",
+      type: "Series",
+      posterImage: "/placeholder.svg?height=450&width=300",
+      coverImage: "/placeholder.svg?height=600&width=1200",
+      releaseDate: "February 10, 2025",
+      director: "Greg Berlanti",
+      productionCompany: "Netflix",
+      imdbRating: 8.5,
+      duration: "10 Episodes",
+      genre: "Thriller/Drama",
+      description:
+        "In the final season of the psychological thriller, Joe Goldberg attempts to leave his murderous past behind and start anew. However, his obsessive tendencies resurface when he becomes fixated on a mysterious woman who seems to know too much about his dark secrets.",
+      cast: ["Penn Badgley", "Victoria Pedretti", "Elizabeth Lail", "Shay Mitchell", "Jenna Ortega"],
+      trailerUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    },
+    adolescence: {
+      title: "Adolescence",
+      type: "Series",
+      posterImage: "/placeholder.svg?height=450&width=300",
+      coverImage: "/placeholder.svg?height=600&width=1200",
+      releaseDate: "March 5, 2025",
+      director: "Sam Levinson",
+      productionCompany: "HBO",
+      imdbRating: 8.2,
+      duration: "8 Episodes",
+      genre: "Drama/Coming-of-age",
+      description:
+        "A raw and unflinching look at the lives of a group of high school students as they navigate the complexities of modern teenage life. Dealing with issues of identity, trauma, addiction, and relationships, the series offers a powerful portrayal of the challenges facing today's youth.",
+      cast: ["Zendaya", "Hunter Schafer", "Jacob Elordi", "Sydney Sweeney", "Alexa Demie"],
+      trailerUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    },
+    "pataal-lok": {
+      title: "Pataal Lok",
+      type: "Series",
+      posterImage: "/placeholder.svg?height=450&width=300",
+      coverImage: "/placeholder.svg?height=600&width=1200",
+      releaseDate: "January 15, 2025",
+      director: "Avinash Arun",
+      productionCompany: "Amazon Prime Video",
+      imdbRating: 9.1,
+      duration: "9 Episodes",
+      genre: "Crime/Thriller",
+      description:
+        "In the second season of this critically acclaimed series, Inspector Hathiram Chaudhary investigates a new case that takes him deeper into the dark underbelly of Indian society. As he uncovers layers of corruption, politics, and crime, he must confront his own demons while navigating a system designed to break him.",
+      cast: ["Jaideep Ahlawat", "Gul Panag", "Neeraj Kabi", "Ishwak Singh", "Abhishek Banerjee"],
+      trailerUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    },
+    "the-last-of-us": {
+      title: "The Last of Us",
+      type: "Series",
+      posterImage: "/placeholder.svg?height=450&width=300",
+      coverImage: "/placeholder.svg?height=600&width=1200",
+      releaseDate: "April 2, 2025",
+      director: "Craig Mazin",
+      productionCompany: "HBO",
+      imdbRating: 9.3,
+      duration: "9 Episodes",
+      genre: "Drama/Post-apocalyptic",
+      description:
+        "The second season adapts the events of the acclaimed video game 'The Last of Us Part II'. Five years after the events of the first season, Joel and Ellie have settled in Jackson, Wyoming. When a violent event disrupts their peace, Ellie embarks on a journey for justice that forces her to confront the physical and emotional toll of her actions.",
+      cast: ["Pedro Pascal", "Bella Ramsey", "Gabriel Luna", "Rutina Wesley", "Jeffrey Wright"],
+      trailerUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    },
+    daredevil: {
+      title: "Daredevil",
+      type: "Series",
+      posterImage: "/placeholder.svg?height=450&width=300",
+      coverImage: "/placeholder.svg?height=600&width=1200",
+      releaseDate: "May 1, 2025",
+      director: "Drew Goddard",
+      productionCompany: "Disney+",
+      imdbRating: 9.0,
+      duration: "10 Episodes",
+      genre: "Superhero/Crime",
+      description:
+        "Daredevil: Born Again sees Matt Murdock return to Hell's Kitchen, where he must balance his dual life as a lawyer and vigilante. When Wilson Fisk rises to political power in New York City, Matt faces his greatest challenge yet as he confronts old enemies and new threats while trying to protect his city and those he loves.",
+      cast: ["Charlie Cox", "Vincent D'Onofrio", "Deborah Ann Woll", "Elden Henson", "Jon Bernthal"],
+      trailerUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    },
+
+    // Series - Upcoming
+    "stranger-things": {
+      title: "Stranger Things",
+      type: "Series",
+      posterImage: "/placeholder.svg?height=450&width=300",
+      coverImage: "/placeholder.svg?height=600&width=1200",
+      releaseDate: "December 15, 2025",
+      director: "The Duffer Brothers",
+      productionCompany: "Netflix",
+      imdbRating: 9.2,
+      duration: "8 Episodes",
+      genre: "Sci-Fi/Horror",
+      description:
+        "The fifth and final season of the beloved sci-fi series brings the story of Hawkins to an epic conclusion. As the friends face their greatest challenge yet against the forces of the Upside Down, they must uncover the origin of the dimensional rift and find a way to end the threat once and for all.",
+      cast: ["Millie Bobby Brown", "Finn Wolfhard", "Noah Schnapp", "Caleb McLaughlin", "Gaten Matarazzo"],
+      trailerUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    },
+    "alice-in-borderland": {
+      title: "Alice in Borderland",
+      type: "Series",
+      posterImage: "/placeholder.svg?height=450&width=300",
+      coverImage: "/placeholder.svg?height=600&width=1200",
+      releaseDate: "August 25, 2025",
+      director: "Shinsuke Sato",
+      productionCompany: "Netflix",
+      imdbRating: 8.7,
+      duration: "8 Episodes",
+      genre: "Thriller/Sci-Fi",
+      description:
+        "In the third season of this Japanese thriller, survivors of the deadly games must face new challenges as they uncover the truth behind the mysterious world they're trapped in. As the final stage of games begins, Arisu and his allies race to find a way back to reality before time runs out.",
+      cast: ["Kento Yamazaki", "Tao Tsuchiya", "Nijiro Murakami", "Ayaka Miyoshi", "Dori Sakurada"],
+      trailerUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    },
+    panchayat: {
+      title: "Panchayat",
+      type: "Series",
+      posterImage: "/placeholder.svg?height=450&width=300",
+      coverImage: "/placeholder.svg?height=600&width=1200",
+      releaseDate: "June 20, 2025",
+      director: "Deepak Kumar Mishra",
+      productionCompany: "Amazon Prime Video",
+      imdbRating: 8.9,
+      duration: "8 Episodes",
+      genre: "Comedy/Drama",
+      description:
+        "The fourth season of this beloved Indian comedy-drama continues to follow Abhishek Tripathi, the secretary of the Phulera village panchayat. As he grows more accustomed to rural life, he faces new challenges in village administration while navigating personal and professional growth in the heart of rural India.",
+      cast: ["Jitendra Kumar", "Neena Gupta", "Raghubir Yadav", "Faisal Malik", "Chandan Roy"],
+      trailerUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    },
+    "squid-game": {
+      title: "Squid Game",
+      type: "Series",
+      posterImage: "/placeholder.svg?height=450&width=300",
+      coverImage: "/placeholder.svg?height=600&width=1200",
+      releaseDate: "September 15, 2025",
+      director: "Hwang Dong-hyuk",
+      productionCompany: "Netflix",
+      imdbRating: 9.0,
+      duration: "9 Episodes",
+      genre: "Thriller/Drama",
+      description:
+        "In the highly anticipated second season of the global phenomenon, Gi-hun returns to the game with a mission to expose the organization behind the deadly competition. As he infiltrates the system that exploits the desperate, he discovers that the games have evolved and the stakes are higher than ever before.",
+      cast: ["Lee Jung-jae", "Lee Byung-hun", "Wi Ha-jun", "Gong Yoo", "Jung Ho-yeon"],
+      trailerUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    },
+    wednesday: {
+      title: "Wednesday",
+      type: "Series",
+      posterImage: "/placeholder.svg?height=450&width=300",
+      coverImage: "/placeholder.svg?height=600&width=1200",
+      releaseDate: "October 25, 2025",
+      director: "Tim Burton",
+      productionCompany: "Netflix",
+      imdbRating: 8.6,
+      duration: "8 Episodes",
+      genre: "Fantasy/Comedy",
+      description:
+        "In the second season, Wednesday Addams returns to Nevermore Academy for her sophomore year, where she faces new supernatural mysteries and gothic intrigue. As she hones her psychic abilities, Wednesday uncovers dark secrets about her family's past while navigating the complexities of friendship, rivalry, and first love.",
+      cast: ["Jenna Ortega", "Catherine Zeta-Jones", "Luis Guzmán", "Emma Myers", "Hunter Doohan"],
+      trailerUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    },
+    "family-man": {
+      title: "Family Man",
+      type: "Series",
+      posterImage: "/placeholder.svg?height=450&width=300",
+      coverImage: "/placeholder.svg?height=600&width=1200",
+      releaseDate: "November 10, 2025",
+      director: "Raj & DK",
+      productionCompany: "Amazon Prime Video",
+      imdbRating: 9.1,
+      duration: "10 Episodes",
+      genre: "Action/Thriller",
+      description:
+        "In the third season of this acclaimed Indian spy thriller, intelligence officer Srikant Tiwari faces his most dangerous mission yet as he confronts a new threat to national security. While balancing his family life with his secret identity, Srikant must navigate geopolitical tensions and personal crises that test his resolve and loyalty.",
+      cast: ["Manoj Bajpayee", "Samantha Ruth Prabhu", "Priyamani", "Sharib Hashmi", "Shreya Dhanwanthary"],
+      trailerUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    },
+  }
 
   // Convert slug to key format
   const key = slug as keyof typeof moviesData

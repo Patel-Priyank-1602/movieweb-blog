@@ -1,97 +1,101 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Link from "next/link"
 import { ArrowLeft, Filter, Search } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import MovieCard from "@/components/movie-card"
+import Loading from "../loading"
 
-type ContentType = "all" | "movies" | "series";
+export default function ReleasedPage() {
+  const [contentType, setContentType] = useState("all")
+  const [isLoading, setIsLoading] = useState(true)
 
-export default function ArrivedPage() {
-  const [contentType, setContentType] = useState<ContentType>("all")
+  useEffect(() => {
+    // Simulate loading time
+    const timer = setTimeout(() => {
+      setIsLoading(false)
+    }, 1500)
 
-  const arrivedContent = [
+    return () => clearTimeout(timer)
+  }, [])
+
+  const arrivedMovies = [
     {
-      title: "Quantum Horizon",
+      title: "Raid 2",
       type: "Movie",
       image: "/placeholder.svg?height=450&width=300",
       rating: 4.8,
-      releaseDate: "Jan 15, 2025",
-      status: "released" as const,
-    },
-    {
-      title: "Neon Dynasty",
-      type: "Series",
-      image: "/placeholder.svg?height=450&width=300",
-      rating: 4.5,
-      releaseDate: "Feb 3, 2025",
-      status: "released" as const,
-    },
-    {
-      title: "Ethereal Echoes",
-      type: "Movie",
-      image: "/placeholder.svg?height=450&width=300",
-      rating: 4.2,
-      releaseDate: "Mar 22, 2025",
-      status: "released" as const,
-    },
-    {
-      title: "Celestial Odyssey",
-      type: "Series",
-      image: "/placeholder.svg?height=450&width=300",
-      rating: 4.7,
-      releaseDate: "Apr 5, 2025",
-      status: "released" as const,
-    },
-    {
-      title: "Temporal Paradox",
-      type: "Movie",
-      image: "/placeholder.svg?height=450&width=300",
-      rating: 4.4,
-      releaseDate: "May 1, 2025",
-      status: "released" as const,
-    },
-    {
-      title: "Luminous Descent",
-      type: "Movie",
-      image: "/placeholder.svg?height=450&width=300",
-      rating: 4.1,
-      releaseDate: "Jan 30, 2025",
-      status: "released" as const,
-    },
-    {
-      title: "Fractal Minds",
-      type: "Series",
-      image: "/placeholder.svg?height=450&width=300",
-      rating: 4.6,
-      releaseDate: "Feb 15, 2025",
-      status: "released" as const,
-    },
-    {
-      title: "Stellar Enigma",
-      type: "Movie",
-      image: "/placeholder.svg?height=450&width=300",
-      rating: 4.3,
       releaseDate: "Mar 10, 2025",
       status: "released" as const,
     },
     {
-      title: "Cybernetic Dawn",
-      type: "Series",
+      title: "Thunderbolt",
+      type: "Movie",
       image: "/placeholder.svg?height=450&width=300",
-      rating: 4.9,
-      releaseDate: "Apr 20, 2025",
+      rating: 4.6,
+      releaseDate: "Feb 18, 2025",
       status: "released" as const,
     },
     {
-      title: "Quantum Entanglement",
+      title: "Chhava",
+      type: "Movie",
+      image: "/placeholder.svg?height=450&width=300",
+      rating: 4.3,
+      releaseDate: "Jan 25, 2025",
+      status: "released" as const,
+    },
+    {
+      title: "Final Destination",
       type: "Movie",
       image: "/placeholder.svg?height=450&width=300",
       rating: 4.5,
-      releaseDate: "May 5, 2025",
+      releaseDate: "Apr 12, 2025",
+      status: "released" as const,
+    },
+  ]
+
+  const arrivedSeries = [
+    {
+      title: "You",
+      type: "Series",
+      image: "/placeholder.svg?height=450&width=300",
+      rating: 4.7,
+      releaseDate: "Feb 10, 2025",
+      status: "released" as const,
+    },
+    {
+      title: "Adolescence",
+      type: "Series",
+      image: "/placeholder.svg?height=450&width=300",
+      rating: 4.2,
+      releaseDate: "Mar 5, 2025",
+      status: "released" as const,
+    },
+    {
+      title: "Pataal Lok",
+      type: "Series",
+      image: "/placeholder.svg?height=450&width=300",
+      rating: 4.9,
+      releaseDate: "Jan 15, 2025",
+      status: "released" as const,
+    },
+    {
+      title: "The Last of Us",
+      type: "Series",
+      image: "/placeholder.svg?height=450&width=300",
+      rating: 4.8,
+      releaseDate: "Apr 2, 2025",
+      status: "released" as const,
+    },
+    {
+      title: "Daredevil",
+      type: "Series",
+      image: "/placeholder.svg?height=450&width=300",
+      rating: 4.6,
+      releaseDate: "May 1, 2025",
       status: "released" as const,
     },
   ]
@@ -99,8 +103,14 @@ export default function ArrivedPage() {
   // Filter content based on selected type
   const filteredContent =
     contentType === "all"
-      ? arrivedContent
-      : arrivedContent.filter((item) => (contentType === "movies" ? item.type === "Movie" : item.type === "Series"))
+      ? [...arrivedMovies, ...arrivedSeries]
+      : contentType === "movies"
+        ? arrivedMovies
+        : arrivedSeries
+
+  if (isLoading) {
+    return <Loading />
+  }
 
   return (
     <div className="min-h-screen bg-black text-white">
@@ -112,7 +122,7 @@ export default function ArrivedPage() {
               <span className="sr-only">Back to home</span>
             </Button>
           </Link>
-          <h1 className="text-3xl font-bold">Arrived in 2025</h1>
+          <h1 className="text-3xl font-bold">Released in 2025</h1>
         </div>
 
         <div className="flex flex-col md:flex-row gap-6 mb-8">
@@ -128,11 +138,7 @@ export default function ArrivedPage() {
             <Filter className="h-4 w-4" />
             Filters
           </Button>
-          <Tabs
-            value={contentType}
-            onValueChange={(value) => setContentType(value as ContentType)}
-            className="w-[300px]"
-          >
+          <Tabs value={contentType} onValueChange={setContentType} className="w-[300px]">
             <TabsList className="grid w-full grid-cols-3 bg-gray-900">
               <TabsTrigger value="all">All</TabsTrigger>
               <TabsTrigger value="movies">Movies</TabsTrigger>
@@ -141,7 +147,7 @@ export default function ArrivedPage() {
           </Tabs>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 md:gap-4 lg:gap-6">
           {filteredContent.map((movie, index) => (
             <MovieCard
               key={index}
@@ -150,7 +156,7 @@ export default function ArrivedPage() {
               image={movie.image}
               rating={movie.rating}
               releaseDate={movie.releaseDate}
-              status={movie.status}
+              status="released"
             />
           ))}
           {filteredContent.length === 0 && (
