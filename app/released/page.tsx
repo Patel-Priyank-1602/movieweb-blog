@@ -34,7 +34,7 @@ export default function ReleasedPage() {
     {
       title: "Thunderbolt",
       type: "Movie",
-      image: "/placeholder.svg?height=450&width=300",
+      image: "/series/thnc.jpeg?height=450&width=300",
       rating: 4.6,
       releaseDate: "Feb 18, 2025",
       status: "released" as const,

@@ -37,7 +37,7 @@ export default function SearchPage() {
     {
       title: "Thunderbolt",
       type: "Movie",
-      image: "/placeholder.svg?height=450&width=300",
+      image: "/series/thnc.jpeg?height=450&width=300",
       rating: 4.6,
       releaseDate: "Feb 18, 2025",
       status: "released" as const,
@@ -84,7 +84,7 @@ export default function SearchPage() {
     {
       title: "Fantastic 4",
       type: "Movie",
-      image: "/placeholder.svg?height=450&width=300",
+      image: "/series/fanc.jpeg?height=450&width=300",
       releaseDate: "Nov 8, 2025",
       status: "upcoming" as const,
     },
@@ -156,7 +156,7 @@ export default function SearchPage() {
     {
       title: "Stranger Things",
       type: "Series",
-      image: "/series/stttt.jpeg?height=450&width=300",
+      image: "/series/stc.jpeg?height=450&width=300",
       releaseDate: "Dec 15, 2025",
       status: "upcoming" as const,
     },
@@ -184,7 +184,7 @@ export default function SearchPage() {
     {
       title: "Wednesday",
       type: "Series",
-      image: "/placeholder.svg?height=450&width=300",
+      image: "/series/wenc.jpeg?height=450&width=300",
       releaseDate: "Oct 25, 2025",
       status: "upcoming" as const,
     },

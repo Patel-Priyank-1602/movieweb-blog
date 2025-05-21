@@ -182,8 +182,8 @@ function getMovieData(slug: string, status: string) {
     thunderbolt: {
       title: "Thunderbolt",
       type: "Movie",
-      posterImage: "/placeholder.svg?height=450&width=300",
-      coverImage: "/placeholder.svg?height=600&width=1200",
+      posterImage: "/series/thnc.jpeg?height=450&width=300",
+      coverImage: "/series/thnn.jpeg?height=600&width=1200",
       releaseDate: "February 18, 2025",
       director: "Michael Bay",
       productionCompany: "Paramount Pictures",
@@ -286,8 +286,8 @@ function getMovieData(slug: string, status: string) {
     "fantastic-4": {
       title: "Fantastic 4",
       type: "Movie",
-      posterImage: "/placeholder.svg?height=450&width=300",
-      coverImage: "/placeholder.svg?height=600&width=1200",
+      posterImage: "/series/fanc.jpeg?height=450&width=300",
+      coverImage: "/series/fann.jpeg?height=600&width=1200",
       releaseDate: "November 8, 2025",
       director: "Matt Shakman",
       productionCompany: "Marvel Studios",
@@ -511,8 +511,8 @@ function getMovieData(slug: string, status: string) {
     wednesday: {
       title: "Wednesday",
       type: "Series",
-      posterImage: "/placeholder.svg?height=450&width=300",
-      coverImage: "/placeholder.svg?height=600&width=1200",
+      posterImage: "/series/wenc.jpeg?height=450&width=300",
+      coverImage: "/series/wen.jpeg?height=600&width=1200",
       releaseDate: "October 25, 2025",
       director: "Tim Burton",
       productionCompany: "Netflix",

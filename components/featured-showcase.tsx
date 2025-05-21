@@ -51,7 +51,7 @@ export default function FeaturedShowcase() {
       title: "Thunderbolt",
       description:
         "A brilliant engineer develops a revolutionary technology that harnesses lightning as an unlimited energy source, but powerful interests will stop at nothing to control it.",
-      image: "/placeholder.svg?height=600&width=1200",
+      image: "/series/thn.jpeg?height=600&width=1200",
       type: "Movie",
       releaseDate: "February 18, 2025",
       status: "released",
