@@ -177,7 +177,7 @@ function getMovieData(slug: string, status: string) {
         "Following the success of the first film, Raid 2 continues the story of an honest income tax officer who takes on powerful corrupt individuals. This time, he faces an even more dangerous network of corruption that reaches the highest levels of government.",
       cast: ["Ajay Devgn", "Ileana D'Cruz", "Saurabh Shukla", "Amit Sial", "Pushpa Joshi"],
       trailerUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-      status: status === "released" ? "released" : "upcoming",
+      status: status === "released" ? "released" : "released",
     },
     thunderbolt: {
       title: "Thunderbolt",
@@ -194,7 +194,7 @@ function getMovieData(slug: string, status: string) {
         "When a brilliant engineer develops a revolutionary technology that harnesses lightning as an unlimited energy source, powerful interests will stop at nothing to control it. As global powers race to acquire the technology, the inventor must protect his creation from falling into the wrong hands.",
       cast: ["Chris Hemsworth", "Zoe Saldana", "Idris Elba", "Rebecca Ferguson", "John Boyega"],
       trailerUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-      status: status === "released" ? "released" : "upcoming",
+      status: status === "released" ? "released" : "released",
     },
     chhava: {
       title: "Chhava",
@@ -211,7 +211,7 @@ function getMovieData(slug: string, status: string) {
         "Based on the life of Chhatrapati Sambhaji Maharaj, the son and successor of Chhatrapati Shivaji Maharaj. The film portrays his courage, military genius, and the challenges he faced while defending the Maratha kingdom against powerful enemies.",
       cast: ["Vicky Kaushal", "Rashmika Mandanna", "Akshaye Khanna", "Ashutosh Rana", "Divya Dutta"],
       trailerUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-      status: status === "released" ? "released" : "upcoming",
+      status: status === "released" ? "released" : "released",
     },
     "final-destination": {
       title: "Final Destination",
@@ -228,7 +228,7 @@ function getMovieData(slug: string, status: string) {
         "The latest installment in the popular horror franchise follows a new group of survivors who cheat death after one of them has a premonition about a catastrophic event. As they begin to die in increasingly elaborate and gruesome ways, they race to find a way to break the cycle of death.",
       cast: ["Angourie Rice", "Justice Smith", "Madelyn Cline", "Danny Ramirez", "Kaitlyn Dever"],
       trailerUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-      status: status === "released" ? "released" : "upcoming",
+      status: status === "released" ? "released" : "released",
     },
 
     // Movies - Upcoming
@@ -368,7 +368,7 @@ function getMovieData(slug: string, status: string) {
         "In the final season of the psychological thriller, Joe Goldberg attempts to leave his murderous past behind and start anew. However, his obsessive tendencies resurface when he becomes fixated on a mysterious woman who seems to know too much about his dark secrets.",
       cast: ["Penn Badgley", "Victoria Pedretti", "Elizabeth Lail", "Shay Mitchell", "Jenna Ortega"],
       trailerUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-      status: status === "released" ? "released" : "upcoming",
+      status: status === "released" ? "released" : "released",
     },
     adolescence: {
       title: "Adolescence",
@@ -385,7 +385,7 @@ function getMovieData(slug: string, status: string) {
         "A raw and unflinching look at the lives of a group of high school students as they navigate the complexities of modern teenage life. Dealing with issues of identity, trauma, addiction, and relationships, the series offers a powerful portrayal of the challenges facing today's youth.",
       cast: ["Zendaya", "Hunter Schafer", "Jacob Elordi", "Sydney Sweeney", "Alexa Demie"],
       trailerUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-      status: status === "released" ? "released" : "upcoming",
+      status: status === "released" ? "released" : "released",
     },
     "pataal-lok": {
       title: "Pataal Lok",
@@ -402,7 +402,7 @@ function getMovieData(slug: string, status: string) {
         "In the second season of this critically acclaimed series, Inspector Hathiram Chaudhary investigates a new case that takes him deeper into the dark underbelly of Indian society. As he uncovers layers of corruption, politics, and crime, he must confront his own demons while navigating a system designed to break him.",
       cast: ["Jaideep Ahlawat", "Gul Panag", "Neeraj Kabi", "Ishwak Singh", "Abhishek Banerjee"],
       trailerUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-      status: status === "released" ? "released" : "upcoming",
+      status: status === "released" ? "released" : "released",
     },
     "the-last-of-us": {
       title: "The Last of Us",
@@ -419,7 +419,7 @@ function getMovieData(slug: string, status: string) {
         "The second season adapts the events of the acclaimed video game 'The Last of Us Part II'. Five years after the events of the first season, Joel and Ellie have settled in Jackson, Wyoming. When a violent event disrupts their peace, Ellie embarks on a journey for justice that forces her to confront the physical and emotional toll of her actions.",
       cast: ["Pedro Pascal", "Bella Ramsey", "Gabriel Luna", "Rutina Wesley", "Jeffrey Wright"],
       trailerUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-      status: status === "released" ? "released" : "upcoming",
+      status: status === "released" ? "released" : "released",
     },
     daredevil: {
       title: "Daredevil",
@@ -436,7 +436,7 @@ function getMovieData(slug: string, status: string) {
         "Daredevil: Born Again sees Matt Murdock return to Hell's Kitchen, where he must balance his dual life as a lawyer and vigilante. When Wilson Fisk rises to political power in New York City, Matt faces his greatest challenge yet as he confronts old enemies and new threats while trying to protect his city and those he loves.",
       cast: ["Charlie Cox", "Vincent D'Onofrio", "Deborah Ann Woll", "Elden Henson", "Jon Bernthal"],
       trailerUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-      status: status === "released" ? "released" : "upcoming",
+      status: status === "released" ? "released" : "released",
     },
 
     // Series - Upcoming
