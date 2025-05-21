@@ -15,7 +15,7 @@ export default function FeaturedShowcase() {
       title: "Stranger Things",
       description:
         "The fifth and final season of the beloved sci-fi series brings the story of Hawkins to an epic conclusion as the friends face their greatest challenge yet against the forces of the Upside Down.",
-      image: "/placeholder.svg?height=600&width=1200",
+      image: "/series/stt.jpeg?height=600&width=1200",
       type: "Series",
       releaseDate: "December 15, 2025",
       status: "upcoming",

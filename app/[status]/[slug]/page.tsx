@@ -443,8 +443,8 @@ function getMovieData(slug: string, status: string) {
     "stranger-things": {
       title: "Stranger Things",
       type: "Series",
-      posterImage: "/placeholder.svg?height=450&width=300",
-      coverImage: "/placeholder.svg?height=600&width=1200",
+      posterImage: "/series/stc.jpeg?height=450&width=300",
+      coverImage: "/series/stttt.jpeg?height=600&width=1200",
       releaseDate: "December 15, 2025",
       director: "The Duffer Brothers",
       productionCompany: "Netflix",
