@@ -174,12 +174,6 @@ export default function ReleasedPage() {
             </div>
           )}
         </div>
-
-        <div className="flex justify-center mt-12">
-          <Button variant="outline" className="gap-2">
-            Load More
-          </Button>
-        </div>
       </div>
     </div>
   )
