@@ -32,19 +32,19 @@ export default function RootLayout({
                 © {new Date().getFullYear()} CineVerse. All rights reserved.
               </div>
               <div className="flex gap-4 sm:gap-6">
-                <a href="#" className="text-gray-400 hover:text-white transition-colors">
+                <a href="https://www.instagram.com/patelpriyank.d/" className="text-gray-400 hover:text-white transition-colors">
                   <Instagram className="h-4 w-4 sm:h-5 sm:w-5" />
                   <span className="sr-only">Instagram</span>
                 </a>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors">
+                <a href="https://x.com/Priyank_P16" className="text-gray-400 hover:text-white transition-colors">
                   <Twitter className="h-4 w-4 sm:h-5 sm:w-5" />
                   <span className="sr-only">Twitter</span>
                 </a>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors">
+                <a href="https://github.com/Patel-Priyank-1602" className="text-gray-400 hover:text-white transition-colors">
                   <Github className="h-4 w-4 sm:h-5 sm:w-5" />
                   <span className="sr-only">GitHub</span>
                 </a>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors">
+                <a href="https://www.linkedin.com/in/patel-priyank-945131288/" className="text-gray-400 hover:text-white transition-colors">
                   <Linkedin className="h-4 w-4 sm:h-5 sm:w-5" />
                   <span className="sr-only">LinkedIn</span>
                 </a>
