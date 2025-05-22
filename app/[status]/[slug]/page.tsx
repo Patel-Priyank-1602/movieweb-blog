@@ -326,7 +326,7 @@ function getMovieData(slug: string, status: string) {
       releaseDate: "September 5, 2025",
       director: "Michael Chaves",
       productionCompany: "New Line Cinema",
-      imdbRating: 8.3,
+      imdbRating: null,
       duration: "Unknown",
       genre: "Horror/Supernatural",
       description:
