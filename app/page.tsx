@@ -343,14 +343,8 @@ export default function Home() {
         <section className="py-12 bg-gradient-to-b from-gray-900 to-black">
           <div className="container">
             <div className="text-center space-y-4 max-w-3xl mx-auto mb-12">
-              <h2 className="text-3xl font-bold">Stay Updated with 2025 Releases</h2>
-              <p className="text-gray-400">Get notified when new movies and web series are added to our collection.</p>
-              <div className="flex gap-4 justify-center mt-6">
-                <Button size="lg">Subscribe</Button>
-                <Button size="lg" variant="outline">
-                  Learn More
-                </Button>
-              </div>
+              <h2 className="text-3xl font-bold">The Last Update on this Website was on 22/5/2025</h2>
+              <p className="text-gray-400">The same Movie/Series Trailer is not available, so there is only a Teaser. Also, for some Trailers or Teasers, none are available.</p>
             </div>
           </div>
         </section>
