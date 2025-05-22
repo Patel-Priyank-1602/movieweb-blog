@@ -24,15 +24,15 @@ export default function FeaturedShowcase() {
     },
     {
       id: 2,
-      title: "Raid 2",
+      title: "Panchayat",
       description:
-        "The sequel to the hit action film follows an undercover agent infiltrating a powerful crime syndicate to expose corruption at the highest levels of government.",
-      image: "/placeholder.svg?height=600&width=1200",
-      type: "Movie",
-      releaseDate: "March 10, 2025",
-      status: "released",
-      slug: "raid-2",
-      trailerUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+        "A comedy-drama series that follows the life of an engineering graduate who joins as a secretary of a panchayat office in a remote village due to lack of better job options.",
+      image: "/series/pan.jpeg?height=600&width=1200",
+      type: "Series",
+      releaseDate: "April 3, 2020",
+      status: "upcoming",
+      slug: "panchayat",
+      trailerUrl: "https://www.youtube.com/watch?v=MOyuzJ9Y9_8",
     },
     {
       id: 3,
@@ -48,22 +48,22 @@ export default function FeaturedShowcase() {
     },
     {
       id: 4,
-      title: "Thunderbolt",
+      title: "Final Destination: Bloodline",
       description:
-        "A brilliant engineer develops a revolutionary technology that harnesses lightning as an unlimited energy source, but powerful interests will stop at nothing to control it.",
-      image: "/series/thn.jpeg?height=600&width=1200",
+        "A chilling new chapter in the Final Destination saga, where a group of strangers must unravel the deadly lineage behind the curse as fate closes in with terrifying precision.",
+      image: "/series/fdd.jpeg?height=600&width=1200",
       type: "Movie",
-      releaseDate: "February 18, 2025",
+      releaseDate: "August 15, 2025",
       status: "released",
-      slug: "thunderbolt",
-      trailerUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+      slug: "final-destination",
+      trailerUrl: "https://www.youtube.com/watch?v=YOcmSsBfafg",
     },
     {
       id: 5,
       title: "Avatar 3",
       description:
         "Return to Pandora as Jake Sully and Neytiri continue their journey, exploring new regions of the planet and facing a threat that tests the bonds of their family and the Na'vi people.",
-      image: "/placeholder.svg?height=600&width=1200",
+      image: "/series/avv.jpeg?height=600&width=1200",
       type: "Movie",
       releaseDate: "December 20, 2025",
       status: "upcoming",
@@ -122,9 +122,8 @@ export default function FeaturedShowcase() {
         <div className="max-w-3xl space-y-4">
           <div className="flex flex-wrap items-center gap-3">
             <span
-              className={`px-2.5 py-0.5 rounded-full text-xs font-medium ${
-                featured.status === "released" ? "bg-green-500/20 text-green-400" : "bg-blue-500/20 text-blue-400"
-              }`}
+              className={`px-2.5 py-0.5 rounded-full text-xs font-medium ${featured.status === "released" ? "bg-green-500/20 text-green-400" : "bg-blue-500/20 text-blue-400"
+                }`}
             >
               {featured.status === "released" ? "Now Available" : "Coming Soon"}
             </span>

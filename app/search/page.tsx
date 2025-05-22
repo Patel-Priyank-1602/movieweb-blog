@@ -29,7 +29,7 @@ export default function SearchPage() {
     {
       title: "Raid 2",
       type: "Movie",
-      image: "/placeholder.svg?height=450&width=300",
+      image: "/series/radc.jpeg?height=450&width=300",
       rating: 4.8,
       releaseDate: "Mar 10, 2025",
       status: "released" as const,
@@ -53,7 +53,7 @@ export default function SearchPage() {
     {
       title: "Final Destination",
       type: "Movie",
-      image: "/placeholder.svg?height=450&width=300",
+      image: "/series/fdc.jpeg?height=450&width=300",
       rating: 4.5,
       releaseDate: "Apr 12, 2025",
       status: "released" as const,
@@ -63,7 +63,7 @@ export default function SearchPage() {
     {
       title: "Mission Impossible: Final Reckoning",
       type: "Movie",
-      image: "/placeholder.svg?height=450&width=300",
+      image: "/series/mic.jpeg?height=450&width=300",
       releaseDate: "Jul 30, 2025",
       status: "upcoming" as const,
     },
@@ -105,7 +105,7 @@ export default function SearchPage() {
     {
       title: "Avatar 3",
       type: "Movie",
-      image: "/placeholder.svg?height=450&width=300",
+      image: "/series/av.jpeg?height=450&width=300",
       releaseDate: "Dec 20, 2025",
       status: "upcoming" as const,
     },
@@ -114,7 +114,7 @@ export default function SearchPage() {
     {
       title: "You",
       type: "Series",
-      image: "/placeholder.svg?height=450&width=300",
+      image: "/series/youc.jpeg?height=450&width=300",
       rating: 4.7,
       releaseDate: "Feb 10, 2025",
       status: "released" as const,
@@ -170,7 +170,7 @@ export default function SearchPage() {
     {
       title: "Panchayat",
       type: "Series",
-      image: "/placeholder.svg?height=450&width=300",
+      image: "/series/panc.jpeg?height=450&width=300",
       releaseDate: "Jun 20, 2025",
       status: "upcoming" as const,
     },
@@ -191,7 +191,7 @@ export default function SearchPage() {
     {
       title: "Family Man",
       type: "Series",
-      image: "/placeholder.svg?height=450&width=300",
+      image: "/series/fm.jpeg?height=450&width=300",
       releaseDate: "Nov 10, 2025",
       status: "upcoming" as const,
     },

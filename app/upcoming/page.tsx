@@ -26,7 +26,7 @@ export default function UpcomingPage() {
     {
       title: "Mission Impossible: Final Reckoning",
       type: "Movie",
-      image: "/placeholder.svg?height=450&width=300",
+      image: "/series/mic.jpeg?height=450&width=300",
       releaseDate: "Jul 30, 2025",
       status: "upcoming" as const,
     },
@@ -68,7 +68,7 @@ export default function UpcomingPage() {
     {
       title: "Avatar 3",
       type: "Movie",
-      image: "/placeholder.svg?height=450&width=300",
+      image: "/series/av.jpeg?height=450&width=300",
       releaseDate: "Dec 20, 2025",
       status: "upcoming" as const,
     },
@@ -92,7 +92,7 @@ export default function UpcomingPage() {
     {
       title: "Panchayat",
       type: "Series",
-      image: "/placeholder.svg?height=450&width=300",
+      image: "/series/panc.jpeg?height=450&width=300",
       releaseDate: "Jun 20, 2025",
       status: "upcoming" as const,
     },
@@ -113,7 +113,7 @@ export default function UpcomingPage() {
     {
       title: "Family Man",
       type: "Series",
-      image: "/placeholder.svg?height=450&width=300",
+      image: "/series/fm.jpeg?height=450&width=300",
       releaseDate: "Nov 10, 2025",
       status: "upcoming" as const,
     },

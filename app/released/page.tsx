@@ -26,7 +26,7 @@ export default function ReleasedPage() {
     {
       title: "Raid 2",
       type: "Movie",
-      image: "/placeholder.svg?height=450&width=300",
+      image: "/series/radc.jpeg?height=450&width=300",
       rating: 4.8,
       releaseDate: "Mar 10, 2025",
       status: "released" as const,
@@ -50,7 +50,7 @@ export default function ReleasedPage() {
     {
       title: "Final Destination",
       type: "Movie",
-      image: "/placeholder.svg?height=450&width=300",
+      image: "/series/fdc.jpeg?height=450&width=300",
       rating: 4.5,
       releaseDate: "Apr 12, 2025",
       status: "released" as const,
@@ -61,7 +61,7 @@ export default function ReleasedPage() {
     {
       title: "You",
       type: "Series",
-      image: "/placeholder.svg?height=450&width=300",
+      image: "/series/youc.jpeg?height=450&width=300",
       rating: 4.7,
       releaseDate: "Feb 10, 2025",
       status: "released" as const,
