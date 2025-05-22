@@ -20,7 +20,7 @@ export default function FeaturedShowcase() {
       releaseDate: "Oct - Nov, 2025",
       status: "upcoming",
       slug: "stranger-things",
-      trailerUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+      trailerUrl: "",
     },
     {
       id: 2,
@@ -32,7 +32,7 @@ export default function FeaturedShowcase() {
       releaseDate: "Jul 2, 2020",
       status: "upcoming",
       slug: "panchayat",
-      trailerUrl: "https://www.youtube.com/watch?v=MOyuzJ9Y9_8",
+      trailerUrl: "https://youtu.be/URBN7HNf7T4?si=0Ezw0dGHJmC5i_Cd",
     },
     {
       id: 3,
@@ -44,7 +44,7 @@ export default function FeaturedShowcase() {
       releaseDate: "Sept, 2025",
       status: "upcoming",
       slug: "alice-in-borderland",
-      trailerUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+      trailerUrl: "https://youtu.be/HQtrqkKkq7E?si=K1uihqMEx55NAN0V",
     },
     {
       id: 4,
@@ -56,7 +56,7 @@ export default function FeaturedShowcase() {
       releaseDate: "May 16, 2025",
       status: "released",
       slug: "final-destination",
-      trailerUrl: "https://www.youtube.com/watch?v=YOcmSsBfafg",
+      trailerUrl: "https://youtu.be/UWMzKXsY9A4?si=zLqRiBGlkzReUe1G",
     },
     {
       id: 5,
@@ -68,7 +68,7 @@ export default function FeaturedShowcase() {
       releaseDate: "Dec 19, 2025",
       status: "upcoming",
       slug: "avatar-3",
-      trailerUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+      trailerUrl: "",
     },
   ]
 

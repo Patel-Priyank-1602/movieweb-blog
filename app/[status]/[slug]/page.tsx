@@ -176,7 +176,7 @@ function getMovieData(slug: string, status: string) {
       description:
         "Following the success of the first film, Raid 2 continues the story of an honest income tax officer who takes on powerful corrupt individuals. This time, he faces an even more dangerous network of corruption that reaches the highest levels of government.",
       cast: ["Ajay Devgn", "Ileana D'Cruz", "Saurabh Shukla", "Amit Sial", "Pushpa Joshi"],
-      trailerUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+      trailerUrl: "https://youtu.be/kQF1gl7nLaU?si=mt9-hO2Rnsh1Sicu",
       status: status === "released" ? "released" : "released",
     },
     thunderbolt: {
@@ -193,7 +193,7 @@ function getMovieData(slug: string, status: string) {
       description:
         "When a brilliant engineer develops a revolutionary technology that harnesses lightning as an unlimited energy source, powerful interests will stop at nothing to control it. As global powers race to acquire the technology, the inventor must protect his creation from falling into the wrong hands.",
       cast: ["Chris Hemsworth", "Zoe Saldana", "Idris Elba", "Rebecca Ferguson", "John Boyega"],
-      trailerUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+      trailerUrl: "https://youtu.be/-sAOWhvheK8?si=kelc3zzg3EToo0mg",
       status: status === "released" ? "released" : "released",
     },
     chhava: {
@@ -210,7 +210,7 @@ function getMovieData(slug: string, status: string) {
       description:
         "Based on the life of Chhatrapati Sambhaji Maharaj, the son and successor of Chhatrapati Shivaji Maharaj. The film portrays his courage, military genius, and the challenges he faced while defending the Maratha kingdom against powerful enemies.",
       cast: ["Vicky Kaushal", "Rashmika Mandanna", "Akshaye Khanna", "Ashutosh Rana", "Divya Dutta"],
-      trailerUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+      trailerUrl: "https://youtu.be/hs3w32RG8L8?si=4K8VgukqALdqlboa",
       status: status === "released" ? "released" : "released",
     },
     "final-destination": {
@@ -227,7 +227,7 @@ function getMovieData(slug: string, status: string) {
       description:
         "The latest installment in the popular horror franchise follows a new group of survivors who cheat death after one of them has a premonition about a catastrophic event. As they begin to die in increasingly elaborate and gruesome ways, they race to find a way to break the cycle of death.",
       cast: ["Angourie Rice", "Justice Smith", "Madelyn Cline", "Danny Ramirez", "Kaitlyn Dever"],
-      trailerUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+      trailerUrl: "https://youtu.be/UWMzKXsY9A4?si=zLqRiBGlkzReUe1G",
       status: status === "released" ? "released" : "released",
     },
 
@@ -245,8 +245,8 @@ function getMovieData(slug: string, status: string) {
       description:
         "In the epic conclusion to the Mission Impossible saga, Ethan Hunt faces his most personal mission yet as he confronts enemies from his past while trying to prevent a global catastrophe. With the IMF disbanded and his allies scattered, Hunt must rely on new allies and old friends to complete his final mission.",
       cast: ["Tom Cruise", "Rebecca Ferguson", "Simon Pegg", "Ving Rhames", "Hayley Atwell"],
-      trailerUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-      status: status === "released" ? "released" : "upcoming",
+      trailerUrl: "https://youtu.be/fsQgc9pCyDU?si=BBElSbmi-HVWQlc5",
+      status: status === "released" ? "released" : "released",
     },
 
     // Movies - Upcoming
@@ -264,7 +264,7 @@ function getMovieData(slug: string, status: string) {
       description:
         "Ten years after the events of Jurassic World Dominion, dinosaurs have adapted to living alongside humans in various ecosystems around the world. When a new genetic breakthrough threatens to upset this delicate balance, a team of scientists and adventurers must prevent a new extinction event that could wipe out both dinosaurs and humanity.",
       cast: ["Chris Pratt", "Bryce Dallas Howard", "Sam Neill", "Laura Dern", "DeWanda Wise"],
-      trailerUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+      trailerUrl: "https://youtu.be/6m1eOoUoVao?si=m2zUiKS5MTJZAITv",
       status: status === "released" ? "released" : "upcoming",
     },
     superman: {
@@ -281,7 +281,7 @@ function getMovieData(slug: string, status: string) {
       description:
         "A bold reimagining of the Superman story, focusing on a younger Clark Kent as he balances his Kryptonian heritage with his human upbringing. As he emerges as Earth's greatest protector, he faces threats both alien and human while defining what it means to be a hero in the modern world.",
       cast: ["David Corenswet", "Rachel Brosnahan", "Nicholas Hoult", "Isabela Merced", "Nathan Fillion"],
-      trailerUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+      trailerUrl: "https://youtu.be/Ox8ZLF6cGM0?si=la_rkjORVBR_ClIM",
       status: status === "released" ? "released" : "upcoming",
     },
     "fantastic-4": {
@@ -298,7 +298,7 @@ function getMovieData(slug: string, status: string) {
       description:
         "Marvel's First Family finally joins the MCU in this origin story set in the 1960s. When four explorers gain extraordinary abilities after exposure to cosmic rays, they must learn to harness their new powers while facing threats from both Earth and beyond, including the mysterious ruler of Latveria.",
       cast: ["Pedro Pascal", "Vanessa Kirby", "Joseph Quinn", "Ebon Moss-Bachrach", "Ralph Ineson"],
-      trailerUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+      trailerUrl: "https://youtu.be/pAsmrKyMqaA?si=khrrTA7d7mmrjnbj",
       status: status === "released" ? "released" : "upcoming",
     },
     "war-2": {
@@ -315,7 +315,7 @@ function getMovieData(slug: string, status: string) {
       description:
         "The sequel to the blockbuster action film continues the story of India's elite agents as they face a new international threat. When a rogue agent threatens global security, Kabir must team up with a new partner to stop a conspiracy that could trigger a world war.",
       cast: ["Hrithik Roshan", "Jr NTR", "Kiara Advani", "Sharvari Wagh", "Ronit Roy"],
-      trailerUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+      trailerUrl: "https://youtu.be/dK1W-AViQ-M?si=_P-UXmnyDFLKxMM0",
       status: status === "released" ? "released" : "upcoming",
     },
     "the-conjuring": {
@@ -332,7 +332,7 @@ function getMovieData(slug: string, status: string) {
       description:
         "The next chapter in the Conjuring Universe follows paranormal investigators Ed and Lorraine Warren as they take on their most terrifying case yet. Based on another true case from their files, the Warrens face a demonic entity that has haunted a family for generations, revealing dark secrets about the history of the occult in America.",
       cast: ["Patrick Wilson", "Vera Farmiga", "Mckenna Grace", "Julian Hilliard", "Ruairi O'Connor"],
-      trailerUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+      trailerUrl: "https://youtu.be/FSAz556s0fM?si=9ZduIyY3z0HVjxAd",
       status: status === "released" ? "released" : "upcoming",
     },
     "avatar-3": {
@@ -349,7 +349,7 @@ function getMovieData(slug: string, status: string) {
       description:
         "Return to Pandora as Jake Sully and Neytiri continue their journey, exploring new regions of the planet and facing a threat that tests the bonds of their family and the Na'vi people. This third installment introduces the Ash People, a fire-based Na'vi tribe, and delves deeper into the conflict between humans and the indigenous population of Pandora.",
       cast: ["Sam Worthington", "Zoe Saldana", "Sigourney Weaver", "Stephen Lang", "Kate Winslet"],
-      trailerUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+      trailerUrl: "",
       status: status === "released" ? "released" : "upcoming",
     },
 
@@ -368,7 +368,7 @@ function getMovieData(slug: string, status: string) {
       description:
         "In the final season of the psychological thriller, Joe Goldberg attempts to leave his murderous past behind and start anew. However, his obsessive tendencies resurface when he becomes fixated on a mysterious woman who seems to know too much about his dark secrets.",
       cast: ["Penn Badgley", "Victoria Pedretti", "Elizabeth Lail", "Shay Mitchell", "Jenna Ortega"],
-      trailerUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+      trailerUrl: "https://youtu.be/kQdEHQLHDAI?si=Im5UUHBkOHmZjGqA",
       status: status === "released" ? "released" : "released",
     },
     adolescence: {
@@ -385,7 +385,7 @@ function getMovieData(slug: string, status: string) {
       description:
         "A raw and unflinching look at the lives of a group of high school students as they navigate the complexities of modern teenage life. Dealing with issues of identity, trauma, addiction, and relationships, the series offers a powerful portrayal of the challenges facing today's youth.",
       cast: ["Zendaya", "Hunter Schafer", "Jacob Elordi", "Sydney Sweeney", "Alexa Demie"],
-      trailerUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+      trailerUrl: "https://youtu.be/Wk5OxqtpBR4?si=pm7gbZO7bNlKcgLB",
       status: status === "released" ? "released" : "released",
     },
     "pataal-lok": {
@@ -402,7 +402,7 @@ function getMovieData(slug: string, status: string) {
       description:
         "In the second season of this critically acclaimed series, Inspector Hathiram Chaudhary investigates a new case that takes him deeper into the dark underbelly of Indian society. As he uncovers layers of corruption, politics, and crime, he must confront his own demons while navigating a system designed to break him.",
       cast: ["Jaideep Ahlawat", "Gul Panag", "Neeraj Kabi", "Ishwak Singh", "Abhishek Banerjee"],
-      trailerUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+      trailerUrl: "https://youtu.be/RyzVgy8JteA?si=EoO1KEZiwyA_fKe3",
       status: status === "released" ? "released" : "released",
     },
     "the-last-of-us": {
@@ -419,7 +419,7 @@ function getMovieData(slug: string, status: string) {
       description:
         "The second season adapts the events of the acclaimed video game 'The Last of Us Part II'. Five years after the events of the first season, Joel and Ellie have settled in Jackson, Wyoming. When a violent event disrupts their peace, Ellie embarks on a journey for justice that forces her to confront the physical and emotional toll of her actions.",
       cast: ["Pedro Pascal", "Bella Ramsey", "Gabriel Luna", "Rutina Wesley", "Jeffrey Wright"],
-      trailerUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+      trailerUrl: "https://youtu.be/_zHPsmXCjB0?si=cS6rx7sKlYtm7IEg",
       status: status === "released" ? "released" : "released",
     },
     daredevil: {
@@ -436,7 +436,7 @@ function getMovieData(slug: string, status: string) {
       description:
         "Daredevil: Born Again sees Matt Murdock return to Hell's Kitchen, where he must balance his dual life as a lawyer and vigilante. When Wilson Fisk rises to political power in New York City, Matt faces his greatest challenge yet as he confronts old enemies and new threats while trying to protect his city and those he loves.",
       cast: ["Charlie Cox", "Vincent D'Onofrio", "Deborah Ann Woll", "Elden Henson", "Jon Bernthal"],
-      trailerUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+      trailerUrl: "https://youtu.be/7xALolZzhSM?si=0eizTuJ62nh4Bllf",
       status: status === "released" ? "released" : "released",
     },
 
@@ -455,7 +455,7 @@ function getMovieData(slug: string, status: string) {
       description:
         "The fifth and final season of the beloved sci-fi series brings the story of Hawkins to an epic conclusion. As the friends face their greatest challenge yet against the forces of the Upside Down, they must uncover the origin of the dimensional rift and find a way to end the threat once and for all.",
       cast: ["Millie Bobby Brown", "Finn Wolfhard", "Noah Schnapp", "Caleb McLaughlin", "Gaten Matarazzo"],
-      trailerUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+      trailerUrl: "",
       status: status === "released" ? "released" : "upcoming",
     },
     "alice-in-borderland": {
@@ -472,7 +472,7 @@ function getMovieData(slug: string, status: string) {
       description:
         "In the third season of this Japanese thriller, survivors of the deadly games must face new challenges as they uncover the truth behind the mysterious world they're trapped in. As the final stage of games begins, Arisu and his allies race to find a way back to reality before time runs out.",
       cast: ["Kento Yamazaki", "Tao Tsuchiya", "Nijiro Murakami", "Ayaka Miyoshi", "Dori Sakurada"],
-      trailerUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+      trailerUrl: "https://youtu.be/HQtrqkKkq7E?si=K1uihqMEx55NAN0V",
       status: status === "released" ? "released" : "upcoming",
     },
     panchayat: {
@@ -489,7 +489,7 @@ function getMovieData(slug: string, status: string) {
       description:
         "The fourth season of this beloved Indian comedy-drama continues to follow Abhishek Tripathi, the secretary of the Phulera village panchayat. As he grows more accustomed to rural life, he faces new challenges in village administration while navigating personal and professional growth in the heart of rural India.",
       cast: ["Jitendra Kumar", "Neena Gupta", "Raghubir Yadav", "Faisal Malik", "Chandan Roy"],
-      trailerUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+      trailerUrl: "https://youtu.be/URBN7HNf7T4?si=0Ezw0dGHJmC5i_Cd",
       status: status === "released" ? "released" : "upcoming",
     },
     "squid-game": {
@@ -506,7 +506,7 @@ function getMovieData(slug: string, status: string) {
       description:
         "In the highly anticipated second season of the global phenomenon, Gi-hun returns to the game with a mission to expose the organization behind the deadly competition. As he infiltrates the system that exploits the desperate, he discovers that the games have evolved and the stakes are higher than ever before.",
       cast: ["Lee Jung-jae", "Lee Byung-hun", "Wi Ha-jun", "Gong Yoo", "Jung Ho-yeon"],
-      trailerUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+      trailerUrl: "https://youtu.be/Lb6v6AUFWrM?si=qNeitz4O9--HPBU7",
       status: status === "released" ? "released" : "upcoming",
     },
     wednesday: {
@@ -523,7 +523,7 @@ function getMovieData(slug: string, status: string) {
       description:
         "In the second season, Wednesday Addams returns to Nevermore Academy for her sophomore year, where she faces new supernatural mysteries and gothic intrigue. As she hones her psychic abilities, Wednesday uncovers dark secrets about her family's past while navigating the complexities of friendship, rivalry, and first love.",
       cast: ["Jenna Ortega", "Catherine Zeta-Jones", "Luis Guzmán", "Emma Myers", "Hunter Doohan"],
-      trailerUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+      trailerUrl: "https://youtu.be/uQx8jKiIDTI?si=6oxVd7Z2vtxXXBXE",
       status: status === "released" ? "released" : "upcoming",
     },
     "family-man": {
@@ -540,7 +540,7 @@ function getMovieData(slug: string, status: string) {
       description:
         "In the third season of this acclaimed Indian spy thriller, intelligence officer Srikant Tiwari faces his most dangerous mission yet as he confronts a new threat to national security. While balancing his family life with his secret identity, Srikant must navigate geopolitical tensions and personal crises that test his resolve and loyalty.",
       cast: ["Manoj Bajpayee", "Samantha Ruth Prabhu", "Priyamani", "Sharib Hashmi", "Shreya Dhanwanthary"],
-      trailerUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+      trailerUrl: "",
       status: status === "released" ? "released" : "upcoming",
     },
   }
