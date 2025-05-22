@@ -1,20 +1,61 @@
+"use client"
+
 import Link from "next/link"
 import Image from "next/image"
-import { ArrowLeft, Calendar, Film, Star, Users, Play } from "lucide-react"
+import { ArrowLeft, Calendar, Film, Star, Users, Play, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
+import YouTube, { YouTubeProps } from "react-youtube"
+import { useState } from "react"
+import { use } from "react"
 
 interface MovieDetailsProps {
-  params: {
+  params: Promise<{
     status: string
     slug: string
-  }
+  }>
 }
 
 export default function MovieDetailsPage({ params }: MovieDetailsProps) {
+  // State to control trailer modal visibility
+  const [isTrailerOpen, setIsTrailerOpen] = useState(false)
+
+  // Unwrap params using React.use()
+  const resolvedParams = use(params)
+
+  // Ensure params are defined before accessing
+  if (!resolvedParams || !resolvedParams.slug || !resolvedParams.status) {
+    return (
+      <div className="min-h-screen bg-black text-white flex items-center justify-center">
+        <div className="text-center">
+          <h1 className="text-3xl font-bold mb-4">Invalid parameters</h1>
+          <Link href="/">
+            <Button>Return to Home</Button>
+          </Link>
+        </div>
+      </div>
+    )
+  }
+
   // In a real app, you would fetch this data from an API or database
   // For now, we'll use mock data based on the slug
-  const movieData = getMovieData(params.slug, params.status)
+  const movieData = getMovieData(resolvedParams.slug, resolvedParams.status)
+
+  // Function to extract YouTube video ID from URL
+  const getYouTubeId = (url: string) => {
+    const regex = /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/
+    const match = url.match(regex)
+    return match ? match[1] : null
+  }
+
+  // YouTube player options
+  const opts: YouTubeProps['opts'] = {
+    height: '100%',
+    width: '100%',
+    playerVars: {
+      autoplay: 1,
+    },
+  }
 
   if (!movieData) {
     return (
@@ -28,6 +69,8 @@ export default function MovieDetailsPage({ params }: MovieDetailsProps) {
       </div>
     )
   }
+
+  const youtubeId = movieData.trailerUrl ? getYouTubeId(movieData.trailerUrl) : null
 
   return (
     <div className="min-h-screen bg-black text-white">
@@ -77,12 +120,17 @@ export default function MovieDetailsPage({ params }: MovieDetailsProps) {
               </div>
 
               <div className="mt-6">
-                <a href={movieData.trailerUrl} target="_blank" rel="noopener noreferrer">
-                  <Button className="w-full gap-2">
+                {youtubeId ? (
+                  <Button className="w-full gap-2" onClick={() => setIsTrailerOpen(true)}>
                     <Play className="h-4 w-4" />
                     Watch Trailer
                   </Button>
-                </a>
+                ) : (
+                  <Button className="w-full gap-2" disabled>
+                    <Play className="h-4 w-4" />
+                    Trailer Not Available
+                  </Button>
+                )}
               </div>
             </div>
 
@@ -92,12 +140,12 @@ export default function MovieDetailsPage({ params }: MovieDetailsProps) {
                   <Badge
                     variant="outline"
                     className={
-                      movieData.status === "released" || params.status === "released"
+                      movieData.status === "released" || resolvedParams.status === "released"
                         ? "bg-green-900/30 text-green-400 hover:bg-green-900/30 border-green-800"
                         : "bg-blue-900/30 text-blue-400 hover:bg-blue-900/30 border-blue-800"
                     }
                   >
-                    {movieData.status === "released" || params.status === "released" ? "Released" : "Upcoming"}
+                    {movieData.status === "released" || resolvedParams.status === "released" ? "Released" : "Upcoming"}
                   </Badge>
                   <Badge variant="secondary" className="bg-gray-800 text-gray-300 hover:bg-gray-800">
                     {movieData.type}
@@ -110,7 +158,7 @@ export default function MovieDetailsPage({ params }: MovieDetailsProps) {
 
                 <div className="flex items-center gap-2 text-yellow-500">
                   <Star className="h-5 w-5 fill-yellow-500" />
-                  <span className="text-lg font-medium">{movieData.imdbRating} / 10</span>
+                  <span className="text-lg font-medium">{movieData.imdbRating || 'TBD'} / 10</span>
                   <span className="text-sm text-gray-400">IMDb Rating</span>
                 </div>
               </div>
@@ -148,12 +196,32 @@ export default function MovieDetailsPage({ params }: MovieDetailsProps) {
 
               <div className="flex items-center gap-2">
                 <span className="text-gray-400">Release Date:</span>
-                <span className="font-semibold">{movieData.releaseDate}</span>
+                <span className="font-medium">{movieData.releaseDate}</span>
               </div>
             </div>
           </div>
         </div>
       </div>
+
+      {/* Trailer Modal */}
+      {isTrailerOpen && youtubeId && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80">
+          <div className="relative w-full max-w-3xl p-4">
+            <Button
+              variant="ghost"
+              size="icon"
+              className="absolute top-2 right-2 bg-black/50 hover:bg-black/70"
+              onClick={() => setIsTrailerOpen(false)}
+            >
+              <X className="h-5 w-5" />
+              <span className="sr-only">Close trailer</span>
+            </Button>
+            <div className="relative aspect-video">
+              <YouTube videoId={youtubeId} opts={opts} className="absolute inset-0" />
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   )
 }
@@ -230,7 +298,6 @@ function getMovieData(slug: string, status: string) {
       trailerUrl: "https://youtu.be/UWMzKXsY9A4?si=zLqRiBGlkzReUe1G",
       status: status === "released" ? "released" : "released",
     },
-
     "mission-impossible-final-reckoning": {
       title: "Mission Impossible: Final Reckoning",
       type: "Movie",
@@ -248,7 +315,6 @@ function getMovieData(slug: string, status: string) {
       trailerUrl: "https://youtu.be/fsQgc9pCyDU?si=BBElSbmi-HVWQlc5",
       status: status === "released" ? "released" : "released",
     },
-
     // Movies - Upcoming
     "jurassic-world-rebirth": {
       title: "Jurassic World: Rebirth",
@@ -306,7 +372,7 @@ function getMovieData(slug: string, status: string) {
       type: "Movie",
       posterImage: "/series/warr.jpeg?height=450&width=300",
       coverImage: "/series/warc.jpeg?height=600&width=1200",
-      releaseDate: "August  14, 2025",
+      releaseDate: "August 14, 2025",
       director: "Ayan Mukerji",
       productionCompany: "YRF Films",
       imdbRating: null,
@@ -352,7 +418,6 @@ function getMovieData(slug: string, status: string) {
       trailerUrl: "",
       status: status === "released" ? "released" : "upcoming",
     },
-
     // Series - Released
     you: {
       title: "You",
@@ -439,7 +504,6 @@ function getMovieData(slug: string, status: string) {
       trailerUrl: "https://youtu.be/7xALolZzhSM?si=0eizTuJ62nh4Bllf",
       status: status === "released" ? "released" : "released",
     },
-
     // Series - Upcoming
     "stranger-things": {
       title: "Stranger Things",
