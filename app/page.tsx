@@ -60,6 +60,7 @@ export default function Home() {
       title: "Mission Impossible: Final Reckoning",
       type: "Movie",
       image: "/series/mic.jpeg?height=450&width=300",
+      rating: 4.5,
       releaseDate: "May 17, 2025",
       status: "released" as const,
     },
