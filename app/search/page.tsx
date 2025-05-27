@@ -58,15 +58,15 @@ export default function SearchPage() {
       releaseDate: "May 16, 2025",
       status: "released" as const,
     },
-
-    // Movies - Upcoming
     {
       title: "Mission Impossible: Final Reckoning",
       type: "Movie",
       image: "/series/mic.jpeg?height=450&width=300",
       releaseDate: "May 17, 2025",
-      status: "upcoming" as const,
+      status: "released" as const,
     },
+
+    // Movies - Upcoming
     {
       title: "Jurassic World: Rebirth",
       type: "Movie",
