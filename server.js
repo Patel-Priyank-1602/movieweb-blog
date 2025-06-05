@@ -18,13 +18,17 @@ wss.on("connection", (ws) => {
   // Send current comments to newly connected client
   ws.send(JSON.stringify({ type: "comments", data: comments }));
 
-  // Handle incoming messages (optional, not used in this case)
+  // Handle incoming messages (for debugging or future use)
   ws.on("message", (message) => {
-    console.log("Received:", message);
+    console.log("Received:", message.toString());
   });
 
   ws.on("close", () => {
     console.log("Client disconnected");
+  });
+
+  ws.on("error", (error) => {
+    console.error("WebSocket error:", error);
   });
 });
 
@@ -44,7 +48,16 @@ app.get("/comments", (req, res) => {
 
 // API to post a new comment
 app.post("/comments", (req, res) => {
-  const comment = req.body;
+  const { username, text } = req.body;
+  if (!username || !text) {
+    return res.status(400).json({ error: "Username and text are required" });
+  }
+  const comment = {
+    id: Date.now(), // Generate ID on the server
+    username: username.trim(),
+    text: text.trim(),
+    timestamp: new Date().toLocaleString(),
+  };
   comments = [comment, ...comments]; // Add new comment to the front
   broadcastComments(); // Notify all clients
   res.status(201).json(comment);

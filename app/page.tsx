@@ -15,7 +15,9 @@ import Loading from "./loading"
 interface ContentItem {
   title: string;
   type: "Movie" | "Series";
-  image: string;
+ 
+
+ image: string;
   rating?: number;
   releaseDate: string;
   status: "released" | "upcoming";
@@ -34,54 +36,80 @@ export default function Home() {
   const [comments, setComments] = useState<Comment[]>([])
   const [newComment, setNewComment] = useState({ username: "", text: "" })
   const [showAllComments, setShowAllComments] = useState(false)
+  const [ws, setWs] = useState<WebSocket | null>(null)
 
-  // Initialize WebSocket connection
+  // Initialize WebSocket connection with reconnection logic
   useEffect(() => {
-    const ws = new WebSocket("ws://localhost:8080")
+    let reconnectTimeout: NodeJS.Timeout;
 
-    ws.onopen = () => {
-      console.log("WebSocket connected")
-    }
+    const connectWebSocket = () => {
+      const websocket = new WebSocket("ws://localhost:8080");
+      setWs(websocket);
 
-    ws.onmessage = (event) => {
-      const message = JSON.parse(event.data)
-      if (message.type === "comments") {
-        setComments(message.data)
-      }
-    }
+      websocket.onopen = () => {
+        console.log("WebSocket connected");
+      };
 
-    ws.onclose = () => {
-      console.log("WebSocket disconnected")
-    }
+      websocket.onmessage = (event) => {
+        try {
+          const message = JSON.parse(event.data);
+          if (message.type === "comments") {
+            // Sort comments by timestamp (newest first)
+            const sortedComments = message.data.sort((a: Comment, b: Comment) =>
+              new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime()
+            );
+            setComments(sortedComments);
+          }
+        } catch (error) {
+          console.error("Error parsing WebSocket message:", error);
+        }
+      };
 
-    ws.onerror = (error) => {
-      console.error("WebSocket error:", error)
-    }
+      websocket.onclose = () => {
+        console.log("WebSocket disconnected, attempting to reconnect...");
+        reconnectTimeout = setTimeout(connectWebSocket, 3000);
+      };
+
+      websocket.onerror = (error) => {
+        console.error("WebSocket error:", error);
+        websocket.close();
+      };
+    };
+
+    connectWebSocket();
 
     // Fetch initial comments
     fetch("http://localhost:8080/comments")
       .then((res) => res.json())
-      .then((data) => setComments(data))
-      .catch((error) => console.error("Error fetching comments:", error))
+      .then((data) => {
+        const sortedComments = data.sort((a: Comment, b: Comment) =>
+          new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime()
+        );
+        setComments(sortedComments);
+      })
+      .catch((error) => console.error("Error fetching comments:", error));
 
     return () => {
-      ws.close()
-    }
-  }, [])
+      if (ws) {
+        ws.close();
+      }
+      clearTimeout(reconnectTimeout);
+    };
+  }, []);
 
   const handleLoadingComplete = () => {
-    setIsLoading(false)
-  }
+    setIsLoading(false);
+  };
 
   const handleCommentSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
+    e.preventDefault();
     if (newComment.username.trim() && newComment.text.trim()) {
       const comment: Comment = {
-        id: Date.now(), // Use timestamp as a simple unique ID
-        username: newComment.username,
-        text: newComment.text,
+        id: Date.now(), // Temporary ID, server will override
+        username: newComment.username.trim(),
+        text: newComment.text.trim(),
         timestamp: new Date().toLocaleString(),
-      }
+      };
 
       try {
         const response = await fetch("http://localhost:8080/comments", {
@@ -90,24 +118,30 @@ export default function Home() {
             "Content-Type": "application/json",
           },
           body: JSON.stringify(comment),
-        })
+        });
+
         if (response.ok) {
-          setNewComment({ username: "", text: "" })
+          setNewComment({ username: "", text: "" });
         } else {
-          console.error("Failed to post comment")
+          const errorData = await response.json();
+          console.error("Failed to post comment:", errorData.error);
+          alert(`Failed to post comment: ${errorData.error}`);
         }
       } catch (error) {
-        console.error("Error posting comment:", error)
+        console.error("Error posting comment:", error);
+        alert("Error posting comment. Please try again.");
       }
+    } else {
+      alert("Please fill in both username and comment fields.");
     }
-  }
+  };
 
-  const displayedComments = showAllComments ? comments : comments.slice(0, 5)
+  const displayedComments = showAllComments ? comments : comments.slice(0, 5);
 
   const arrivedMovies: ContentItem[] = [
     {
       title: "Raid 2",
-      type: "Movie" as const,
+      type: "Movie",
       image: "/series/radc.jpeg?height=450&width=300",
       rating: 4.8,
       releaseDate: "May 1, 2025",
@@ -161,12 +195,12 @@ export default function Home() {
       releaseDate: "February 14, 2025",
       status: "released",
     },
-  ]
+  ];
 
   const upcomingMovies: ContentItem[] = [
     {
       title: "Jurassic World: Rebirth",
-      type: "Movie" as const,
+      type: "Movie",
       image: "/series/ju.jpeg?height=450&width=300",
       releaseDate: "July 4, 2025",
       status: "upcoming",
@@ -227,12 +261,12 @@ export default function Home() {
       releaseDate: "August 1, 2025",
       status: "upcoming",
     },
-  ]
+  ];
 
   const arrivedSeries: ContentItem[] = [
     {
       title: "You",
-      type: "Series" as const,
+      type: "Series",
       image: "/series/youc.jpeg?height=450&width=300",
       rating: 4.7,
       releaseDate: "Apr 24, 2025",
@@ -278,12 +312,12 @@ export default function Home() {
       releaseDate: "March 20, 2025",
       status: "released",
     },
-  ]
+  ];
 
   const upcomingSeries: ContentItem[] = [
     {
       title: "Stranger Things",
-      type: "Series" as const,
+      type: "Series",
       image: "/series/stc.jpeg?height=450&width=300",
       releaseDate: "Oct - Nov, 2025",
       status: "upcoming",
@@ -344,24 +378,24 @@ export default function Home() {
       releaseDate: "July 3, 2025",
       status: "upcoming",
     },
-  ]
+  ];
 
   const arrivedContent: ContentItem[] =
     contentType === "all"
       ? [...arrivedMovies, ...arrivedSeries]
       : contentType === "movies"
         ? arrivedMovies
-        : arrivedSeries
+        : arrivedSeries;
 
   const upcomingContent =
     contentType === "all"
       ? [...upcomingMovies, ...upcomingSeries]
       : contentType === "movies"
         ? upcomingMovies
-        : upcomingSeries
+        : upcomingSeries;
 
   if (isLoading) {
-    return <Loading onComplete={handleLoadingComplete} />
+    return <Loading onComplete={handleLoadingComplete} />;
   }
 
   return (
@@ -548,5 +582,5 @@ export default function Home() {
         </section>
       </main>
     </div>
-  )
+  );
 }
