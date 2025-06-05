@@ -67,18 +67,18 @@ export default function Loading({ onComplete }: { onComplete: () => void }) {
     <div className="fixed inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-900 flex flex-col items-center justify-center z-50 overflow-hidden">
       {/* Background subtle elements */}
       <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-20 left-20 w-32 h-32 bg-purple-500 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-32 right-20 w-24 h-24 bg-purple-600 rounded-full blur-2xl animate-pulse delay-1000"></div>
+        <div className="absolute top-20 left-20 w-32 h-32 bg-[#6224c3] rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-32 right-20 w-24 h-24 bg-[#6224c3] rounded-full blur-2xl animate-pulse delay-1000"></div>
       </div>
 
       {/* Main content */}
       <div className="relative z-10 flex flex-col items-center">
         {/* Logo section */}
         <div className="flex flex-row items-center gap-3 mb-4 animate-fade-in">
-          <Film className="h-10 w-10 text-purple-500 drop-shadow-lg" />
+          <Film className="h-10 w-10 text-[#6224c3] drop-shadow-lg" />
           <h1 className="text-4xl sm:text-5xl font-black tracking-tight">
             <span className="text-white">{displayedText.slice(0, 8)}</span>
-            <span className="text-purple-500">{displayedText.slice(8)}</span>
+            <span className="text-[#6224c3]">{displayedText.slice(8)}</span>
           </h1>
         </div>
 
@@ -92,7 +92,7 @@ export default function Loading({ onComplete }: { onComplete: () => void }) {
           {/* Progress bar */}
           <div className="w-full h-1.5 bg-gray-800/50 rounded-full overflow-hidden mb-4 shadow-inner">
             <div
-              className="h-full bg-gradient-to-r from-purple-600 via-purple-500 to-purple-400 rounded-full transition-all duration-100 ease-out shadow-lg"
+              className="h-full bg-gradient-to-r from-[#6224c3] via-[#7e3ff2] to-[#a780ff] rounded-full transition-all duration-100 ease-out shadow-lg"
               style={{ width: `${progress}%` }}
             >
               <div className="absolute inset-0 bg-gradient-to-r from-transparent to-white/20 opacity-30 blur-sm animate-shine" />
