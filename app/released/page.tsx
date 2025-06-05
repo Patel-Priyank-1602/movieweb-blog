@@ -141,7 +141,9 @@ export default function ReleasedPage() {
         : arrivedSeries
 
   if (isLoading) {
-    return <Loading />
+    return <Loading onComplete={function (): void {
+      throw new Error("Function not implemented.")
+    } } />
   }
 
   return (

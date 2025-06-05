@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import Link from "next/link"
 import { ChevronRight, Film, TrendingUp } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -14,23 +14,18 @@ export default function Home() {
   const [contentType, setContentType] = useState("all")
   const [isLoading, setIsLoading] = useState(true)
 
-  useEffect(() => {
-    // Simulate loading time
-    const timer = setTimeout(() => {
-      setIsLoading(false)
-    }, 2000)
+  const handleLoadingComplete = () => {
+    setIsLoading(false)
+  }
 
-    return () => clearTimeout(timer)
-  }, [])
-
-  const arrivedMovies = [
+  const arrivedMovies: ContentItem[] = [
     {
       title: "Raid 2",
-      type: "Movie",
+      type: "Movie" as const,
       image: "/series/radc.jpeg?height=450&width=300",
       rating: 4.8,
       releaseDate: "May 1, 2025",
-      status: "released" as const,
+      status: "released",
     },
     {
       title: "Thunderbolt",
@@ -38,7 +33,7 @@ export default function Home() {
       image: "/series/thnc.jpeg?height=450&width=300",
       rating: 4.6,
       releaseDate: "May 1, 2025",
-      status: "released" as const,
+      status: "released",
     },
     {
       title: "Chhava",
@@ -46,7 +41,7 @@ export default function Home() {
       image: "/series/ch.jpeg?height=450&width=300",
       rating: 4.3,
       releaseDate: "Feb 14, 2025",
-      status: "released" as const,
+      status: "released",
     },
     {
       title: "Final Destination",
@@ -54,7 +49,7 @@ export default function Home() {
       image: "/series/fdc.jpeg?height=450&width=300",
       rating: 4.5,
       releaseDate: "May 16, 2025",
-      status: "released" as const,
+      status: "released",
     },
     {
       title: "Mission Impossible: Final Reckoning",
@@ -62,100 +57,100 @@ export default function Home() {
       image: "/series/mic.jpeg?height=450&width=300",
       rating: 4.5,
       releaseDate: "May 17, 2025",
-      status: "released" as const,
+      status: "released",
     },
     {
       title: "Ballerina",
       type: "Movie",
       image: "/series/ban.jpeg?height=450&width=300",
-      rating: 8.1,
+      rating: 4.7,
       releaseDate: "June 6, 2025",
-      status: "released" as const
+      status: "released",
     },
     {
       title: "Captain America: Brave New World",
       type: "Movie",
       image: "/series/cam.jpeg?height=450&width=300",
-      rating: 8.0,
+      rating: 4.1,
       releaseDate: "February 14, 2025",
-      status: "released" as const
+      status: "released",
     },
   ]
 
-  const upcomingMovies = [
+  const upcomingMovies: ContentItem[] = [
     {
       title: "Jurassic World: Rebirth",
-      type: "Movie",
+      type: "Movie" as const,
       image: "/series/ju.jpeg?height=450&width=300",
       releaseDate: "July 4, 2025",
-      status: "upcoming" as const,
+      status: "upcoming",
     },
     {
       title: "Superman",
       type: "Movie",
       image: "/series/suc.jpeg?height=450&width=300",
       releaseDate: "July 11, 2025",
-      status: "upcoming" as const,
+      status: "upcoming",
     },
     {
       title: "Fantastic 4",
       type: "Movie",
       image: "/series/fanc.jpeg?height=450&width=300",
       releaseDate: "July 25, 2025",
-      status: "upcoming" as const,
+      status: "upcoming",
     },
     {
       title: "War 2",
       type: "Movie",
       image: "/series/warr.jpeg?height=450&width=300",
-      releaseDate: "Aug  14, 2025",
-      status: "upcoming" as const,
+      releaseDate: "Aug 14, 2025",
+      status: "upcoming",
     },
     {
       title: "The Conjuring",
       type: "Movie",
       image: "/series/can.jpeg?height=450&width=300",
       releaseDate: "Sept 5, 2025",
-      status: "upcoming" as const,
+      status: "upcoming",
     },
     {
       title: "Avatar 3",
       type: "Movie",
       image: "/series/av.jpeg?height=450&width=300",
       releaseDate: "Dec 19, 2025",
-      status: "upcoming" as const,
+      status: "upcoming",
     },
     {
       title: "28 Years Later",
       type: "Movie",
       image: "/series/28y.jpeg?height=450&width=300",
       releaseDate: "June 20, 2025",
-      status: "upcoming" as const
+      status: "upcoming",
     },
     {
       title: "Zootopia 2",
       type: "Movie",
       image: "/series/zoo.jpeg?height=450&width=300",
       releaseDate: "November 26, 2025",
-      status: "upcoming" as const
+      status: "upcoming",
     },
     {
       title: "The Bad Guys 2",
       type: "Movie",
       image: "/series/bd.jpeg?height=450&width=300",
       releaseDate: "August 1, 2025",
-      status: "upcoming" as const
+      status: "upcoming",
     },
   ]
 
-  const arrivedSeries = [
+  const arrivedSeries: ContentItem[] = [
     {
       title: "You",
-      type: "Series",
+      type: "Series" as const,
       image: "/series/youc.jpeg?height=450&width=300",
       rating: 4.7,
       releaseDate: "Apr 24, 2025",
-      status: "released" as const,
+      status: "released",
     },
     {
       title: "Adolescence",
@@ -163,7 +158,7 @@ export default function Home() {
       image: "/series/adc.jpeg?height=450&width=300",
       rating: 4.2,
       releaseDate: "Mar 13, 2025",
-      status: "released" as const,
+      status: "released",
     },
     {
       title: "Pataal Lok",
@@ -171,7 +166,7 @@ export default function Home() {
       image: "/series/patc.jpeg?height=450&width=300",
       rating: 4.9,
       releaseDate: "Jan 17, 2025",
-      status: "released" as const,
+      status: "released",
     },
     {
       title: "The Last of Us",
@@ -179,7 +174,7 @@ export default function Home() {
       image: "/series/thlou.jpeg?height=450&width=300",
       rating: 4.8,
       releaseDate: "Apr 13, 2025",
-      status: "released" as const,
+      status: "released",
     },
     {
       title: "Daredevil",
@@ -187,91 +182,100 @@ export default function Home() {
       image: "/series/dar.jpeg?height=450&width=300",
       rating: 4.6,
       releaseDate: "Mar 4, 2025",
-      status: "released" as const,
+      status: "released",
     },
     {
       title: "Khakee: The Bengal Chapter",
       type: "Series",
       image: "/series/kk.jpeg?height=450&width=300",
-      rating: 7.5,
+      rating: 4.2,
       releaseDate: "March 20, 2025",
-      status: "released" as const
+      status: "released",
     },
   ]
 
-  const upcomingSeries = [
+  const upcomingSeries: ContentItem[] = [
     {
       title: "Stranger Things",
-      type: "Series",
+      type: "Series" as const,
       image: "/series/stc.jpeg?height=450&width=300",
       releaseDate: "Oct - Nov, 2025",
-      status: "upcoming" as const,
+      status: "upcoming",
     },
     {
       title: "Alice in Borderland",
       type: "Series",
       image: "/series/aibb.jpeg?height=450&width=300",
       releaseDate: "Sept, 2025",
-      status: "upcoming" as const,
+      status: "upcoming",
     },
     {
       title: "Panchayat",
       type: "Series",
       image: "/series/panc.jpeg?height=450&width=300",
       releaseDate: "Jul 2, 2025",
-      status: "upcoming" as const,
+      status: "upcoming",
     },
     {
       title: "Squid Game",
       type: "Series",
       image: "/series/sq.jpeg?height=450&width=300",
       releaseDate: "Jun 27, 2025",
-      status: "upcoming" as const,
+      status: "upcoming",
     },
     {
       title: "Wednesday",
       type: "Series",
       image: "/series/wenc.jpeg?height=450&width=300",
       releaseDate: "Aug 6, 2025",
-      status: "upcoming" as const,
+      status: "upcoming",
     },
     {
       title: "Family Man",
       type: "Series",
       image: "/series/fm.jpeg?height=450&width=300",
       releaseDate: "Nov, 2025",
-      status: "upcoming" as const,
+      status: "upcoming",
     },
     {
       title: "The Witcher",
       type: "Series",
       image: "/series/wi.jpeg?height=450&width=300",
       releaseDate: "Late 2025",
-      status: "upcoming" as const
+      status: "upcoming",
     },
     {
       title: "Ironheart",
       type: "Series",
       image: "/series/ir.jpeg?height=450&width=300",
       releaseDate: "June 24, 2025",
-      status: "upcoming" as const
+      status: "upcoming",
     },
     {
       title: "The Sandman",
       type: "Series",
       image: "/series/sad.jpeg?height=450&width=300",
       releaseDate: "July 3, 2025",
-      status: "upcoming" as const
+      status: "upcoming",
     },
   ]
 
   // Combine and filter content based on selected type
-  const arrivedContent =
-    contentType === "all"
-      ? [...arrivedMovies, ...arrivedSeries]
-      : contentType === "movies"
-        ? arrivedMovies
-        : arrivedSeries
+  interface ContentItem {
+    title: string;
+    type: "Movie" | "Series";
+    image: string;
+    rating?: number;
+    releaseDate: string;
+    status: "released" | "upcoming";
+  }
+  
+  const arrivedContent: ContentItem[] =
+      contentType === "all"
+        ? [...arrivedMovies, ...arrivedSeries]
+        : contentType === "movies"
+          ? arrivedMovies
+          : arrivedSeries
 
   const upcomingContent =
     contentType === "all"
@@ -281,7 +285,7 @@ export default function Home() {
         : upcomingSeries
 
   if (isLoading) {
-    return <Loading />
+    return <Loading onComplete={handleLoadingComplete} />
   }
 
   return (
@@ -351,7 +355,7 @@ export default function Home() {
                   <MovieCard
                     key={index}
                     title={movie.title}
-                    type={movie.type as "Movie" | "Series"}
+                    type={movie.type}
                     image={movie.image}
                     rating={movie.rating}
                     releaseDate={movie.releaseDate}
@@ -389,7 +393,7 @@ export default function Home() {
                   <MovieCard
                     key={index}
                     title={movie.title}
-                    type={movie.type as "Movie" | "Series"}
+                    type={movie.type}
                     image={movie.image}
                     releaseDate={movie.releaseDate}
                     status="upcoming"
