@@ -1,22 +1,72 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Link from "next/link"
-import { ChevronRight, Film, TrendingUp } from "lucide-react"
+import { ChevronRight, Film, TrendingUp, Send } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import FeaturedShowcase from "@/components/featured-showcase"
 import MovieCard from "@/components/movie-card"
 import { Badge } from "@/components/ui/badge"
+import { Input } from "@/components/ui/input"
+import { Textarea } from "@/components/ui/textarea"
 import Loading from "./loading"
+
+interface ContentItem {
+  title: string;
+  type: "Movie" | "Series";
+  image: string;
+  rating?: number;
+  releaseDate: string;
+  status: "released" | "upcoming";
+}
+
+interface Comment {
+  id: number;
+  username: string;
+  text: string;
+  timestamp: string;
+}
 
 export default function Home() {
   const [contentType, setContentType] = useState("all")
   const [isLoading, setIsLoading] = useState(true)
+  const [comments, setComments] = useState<Comment[]>([])
+  const [newComment, setNewComment] = useState({ username: "", text: "" })
+  const [showAllComments, setShowAllComments] = useState(false)
+
+  // Load comments from localStorage on component mount
+  useEffect(() => {
+    const storedComments = localStorage.getItem("comments")
+    if (storedComments) {
+      setComments(JSON.parse(storedComments))
+    }
+  }, [])
+
+  // Save comments to localStorage whenever comments change
+  useEffect(() => {
+    localStorage.setItem("comments", JSON.stringify(comments))
+  }, [comments])
 
   const handleLoadingComplete = () => {
     setIsLoading(false)
   }
+
+  const handleCommentSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    if (newComment.username.trim() && newComment.text.trim()) {
+      const comment: Comment = {
+        id: comments.length + 1,
+        username: newComment.username,
+        text: newComment.text,
+        timestamp: new Date().toLocaleString(),
+      }
+      setComments([comment, ...comments])
+      setNewComment({ username: "", text: "" })
+    }
+  }
+
+  const displayedComments = showAllComments ? comments : comments.slice(0, 5)
 
   const arrivedMovies: ContentItem[] = [
     {
@@ -260,22 +310,12 @@ export default function Home() {
     },
   ]
 
-  // Combine and filter content based on selected type
-  interface ContentItem {
-    title: string;
-    type: "Movie" | "Series";
-    image: string;
-    rating?: number;
-    releaseDate: string;
-    status: "released" | "upcoming";
-  }
-  
   const arrivedContent: ContentItem[] =
-      contentType === "all"
-        ? [...arrivedMovies, ...arrivedSeries]
-        : contentType === "movies"
-          ? arrivedMovies
-          : arrivedSeries
+    contentType === "all"
+      ? [...arrivedMovies, ...arrivedSeries]
+      : contentType === "movies"
+        ? arrivedMovies
+        : arrivedSeries
 
   const upcomingContent =
     contentType === "all"
@@ -407,6 +447,57 @@ export default function Home() {
                   </div>
                 )}
               </div>
+            </div>
+
+            <div className="mt-12">
+              <h3 className="text-2xl font-semibold mb-6">Community Comments</h3>
+              <form onSubmit={handleCommentSubmit} className="mb-8 flex flex-col gap-4">
+                <Input
+                  type="text"
+                  placeholder="Your username"
+                  value={newComment.username}
+                  onChange={(e) => setNewComment({ ...newComment, username: e.target.value })}
+                  className="bg-gray-900 text-white border-gray-700"
+                  required
+                />
+                <Textarea
+                  placeholder="Share your thoughts..."
+                  value={newComment.text}
+                  onChange={(e) => setNewComment({ ...newComment, text: e.target.value })}
+                  className="bg-gray-900 text-white border-gray-700"
+                  rows={4}
+                  required
+                />
+                <Button type="submit" className="self-start bg-primary hover:bg-primary/90">
+                  <Send className="h-4 w-4 mr-2" />
+                  Post Comment
+                </Button>
+              </form>
+
+              <div className="space-y-4">
+                {displayedComments.length === 0 ? (
+                  <p className="text-gray-400">No comments yet. Be the first to comment!</p>
+                ) : (
+                  displayedComments.map((comment) => (
+                    <div key={comment.id} className="border-b border-gray-800 pb-4">
+                      <div className="flex items-center gap-2 mb-1">
+                        <span className="font-semibold">{comment.username}</span>
+                        <span className="text-sm text-gray-400">{comment.timestamp}</span>
+                      </div>
+                      <p className="text-gray-200">{comment.text}</p>
+                    </div>
+                  ))
+                )}
+              </div>
+              {comments.length > 5 && (
+                <Button
+                  variant="outline"
+                  className="mt-6 bg-gray-900 text-white border-gray-700 hover:bg-gray-800"
+                  onClick={() => setShowAllComments(!showAllComments)}
+                >
+                  {showAllComments ? "Show Less" : "Show More"}
+                </Button>
+              )}
             </div>
           </div>
         </section>
