@@ -410,8 +410,8 @@ export default function Home() {
         <section className="py-12 bg-gradient-to-b from-gray-900 to-black">
           <div className="container">
             <div className="text-center space-y-4 max-w-3xl mx-auto mb-12">
-              <h2 className="text-3xl font-bold">The Last Update on this Website was on 22/5/2025</h2>
-              <p className="text-gray-400">The same Movie/Series Trailer is not available, so there is only a Teaser. Also, for some Trailers or Teasers, none are available.</p>
+              <h2 className="text-3xl font-bold">The Last Update on this Website was on 6/6/2025</h2>
+              <p className="text-gray-400">For some Movies/Series, the official Trailer is not Available, so only a Teaser has been released. In some cases, neither a Teaser nor a Trailer is Available — only a Date Announcement Video is Provided.</p>
             </div>
           </div>
         </section>
