@@ -35,34 +35,70 @@ export default function Home() {
   const [newComment, setNewComment] = useState({ username: "", text: "" })
   const [showAllComments, setShowAllComments] = useState(false)
 
-  // Load comments from localStorage on component mount
+  // Initialize WebSocket connection
   useEffect(() => {
-    const storedComments = localStorage.getItem("comments")
-    if (storedComments) {
-      setComments(JSON.parse(storedComments))
+    const ws = new WebSocket("ws://localhost:8080")
+
+    ws.onopen = () => {
+      console.log("WebSocket connected")
+    }
+
+    ws.onmessage = (event) => {
+      const message = JSON.parse(event.data)
+      if (message.type === "comments") {
+        setComments(message.data)
+      }
+    }
+
+    ws.onclose = () => {
+      console.log("WebSocket disconnected")
+    }
+
+    ws.onerror = (error) => {
+      console.error("WebSocket error:", error)
+    }
+
+    // Fetch initial comments
+    fetch("http://localhost:8080/comments")
+      .then((res) => res.json())
+      .then((data) => setComments(data))
+      .catch((error) => console.error("Error fetching comments:", error))
+
+    return () => {
+      ws.close()
     }
   }, [])
-
-  // Save comments to localStorage whenever comments change
-  useEffect(() => {
-    localStorage.setItem("comments", JSON.stringify(comments))
-  }, [comments])
 
   const handleLoadingComplete = () => {
     setIsLoading(false)
   }
 
-  const handleCommentSubmit = (e: React.FormEvent) => {
+  const handleCommentSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     if (newComment.username.trim() && newComment.text.trim()) {
       const comment: Comment = {
-        id: comments.length + 1,
+        id: Date.now(), // Use timestamp as a simple unique ID
         username: newComment.username,
         text: newComment.text,
         timestamp: new Date().toLocaleString(),
       }
-      setComments([comment, ...comments])
-      setNewComment({ username: "", text: "" })
+
+      try {
+        const response = await fetch("http://localhost:8080/comments", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(comment),
+        })
+        if (response.ok) {
+          setNewComment({ username: "", text: "" })
+        } else {
+          console.error("Failed to post comment")
+        }
+      } catch (error) {
+        console.error("Error posting comment:", error)
+      }
     }
   }
 
