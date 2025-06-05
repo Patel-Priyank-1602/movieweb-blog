@@ -15,9 +15,7 @@ import Loading from "./loading"
 interface ContentItem {
   title: string;
   type: "Movie" | "Series";
- 
-
- image: string;
+  image: string;
   rating?: number;
   releaseDate: string;
   status: "released" | "upcoming";
@@ -38,12 +36,16 @@ export default function Home() {
   const [showAllComments, setShowAllComments] = useState(false)
   const [ws, setWs] = useState<WebSocket | null>(null)
 
+  const SERVER_URL = process.env.NEXT_PUBLIC_SERVER_URL || "http://localhost:8080";
+  const WS_URL = process.env.NEXT_PUBLIC_WS_URL || "ws://localhost:8080";
+
   // Initialize WebSocket connection with reconnection logic
   useEffect(() => {
     let reconnectTimeout: NodeJS.Timeout;
 
     const connectWebSocket = () => {
-      const websocket = new WebSocket("ws://localhost:8080");
+      console.log("Connecting to WebSocket:", WS_URL);
+      const websocket = new WebSocket(WS_URL);
       setWs(websocket);
 
       websocket.onopen = () => {
@@ -54,7 +56,6 @@ export default function Home() {
         try {
           const message = JSON.parse(event.data);
           if (message.type === "comments") {
-            // Sort comments by timestamp (newest first)
             const sortedComments = message.data.sort((a: Comment, b: Comment) =>
               new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime()
             );
@@ -79,15 +80,21 @@ export default function Home() {
     connectWebSocket();
 
     // Fetch initial comments
-    fetch("http://localhost:8080/comments")
-      .then((res) => res.json())
+    console.log("Fetching initial comments from:", `${SERVER_URL}/comments`);
+    fetch(`${SERVER_URL}/comments`)
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error(`HTTP error! Status: ${res.status}`);
+        }
+        return res.json();
+      })
       .then((data) => {
         const sortedComments = data.sort((a: Comment, b: Comment) =>
           new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime()
         );
         setComments(sortedComments);
       })
-      .catch((error) => console.error("Error fetching comments:", error));
+      .catch((error) => console.error("Error fetching comments:", error.message));
 
     return () => {
       if (ws) {
@@ -95,7 +102,7 @@ export default function Home() {
       }
       clearTimeout(reconnectTimeout);
     };
-  }, []);
+  }, [SERVER_URL, WS_URL]);
 
   const handleLoadingComplete = () => {
     setIsLoading(false);
@@ -105,14 +112,16 @@ export default function Home() {
     e.preventDefault();
     if (newComment.username.trim() && newComment.text.trim()) {
       const comment: Comment = {
-        id: Date.now(), // Temporary ID, server will override
+        id: Date.now(),
         username: newComment.username.trim(),
         text: newComment.text.trim(),
         timestamp: new Date().toLocaleString(),
       };
 
+      console.log("Posting comment to:", `${SERVER_URL}/comments`, comment);
+
       try {
-        const response = await fetch("http://localhost:8080/comments", {
+        const response = await fetch(`${SERVER_URL}/comments`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -122,13 +131,14 @@ export default function Home() {
 
         if (response.ok) {
           setNewComment({ username: "", text: "" });
+          console.log("Comment posted successfully");
         } else {
           const errorData = await response.json();
-          console.error("Failed to post comment:", errorData.error);
+          console.error("Failed to post comment:", errorData.error, { status: response.status });
           alert(`Failed to post comment: ${errorData.error}`);
         }
       } catch (error) {
-        console.error("Error posting comment:", error);
+        console.error("Error posting comment:", error instanceof Error ? error.message : "Unknown error");
         alert("Error posting comment. Please try again.");
       }
     } else {
@@ -552,18 +562,18 @@ export default function Home() {
                     <div key={comment.id} className="border-b border-gray-800 pb-4">
                       <div className="flex items-center gap-2 mb-1">
                         <span className="font-semibold">{comment.username}</span>
-                        <span className="text-sm text-gray-400">{comment.timestamp}</span>
+                        <span className="text-sm text-gray-foreground">{comment.timestamp}</span>
                       </div>
-                      <p className="text-gray-200">{comment.text}</p>
+                      <p className="text-muted">{comment.text}</p>
                     </div>
                   ))
                 )}
               </div>
               {comments.length > 5 && (
                 <Button
-                  variant="outline"
-                  className="mt-6 bg-gray-900 text-white border-gray-700 hover:bg-gray-800"
+                  className="mt-6 bg-gray-900 text-white border-gray-900 hover:bg-gray-800"
                   onClick={() => setShowAllComments(!showAllComments)}
+                  variant="outline"
                 >
                   {showAllComments ? "Show Less" : "Show More"}
                 </Button>
