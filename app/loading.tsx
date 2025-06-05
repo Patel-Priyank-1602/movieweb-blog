@@ -19,7 +19,7 @@ export default function Loading({ onComplete }: { onComplete: () => void }) {
   ]
 
   useEffect(() => {
-    const duration = 4000 // 4 seconds total
+    const duration = 3000 // 4 seconds total
     const frameRate = 50
     const progressStep = 100 / (duration / frameRate)
     const charsPerFrame = fullText.length / (duration / 200)
