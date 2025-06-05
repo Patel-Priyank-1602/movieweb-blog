@@ -35,7 +35,7 @@ export default function FeaturedShowcase() {
       releaseDate: "October - November, 2025",
       status: "upcoming",
       slug: "stranger-things",
-      trailerUrl: "",
+      trailerUrl: "https://youtu.be/QlYrNC_1Xmk?si=Ps2bq-3gXZsncNCr",
     },
     {
       id: 2,

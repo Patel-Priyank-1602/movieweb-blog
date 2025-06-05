@@ -63,6 +63,22 @@ export default function ReleasedPage() {
       releaseDate: "May 17, 2025",
       status: "released" as const,
     },
+    {
+      title: "Ballerina",
+      type: "Movie",
+      image: "/series/ban.jpeg?height=450&width=300",
+      rating: 8.1,
+      releaseDate: "June 6, 2025",
+      status: "released" as const
+    },
+    {
+      title: "Captain America: Brave New World",
+      type: "Movie",
+      image: "/series/cam.jpeg?height=450&width=300",
+      rating: 8.0,
+      releaseDate: "February 14, 2025",
+      status: "released" as const
+    }
   ]
 
   const arrivedSeries = [
@@ -105,6 +121,14 @@ export default function ReleasedPage() {
       rating: 4.6,
       releaseDate: "Mar 4, 2025",
       status: "released" as const,
+    },
+    {
+      title: "Khakee: The Bengal Chapter",
+      type: "Series",
+      image: "/series/kk.jpeg?height=450&width=300",
+      rating: 7.5,
+      releaseDate: "March 20, 2025",
+      status: "released" as const
     },
   ]
 

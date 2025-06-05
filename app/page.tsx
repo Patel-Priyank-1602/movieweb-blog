@@ -64,6 +64,22 @@ export default function Home() {
       releaseDate: "May 17, 2025",
       status: "released" as const,
     },
+    {
+      title: "Ballerina",
+      type: "Movie",
+      image: "/series/ban.jpeg?height=450&width=300",
+      rating: 8.1,
+      releaseDate: "June 6, 2025",
+      status: "released" as const
+    },
+    {
+      title: "Captain America: Brave New World",
+      type: "Movie",
+      image: "/series/cam.jpeg?height=450&width=300",
+      rating: 8.0,
+      releaseDate: "February 14, 2025",
+      status: "released" as const
+    },
   ]
 
   const upcomingMovies = [
@@ -109,6 +125,27 @@ export default function Home() {
       releaseDate: "Dec 19, 2025",
       status: "upcoming" as const,
     },
+    {
+      title: "28 Years Later",
+      type: "Movie",
+      image: "/series/28y.jpeg?height=450&width=300",
+      releaseDate: "June 20, 2025",
+      status: "upcoming" as const
+    },
+    {
+      title: "Zootopia 2",
+      type: "Movie",
+      image: "/series/zoo.jpeg?height=450&width=300",
+      releaseDate: "November 26, 2025",
+      status: "upcoming" as const
+    },
+    {
+      title: "The Bad Guys 2",
+      type: "Movie",
+      image: "/series/bd.jpeg?height=450&width=300",
+      releaseDate: "August 1, 2025",
+      status: "upcoming" as const
+    },
   ]
 
   const arrivedSeries = [
@@ -151,6 +188,14 @@ export default function Home() {
       rating: 4.6,
       releaseDate: "Mar 4, 2025",
       status: "released" as const,
+    },
+    {
+      title: "Khakee: The Bengal Chapter",
+      type: "Series",
+      image: "/series/kk.jpeg?height=450&width=300",
+      rating: 7.5,
+      releaseDate: "March 20, 2025",
+      status: "released" as const
     },
   ]
 
@@ -196,6 +241,27 @@ export default function Home() {
       image: "/series/fm.jpeg?height=450&width=300",
       releaseDate: "Nov, 2025",
       status: "upcoming" as const,
+    },
+    {
+      title: "The Witcher",
+      type: "Series",
+      image: "/series/wi.jpeg?height=450&width=300",
+      releaseDate: "Late 2025",
+      status: "upcoming" as const
+    },
+    {
+      title: "Ironheart",
+      type: "Series",
+      image: "/series/ir.jpeg?height=450&width=300",
+      releaseDate: "June 24, 2025",
+      status: "upcoming" as const
+    },
+    {
+      title: "The Sandman",
+      type: "Series",
+      image: "/series/sad.jpeg?height=450&width=300",
+      releaseDate: "July 3, 2025",
+      status: "upcoming" as const
     },
   ]
 

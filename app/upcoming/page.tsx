@@ -65,6 +65,27 @@ export default function UpcomingPage() {
       releaseDate: "Dec 19, 2025",
       status: "upcoming" as const,
     },
+    {
+      title: "28 Years Later",
+      type: "Movie",
+      image: "/series/28y.jpeg?height=450&width=300",
+      releaseDate: "June 20, 2025",
+      status: "upcoming" as const
+    },
+    {
+      title: "Zootopia 2",
+      type: "Movie",
+      image: "/series/zoo.jpeg?height=450&width=300",
+      releaseDate: "November 26, 2025",
+      status: "upcoming" as const
+    },
+    {
+      title: "The Bad Guys 2",
+      type: "Movie",
+      image: "/series/bd.jpeg?height=450&width=300",
+      releaseDate: "August 1, 2025",
+      status: "upcoming" as const
+    }
   ]
 
   const upcomingSeries = [
@@ -110,6 +131,27 @@ export default function UpcomingPage() {
       releaseDate: "Nov, 2025",
       status: "upcoming" as const,
     },
+    {
+      title: "The Witcher",
+      type: "Series",
+      image: "/series/wi.jpeg?height=450&width=300",
+      releaseDate: "Late 2025",
+      status: "upcoming" as const
+    },
+    {
+      title: "Ironheart",
+      type: "Series",
+      image: "/series/ir.jpeg?height=450&width=300",
+      releaseDate: "June 24, 2025",
+      status: "upcoming" as const
+    },
+    {
+      title: "The Sandman",
+      type: "Series",
+      image: "/series/sad.jpeg?height=450&width=300",
+      releaseDate: "July 3, 2025",
+      status: "upcoming" as const
+    }
   ]
 
   // Filter content based on selected type
