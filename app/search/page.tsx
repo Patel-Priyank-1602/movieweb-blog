@@ -69,7 +69,7 @@ export default function SearchPage() {
       title: "Ballerina",
       type: "Movie",
       image: "/series/ban.jpeg?height=450&width=300",
-      rating: 8.1,
+      rating: 4.7,
       releaseDate: "June 6, 2025",
       status: "released" as const
     },
@@ -77,7 +77,7 @@ export default function SearchPage() {
       title: "Captain America: Brave New World",
       type: "Movie",
       image: "/series/cam.jpeg?height=450&width=300",
-      rating: 8.0,
+      rating: 4.1,
       releaseDate: "February 14, 2025",
       status: "released" as const
     },
@@ -192,7 +192,7 @@ export default function SearchPage() {
       title: "Khakee: The Bengal Chapter",
       type: "Series",
       image: "/series/kk.jpeg?height=450&width=300",
-      rating: 7.5,
+      rating: 4.1,
       releaseDate: "March 20, 2025",
       status: "released" as const
     },
