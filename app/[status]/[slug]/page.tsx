@@ -594,7 +594,7 @@ function getMovieData(slug: string, status: string) {
       type: "Series",
       posterImage: "/series/kk.jpeg?height=450&width=300",
       coverImage: "/series/kkc.jpeg?height=600&width=1200",
-      releaseDate: "Mrach 20, 2025",
+      releaseDate: "March 20, 2025",
       director: "Neeraj Pandey",
       productionCompany: "Netflix",
       imdbRating: "7.5",
@@ -751,7 +751,7 @@ function getMovieData(slug: string, status: string) {
       releaseDate: "July 3, 2025 (Expected)",
       director: "Various",
       productionCompany: "Netflix",
-      imdbRating: "null",
+      imdbRating: null,
       duration: "10 episodes",
       genre: "Fantasy/Drama",
       description:
