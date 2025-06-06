@@ -30,7 +30,7 @@ export default function FeaturedShowcase() {
       title: "Stranger Things",
       description:
         "The fifth and final season of the beloved sci-fi series brings the story of Hawkins to an epic conclusion as the friends face their greatest challenge yet against the forces of the Upside Down.",
-      image: "/series/stt.jpeg?height=600&width=1200",
+      image: "/series/sttt.jpeg?height=600&width=1200",
       type: "Series",
       releaseDate: "October - November, 2025",
       status: "upcoming",
@@ -78,7 +78,7 @@ export default function FeaturedShowcase() {
       title: "Avatar 3",
       description:
         "Return to Pandora as Jake Sully and Neytiri continue their journey, exploring new regions of the planet and facing a threat that tests the bonds of their family and the Na'vi people.",
-      image: "/series/avv.jpeg?height=600&width=1200",
+      image: "/series/avvv.jpeg?height=600&width=1200",
       type: "Movie",
       releaseDate: "December 19, 2025",
       status: "upcoming",
@@ -169,23 +169,24 @@ export default function FeaturedShowcase() {
           </div>
 
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold">{featured.title}</h1>
-          <p className="text-base sm:text-lg text-gray-300 max-w-2xl">{featured.description}</p>
+          {/* Hide description on mobile (below md breakpoint), show on desktop */}
+          <p className="hidden md:block text-base sm:text-lg text-gray-300 max-w-2xl">{featured.description}</p>
 
-          <div className="flex flex-wrap gap-4 pt-4">
+          <div className="flex flex-nowrap gap-2 pt-4">
             {youtubeId ? (
-              <Button size="lg" className="gap-2" onClick={() => setIsTrailerOpen(true)}>
-                <PlayCircle className="h-5 w-5" />
+              <Button size="sm" className="gap-2 md:h-11 md:rounded-md md:px-8" onClick={() => setIsTrailerOpen(true)}>
+                <PlayCircle className="h-4 w-4 md:h-5 md:w-5" />
                 {featured.status === "released" ? "Watch Now" : "Watch Trailer"}
               </Button>
             ) : (
-              <Button size="lg" className="gap-2" disabled>
-                <PlayCircle className="h-5 w-5" />
+              <Button size="sm" className="gap-2 md:h-11 md:px-8" disabled>
+                <PlayCircle className="h-4 w-4 md:h-5 md:w-5" />
                 Trailer Unavailable
               </Button>
             )}
             <Link href={`/${featured.status}/${featured.slug}`}>
-              <Button size="lg" variant="outline" className="gap-2">
-                <Info className="h-5 w-5" />
+              <Button size="sm" variant="secondary" className="gap-2 md:h-11 md:px-8">
+                <Info className="h-4 w-4 md:h-5 md:w-5" />
                 More Info
               </Button>
             </Link>
