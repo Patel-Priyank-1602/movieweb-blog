@@ -306,7 +306,7 @@ export default function FeaturedShowcase() {
                 Trailer Unavailable
               </Button>
             )}
-            <Link href={`/${featured.slug}`}>
+            <Link href={`/${featured.type.toLowerCase()}/${featured.slug}`}>
               <Button size="sm" variant="secondary" className="gap-2 md:h-11 md:px-8 group-hover/more-info:bg-opacity-100">
                 <Info className="h-4 w-4 md:h-5 md:w-5" />
                 More Info
