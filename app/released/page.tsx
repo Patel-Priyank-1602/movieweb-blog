@@ -68,7 +68,7 @@ export default function ReleasedPage() {
       type: "Movie",
       image: "/series/ban.jpeg?height=450&width=300",
       rating: 4.7,
-      releaseDate: "June 6, 2025",
+      releaseDate: "Jun 6, 2025",
       status: "released" as const
     },
     {
@@ -76,7 +76,7 @@ export default function ReleasedPage() {
       type: "Movie",
       image: "/series/cam.jpeg?height=450&width=300",
       rating: 4.1,
-      releaseDate: "February 14, 2025",
+      releaseDate: "Feb 14, 2025",
       status: "released" as const
     }
   ]
@@ -127,18 +127,23 @@ export default function ReleasedPage() {
       type: "Series",
       image: "/series/kk.jpeg?height=450&width=300",
       rating: 4.2,
-      releaseDate: "March 20, 2025",
+      releaseDate: "Mar 20, 2025",
       status: "released" as const
     },
   ]
 
-  // Filter content based on selected type
+  // Filter and sort content based on selected type and release date
   const filteredContent =
     contentType === "all"
       ? [...arrivedMovies, ...arrivedSeries]
       : contentType === "movies"
         ? arrivedMovies
         : arrivedSeries
+
+  // Sort by release date (ascending)
+  const sortedContent = filteredContent.sort((a, b) => {
+    return new Date(a.releaseDate).getTime() - new Date(b.releaseDate).getTime()
+  })
 
   if (isLoading) {
     return <Loading onComplete={function (): void {
@@ -182,7 +187,7 @@ export default function ReleasedPage() {
         </div>
 
         <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 md:gap-4 lg:gap-6">
-          {filteredContent.map((movie, index) => (
+          {sortedContent.map((movie, index) => (
             <MovieCard
               key={index}
               title={movie.title}
@@ -193,7 +198,7 @@ export default function ReleasedPage() {
               status="released"
             />
           ))}
-          {filteredContent.length === 0 && (
+          {sortedContent.length === 0 && (
             <div className="col-span-full py-12 text-center">
               <p className="text-gray-400">
                 No {contentType === "movies" ? "movies" : "series"} available in this category.

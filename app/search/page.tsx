@@ -9,6 +9,24 @@ import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import MovieCard from "@/components/movie-card"
 import Loading from "../loading"
 
+// Utility function to parse and normalize release dates
+function parseReleaseDate(dateStr: string): Date {
+  // Handle approximate dates like "Oct - Nov, 2025" or "Late 2025"
+  const normalizedDate = dateStr
+    .replace("Jan", "January")
+    .replace("Feb", "February")
+    .replace("Mar", "March")
+    .replace("Apr", "April")
+    .replace("Sept", "September")
+    .replace("Oct - Nov", "October") // Take first month for ranges
+    .replace("Late ", "")
+    .trim()
+
+  // Parse the date, assuming day as 1 if not provided
+  const parsedDate = new Date(normalizedDate.includes(" ") ? normalizedDate : `1 ${normalizedDate}`)
+  return isNaN(parsedDate.getTime()) ? new Date("9999-12-31") : parsedDate // Fallback for invalid dates
+}
+
 export default function SearchPage() {
   const [searchQuery, setSearchQuery] = useState("")
   const [contentType, setContentType] = useState("all")
@@ -70,18 +88,17 @@ export default function SearchPage() {
       type: "Movie",
       image: "/series/ban.jpeg?height=450&width=300",
       rating: 4.7,
-      releaseDate: "June 6, 2025",
-      status: "released" as const
+      releaseDate: "Jun 6, 2025",
+      status: "released" as const,
     },
     {
       title: "Captain America: Brave New World",
       type: "Movie",
       image: "/series/cam.jpeg?height=450&width=300",
       rating: 4.1,
-      releaseDate: "February 14, 2025",
-      status: "released" as const
+      releaseDate: "Feb 14, 2025",
+      status: "released" as const,
     },
-
     // Movies - Upcoming
     {
       title: "Jurassic World: Rebirth",
@@ -112,7 +129,9 @@ export default function SearchPage() {
       status: "upcoming" as const,
     },
     {
-      title: "The Conjuring",
+      title:
+
+      "The Conjuring",
       type: "Movie",
       image: "/series/can.jpeg?height=450&width=300",
       releaseDate: "Sept 5, 2025",
@@ -129,31 +148,30 @@ export default function SearchPage() {
       title: "28 Years Later",
       type: "Movie",
       image: "/series/28y.jpeg?height=450&width=300",
-      releaseDate: "June 20, 2025",
-      status: "upcoming" as const
+      releaseDate: "Jun 20, 2025",
+      status: "upcoming" as const,
     },
     {
       title: "Zootopia 2",
       type: "Movie",
       image: "/series/zoo.jpeg?height=450&width=300",
-      releaseDate: "November 26, 2025",
-      status: "upcoming" as const
+      releaseDate: "Nov 26, 2025",
+      status: "upcoming" as const,
     },
     {
       title: "The Bad Guys 2",
       type: "Movie",
       image: "/series/bd.jpeg?height=450&width=300",
-      releaseDate: "August 1, 2025",
-      status: "upcoming" as const
+      releaseDate: "Aug 1, 2025",
+      status: "upcoming" as const,
     },
     {
       title: "Sitaare Zameen Par",
       type: "Movie",
       image: "/series/si.jpeg?height=450&width=300",
-      releaseDate: "June 20, 2025",
-      status: "upcoming" as const
+      releaseDate: "Jun 20, 2025",
+      status: "upcoming" as const,
     },
-
     // Series - Released
     {
       title: "You",
@@ -200,10 +218,9 @@ export default function SearchPage() {
       type: "Series",
       image: "/series/kk.jpeg?height=450&width=300",
       rating: 4.1,
-      releaseDate: "March 20, 2025",
-      status: "released" as const
+      releaseDate: "Mar 20, 2025",
+      status: "released" as const,
     },
-
     // Series - Upcoming
     {
       title: "Stranger Things",
@@ -252,38 +269,42 @@ export default function SearchPage() {
       type: "Series",
       image: "/series/wi.jpeg?height=450&width=300",
       releaseDate: "Late 2025",
-      status: "upcoming" as const
+      status: "upcoming" as const,
     },
     {
       title: "Ironheart",
       type: "Series",
       image: "/series/ir.jpeg?height=450&width=300",
-      releaseDate: "June 24, 2025",
-      status: "upcoming" as const
+      releaseDate: "Jun 24, 2025",
+      status: "upcoming" as const,
     },
     {
       title: "The Sandman",
       type: "Series",
       image: "/series/sad.jpeg?height=450&width=300",
-      releaseDate: "July 3, 2025",
-      status: "upcoming" as const
+      releaseDate: "Jul 3, 2025",
+      status: "upcoming" as const,
     },
   ]
 
   // Filter content based on search query and content type
   const filteredContent = allContent.filter((item) => {
     const matchesSearch = searchQuery === "" || item.title.toLowerCase().includes(searchQuery.toLowerCase())
-
     const matchesType =
       contentType === "all" || (contentType === "movies" ? item.type === "Movie" : item.type === "Series")
-
     return matchesSearch && matchesType
   })
 
+  // Separate movies and series, and sort by release date
+  const movies = filteredContent
+    .filter((item) => item.type === "Movie")
+    .sort((a, b) => parseReleaseDate(a.releaseDate).getTime() - parseReleaseDate(b.releaseDate).getTime())
+  const series = filteredContent
+    .filter((item) => item.type === "Series")
+    .sort((a, b) => parseReleaseDate(a.releaseDate).getTime() - parseReleaseDate(b.releaseDate).getTime())
+
   if (isLoading) {
-    return <Loading onComplete={function (): void {
-      throw new Error("Function not implemented.")
-    } } />
+    return <Loading onComplete={() => {}} />
   }
 
   return (
@@ -323,18 +344,66 @@ export default function SearchPage() {
         </div>
 
         {filteredContent.length > 0 ? (
-          <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 md:gap-4 lg:gap-6">
-            {filteredContent.map((item, index) => (
-              <MovieCard
-                key={index}
-                title={item.title}
-                type={item.type as "Movie" | "Series"}
-                image={item.image}
-                rating={item.rating}
-                releaseDate={item.releaseDate}
-                status={item.status}
-              />
-            ))}
+          <div className="space-y-12">
+            {/* Movies Section */}
+            {contentType !== "series" && movies.length > 0 && (
+              <div>
+                <h2 className="text-4xl font-bold text-white-400 mb-6">Movies</h2>
+                <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 md:gap-4 lg:gap-6">
+                  {movies.map((item, index) => (
+                    <MovieCard
+                      key={`movie-${index}`}
+                      title={item.title}
+                      type={item.type as "Movie" | "Series"}
+                      image={item.image}
+                      rating={item.rating}
+                      releaseDate={item.releaseDate}
+                      status={item.status}
+                    />
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Series Section */}
+            {contentType !== "movies" && series.length > 0 && (
+              <div>
+                <h2 className="text-4xl font-bold text-white-400 mb-6">WebSeries</h2>
+                <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 md:gap-4 lg:gap-6">
+                  {series.map((item, index) => (
+                    <MovieCard
+                      key={`series-${index}`}
+                      title={item.title}
+                      type={item.type as "Movie" | "Series"}
+                      image={item.image}
+                      rating={item.rating}
+                      releaseDate={item.releaseDate}
+                      status={item.status}
+                    />
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* No Results for Specific Type */}
+            {contentType === "movies" && movies.length === 0 && (
+              <div className="text-center py-12">
+                <h2 className="text-2xl font-semibold mb-2">No movies found</h2>
+                <p className="text-gray-400">Try adjusting your search or filters</p>
+              </div>
+            )}
+            {contentType === "series" && series.length === 0 && (
+              <div className="text-center py-12">
+                <h2 className="text-2xl font-semibold mb-2">No series found</h2>
+                <p className="text-gray-400">Try adjusting your search or filters</p>
+              </div>
+            )}
+            {contentType === "all" && movies.length === 0 && series.length === 0 && (
+              <div className="text-center py-12">
+                <h2 className="text-2xl font-semibold mb-2">No results found</h2>
+                <p className="text-gray-400">Try adjusting your search or filters</p>
+              </div>
+            )}
           </div>
         ) : (
           <div className="text-center py-12">

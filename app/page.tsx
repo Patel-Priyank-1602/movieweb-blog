@@ -149,7 +149,7 @@ const upcomingMovies: ContentItem[] = [
       type: "Movie",
       image: "/series/si.jpeg?height=450&width=300",
       releaseDate: "June 20, 2025",
-      status: "upcoming" as const
+      status: "upcoming"
     },
 ];
 
@@ -271,7 +271,7 @@ const upcomingSeries: ContentItem[] = [
 ];
 
 export default function CineVerse() {
-  const [contentType, setContentType] = useState<"all" | "movies" | "series">("all");
+  const [contentType, setContentType] = useState<"movies" | "series">("movies");
   const [isLoading, setIsLoading] = useState(true);
 
   const handleLoadingComplete = () => {
@@ -279,18 +279,14 @@ export default function CineVerse() {
   };
 
   const arrivedContent: ContentItem[] =
-    contentType === "all"
-      ? [...arrivedMovies, ...arrivedSeries]
-      : contentType === "movies"
-        ? arrivedMovies
-        : arrivedSeries;
+    contentType === "movies"
+      ? arrivedMovies
+      : arrivedSeries;
 
   const upcomingContent =
-    contentType === "all"
-      ? [...upcomingMovies, ...upcomingSeries]
-      : contentType === "movies"
-        ? upcomingMovies
-        : upcomingSeries;
+    contentType === "movies"
+      ? upcomingMovies
+      : upcomingSeries;
 
   if (isLoading) {
     return <Loading onComplete={handleLoadingComplete} />;
@@ -332,9 +328,8 @@ export default function CineVerse() {
         <section className="container py-12">
           <div className="flex items-center justify-between mb-8">
             <h2 className="text-3xl font-bold tracking-tight">2025 Releases</h2>
-            <Tabs value={contentType} onValueChange={(value) => setContentType(value as "all" | "movies" | "series")} className="w-[400px]">
-              <TabsList className="grid w-full grid-cols-3 bg-gray-900">
-                <TabsTrigger value="all">All</TabsTrigger>
+            <Tabs value={contentType} onValueChange={(value) => setContentType(value as "movies" | "series")} className="w-[300px]">
+              <TabsList className="grid w-full grid-cols-2 bg-gray-900">
                 <TabsTrigger value="movies">Movies</TabsTrigger>
                 <TabsTrigger value="series">Series</TabsTrigger>
               </TabsList>

@@ -27,28 +27,28 @@ export default function UpcomingPage() {
       title: "Jurassic World: Rebirth",
       type: "Movie",
       image: "/series/ju.jpeg?height=450&width=300",
-      releaseDate: "July 4, 2025",
+      releaseDate: "Jul 4, 2025",
       status: "upcoming" as const,
     },
     {
       title: "Superman",
       type: "Movie",
       image: "/series/suc.jpeg?height=450&width=300",
-      releaseDate: "July 11, 2025",
+      releaseDate: "Jul 11, 2025",
       status: "upcoming" as const,
     },
     {
       title: "Fantastic 4",
       type: "Movie",
       image: "/series/fanc.jpeg?height=450&width=300",
-      releaseDate: "July 25, 2025",
+      releaseDate: "Jul 25, 2025",
       status: "upcoming" as const,
     },
     {
       title: "War 2",
       type: "Movie",
       image: "/series/warr.jpeg?height=450&width=300",
-      releaseDate: "Aug  14, 2025",
+      releaseDate: "Aug 14, 2025",
       status: "upcoming" as const,
     },
     {
@@ -69,28 +69,28 @@ export default function UpcomingPage() {
       title: "28 Years Later",
       type: "Movie",
       image: "/series/28y.jpeg?height=450&width=300",
-      releaseDate: "June 20, 2025",
+      releaseDate: "Jun 20, 2025",
       status: "upcoming" as const
     },
     {
       title: "Zootopia 2",
       type: "Movie",
       image: "/series/zoo.jpeg?height=450&width=300",
-      releaseDate: "November 26, 2025",
+      releaseDate: "Nov 26, 2025",
       status: "upcoming" as const
     },
     {
       title: "The Bad Guys 2",
       type: "Movie",
       image: "/series/bd.jpeg?height=450&width=300",
-      releaseDate: "August 1, 2025",
+      releaseDate: "Aug 1, 2025",
       status: "upcoming" as const
     },
     {
       title: "Sitaare Zameen Par",
       type: "Movie",
       image: "/series/si.jpeg?height=450&width=300",
-      releaseDate: "June 20, 2025",
+      releaseDate: "Jun 20, 2025",
       status: "upcoming" as const
     },
   ]
@@ -149,25 +149,49 @@ export default function UpcomingPage() {
       title: "Ironheart",
       type: "Series",
       image: "/series/ir.jpeg?height=450&width=300",
-      releaseDate: "June 24, 2025",
+      releaseDate: "Jun 24, 2025",
       status: "upcoming" as const
     },
     {
       title: "The Sandman",
       type: "Series",
       image: "/series/sad.jpeg?height=450&width=300",
-      releaseDate: "July 3, 2025",
+      releaseDate: "Jul 3, 2025",
       status: "upcoming" as const
     }
   ]
 
-  // Filter content based on selected type
+  // Function to parse release dates for sorting
+  const parseReleaseDate = (dateStr: string): Date => {
+    // Handle specific non-standard formats
+    if (dateStr === "Late 2025") {
+      return new Date("Dec 31, 2025")
+    }
+    if (dateStr === "Oct - Nov, 2025") {
+      return new Date("Oct 1, 2025") // Approximate to start of range
+    }
+    if (dateStr === "Nov, 2025") {
+      return new Date("Nov 1, 2025")
+    }
+    if (dateStr === "Sept, 2025") {
+      return new Date("Sept 1, 2025")
+    }
+    // Handle standard formats like "MMM DD, YYYY" or "MMM D, YYYY"
+    return new Date(dateStr.replace("  ", " ")) // Fix double space in "Aug  14"
+  }
+
+  // Filter and sort content based on selected type and release date
   const filteredContent =
     contentType === "all"
       ? [...upcomingMovies, ...upcomingSeries]
       : contentType === "movies"
         ? upcomingMovies
         : upcomingSeries
+
+  // Sort by release date (ascending)
+  const sortedContent = filteredContent.sort((a, b) => {
+    return parseReleaseDate(a.releaseDate).getTime() - parseReleaseDate(b.releaseDate).getTime()
+  })
 
   if (isLoading) {
     return <Loading onComplete={function (): void {
@@ -211,7 +235,7 @@ export default function UpcomingPage() {
         </div>
 
         <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 md:gap-4 lg:gap-6">
-          {filteredContent.map((movie, index) => (
+          {sortedContent.map((movie, index) => (
             <MovieCard
               key={index}
               title={movie.title}
@@ -221,7 +245,7 @@ export default function UpcomingPage() {
               status="upcoming"
             />
           ))}
-          {filteredContent.length === 0 && (
+          {sortedContent.length === 0 && (
             <div className="col-span-full py-12 text-center">
               <p className="text-gray-400">
                 No {contentType === "movies" ? "movies" : "series"} available in this category.
