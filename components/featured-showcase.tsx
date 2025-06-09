@@ -10,6 +10,7 @@ import YouTube, { YouTubeProps } from "react-youtube"
 interface FeaturedContent {
   id: number
   title: string
+  nameImage: string // New field for the title/name image
   description: string
   image: string
   type: "Movie" | "Series"
@@ -28,6 +29,7 @@ export default function FeaturedShowcase() {
     {
       id: 1,
       title: "Stranger Things",
+      nameImage: "/series/st_tr.png", // Add your title image path
       description:
         "The fifth and final season of the beloved sci-fi series brings the story of Hawkins to an epic conclusion as the friends face their greatest challenge yet against the forces of the Upside Down.",
       image: "/series/sttt.jpeg?height=600&width=1200",
@@ -40,6 +42,7 @@ export default function FeaturedShowcase() {
     {
       id: 2,
       title: "Panchayat",
+      nameImage: "/series/pan_r.png", // Add your title image path
       description:
         "The fourth season of this beloved Indian comedy-drama continues to follow Abhishek Tripathi, the secretary of the Phulera village panchayat, as he navigates rural life and village administration.",
       image: "/series/pan.jpeg?height=600&width=1200",
@@ -52,6 +55,7 @@ export default function FeaturedShowcase() {
     {
       id: 3,
       title: "Alice in Borderland",
+      nameImage: "/series/alic_r.png", // Add your title image path
       description:
         "In the third season of this Japanese thriller, survivors of the deadly games must face new challenges as they uncover the truth behind the mysterious world they're trapped in.",
       image: "/series/aibbb.jpeg?height=600&width=1200",
@@ -64,6 +68,7 @@ export default function FeaturedShowcase() {
     {
       id: 4,
       title: "Final Destination Bloodlines",
+      nameImage: "/series/fin_r.png", // Add your title image path
       description:
         "The latest installment in the popular horror franchise follows a new group of survivors who cheat death after one of them has a premonition about a catastrophic event.",
       image: "/series/fdd.jpeg?height=600&width=1200",
@@ -76,6 +81,7 @@ export default function FeaturedShowcase() {
     {
       id: 5,
       title: "Avatar 3",
+      nameImage: "/series/av_r.png", // Add your title image path
       description:
         "Return to Pandora as Jake Sully and Neytiri continue their journey, exploring new regions of the planet and facing a threat that tests the bonds of their family and the Na'vi people.",
       image: "/series/avvv.jpeg?height=600&width=1200",
@@ -168,7 +174,19 @@ export default function FeaturedShowcase() {
             <span className="text-sm text-gray-300">{featured.releaseDate}</span>
           </div>
 
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold">{featured.title}</h1>
+          {/* Title Name Image */}
+          <div className="relative w-fit max-w-full">
+            <Image
+              src={featured.nameImage}
+              alt={`${featured.title} logo`}
+              width={400}
+              height={120}
+              className="h-16 sm:h-20 md:h-24 lg:h-28 xl:h-32 w-auto object-contain"
+              style={{ filter: 'drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5))' }}
+              priority={currentIndex === 0}
+            />
+          </div>
+
           {/* Hide description on mobile (below md breakpoint), show on desktop */}
           <p className="hidden md:block text-base sm:text-lg text-gray-300 max-w-2xl">{featured.description}</p>
 
