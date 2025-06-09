@@ -1,15 +1,15 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Link from "next/link"
-import { ChevronRight, Film, Menu, X } from "lucide-react"
+import { ChevronRight, Film, Menu, TrendingUp, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import FeaturedShowcase from "@/components/featured-showcase"
 import MovieCard from "@/components/movie-card"
+import SiteCommentSection from "@/components/site-comment-section"
 import { Badge } from "@/components/ui/badge"
 import Loading from "./loading"
-import SiteCommentSection from "@/components/site-comment-section"
 
 interface ContentItem {
   title: string;
