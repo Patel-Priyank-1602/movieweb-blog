@@ -19,6 +19,8 @@ interface SiteComment {
   dateAdded: number
 }
 
+const STORAGE_KEY = "cineverse-site-comments"
+
 export default function SiteCommentSection() {
   const [comments, setComments] = useState<SiteComment[]>([])
   const [newComment, setNewComment] = useState("")
@@ -26,44 +28,57 @@ export default function SiteCommentSection() {
   const [userRating, setUserRating] = useState(0)
   const [showAll, setShowAll] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [isClient, setIsClient] = useState(false)
 
-  // Load comments from localStorage on component mount
+  // Ensure we're on the client side
   useEffect(() => {
-    const loadComments = () => {
-      try {
-        const savedComments = localStorage.getItem("cineverse-site-comments")
-        if (savedComments) {
-          const parsedComments = JSON.parse(savedComments)
-          // Sort by dateAdded to show newest first
-          const sortedComments = parsedComments.sort((a: SiteComment, b: SiteComment) => b.dateAdded - a.dateAdded)
-          setComments(sortedComments)
-        }
-      } catch (error) {
-        console.error("Error loading comments:", error)
-        setComments([])
-      }
-    }
-
-    loadComments()
+    setIsClient(true)
   }, [])
 
-  // Real-time sync - check for new comments every 2 seconds
-  useEffect(() => {
-    const interval = setInterval(() => {
-      try {
-        const savedComments = localStorage.getItem("cineverse-site-comments")
-        if (savedComments) {
-          const parsedComments = JSON.parse(savedComments)
-          const sortedComments = parsedComments.sort((a: SiteComment, b: SiteComment) => b.dateAdded - a.dateAdded)
-          setComments(sortedComments)
-        }
-      } catch (error) {
-        console.error("Error syncing comments:", error)
+  // Load comments from localStorage
+  const loadComments = () => {
+    if (!isClient) return
+
+    try {
+      const saved = localStorage.getItem(STORAGE_KEY)
+      if (saved) {
+        const parsed = JSON.parse(saved)
+        const sorted = parsed.sort((a: SiteComment, b: SiteComment) => b.dateAdded - a.dateAdded)
+        setComments(sorted)
       }
-    }, 2000)
+    } catch (error) {
+      console.error("Error loading comments:", error)
+    }
+  }
+
+  // Save comments to localStorage
+  const saveComments = (commentsToSave: SiteComment[]) => {
+    if (!isClient) return
+
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(commentsToSave))
+    } catch (error) {
+      console.error("Error saving comments:", error)
+    }
+  }
+
+  // Load comments on mount
+  useEffect(() => {
+    if (isClient) {
+      loadComments()
+    }
+  }, [isClient])
+
+  // Poll for new comments every 3 seconds
+  useEffect(() => {
+    if (!isClient) return
+
+    const interval = setInterval(() => {
+      loadComments()
+    }, 3000)
 
     return () => clearInterval(interval)
-  }, [])
+  }, [isClient])
 
   const generateInitials = (name: string) => {
     return name
@@ -86,16 +101,8 @@ export default function SiteCommentSection() {
     return `${days} day${days > 1 ? "s" : ""} ago`
   }
 
-  const saveCommentsToStorage = (updatedComments: SiteComment[]) => {
-    try {
-      localStorage.setItem("cineverse-site-comments", JSON.stringify(updatedComments))
-    } catch (error) {
-      console.error("Error saving comments:", error)
-    }
-  }
-
-  const handleSubmitComment = async () => {
-    if (!newComment.trim() || !userName.trim() || isSubmitting) return
+  const handleSubmitComment = () => {
+    if (!newComment.trim() || !userName.trim() || isSubmitting || !isClient) return
 
     setIsSubmitting(true)
 
@@ -103,9 +110,8 @@ export default function SiteCommentSection() {
       const initials = generateInitials(userName.trim())
       const now = Date.now()
 
-      // Create new comment
       const comment: SiteComment = {
-        id: `site-${now}`,
+        id: `site-${now}-${Math.random().toString(36).substr(2, 9)}`,
         user: {
           name: userName.trim(),
           initials: initials,
@@ -116,27 +122,24 @@ export default function SiteCommentSection() {
         dateAdded: now,
       }
 
-      // Get current comments from localStorage to ensure we have the latest
-      const savedComments = localStorage.getItem("cineverse-site-comments")
-      const currentComments = savedComments ? JSON.parse(savedComments) : []
+      // Get current comments
+      const currentComments = [...comments]
 
-      // Add new comment to the beginning
+      // Add new comment at the beginning
       const updatedComments = [comment, ...currentComments]
 
       // Save to localStorage
-      saveCommentsToStorage(updatedComments)
+      saveComments(updatedComments)
 
-      // Update local state
-      const sortedComments = updatedComments.sort((a: SiteComment, b: SiteComment) => b.dateAdded - a.dateAdded)
-      setComments(sortedComments)
+      // Update state
+      setComments(updatedComments)
 
       // Clear form
       setNewComment("")
       setUserName("")
       setUserRating(0)
 
-      // Show success message
-      alert("Comment posted successfully! It will appear for all users.")
+      alert("Comment posted successfully! 🎉")
     } catch (error) {
       console.error("Error posting comment:", error)
       alert("Error posting comment. Please try again.")
@@ -145,25 +148,15 @@ export default function SiteCommentSection() {
     setIsSubmitting(false)
   }
 
-  // Update timestamps every minute
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setComments((prevComments) =>
-        prevComments.map((comment) => ({
-          ...comment,
-          timestamp: formatTimestamp(comment.dateAdded),
-        })),
-      )
-    }, 60000) // Update every minute
-
-    return () => clearInterval(interval)
-  }, [])
-
   const displayedComments = showAll ? comments : comments.slice(0, 5)
 
   // Calculate average rating
   const ratingsOnly = comments.filter((c) => c.rating).map((c) => c.rating!)
   const averageRating = ratingsOnly.length > 0 ? ratingsOnly.reduce((a, b) => a + b, 0) / ratingsOnly.length : 0
+
+  if (!isClient) {
+    return <div>Loading comments...</div>
+  }
 
   return (
     <div className="space-y-6">
@@ -307,6 +300,11 @@ export default function SiteCommentSection() {
           </p>
         </div>
       )}
+
+      {/* Debug Info */}
+      <div className="text-xs text-gray-500 text-center">
+        Comments are synced every 3 seconds • Total: {comments.length} comments
+      </div>
     </div>
   )
 }

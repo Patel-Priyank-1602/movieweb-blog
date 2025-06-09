@@ -23,54 +23,67 @@ interface CommentSectionProps {
   movieSlug: string
 }
 
+const STORAGE_KEY = "cineverse-movie-comments"
+
 export default function CommentSection({ movieSlug }: CommentSectionProps) {
   const [comments, setComments] = useState<Comment[]>([])
   const [newComment, setNewComment] = useState("")
   const [userName, setUserName] = useState("")
   const [showAll, setShowAll] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [isClient, setIsClient] = useState(false)
 
-  // Load comments for this movie from localStorage on component mount
+  // Ensure we're on the client side
   useEffect(() => {
-    const loadComments = () => {
-      try {
-        const savedComments = localStorage.getItem("cineverse-movie-comments")
-        if (savedComments) {
-          const allComments = JSON.parse(savedComments)
-          // Filter comments for this specific movie and sort by newest first
-          const movieComments = allComments
-            .filter((comment: Comment) => comment.movieSlug === movieSlug)
-            .sort((a: Comment, b: Comment) => b.dateAdded - a.dateAdded)
-          setComments(movieComments)
-        }
-      } catch (error) {
-        console.error("Error loading comments:", error)
-        setComments([])
+    setIsClient(true)
+  }, [])
+
+  // Load comments for this movie
+  const loadComments = () => {
+    if (!isClient) return
+
+    try {
+      const saved = localStorage.getItem(STORAGE_KEY)
+      if (saved) {
+        const allComments = JSON.parse(saved)
+        const movieComments = allComments
+          .filter((comment: Comment) => comment.movieSlug === movieSlug)
+          .sort((a: Comment, b: Comment) => b.dateAdded - a.dateAdded)
+        setComments(movieComments)
       }
+    } catch (error) {
+      console.error("Error loading comments:", error)
     }
+  }
 
-    loadComments()
-  }, [movieSlug])
+  // Save all comments to localStorage
+  const saveAllComments = (allComments: Comment[]) => {
+    if (!isClient) return
 
-  // Real-time sync - check for new comments every 2 seconds
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(allComments))
+    } catch (error) {
+      console.error("Error saving comments:", error)
+    }
+  }
+
+  // Load comments on mount
   useEffect(() => {
+    if (isClient) {
+      loadComments()
+    }
+  }, [isClient, movieSlug])
+
+  // Poll for new comments every 3 seconds
+  useEffect(() => {
+    if (!isClient) return
+
     const interval = setInterval(() => {
-      try {
-        const savedComments = localStorage.getItem("cineverse-movie-comments")
-        if (savedComments) {
-          const allComments = JSON.parse(savedComments)
-          const movieComments = allComments
-            .filter((comment: Comment) => comment.movieSlug === movieSlug)
-            .sort((a: Comment, b: Comment) => b.dateAdded - a.dateAdded)
-          setComments(movieComments)
-        }
-      } catch (error) {
-        console.error("Error syncing comments:", error)
-      }
-    }, 2000)
+      loadComments()
+    }, 3000)
 
     return () => clearInterval(interval)
-  }, [movieSlug])
+  }, [isClient, movieSlug])
 
   const generateInitials = (name: string) => {
     return name
@@ -93,16 +106,8 @@ export default function CommentSection({ movieSlug }: CommentSectionProps) {
     return `${days} day${days > 1 ? "s" : ""} ago`
   }
 
-  const saveCommentsToStorage = (allComments: Comment[]) => {
-    try {
-      localStorage.setItem("cineverse-movie-comments", JSON.stringify(allComments))
-    } catch (error) {
-      console.error("Error saving comments:", error)
-    }
-  }
-
-  const handleSubmitComment = async () => {
-    if (!newComment.trim() || !userName.trim() || isSubmitting) return
+  const handleSubmitComment = () => {
+    if (!newComment.trim() || !userName.trim() || isSubmitting || !isClient) return
 
     setIsSubmitting(true)
 
@@ -110,9 +115,8 @@ export default function CommentSection({ movieSlug }: CommentSectionProps) {
       const initials = generateInitials(userName.trim())
       const now = Date.now()
 
-      // Create new comment
       const comment: Comment = {
-        id: `${movieSlug}-${now}`,
+        id: `${movieSlug}-${now}-${Math.random().toString(36).substr(2, 9)}`,
         user: {
           name: userName.trim(),
           initials: initials,
@@ -123,17 +127,17 @@ export default function CommentSection({ movieSlug }: CommentSectionProps) {
         movieSlug: movieSlug,
       }
 
-      // Get all comments from localStorage
-      const savedComments = localStorage.getItem("cineverse-movie-comments")
-      const allComments = savedComments ? JSON.parse(savedComments) : []
+      // Get all existing comments
+      const saved = localStorage.getItem(STORAGE_KEY)
+      const allComments = saved ? JSON.parse(saved) : []
 
-      // Add new comment to all comments
+      // Add new comment
       const updatedAllComments = [comment, ...allComments]
 
-      // Save all comments back to localStorage
-      saveCommentsToStorage(updatedAllComments)
+      // Save all comments
+      saveAllComments(updatedAllComments)
 
-      // Update local state with comments for this movie only
+      // Update local state with this movie's comments
       const movieComments = updatedAllComments
         .filter((c: Comment) => c.movieSlug === movieSlug)
         .sort((a: Comment, b: Comment) => b.dateAdded - a.dateAdded)
@@ -143,8 +147,7 @@ export default function CommentSection({ movieSlug }: CommentSectionProps) {
       setNewComment("")
       setUserName("")
 
-      // Show success message
-      alert("Comment posted successfully! It will appear for all users.")
+      alert("Comment posted successfully! 🎉")
     } catch (error) {
       console.error("Error posting comment:", error)
       alert("Error posting comment. Please try again.")
@@ -153,21 +156,11 @@ export default function CommentSection({ movieSlug }: CommentSectionProps) {
     setIsSubmitting(false)
   }
 
-  // Update timestamps every minute
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setComments((prevComments) =>
-        prevComments.map((comment) => ({
-          ...comment,
-          timestamp: formatTimestamp(comment.dateAdded),
-        })),
-      )
-    }, 60000) // Update every minute
-
-    return () => clearInterval(interval)
-  }, [])
-
   const displayedComments = showAll ? comments : comments.slice(0, 5)
+
+  if (!isClient) {
+    return <div>Loading comments...</div>
+  }
 
   return (
     <div className="space-y-6">
@@ -259,6 +252,9 @@ export default function CommentSection({ movieSlug }: CommentSectionProps) {
           </p>
         </div>
       )}
+
+      {/* Debug Info */}
+      <div className="text-xs text-gray-500 text-center">Comments sync every 3 seconds • Movie: {movieSlug}</div>
     </div>
   )
 }
