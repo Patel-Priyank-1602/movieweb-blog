@@ -146,6 +146,13 @@ export default function SearchPage() {
       releaseDate: "August 1, 2025",
       status: "upcoming" as const
     },
+    {
+      title: "Sitaare Zameen Par",
+      type: "Movie",
+      image: "/series/si.jpeg?height=450&width=300",
+      releaseDate: "June 20, 2025",
+      status: "upcoming" as const
+    },
 
     // Series - Released
     {

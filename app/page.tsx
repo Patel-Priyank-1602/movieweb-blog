@@ -144,6 +144,13 @@ const upcomingMovies: ContentItem[] = [
     releaseDate: "August 1, 2025",
     status: "upcoming",
   },
+  {
+      title: "Sitaare Zameen Par",
+      type: "Movie",
+      image: "/series/si.jpeg?height=450&width=300",
+      releaseDate: "June 20, 2025",
+      status: "upcoming" as const
+    },
 ];
 
 const arrivedSeries: ContentItem[] = [

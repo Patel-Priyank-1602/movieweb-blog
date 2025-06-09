@@ -85,7 +85,14 @@ export default function UpcomingPage() {
       image: "/series/bd.jpeg?height=450&width=300",
       releaseDate: "August 1, 2025",
       status: "upcoming" as const
-    }
+    },
+    {
+      title: "Sitaare Zameen Par",
+      type: "Movie",
+      image: "/series/si.jpeg?height=450&width=300",
+      releaseDate: "June 20, 2025",
+      status: "upcoming" as const
+    },
   ]
 
   const upcomingSeries = [
@@ -165,7 +172,7 @@ export default function UpcomingPage() {
   if (isLoading) {
     return <Loading onComplete={function (): void {
       throw new Error("Function not implemented.")
-    } } />
+    }} />
   }
 
   return (
@@ -209,7 +216,7 @@ export default function UpcomingPage() {
               key={index}
               title={movie.title}
               type={movie.type as "Movie" | "Series"}
-              image={movie.image}
+              image={movie.image ?? '/placeholder-image.jpg'}
               releaseDate={movie.releaseDate}
               status="upcoming"
             />

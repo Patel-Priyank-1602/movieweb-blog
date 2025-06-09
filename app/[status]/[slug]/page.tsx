@@ -503,6 +503,22 @@ function getMovieData(slug: string, status: string) {
       trailerUrl: "https://youtu.be/HvLHYox_Vq8?si=FZL0qbo14WBBsRq2",
       status: status === "released" ? "released" : "upcoming",
     },
+    "sitaare-zameen-par": {
+      title: "Sitaare Zameen Par",
+      type: "Movie",
+      posterImage: "/series/si.jpeg?height=450&width=300",
+      coverImage: "/series/sic.jpeg?height=600&width=1200",
+      releaseDate: "June 20, 2025",
+      director: "R.S. Prasanna",
+      productionCompany: "Aamir Khan Productions",
+      imdbRating: null,
+      duration: null,
+      genre: "Comedy/Drama/Sports",
+      description: "A spiritual successor to Taare Zameen Par, this film follows Gulshan, a disgraced basketball coach sentenced to community service after a drunk-driving incident. Tasked with training a team of neurodivergent adults, he initially approaches the job with prejudice but soon learns valuable life lessons from his players, finding redemption and purpose.",
+      cast: ["Aamir Khan", "Genelia Deshmukh", "Darsheel Safary", "Aroush Datta", "Gopi Krishna Varma", "Samvit Desai", "Vedant Sharma", "Ayush Bhansali", "Ashish Pendse", "Rishi Shahani", "Naman Mishra", "Simran Mangeshkar", "Dolly Ahluwalia", "Gurpal Singh", "Brijendra Kala"],
+      trailerUrl: "https://youtu.be/YH6k5weqwy8?si=YzouQEcww3dopE3l",
+      status: "upcoming"
+    },
     // Series - Released
     you: {
       title: "You",
@@ -723,7 +739,7 @@ function getMovieData(slug: string, status: string) {
       description:
         "In Season 4, Geralt of Rivia, now portrayed by Liam Hemsworth, continues his quest to protect Ciri amidst mounting political tensions and looming war across the Continent. As destinies collide and old enemies return, the stakes rise higher than ever for Geralt, Yennefer, and Ciri.",
       cast: ["Liam Hemsworth", "Freya Allan", "Anya Chalotra", "Joey Batey", "Laurence Fishburne"],
-      trailerUrl: "https://youtu.be/kr3br-3i8TY?si=jAox8ye-oQZA7V-f", 
+      trailerUrl: "https://youtu.be/kr3br-3i8TY?si=jAox8ye-oQZA7V-f",
       status: status === "released" ? "released" : "upcoming",
     },
     "ironheart": {
@@ -757,7 +773,7 @@ function getMovieData(slug: string, status: string) {
       description:
         "In Season 2, Dream continues rebuilding the Dreaming and restoring cosmic balance as new threats emerge from both realms and beyond. As old gods stir and ancient grudges resurface, the Endless face new trials that test their roles and relationships in Neil Gaiman’s ever-deepening universe.",
       cast: ["Tom Sturridge", "Gwendoline Christie", "Vivienne Acheampong", "Mason Alexander Park", "Kirby Howell-Baptiste"],
-      trailerUrl: "https://youtu.be/6Jaj66KmnwE?si=F6dDavFyBK8Y34E6", 
+      trailerUrl: "https://youtu.be/6Jaj66KmnwE?si=F6dDavFyBK8Y34E6",
       status: status === "released" ? "released" : "upcoming",
     }
   }
