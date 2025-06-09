@@ -330,10 +330,10 @@ export default function SearchPage() {
               onChange={(e) => setSearchQuery(e.target.value)}
             />
           </div>
-          <Button variant="outline" className="gap-2">
+          {/* <Button variant="outline" className="gap-2">
             <Filter className="h-4 w-4" />
             Filters
-          </Button>
+          </Button> */}
           <Tabs value={contentType} onValueChange={setContentType} className="w-[300px]">
             <TabsList className="grid w-full grid-cols-3 bg-gray-900">
               <TabsTrigger value="all">All</TabsTrigger>
@@ -348,7 +348,7 @@ export default function SearchPage() {
             {/* Movies Section */}
             {contentType !== "series" && movies.length > 0 && (
               <div>
-                <h2 className="text-4xl font-bold text-white-400 mb-6">Movies</h2>
+                <h2 className="text-2xl font-semibold mb-4">Movies</h2>
                 <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 md:gap-4 lg:gap-6">
                   {movies.map((item, index) => (
                     <MovieCard
@@ -368,7 +368,7 @@ export default function SearchPage() {
             {/* Series Section */}
             {contentType !== "movies" && series.length > 0 && (
               <div>
-                <h2 className="text-4xl font-bold text-white-400 mb-6">WebSeries</h2>
+                <h2 className="text-2xl font-semibold mb-4">WebSeries</h2>
                 <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 md:gap-4 lg:gap-6">
                   {series.map((item, index) => (
                     <MovieCard

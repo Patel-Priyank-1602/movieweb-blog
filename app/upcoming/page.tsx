@@ -14,11 +14,9 @@ export default function UpcomingPage() {
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
-    // Simulate loading time
     const timer = setTimeout(() => {
       setIsLoading(false)
     }, 1500)
-
     return () => clearTimeout(timer)
   }, [])
 
@@ -70,28 +68,28 @@ export default function UpcomingPage() {
       type: "Movie",
       image: "/series/28y.jpeg?height=450&width=300",
       releaseDate: "Jun 20, 2025",
-      status: "upcoming" as const
+      status: "upcoming" as const,
     },
     {
       title: "Zootopia 2",
       type: "Movie",
       image: "/series/zoo.jpeg?height=450&width=300",
       releaseDate: "Nov 26, 2025",
-      status: "upcoming" as const
+      status: "upcoming" as const,
     },
     {
       title: "The Bad Guys 2",
       type: "Movie",
       image: "/series/bd.jpeg?height=450&width=300",
       releaseDate: "Aug 1, 2025",
-      status: "upcoming" as const
+      status: "upcoming" as const,
     },
     {
       title: "Sitaare Zameen Par",
       type: "Movie",
       image: "/series/si.jpeg?height=450&width=300",
       releaseDate: "Jun 20, 2025",
-      status: "upcoming" as const
+      status: "upcoming" as const,
     },
   ]
 
@@ -143,32 +141,31 @@ export default function UpcomingPage() {
       type: "Series",
       image: "/series/wi.jpeg?height=450&width=300",
       releaseDate: "Late 2025",
-      status: "upcoming" as const
+      status: "upcoming" as const,
     },
     {
       title: "Ironheart",
       type: "Series",
       image: "/series/ir.jpeg?height=450&width=300",
       releaseDate: "Jun 24, 2025",
-      status: "upcoming" as const
+      status: "upcoming" as const,
     },
     {
       title: "The Sandman",
       type: "Series",
       image: "/series/sad.jpeg?height=450&width=300",
       releaseDate: "Jul 3, 2025",
-      status: "upcoming" as const
-    }
+      status: "upcoming" as const,
+    },
   ]
 
   // Function to parse release dates for sorting
   const parseReleaseDate = (dateStr: string): Date => {
-    // Handle specific non-standard formats
     if (dateStr === "Late 2025") {
       return new Date("Dec 31, 2025")
     }
     if (dateStr === "Oct - Nov, 2025") {
-      return new Date("Oct 1, 2025") // Approximate to start of range
+      return new Date("Oct 1, 2025")
     }
     if (dateStr === "Nov, 2025") {
       return new Date("Nov 1, 2025")
@@ -176,27 +173,20 @@ export default function UpcomingPage() {
     if (dateStr === "Sept, 2025") {
       return new Date("Sept 1, 2025")
     }
-    // Handle standard formats like "MMM DD, YYYY" or "MMM D, YYYY"
-    return new Date(dateStr.replace("  ", " ")) // Fix double space in "Aug  14"
+    return new Date(dateStr.replace("  ", " "))
   }
 
-  // Filter and sort content based on selected type and release date
-  const filteredContent =
-    contentType === "all"
-      ? [...upcomingMovies, ...upcomingSeries]
-      : contentType === "movies"
-        ? upcomingMovies
-        : upcomingSeries
+  // Sort movies and series by release date
+  const sortedMovies = upcomingMovies.sort((a, b) => {
+    return parseReleaseDate(a.releaseDate).getTime() - parseReleaseDate(b.releaseDate).getTime()
+  })
 
-  // Sort by release date (ascending)
-  const sortedContent = filteredContent.sort((a, b) => {
+  const sortedSeries = upcomingSeries.sort((a, b) => {
     return parseReleaseDate(a.releaseDate).getTime() - parseReleaseDate(b.releaseDate).getTime()
   })
 
   if (isLoading) {
-    return <Loading onComplete={function (): void {
-      throw new Error("Function not implemented.")
-    }} />
+    return <Loading onComplete={() => {}} />
   }
 
   return (
@@ -221,10 +211,10 @@ export default function UpcomingPage() {
               readOnly
             />
           </Link>
-          <Button variant="outline" className="gap-2">
+          {/* <Button variant="outline" className="gap-2">
             <Filter className="h-4 w-4" />
             Filters
-          </Button>
+          </Button> */}
           <Tabs value={contentType} onValueChange={setContentType} className="w-[300px]">
             <TabsList className="grid w-full grid-cols-3 bg-gray-900">
               <TabsTrigger value="all">All</TabsTrigger>
@@ -234,25 +224,47 @@ export default function UpcomingPage() {
           </Tabs>
         </div>
 
-        <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 md:gap-4 lg:gap-6">
-          {sortedContent.map((movie, index) => (
-            <MovieCard
-              key={index}
-              title={movie.title}
-              type={movie.type as "Movie" | "Series"}
-              image={movie.image ?? '/placeholder-image.jpg'}
-              releaseDate={movie.releaseDate}
-              status="upcoming"
-            />
-          ))}
-          {sortedContent.length === 0 && (
-            <div className="col-span-full py-12 text-center">
-              <p className="text-gray-400">
-                No {contentType === "movies" ? "movies" : "series"} available in this category.
-              </p>
+        {(contentType === "all" || contentType === "movies") && sortedMovies.length > 0 && (
+          <div className="mb-12">
+            <h2 className="text-2xl font-semibold mb-4">Movies</h2>
+            <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 md:gap-4 lg:gap-6">
+              {sortedMovies.map((movie, index) => (
+                <MovieCard
+                  key={`movie-${index}`}
+                  title={movie.title}
+                  type={movie.type as "Movie"}
+                  image={movie.image ?? "/placeholder-image.jpg"}
+                  releaseDate={movie.releaseDate}
+                  status="upcoming"
+                />
+              ))}
             </div>
-          )}
-        </div>
+          </div>
+        )}
+
+        {(contentType === "all" || contentType === "series") && sortedSeries.length > 0 && (
+          <div className="mb-12">
+            <h2 className="text-2xl font-semibold mb-4">Weberies</h2>
+            <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 md:gap-4 lg:gap-6">
+              {sortedSeries.map((series, index) => (
+                <MovieCard
+                  key={`series-${index}`}
+                  title={series.title}
+                  type={series.type as "Series"}
+                  image={series.image ?? "/placeholder-image.jpg"}
+                  releaseDate={series.releaseDate}
+                  status="upcoming"
+                />
+              ))}
+            </div>
+          </div>
+        )}
+
+        {sortedMovies.length === 0 && sortedSeries.length === 0 && (
+          <div className="col-span-full py-12 text-center">
+            <p className="text-gray-400">No content available in this category.</p>
+          </div>
+        )}
       </div>
     </div>
   )

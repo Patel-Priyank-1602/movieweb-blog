@@ -1,15 +1,13 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import Link from "next/link"
-import { ChevronRight, Film, TrendingUp, Send } from "lucide-react"
+import { ChevronRight, Film, Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import FeaturedShowcase from "@/components/featured-showcase"
 import MovieCard from "@/components/movie-card"
 import { Badge } from "@/components/ui/badge"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
 import Loading from "./loading"
 
 interface ContentItem {
@@ -145,12 +143,12 @@ const upcomingMovies: ContentItem[] = [
     status: "upcoming",
   },
   {
-      title: "Sitaare Zameen Par",
-      type: "Movie",
-      image: "/series/si.jpeg?height=450&width=300",
-      releaseDate: "June 20, 2025",
-      status: "upcoming"
-    },
+    title: "Sitaare Zameen Par",
+    type: "Movie",
+    image: "/series/si.jpeg?height=450&width=300",
+    releaseDate: "June 20, 2025",
+    status: "upcoming"
+  },
 ];
 
 const arrivedSeries: ContentItem[] = [
@@ -273,20 +271,13 @@ const upcomingSeries: ContentItem[] = [
 export default function CineVerse() {
   const [contentType, setContentType] = useState<"movies" | "series">("movies");
   const [isLoading, setIsLoading] = useState(true);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const handleLoadingComplete = () => {
-    setIsLoading(false);
-  };
+  const handleLoadingComplete = () => setIsLoading(false);
+  const toggleMenu = () => setIsMenuOpen((o) => !o);
 
-  const arrivedContent: ContentItem[] =
-    contentType === "movies"
-      ? arrivedMovies
-      : arrivedSeries;
-
-  const upcomingContent =
-    contentType === "movies"
-      ? upcomingMovies
-      : upcomingSeries;
+  const arrivedContent = contentType === "movies" ? arrivedMovies : arrivedSeries;
+  const upcomingContent = contentType === "movies" ? upcomingMovies : upcomingSeries;
 
   if (isLoading) {
     return <Loading onComplete={handleLoadingComplete} />;
@@ -300,28 +291,40 @@ export default function CineVerse() {
             <Film className="h-6 w-6 text-primary" />
             <span className="text-xl font-bold">CineVerse 2025</span>
           </div>
-          <nav className="hidden md:flex gap-6">
-            <Link href="/" className="text-sm font-medium text-white">
-              Home
-            </Link>
-            <Link href="/released" className="text-sm font-medium text-gray-400 transition-colors hover:text-white">
-              Released
-            </Link>
-            <Link href="/upcoming" className="text-sm font-medium text-gray-400 transition-colors hover:text-white">
-              Upcoming
-            </Link>
-            <Link href="/search" className="text-sm font-medium text-gray-400 transition-colors hover:text-white">
-              Search
-            </Link>
+          <nav className="hidden md:flex gap-8">
+            <Link href="/" className="text-base font-medium text-white">Home</Link>
+            <Link href="/released" className="text-base font-medium text-gray-400 transition-colors hover:text-white">Released</Link>
+            <Link href="/upcoming" className="text-base font-medium text-gray-400 transition-colors hover:text-white">Upcoming</Link>
+            <Link href="/search" className="text-base font-medium text-gray-400 transition-colors hover:text-white">Search</Link>
           </nav>
-          <div className="flex items-center gap-4">
-            <Button variant="ghost" size="icon" className="text-gray-400 hover:text-white">
-              <TrendingUp className="h-5 w-5" />
-              <span className="sr-only">Trending</span>
+          <div className="md:hidden">
+            <Button variant="ghost" size="icon" onClick={toggleMenu} aria-label="Toggle menu">
+              {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </Button>
           </div>
         </div>
       </header>
+
+      {/* Mobile menu - appears below navbar, not over it */}
+      <div
+        className={`
+          md:hidden
+          overflow-hidden
+          transition-all duration-300
+          bg-black/95 border-b border-gray-800
+          shadow-lg
+          ${isMenuOpen ? "max-h-80 py-4" : "max-h-0 py-0"}
+        `}
+        style={{ transitionProperty: "max-height, padding" }}
+      >
+        <nav className="container flex flex-col gap-4">
+          <Link href="/" className="text-base font-medium text-white" onClick={toggleMenu}>Home</Link>
+          <Link href="/released" className="text-base font-medium text-gray-400 transition-colors hover:text-white" onClick={toggleMenu}>Released</Link>
+          <Link href="/upcoming" className="text-base font-medium text-gray-400 transition-colors hover:text-white" onClick={toggleMenu}>Upcoming</Link>
+          <Link href="/search" className="text-base font-medium text-gray-400 transition-colors hover:text-white" onClick={toggleMenu}>Search</Link>
+        </nav>
+      </div>
+
       <main className="flex-1">
         <FeaturedShowcase />
 

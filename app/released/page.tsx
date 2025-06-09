@@ -18,7 +18,6 @@ export default function ReleasedPage() {
     const timer = setTimeout(() => {
       setIsLoading(false)
     }, 1500)
-
     return () => clearTimeout(timer)
   }, [])
 
@@ -69,7 +68,7 @@ export default function ReleasedPage() {
       image: "/series/ban.jpeg?height=450&width=300",
       rating: 4.7,
       releaseDate: "Jun 6, 2025",
-      status: "released" as const
+      status: "released" as const,
     },
     {
       title: "Captain America: Brave New World",
@@ -77,8 +76,8 @@ export default function ReleasedPage() {
       image: "/series/cam.jpeg?height=450&width=300",
       rating: 4.1,
       releaseDate: "Feb 14, 2025",
-      status: "released" as const
-    }
+      status: "released" as const,
+    },
   ]
 
   const arrivedSeries = [
@@ -128,27 +127,21 @@ export default function ReleasedPage() {
       image: "/series/kk.jpeg?height=450&width=300",
       rating: 4.2,
       releaseDate: "Mar 20, 2025",
-      status: "released" as const
+      status: "released" as const,
     },
   ]
 
-  // Filter and sort content based on selected type and release date
-  const filteredContent =
-    contentType === "all"
-      ? [...arrivedMovies, ...arrivedSeries]
-      : contentType === "movies"
-        ? arrivedMovies
-        : arrivedSeries
+  // Sort movies and series by release date (ascending)
+  const sortedMovies = arrivedMovies.sort((a, b) => {
+    return new Date(a.releaseDate).getTime() - new Date(b.releaseDate).getTime()
+  })
 
-  // Sort by release date (ascending)
-  const sortedContent = filteredContent.sort((a, b) => {
+  const sortedSeries = arrivedSeries.sort((a, b) => {
     return new Date(a.releaseDate).getTime() - new Date(b.releaseDate).getTime()
   })
 
   if (isLoading) {
-    return <Loading onComplete={function (): void {
-      throw new Error("Function not implemented.")
-    } } />
+    return <Loading onComplete={() => {}} />
   }
 
   return (
@@ -173,10 +166,10 @@ export default function ReleasedPage() {
               readOnly
             />
           </Link>
-          <Button variant="outline" className="gap-2">
+          {/* <Button variant="outline" className="gap-2">
             <Filter className="h-4 w-4" />
             Filters
-          </Button>
+          </Button> */}
           <Tabs value={contentType} onValueChange={setContentType} className="w-[300px]">
             <TabsList className="grid w-full grid-cols-3 bg-gray-900">
               <TabsTrigger value="all">All</TabsTrigger>
@@ -186,26 +179,49 @@ export default function ReleasedPage() {
           </Tabs>
         </div>
 
-        <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 md:gap-4 lg:gap-6">
-          {sortedContent.map((movie, index) => (
-            <MovieCard
-              key={index}
-              title={movie.title}
-              type={movie.type as "Movie" | "Series"}
-              image={movie.image}
-              rating={movie.rating}
-              releaseDate={movie.releaseDate}
-              status="released"
-            />
-          ))}
-          {sortedContent.length === 0 && (
-            <div className="col-span-full py-12 text-center">
-              <p className="text-gray-400">
-                No {contentType === "movies" ? "movies" : "series"} available in this category.
-              </p>
+        {(contentType === "all" || contentType === "movies") && sortedMovies.length > 0 && (
+          <div className="mb-12">
+            <h2 className="text-2xl font-semibold mb-4">Movies</h2>
+            <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 md:gap-4 lg:gap-6">
+              {sortedMovies.map((movie, index) => (
+                <MovieCard
+                  key={`movie-${index}`}
+                  title={movie.title}
+                  type={movie.type as "Movie"}
+                  image={movie.image ?? "/placeholder-image.jpg"}
+                  rating={movie.rating}
+                  releaseDate={movie.releaseDate}
+                  status="released"
+                />
+              ))}
             </div>
-          )}
-        </div>
+          </div>
+        )}
+
+        {(contentType === "all" || contentType === "series") && sortedSeries.length > 0 && (
+          <div className="mb-12">
+            <h2 className="text-2xl font-semibold mb-4">WebSeries</h2>
+            <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 md:gap-4 lg:gap-6">
+              {sortedSeries.map((series, index) => (
+                <MovieCard
+                  key={`series-${index}`}
+                  title={series.title}
+                  type={series.type as "Series"}
+                  image={series.image ?? "/placeholder-image.jpg"}
+                  rating={series.rating}
+                  releaseDate={series.releaseDate}
+                  status="released"
+                />
+              ))}
+            </div>
+          </div>
+        )}
+
+        {sortedMovies.length === 0 && sortedSeries.length === 0 && (
+          <div className="col-span-full py-12 text-center">
+            <p className="text-gray-400">No content available in this category.</p>
+          </div>
+        )}
       </div>
     </div>
   )
