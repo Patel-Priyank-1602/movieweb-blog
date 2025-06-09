@@ -9,6 +9,7 @@ import FeaturedShowcase from "@/components/featured-showcase"
 import MovieCard from "@/components/movie-card"
 import { Badge } from "@/components/ui/badge"
 import Loading from "./loading"
+import SiteCommentSection from "@/components/site-comment-section"
 
 interface ContentItem {
   title: string;
@@ -414,6 +415,13 @@ export default function CineVerse() {
                 )}
               </div>
             </div>
+          </div>
+        </section>
+
+        {/* Site Comment Section */}
+        <section className="py-12 border-t border-gray-800">
+          <div className="container max-w-4xl">
+            <SiteCommentSection />
           </div>
         </section>
 
