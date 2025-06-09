@@ -59,7 +59,7 @@ export default function FeaturedShowcase() {
       releaseDate: "September, 2025",
       status: "upcoming",
       slug: "alice-in-borderland",
-      trailerUrl: "https://youtu.be/HQtrqkKkq7E?si=K1uihqMEx55NAN0V",
+      trailerUrl: "https://youtu.be/HQtrqKKkq7E?si=K1uihqMEx55NAN0V",
     },
     {
       id: 4,
@@ -172,7 +172,7 @@ export default function FeaturedShowcase() {
           {/* Hide description on mobile (below md breakpoint), show on desktop */}
           <p className="hidden md:block text-base sm:text-lg text-gray-300 max-w-2xl">{featured.description}</p>
 
-          <div className="flex flex-nowrap gap-2 pt-4">
+          <div className="flex flex-nowrap gap-2 pt-4 group/more-info">
             {youtubeId ? (
               <Button size="sm" className="gap-2 md:h-11 md:rounded-md md:px-8" onClick={() => setIsTrailerOpen(true)}>
                 <PlayCircle className="h-4 w-4 md:h-5 md:w-5" />
@@ -185,7 +185,7 @@ export default function FeaturedShowcase() {
               </Button>
             )}
             <Link href={`/${featured.status}/${featured.slug}`}>
-              <Button size="sm" variant="secondary" className="gap-2 md:h-11 md:px-8">
+              <Button size="sm" variant="secondary" className="gap-2 md:h-11 md:px-8 group-hover/more-info:bg-opacity-100">
                 <Info className="h-4 w-4 md:h-5 md:w-5" />
                 More Info
               </Button>
@@ -193,7 +193,8 @@ export default function FeaturedShowcase() {
           </div>
         </div>
 
-        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2">
+        {/* Slide-changing dots - Visible only on mobile */}
+        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2 md:hidden">
           {featuredContent.map((item) => (
             <button
               key={item.id}
@@ -203,6 +204,39 @@ export default function FeaturedShowcase() {
               }`}
               aria-label={`View ${item.title} featured content`}
             />
+          ))}
+        </div>
+
+        {/* Mini Thumbnails Gallery - Bottom Right */}
+        <div className="absolute bottom-6 right-6 hidden md:flex flex-row gap-2 group-hover/more-info:opacity-0 group-hover/more-info:pointer-events-none transition-opacity duration-200">
+          {featuredContent.map((item, index) => (
+            <button
+              key={item.id}
+              onClick={() => setCurrentIndex(index)}
+              className={`relative group transition-all duration-200 flex-shrink-0 ${
+                index === currentIndex 
+                  ? "ring-2 ring-white scale-105" 
+                  : "hover:scale-105 hover:ring-1 hover:ring-white/50"
+              }`}
+            >
+              <div className="relative w-20 h-14 rounded overflow-hidden">
+                <Image
+                  src={item.image}
+                  alt={item.title}
+                  fill
+                  className="object-cover"
+                  sizes="64px"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+              </div>
+              
+              {/* Tooltip on hover */}
+              <div className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none z-10">
+                <div className="bg-black/90 text-white text-xs px-2 py-1 rounded whitespace-nowrap">
+                  {item.title}
+                </div>
+              </div>
+            </button>
           ))}
         </div>
       </div>
