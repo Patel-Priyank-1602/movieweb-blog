@@ -7,7 +7,6 @@ import { Button } from "@/components/ui/button"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import FeaturedShowcase from "@/components/featured-showcase"
 import MovieCard from "@/components/movie-card"
-import SiteCommentSection from "@/components/site-comment-section"
 import { Badge } from "@/components/ui/badge"
 import Loading from "./loading"
 
@@ -415,13 +414,6 @@ export default function CineVerse() {
                 )}
               </div>
             </div>
-          </div>
-        </section>
-
-        {/* Site Comment Section */}
-        <section className="py-12 border-t border-gray-800">
-          <div className="container max-w-4xl">
-            <SiteCommentSection />
           </div>
         </section>
 
