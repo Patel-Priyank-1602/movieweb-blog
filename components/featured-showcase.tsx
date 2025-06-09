@@ -1,28 +1,33 @@
-"use client"
+"use client";
 
-import { useState, useEffect, useRef } from "react"
-import { Button } from "@/components/ui/button"
-import { PlayCircle, Info, X } from "lucide-react"
-import Link from "next/link"
-import Image from "next/image"
-import YouTube, { YouTubeProps } from "react-youtube"
+import { useState, useEffect, useRef } from "react";
+import { Button } from "@/components/ui/button";
+import { PlayCircle, Info, X } from "lucide-react";
+import Link from "next/link";
+import Image from "next/image";
+import YouTube, { YouTubeProps } from "react-youtube";
 
 interface FeaturedContent {
-  id: number
-  title: string
-  nameImage: string
-  description: string
-  image: string
-  type: "Movie" | "Series"
-  releaseDate: string
-  slug: string
-  trailerUrl: string
+  id: number;
+  title: string;
+  nameImage: string;
+  description: string;
+  image: string;
+  type: "Movie" | "Series";
+  releaseDate: string;
+  slug: string;
+  trailerUrl: string;
 }
 
 export default function FeaturedShowcase() {
-  const [currentIndex, setCurrentIndex] = useState(0)
-  const [isTrailerOpen, setIsTrailerOpen] = useState(false)
-  const containerRef = useRef<HTMLDivElement>(null)
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isTrailerOpen, setIsTrailerOpen] = useState(false);
+  const [isTrailerPlaying, setIsTrailerPlaying] = useState(false); // For in-place trailer
+  const [isFading, setIsFading] = useState(false); // Track animation state
+  const [isDesktop, setIsDesktop] = useState(true); // Track device type
+  const [showBannerFirst, setShowBannerFirst] = useState(true); // Track if banner should show first
+  const containerRef = useRef<HTMLDivElement>(null);
+  const trailerTimerRef = useRef<NodeJS.Timeout | null>(null);
 
   const featuredContent: FeaturedContent[] = [
     {
@@ -59,7 +64,7 @@ export default function FeaturedShowcase() {
       type: "Series",
       releaseDate: "September, 2025",
       slug: "alice-in-borderland",
-      trailerUrl: "https://youtu.be/HQtrqKKkq7E?si=K1uihqMEx55NAN0V",
+      trailerUrl: "https://youtu.be/HQtrqkKkq7E?si=XsWo1rqDMw3mYIeG",
     },
     {
       id: 4,
@@ -85,69 +90,185 @@ export default function FeaturedShowcase() {
       slug: "avatar-3",
       trailerUrl: "",
     },
-  ]
+  ];
 
-  const featured = featuredContent[currentIndex]
+  const featured = featuredContent[currentIndex];
 
   const getYouTubeId = (url: string) => {
-    const regex = /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/
-    const match = url.match(regex)
-    return match ? match[1] : null
-  }
+    const regex = /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
+    const match = url.match(regex);
+    return match ? match[1] : null;
+  };
 
-  const youtubeId = featured.trailerUrl ? getYouTubeId(featured.trailerUrl) : null
+  const youtubeId = featured.trailerUrl ? getYouTubeId(featured.trailerUrl) : null;
 
   const opts: YouTubeProps["opts"] = {
     height: "100%",
     width: "100%",
     playerVars: {
       autoplay: 1,
+      controls: 1,
+      showinfo: 0,
+      rel: 0,
+      iv_load_policy: 3,
+      modestbranding: 1,
     },
-  }
+  };
 
+  // Detect if the device is desktop or mobile
   useEffect(() => {
-    let interval: NodeJS.Timeout
+    const checkDevice = () => {
+      const isMobile = window.innerWidth < 768 || /Mobi|Android/i.test(navigator.userAgent);
+      setIsDesktop(!isMobile);
+    };
+
+    checkDevice();
+    window.addEventListener("resize", checkDevice);
+
+    return () => window.removeEventListener("resize", checkDevice);
+  }, []);
+
+  // Start trailer automatically after 4 seconds of banner display (desktop only)
+  useEffect(() => {
+    if (!isDesktop || !youtubeId || !showBannerFirst) return; // Skip on mobile, no trailer, or trailer already playing
+
+    // Clear any existing timer
+    if (trailerTimerRef.current) {
+      clearTimeout(trailerTimerRef.current);
+    }
+
+    // Start timer to play trailer after 4 seconds
+    trailerTimerRef.current = setTimeout(() => {
+      setIsTrailerPlaying(true);
+      setShowBannerFirst(false); // Trailer is now playing
+    }, 4000); // 4 seconds
+
+    return () => {
+      if (trailerTimerRef.current) {
+        clearTimeout(trailerTimerRef.current);
+      }
+    };
+  }, [currentIndex, isDesktop, youtubeId, showBannerFirst]);
+
+  // Handle banner change after trailer ends
+  const handleTrailerEnd = () => {
+    setIsTrailerPlaying(false);
+    setIsFading(true);
+    setTimeout(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % featuredContent.length);
+      setIsFading(false);
+      setShowBannerFirst(true); // Show banner image first for next item
+    }, 350); // Match fade-out duration
+  };
+
+  // Handle stopping the in-place trailer
+  const handleStopTrailer = () => {
+    setIsTrailerPlaying(false);
+    setShowBannerFirst(true); // Reset to show banner first
+  };
+
+  // Handle manual banner change (via dots or thumbnails)
+  const handleBannerChange = (index: number) => {
+    setIsFading(true);
+    setIsTrailerPlaying(false); // Stop any playing trailer
+    setShowBannerFirst(true); // Ensure banner shows first
+    if (trailerTimerRef.current) {
+      clearTimeout(trailerTimerRef.current); // Clear any pending trailer timer
+    }
+    setTimeout(() => {
+      setCurrentIndex(index);
+      setIsFading(false);
+    }, 350); // Match fade-out duration
+  };
+
+  // Auto-change banner every 3850ms (for both mobile and desktop)
+  useEffect(() => {
+    let interval: NodeJS.Timeout;
 
     const startInterval = () => {
       interval = setInterval(() => {
-        setCurrentIndex((prevIndex) => (prevIndex + 1) % featuredContent.length)
-      }, 3500)
-    }
+        setIsFading(true); // Start fade-out
+        setIsTrailerPlaying(false); // Stop any playing trailer
+        setShowBannerFirst(true); // Show banner image first
+        if (trailerTimerRef.current) {
+          clearTimeout(trailerTimerRef.current); // Clear any pending trailer timer
+        }
+        setTimeout(() => {
+          setCurrentIndex((prevIndex) => (prevIndex + 1) % featuredContent.length);
+          setIsFading(false);
+        }, 350); // Delay to allow fade-out (matches CSS transition duration)
+      }, 3850); // Total interval time (3500ms display + 350ms fade)
+    };
 
-    const stopInterval = () => clearInterval(interval)
+    const stopInterval = () => clearInterval(interval);
 
-    startInterval()
+    startInterval();
 
-    const container = containerRef.current
+    const container = containerRef.current;
     if (container) {
-      container.addEventListener("mouseenter", stopInterval)
-      container.addEventListener("mouseleave", startInterval)
+      container.addEventListener("mouseenter", stopInterval);
+      container.addEventListener("mouseleave", startInterval);
     }
 
     return () => {
-      stopInterval()
+      stopInterval();
       if (container) {
-        container.removeEventListener("mouseenter", stopInterval)
-        container.removeEventListener("mouseleave", startInterval)
+        container.removeEventListener("mouseenter", stopInterval);
+        container.removeEventListener("mouseleave", startInterval);
       }
-    }
-  }, [featuredContent.length])
+      if (trailerTimerRef.current) {
+        clearTimeout(trailerTimerRef.current);
+      }
+    };
+  }, [featuredContent.length]);
 
   return (
     <div className="relative w-full h-[70vh] overflow-hidden" ref={containerRef}>
       <div className="absolute inset-0">
-        <Image
-          src={featured.image}
-          alt={`${featured.title} background`}
-          fill
-          className="object-cover transition-opacity duration-1000"
-          priority={currentIndex === 0}
-          sizes="100vw"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent" />
+        {isTrailerPlaying && youtubeId && isDesktop && !showBannerFirst ? (
+          // Show trailer in place of banner image (desktop only)
+          <div className="relative w-full h-full">
+            <YouTube
+              videoId={youtubeId}
+              opts={opts}
+              className="w-full h-full"
+              style={{ width: "100%", height: "100%" }}
+              onEnd={handleTrailerEnd} // Trigger banner change when trailer ends
+            />
+            {/* Close button for trailer */}
+            <Button
+              variant="ghost"
+              size="icon"
+              className="absolute top-4 right-4 bg-black/50 hover:bg-black/70 z-10"
+              onClick={handleStopTrailer}
+            >
+              <X className="h-5 w-5 text-white" />
+              <span className="sr-only">Stop trailer</span>
+            </Button>
+          </div>
+        ) : (
+          // Show banner image
+          <>
+            <Image
+              src={featured.image}
+              alt={`${featured.title} background`}
+              fill
+              className={`object-cover transition-opacity duration-500 ${
+                isFading ? "opacity-0" : "opacity-100"
+              }`} // Fade animation for image
+              priority={currentIndex === 0}
+              sizes="100vw"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent" />
+          </>
+        )}
       </div>
 
-      <div className="relative h-full container flex flex-col justify-end md:justify-end items-center md:items-start text-center md:text-left pb-16">
+      <div
+        className={`relative h-full container flex flex-col justify-end md:justify-end items-center md:items-start text-center md:text-left pb-16 transition-opacity duration-500 delay-200 ${
+          isFading ? "opacity-0" : "opacity-100"
+        }`} // Delayed fade for content
+      >
         <div className="max-w-3xl space-y-4 flex flex-col items-center md:items-start">
           {/* Title Image */}
           <div className="relative w-fit max-w-[80vw]">
@@ -157,17 +278,17 @@ export default function FeaturedShowcase() {
               width={400}
               height={120}
               className="h-16 sm:h-20 md:h-24 lg:h-28 xl:h-32 w-auto object-contain"
-              style={{ filter: 'drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5))' }}
+              style={{ filter: "drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5))" }}
               priority={currentIndex === 0}
             />
           </div>
 
           {/* Type (Movie or Series) and release date */}
-            <div className="flex justify-center md:justify-start gap-2">
+          <div className="flex justify-center md:justify-start gap-2">
             <span className="text-sm text-gray-300">{featured.type}</span>
             <span className="text-sm text-gray-300">•</span>
             <span className="text-sm text-gray-300">{featured.releaseDate}</span>
-            </div>
+          </div>
 
           {/* Description (hidden on mobile, visible on desktop) */}
           <p className="hidden md:block text-base sm:text-lg text-gray-300 max-w-2xl">{featured.description}</p>
@@ -199,7 +320,7 @@ export default function FeaturedShowcase() {
           {featuredContent.map((item) => (
             <button
               key={item.id}
-              onClick={() => setCurrentIndex(item.id - 1)}
+              onClick={() => handleBannerChange(item.id - 1)}
               className={`w-3 h-3 rounded-full ${
                 item.id - 1 === currentIndex ? "bg-white" : "bg-gray-600"
               }`}
@@ -213,10 +334,10 @@ export default function FeaturedShowcase() {
           {featuredContent.map((item, index) => (
             <button
               key={item.id}
-              onClick={() => setCurrentIndex(index)}
+              onClick={() => handleBannerChange(index)}
               className={`relative group transition-all duration-200 flex-shrink-0 ${
-                index === currentIndex 
-                  ? "ring-2 ring-white scale-105" 
+                index === currentIndex
+                  ? "ring-2 ring-white scale-105"
                   : "hover:scale-105 hover:ring-1 hover:ring-white/50"
               }`}
             >
@@ -230,7 +351,7 @@ export default function FeaturedShowcase() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
               </div>
-              
+
               <div className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none z-10">
                 <div className="bg-black/90 text-white text-xs px-2 py-1 rounded whitespace-nowrap">
                   {item.title}
@@ -241,17 +362,17 @@ export default function FeaturedShowcase() {
         </div>
       </div>
 
-      {/* Trailer Modal */}
+      {/* Trailer Modal (available for both mobile and desktop) */}
       {isTrailerOpen && youtubeId && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80">
           <div className="relative w-full max-w-3xl p-4">
             <Button
               variant="ghost"
               size="icon"
-              className="absolute top-2 right-2 bg-black/50 hover:bg-black/70"
+              className="absolute top-2 right-2 bg-black/50 hover:bg-black/70 z-10"
               onClick={() => setIsTrailerOpen(false)}
             >
-              <X className="h-5 w-5" />
+              <X className="h-5 w-5 text-white" />
               <span className="sr-only">Close trailer</span>
             </Button>
             <div className="relative aspect-video">
@@ -261,5 +382,5 @@ export default function FeaturedShowcase() {
         </div>
       )}
     </div>
-  )
+  );
 }
