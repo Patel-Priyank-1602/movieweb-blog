@@ -80,6 +80,17 @@ export default function FeaturedShowcase() {
     },
     {
       id: 5,
+      title: "The Last of Us",
+      nameImage: "/series/thlous_r.png",
+      description: "In a post-apocalyptic world ravaged by a fungal infection, hardened survivor Joel is tasked with smuggling 14-year-old Ellie, who may hold the key to humanity’s survival, across a dangerous United States.",
+      image: "/series/thlou_r.jpeg?height=600&width=1200",
+      type: "Series",
+      releaseDate: "April 13, 2025",
+      slug: "the-last-of-us",
+      trailerUrl: "https://youtu.be/_zHPsmXCjB0"
+    },
+    {
+      id: 6,
       title: "Avatar 3",
       nameImage: "/series/avt_r.png",
       description:
@@ -253,9 +264,8 @@ export default function FeaturedShowcase() {
               src={featured.image}
               alt={`${featured.title} background`}
               fill
-              className={`object-cover transition-opacity duration-500 ${
-                isFading ? "opacity-0" : "opacity-100"
-              }`} // Fade animation for image
+              className={`object-cover transition-opacity duration-500 ${isFading ? "opacity-0" : "opacity-100"
+                }`} // Fade animation for image
               priority={currentIndex === 0}
               sizes="100vw"
             />
@@ -265,9 +275,8 @@ export default function FeaturedShowcase() {
       </div>
 
       <div
-        className={`relative h-full container flex flex-col justify-end md:justify-end items-center md:items-start text-center md:text-left pb-16 transition-opacity duration-500 delay-200 ${
-          isFading ? "opacity-0" : "opacity-100"
-        }`} // Delayed fade for content
+        className={`relative h-full container flex flex-col justify-end md:justify-end items-center md:items-start text-center md:text-left pb-16 transition-opacity duration-500 delay-200 ${isFading ? "opacity-0" : "opacity-100"
+          }`} // Delayed fade for content
       >
         <div className="max-w-3xl space-y-4 flex flex-col items-center md:items-start">
           {/* Title Image */}
@@ -321,9 +330,8 @@ export default function FeaturedShowcase() {
             <button
               key={item.id}
               onClick={() => handleBannerChange(item.id - 1)}
-              className={`w-3 h-3 rounded-full ${
-                item.id - 1 === currentIndex ? "bg-white" : "bg-gray-600"
-              }`}
+              className={`w-3 h-3 rounded-full ${item.id - 1 === currentIndex ? "bg-white" : "bg-gray-600"
+                }`}
               aria-label={`View ${item.title} featured content`}
             />
           ))}
@@ -335,11 +343,10 @@ export default function FeaturedShowcase() {
             <button
               key={item.id}
               onClick={() => handleBannerChange(index)}
-              className={`relative group transition-all duration-200 flex-shrink-0 ${
-                index === currentIndex
+              className={`relative group transition-all duration-200 flex-shrink-0 ${index === currentIndex
                   ? "ring-2 ring-white scale-105"
                   : "hover:scale-105 hover:ring-1 hover:ring-white/50"
-              }`}
+                }`}
             >
               <div className="relative w-20 h-14 rounded overflow-hidden">
                 <Image
