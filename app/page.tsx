@@ -577,7 +577,7 @@ export default function CineVerse() {
                 <h3 className="text-xl font-semibold flex items-center gap-2">
                   <Badge
                     variant="outline"
-                    className="bg-blue-900/30 text-blue-400 hover:bg-blue-600/30 border-blue-800"
+                    className="bg-green-900/30 text-green-400 hover:bg-green-600/30 border-green-800"
                   >
                     Released
                   </Badge>
