@@ -18,7 +18,7 @@ interface ContentItem {
   rating?: number;
   releaseDate: string;
   status: "released" | "upcoming";
-  slug?: string; // Add slug for navigation
+  slug?: string;
 }
 
 const arrivedMovies: ContentItem[] = [
@@ -302,7 +302,6 @@ const upcomingSeries: ContentItem[] = [
   },
 ];
 
-// Top 10 combined content based on ratings and popularity
 const top10Content: ContentItem[] = [
   {
     title: "Pataal Lok",
@@ -396,7 +395,6 @@ const top10Content: ContentItem[] = [
   },
 ];
 
-// Simplified Top 10 Movie Card Component
 interface TopMovieCardProps extends ContentItem {
   rank: number;
 }
@@ -410,7 +408,6 @@ function TopMovieCard({ title, type, image, rating, releaseDate, status, rank, s
 
   return (
     <div className="group relative overflow-hidden rounded-xl bg-gradient-to-b from-gray-800 to-gray-900 transition-all duration-300 hover:scale-105 hover:shadow-2xl border border-gray-700">
-      {/* Simple Rank Badge */}
       <div className="absolute top-3 left-3 z-20">
         <div className="w-8 h-8 rounded-full bg-black/80 backdrop-blur-sm border border-white/20 flex items-center justify-center">
           <span className="text-white text-sm font-bold">{rank}</span>
@@ -424,10 +421,8 @@ function TopMovieCard({ title, type, image, rating, releaseDate, status, rank, s
           className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
         />
         
-        {/* Overlay gradient */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
         
-        {/* More Info Button */}
         <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-4 group-hover:translate-y-0">
           <button 
             onClick={handleMoreInfo}
@@ -445,7 +440,6 @@ export default function CineVerse() {
   const [contentType, setContentType] = useState<"movies" | "series">("movies");
   const [isLoading, setIsLoading] = useState(true);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [top10StartIndex, setTop10StartIndex] = useState(0);
 
   const handleLoadingComplete = () => setIsLoading(false);
   const toggleMenu = () => setIsMenuOpen((o) => !o);
@@ -453,11 +447,33 @@ export default function CineVerse() {
   const arrivedContent = contentType === "movies" ? arrivedMovies : arrivedSeries;
   const upcomingContent = contentType === "movies" ? upcomingMovies : upcomingSeries;
 
-  // Removed sliding functionality - now using mouse drag scroll
-
   if (isLoading) {
     return <Loading onComplete={handleLoadingComplete} />;
   }
+
+  const handleMouseDrag = (e: React.MouseEvent<HTMLDivElement>) => {
+    const container = e.currentTarget;
+    const startX = e.pageX - container.offsetLeft;
+    const scrollLeft = container.scrollLeft;
+    let isDown = true;
+
+    const handleMouseMove = (e: MouseEvent) => {
+      if (!isDown) return;
+      e.preventDefault();
+      const x = e.pageX - container.offsetLeft;
+      const walk = (x - startX) * 2;
+      container.scrollLeft = scrollLeft - walk;
+    };
+
+    const handleMouseUp = () => {
+      isDown = false;
+      document.removeEventListener('mousemove', handleMouseMove);
+      document.removeEventListener('mouseup', handleMouseUp);
+    };
+
+    document.addEventListener('mousemove', handleMouseMove);
+    document.addEventListener('mouseup', handleMouseUp);
+  };
 
   return (
     <div className="flex flex-col min-h-screen bg-black text-white">
@@ -481,7 +497,6 @@ export default function CineVerse() {
         </div>
       </header>
 
-      {/* Mobile menu */}
       <div
         className={`
           md:hidden
@@ -489,65 +504,42 @@ export default function CineVerse() {
           transition-all duration-300
           bg-black/95 border-b border-gray-800
           shadow-lg
-          ${isMenuOpen ? "max-h-80 py-4" : "max-h-0 py-0"}
+          ${isMenuOpen ? "max-h-80 max-h-screen py-4" : "max-h-0 py-0"}
         `}
         style={{ transitionProperty: "max-height, padding" }}
       >
         <nav className="container flex flex-col gap-4">
           <Link href="/" className="text-base font-medium text-white" onClick={toggleMenu}>Home</Link>
-          <Link href="/released" className="text-base font-medium text-gray-400 transition-colors hover:text-white" onClick={toggleMenu}>Released</Link>
-          <Link href="/upcoming" className="text-base font-medium text-gray-400 transition-colors hover:text-white" onClick={toggleMenu}>Upcoming</Link>
-          <Link href="/search" className="text-base font-medium text-gray-400 transition-colors hover:text-white" onClick={toggleMenu}>Search</Link>
+          <Link href="/released" className="text-base font-medium text-gray-400 hover:text-white" onClick={toggleMenu}>Released</Link>
+          <Link href="/upcoming" className="text-base font-medium text-gray-400 hover:text-white" onClick={toggleMenu}>Upcoming</Link>
+          <Link href="/search" className="text-base font-medium text-gray-400 hover:text-white" onClick={toggleMenu}>Search</Link>
         </nav>
       </div>
 
       <main className="flex-1">
         <FeaturedShowcase />
 
-        {/* Top 10 Section */}
         <section className="container py-12">
           <div className="flex items-center mb-8">
             <h2 className="text-3xl font-bold tracking-tight flex items-center gap-3">
-              <TrendingUp className="h-8 w-8 text-yellow-500" />
+              <TrendingUp className="h-8 w-8 text-blue-500" />
               <span>Top 10 Movies & Series</span>
             </h2>
           </div>
 
-          {/* Horizontal scrollable container */}
           <div 
-            className="flex gap-4 md:gap-6 overflow-x-auto pb-4 scrollbar-hide cursor-grab active:cursor-grabbing"
+            className="flex gap-3 sm:gap-4 md:gap-6 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide cursor-grab active:cursor-grabbing"
             style={{
               scrollbarWidth: 'none',
-              msOverflowStyle: 'none'
+              msOverflowStyle: 'none',
+              WebkitOverflowScrolling: 'touch'
             }}
-            onMouseDown={(e) => {
-              const container = e.currentTarget;
-              const startX = e.pageX - container.offsetLeft;
-              const scrollLeft = container.scrollLeft;
-              let isDown = true;
-
-              const handleMouseMove = (e: { preventDefault: () => void; pageX: number }) => {
-                if (!isDown) return;
-                e.preventDefault();
-                const x = e.pageX - container.offsetLeft;
-                const walk = (x - startX) * 2;
-                container.scrollLeft = scrollLeft - walk;
-              };
-
-              const handleMouseUp = () => {
-                isDown = false;
-                document.removeEventListener('mousemove', handleMouseMove);
-                document.removeEventListener('mouseup', handleMouseUp);
-              };
-
-              document.addEventListener('mousemove', handleMouseMove);
-              document.addEventListener('mouseup', handleMouseUp);
-            }}
+            onMouseDown={handleMouseDrag}
           >
             {top10Content.map((item, index) => (
               <div 
                 key={`${item.title}-${index}`} 
-                className="flex-shrink-0 w-48 md:w-56 lg:w-64"
+                className="flex-shrink-0 w-[150px] sm:w-48 md:w-56 lg:w-64 snap-start"
               >
                 <TopMovieCard
                   {...item}
@@ -556,13 +548,23 @@ export default function CineVerse() {
               </div>
             ))}
           </div>
+
+          <style jsx>{`
+            .scrollbar-hide::-webkit-scrollbar {
+              display: none;
+            }
+            .scrollbar-hide {
+              -ms-overflow-style: none;
+              scrollbar-width: none;
+            }
+          `}</style>
         </section>
 
         <section className="container py-12">
-          <div className="flex items-center justify-between mb-8">
-            <h2 className="text-3xl font-bold tracking-tight">2025 Releases</h2>
-            <Tabs value={contentType} onValueChange={(value) => setContentType(value as "movies" | "series")} className="w-[300px]">
-              <TabsList className="grid w-full grid-cols-2 bg-gray-900">
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-2xl font-bold tracking-tight">2025 Releases</h2>
+            <Tabs value={contentType} onValueChange={(value) => setContentType(value as "movies" | "series")} className="w-[350px]">
+              <TabsList className="grid w-full grid-cols-2">
                 <TabsTrigger value="movies">Movies</TabsTrigger>
                 <TabsTrigger value="series">Series</TabsTrigger>
               </TabsList>
@@ -572,36 +574,48 @@ export default function CineVerse() {
           <div className="space-y-12">
             <div>
               <div className="flex items-center justify-between mb-6">
-                <h3 className="text-2xl font-semibold flex items-center gap-2">
+                <h3 className="text-xl font-semibold flex items-center gap-2">
                   <Badge
                     variant="outline"
-                    className="bg-green-900/30 text-green-400 hover:bg-green-900/30 border-green-800"
+                    className="bg-blue-900/30 text-blue-400 hover:bg-blue-600/30 border-blue-800"
                   >
                     Released
                   </Badge>
-                  <span>Already Released</span>
+                  <span>Recently Released</span>
                 </h3>
-                <Link href="/released" className="text-sm text-primary flex items-center">
+                <Link href="/released" className="text-sm text-blue-600 hover:text-blue-800 flex items-center">
                   View all <ChevronRight className="h-4 w-4" />
                 </Link>
               </div>
 
-              <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 md:gap-4 lg:gap-6">
-                {arrivedContent.slice(0, 5).map((movie, index) => (
-                  <MovieCard
-                    key={index}
-                    title={movie.title}
-                    type={movie.type}
-                    image={movie.image}
-                    rating={movie.rating}
-                    releaseDate={movie.releaseDate}
-                    status="released"
-                    slug={movie.slug}
-                  />
+              <div
+                className="flex gap-3 sm:gap-4 md:gap-5 lg:gap-6 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide cursor-grab active:cursor-grabbing"
+                style={{
+                  scrollbarWidth: 'none',
+                  msOverflowStyle: 'none',
+                  WebkitOverflowScrolling: 'touch'
+                }}
+                onMouseDown={handleMouseDrag}
+              >
+                {arrivedContent.map((movie, index) => (
+                  <div
+                    key={`${movie.title}-${index}`}
+                    className="flex-shrink-0 w-[100px] sm:w-[140px] md:w-[180px] lg:w-[220px] snap-start"
+                  >
+                    <MovieCard
+                      title={movie.title}
+                      type={movie.type}
+                      image={movie.image}
+                      rating={movie.rating}
+                      releaseDate={movie.releaseDate}
+                      status="released"
+                      slug={movie.slug}
+                    />
+                  </div>
                 ))}
                 {arrivedContent.length === 0 && (
-                  <div className="col-span-full py-12 text-center">
-                    <p className="text-gray-400">
+                  <div className="flex-1 py-4 text-center">
+                    <p className="text-gray-500">
                       No {contentType === "movies" ? "movies" : "series"} available in this category.
                     </p>
                   </div>
@@ -611,35 +625,47 @@ export default function CineVerse() {
 
             <div>
               <div className="flex items-center justify-between mb-6">
-                <h3 className="text-2xl font-semibold flex items-center gap-2">
+                <h3 className="text-xl font-semibold flex items-center gap-2">
                   <Badge
                     variant="outline"
-                    className="bg-blue-900/30 text-blue-400 hover:bg-blue-900/30 border-blue-800"
+                    className="bg-blue-900/30 text-blue-400 hover:bg-blue-600/40 border-blue-800"
                   >
                     Upcoming
                   </Badge>
                   <span>Coming Soon</span>
                 </h3>
-                <Link href="/upcoming" className="text-sm text-primary flex items-center">
+                <Link href="/upcoming" className="text-sm text-blue-600 hover:text-blue-800 flex items-center">
                   View all <ChevronRight className="h-4 w-4" />
                 </Link>
               </div>
 
-              <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 md:gap-4 lg:gap-6">
-                {upcomingContent.slice(0, 5).map((movie, index) => (
-                  <MovieCard
-                    key={index}
-                    title={movie.title}
-                    type={movie.type}
-                    image={movie.image}
-                    releaseDate={movie.releaseDate}
-                    status="upcoming"
-                    slug={movie.slug}
-                  />
+              <div
+                className="flex gap-3 sm:gap-4 md:gap-5 lg:gap-6 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide cursor-grab active:cursor-grabbing"
+                style={{
+                  scrollbarWidth: 'none',
+                  msOverflowStyle: 'none',
+                  WebkitOverflowScrolling: 'touch'
+                }}
+                onMouseDown={handleMouseDrag}
+              >
+                {upcomingContent.map((movie, index) => (
+                  <div
+                    key={`${movie.title}-${index}`}
+                    className="flex-shrink-0 w-[100px] sm:w-[140px] md:w-[180px] lg:w-[220px] snap-start"
+                  >
+                    <MovieCard
+                      title={movie.title}
+                      type={movie.type}
+                      image={movie.image}
+                      releaseDate={movie.releaseDate}
+                      status="upcoming"
+                      slug={movie.slug}
+                    />
+                  </div>
                 ))}
                 {upcomingContent.length === 0 && (
-                  <div className="col-span-full py-12 text-center">
-                    <p className="text-gray-400">
+                  <div className="flex-1 py-4 text-center">
+                    <p className="text-gray-500">
                       No {contentType === "movies" ? "movies" : "series"} available in this category.
                     </p>
                   </div>
@@ -647,6 +673,16 @@ export default function CineVerse() {
               </div>
             </div>
           </div>
+
+          <style jsx>{`
+            .scrollbar-hide::-webkit-scrollbar {
+              display: none;
+            }
+            .scrollbar-hide {
+              -ms-overflow-style: none;
+              scrollbar-width: none;
+            }
+          `}</style>
         </section>
 
         <section className="py-12 bg-gradient-to-b from-gray-900 to-black">
