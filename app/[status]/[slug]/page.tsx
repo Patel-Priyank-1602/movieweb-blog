@@ -207,17 +207,23 @@ export default function MovieDetailsPage({ params }: MovieDetailsProps) {
       {isTrailerOpen && youtubeId && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80">
           <div className="relative w-full max-w-3xl p-4">
-            <Button
-              variant="ghost"
-              size="icon"
-              className="absolute top-2 right-2 bg-black/50 hover:bg-black/70"
-              onClick={() => setIsTrailerOpen(false)}
-            >
-              <X className="h-5 w-5" />
-              <span className="sr-only">Close trailer</span>
-            </Button>
+            <div className="absolute top-2 right-2 z-50">
+              <Button
+                variant="ghost"
+                size="icon"
+                className="bg-black/50 hover:bg-black/70"
+                onClick={() => setIsTrailerOpen(false)}
+              >
+                <X className="h-5 w-5" />
+                <span className="sr-only">Close trailer</span>
+              </Button>
+            </div>
             <div className="relative aspect-video">
-              <YouTube videoId={youtubeId} opts={opts} className="absolute inset-0" />
+              <YouTube
+                videoId={youtubeId}
+                opts={opts}
+                className="absolute inset-0"
+              />
             </div>
           </div>
         </div>
