@@ -519,7 +519,7 @@ export default function CineVerse() {
       <main className="flex-1">
         <FeaturedShowcase />
 
-        <section className="container py-12">
+        <section className="container px-2 sm:px-4 py-12">
           <div className="flex items-center mb-8">
             <h2 className="text-3xl font-bold tracking-tight flex items-center gap-3">
               <TrendingUp className="h-8 w-8 text-blue-500" />
@@ -528,7 +528,7 @@ export default function CineVerse() {
           </div>
 
           <div 
-            className="flex gap-3 sm:gap-4 md:gap-6 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide cursor-grab active:cursor-grabbing"
+            className="flex gap-2 sm:gap-4 md:gap-6 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide cursor-grab active:cursor-grabbing"
             style={{
               scrollbarWidth: 'none',
               msOverflowStyle: 'none',
@@ -539,7 +539,7 @@ export default function CineVerse() {
             {top10Content.map((item, index) => (
               <div 
                 key={`${item.title}-${index}`} 
-                className="flex-shrink-0 w-[150px] sm:w-48 md:w-56 lg:w-64 snap-start"
+                className="flex-shrink-0 w-[140px] sm:w-48 md:w-56 lg:w-64 snap-start"
               >
                 <TopMovieCard
                   {...item}
@@ -560,7 +560,7 @@ export default function CineVerse() {
           `}</style>
         </section>
 
-        <section className="container py-12">
+        <section className="container px-2 sm:px-4 py-12">
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-2xl font-bold tracking-tight">2025 Releases</h2>
             <Tabs value={contentType} onValueChange={(value) => setContentType(value as "movies" | "series")} className="w-[350px]">
@@ -589,7 +589,7 @@ export default function CineVerse() {
               </div>
 
               <div
-                className="flex gap-3 sm:gap-4 md:gap-5 lg:gap-6 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide cursor-grab active:cursor-grabbing"
+                className="flex gap-2 sm:gap-4 md:gap-5 lg:gap-6 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide cursor-grab active:cursor-grabbing"
                 style={{
                   scrollbarWidth: 'none',
                   msOverflowStyle: 'none',
@@ -600,7 +600,7 @@ export default function CineVerse() {
                 {arrivedContent.map((movie, index) => (
                   <div
                     key={`${movie.title}-${index}`}
-                    className="flex-shrink-0 w-[100px] sm:w-[140px] md:w-[180px] lg:w-[220px] snap-start"
+                    className="flex-shrink-0 w-[90px] sm:w-[140px] md:w-[180px] lg:w-[220px] snap-start"
                   >
                     <MovieCard
                       title={movie.title}
@@ -640,7 +640,7 @@ export default function CineVerse() {
               </div>
 
               <div
-                className="flex gap-3 sm:gap-4 md:gap-5 lg:gap-6 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide cursor-grab active:cursor-grabbing"
+                className="flex gap-2 sm:gap-4 md:gap-5 lg:gap-6 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide cursor-grab active:cursor-grabbing"
                 style={{
                   scrollbarWidth: 'none',
                   msOverflowStyle: 'none',
@@ -651,7 +651,7 @@ export default function CineVerse() {
                 {upcomingContent.map((movie, index) => (
                   <div
                     key={`${movie.title}-${index}`}
-                    className="flex-shrink-0 w-[100px] sm:w-[140px] md:w-[180px] lg:w-[220px] snap-start"
+                    className="flex-shrink-0 w-[90px] sm:w-[140px] md:w-[180px] lg:w-[220px] snap-start"
                   >
                     <MovieCard
                       title={movie.title}
@@ -686,7 +686,7 @@ export default function CineVerse() {
         </section>
 
         <section className="py-12 bg-gradient-to-b from-gray-900 to-black">
-          <div className="container">
+          <div className="container px-2 sm:px-4">
             <div className="text-center space-y-4 max-w-3xl mx-auto mb-12">
               <h2 className="text-3xl font-bold">The Last Update on this Website was on 6/6/2025</h2>
               <p className="text-gray-400">For some Movies/Series, the official Trailer is not Available, so only a Teaser has been released. In some cases, neither a Teaser nor a Trailer is Available — only a Date Announcement Video is Provided.</p>
