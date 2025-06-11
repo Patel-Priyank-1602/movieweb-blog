@@ -52,7 +52,7 @@ export default function FeaturedShowcase() {
       type: "Series",
       releaseDate: "July 2, 2025",
       slug: "panchayat",
-      trailerUrl: "https://patel-priyank-1602.github.io/WebSyncP-/",
+      trailerUrl: "https://youtu.be/AHMEtNAZTP4?si=CV85goqlNRNAFJdt",
     },
     {
       id: 3,
