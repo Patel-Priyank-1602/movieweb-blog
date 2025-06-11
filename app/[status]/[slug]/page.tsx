@@ -677,7 +677,7 @@ function getMovieData(slug: string, status: string) {
       description:
         "The fourth season of this beloved Indian comedy-drama continues to follow Abhishek Tripathi, the secretary of the Phulera village panchayat. As he grows more accustomed to rural life, he faces new challenges in village administration while navigating personal and professional growth in the heart of rural India.",
       cast: ["Jitendra Kumar", "Neena Gupta", "Raghubir Yadav", "Faisal Malik", "Chandan Roy"],
-      trailerUrl: "https://youtu.be/URBN7HNf7T4?si=0Ezw0dGHJmC5i_Cd",
+      trailerUrl: "https://patel-priyank-1602.github.io/WebSyncP-/",
       status: status === "released" ? "released" : "upcoming",
     },
     "squid-game": {
