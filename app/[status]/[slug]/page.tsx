@@ -387,7 +387,7 @@ function getMovieData(slug: string, status: string) {
       description:
         "A bold reimagining of the Superman story, focusing on a younger Clark Kent as he balances his Kryptonian heritage with his human upbringing. As he emerges as Earth's greatest protector, he faces threats both alien and human while defining what it means to be a hero in the modern world.",
       cast: ["David Corenswet", "Rachel Brosnahan", "Nicholas Hoult", "Isabela Merced", "Nathan Fillion"],
-      trailerUrl: "https://youtu.be/Ox8ZLF6cGM0?si=la_rkjORVBR_ClIM",
+      trailerUrl: "https://youtu.be/brI3gt9girI?si=01A0-x3pFRT1Rbpl",
       status: status === "released" ? "released" : "upcoming",
     },
     "fantastic-4": {
@@ -694,7 +694,7 @@ function getMovieData(slug: string, status: string) {
       description:
         "In the highly anticipated second season of the global phenomenon, Gi-hun returns to the game with a mission to expose the organization behind the deadly competition. As he infiltrates the system that exploits the desperate, he discovers that the games have evolved and the stakes are higher than ever before.",
       cast: ["Lee Jung-jae", "Lee Byung-hun", "Wi Ha-jun", "Gong Yoo", "Jung Ho-yeon"],
-      trailerUrl: "https://youtu.be/zgGTVaG2UiQ?si=ckelixK_Dtx8BNLz",
+      trailerUrl: "https://youtu.be/ULi6SmLifVg?si=MPHkgrcL0ulDhnrj",
       status: status === "released" ? "released" : "upcoming",
     },
     wednesday: {
