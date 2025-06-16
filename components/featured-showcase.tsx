@@ -102,6 +102,18 @@ export default function FeaturedShowcase() {
       slug: "avatar-3",
       trailerUrl: "",
     },
+    {
+      id: 7,
+      title: "Superman 2025",
+      nameImage: "/series/supp_t.png",
+      description:
+        "Soar into a new era with Clark Kent as he embraces his destiny as Superman, confronting a formidable threat to Metropolis while balancing his Kryptonian heritage with his human heart.",
+      image: "/series/sup.jpeg?height=600&width=1200",
+      type: "Movie",
+      releaseDate: "July 11, 2025",
+      slug: "superman",
+      trailerUrl: "https://youtu.be/brI3gt9girI?si=01A0-x3pFRT1Rbpl",
+    },
   ];
 
   const featured = featuredContent[currentIndex];
@@ -279,9 +291,8 @@ export default function FeaturedShowcase() {
       </div>
 
       <div
-        className={`relative h-full container flex flex-col justify-end md:justify-end items-center md:items-start text-center md:text-left pb-16 transition-opacity duration-200 ${
-          isFading ? "opacity-0" : "opacity-100"
-        }`}
+        className={`relative h-full container flex flex-col justify-end md:justify-end items-center md:items-start text-center md:text-left pb-16 transition-opacity duration-200 ${isFading ? "opacity-0" : "opacity-100"
+          }`}
       >
         <div className="max-w-3xl space-y-4 flex flex-col items-center md:items-start">
           <div className="relative w-fit max-w-[80vw]">
@@ -348,9 +359,8 @@ export default function FeaturedShowcase() {
             <button
               key={item.id}
               onClick={() => handleBannerChange(index)}
-              className={`relative group transition-all duration-200 flex-shrink-0 ${
-                index === currentIndex ? "ring-2 ring-white scale-105" : "hover:scale-105 hover:ring-1 hover:ring-white/50"
-              }`}
+              className={`relative group transition-all duration-200 flex-shrink-0 ${index === currentIndex ? "ring-2 ring-white scale-105" : "hover:scale-105 hover:ring-1 hover:ring-white/50"
+                }`}
               style={{ width: "5rem", height: "3.5rem" }}
             >
               <div className="relative w-full h-full rounded overflow-hidden">
