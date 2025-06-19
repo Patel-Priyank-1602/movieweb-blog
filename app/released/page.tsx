@@ -78,6 +78,30 @@ export default function ReleasedPage() {
       releaseDate: "Feb 14, 2025",
       status: "released" as const,
     },
+    {
+      title: "How to Train Your Dragon",
+      type: "Movie",
+      image: "/series/htt.jpeg?height=450&width=300",
+      rating: 8.1,
+      releaseDate: "Jun 13, 2025",
+      status: "released" as const
+    },
+    {
+      title: "28 Years Later",
+      type: "Movie",
+      image: "/series/28y.jpeg?height=450&width=300",
+      rating: 4.5,
+      releaseDate: "Jun 20, 2025",
+      status: "released" as const,
+    },
+    {
+      title: "Sitaare Zameen Par",
+      type: "Movie",
+      image: "/series/si.jpeg?height=450&width=300",
+      rating: 3.9,
+      releaseDate: "Jun 20, 2025",
+      status: "released" as const,
+    },
   ]
 
   const arrivedSeries = [
@@ -141,7 +165,7 @@ export default function ReleasedPage() {
   })
 
   if (isLoading) {
-    return <Loading onComplete={() => {}} />
+    return <Loading onComplete={() => { }} />
   }
 
   return (

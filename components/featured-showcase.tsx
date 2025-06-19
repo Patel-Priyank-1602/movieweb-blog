@@ -92,15 +92,14 @@ export default function FeaturedShowcase() {
     },
     {
       id: 6,
-      title: "Avatar 3",
-      nameImage: "/series/avt_r.png",
-      description:
-        "Return to Pandora as Jake Sully and Neytiri continue their journey, exploring new regions of the planet and facing a threat that tests the bonds of their family and the Na'vi people.",
-      image: "/series/avvv.jpeg?height=600&width=1200",
+      title: "How to Train Your Dragon",
+      nameImage: "/series/httd_t.png",
+      description: "A live-action remake set on the isle of Berk, where Hiccup, a young Viking, forms an unlikely bond with Toothless, a Night Fury dragon, challenging Viking traditions and working to bring peace between humans and dragons while facing an ancient threat.",
+      image: "/series/httd.jpeg?height=600&width=1200",
       type: "Movie",
-      releaseDate: "December 19, 2025",
-      slug: "avatar-3",
-      trailerUrl: "",
+      releaseDate: "June 13, 2025",
+      slug: "how-to-train-your-dragon",
+      trailerUrl: "https://youtu.be/OWEq2Pf8qpk?si=guhXV2kKgYPbH6t8"
     },
     {
       id: 7,

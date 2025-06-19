@@ -99,6 +99,30 @@ export default function SearchPage() {
       releaseDate: "Feb 14, 2025",
       status: "released" as const,
     },
+    {
+      title: "28 Years Later",
+      type: "Movie",
+      image: "/series/28y.jpeg?height=450&width=300",
+      rating: 4.5,
+      releaseDate: "Jun 20, 2025",
+      status: "released" as const,
+    },
+    {
+      title: "Sitaare Zameen Par",
+      type: "Movie",
+      image: "/series/si.jpeg?height=450&width=300",
+      rating: 3.9,
+      releaseDate: "Jun 20, 2025",
+      status: "released" as const,
+    },
+    {
+      title: "How to Train Your Dragon",
+      type: "Movie",
+      image: "/series/htt.jpeg?height=450&width=300",
+      rating: 4.4,
+      releaseDate: "Jun 13, 2025",
+      status: "released" as const
+    },
     // Movies - Upcoming
     {
       title: "Jurassic World: Rebirth",
@@ -129,9 +153,7 @@ export default function SearchPage() {
       status: "upcoming" as const,
     },
     {
-      title:
-
-      "The Conjuring",
+      title: "The Conjuring",
       type: "Movie",
       image: "/series/can.jpeg?height=450&width=300",
       releaseDate: "Sept 5, 2025",
@@ -142,13 +164,6 @@ export default function SearchPage() {
       type: "Movie",
       image: "/series/av.jpeg?height=450&width=300",
       releaseDate: "Dec 19, 2025",
-      status: "upcoming" as const,
-    },
-    {
-      title: "28 Years Later",
-      type: "Movie",
-      image: "/series/28y.jpeg?height=450&width=300",
-      releaseDate: "Jun 20, 2025",
       status: "upcoming" as const,
     },
     {
@@ -163,13 +178,6 @@ export default function SearchPage() {
       type: "Movie",
       image: "/series/bd.jpeg?height=450&width=300",
       releaseDate: "Aug 1, 2025",
-      status: "upcoming" as const,
-    },
-    {
-      title: "Sitaare Zameen Par",
-      type: "Movie",
-      image: "/series/si.jpeg?height=450&width=300",
-      releaseDate: "Jun 20, 2025",
       status: "upcoming" as const,
     },
     // Series - Released
@@ -240,7 +248,7 @@ export default function SearchPage() {
       title: "Panchayat",
       type: "Series",
       image: "/series/panc.jpeg?height=450&width=300",
-      releaseDate: "Jul 2, 2025",
+      releaseDate: "Jun 24, 2025",
       status: "upcoming" as const,
     },
     {
@@ -304,7 +312,7 @@ export default function SearchPage() {
     .sort((a, b) => parseReleaseDate(a.releaseDate).getTime() - parseReleaseDate(b.releaseDate).getTime())
 
   if (isLoading) {
-    return <Loading onComplete={() => {}} />
+    return <Loading onComplete={() => { }} />
   }
 
   return (

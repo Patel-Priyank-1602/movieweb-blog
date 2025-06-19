@@ -64,13 +64,6 @@ export default function UpcomingPage() {
       status: "upcoming" as const,
     },
     {
-      title: "28 Years Later",
-      type: "Movie",
-      image: "/series/28y.jpeg?height=450&width=300",
-      releaseDate: "Jun 20, 2025",
-      status: "upcoming" as const,
-    },
-    {
       title: "Zootopia 2",
       type: "Movie",
       image: "/series/zoo.jpeg?height=450&width=300",
@@ -82,13 +75,6 @@ export default function UpcomingPage() {
       type: "Movie",
       image: "/series/bd.jpeg?height=450&width=300",
       releaseDate: "Aug 1, 2025",
-      status: "upcoming" as const,
-    },
-    {
-      title: "Sitaare Zameen Par",
-      type: "Movie",
-      image: "/series/si.jpeg?height=450&width=300",
-      releaseDate: "Jun 20, 2025",
       status: "upcoming" as const,
     },
   ]
@@ -112,7 +98,7 @@ export default function UpcomingPage() {
       title: "Panchayat",
       type: "Series",
       image: "/series/panc.jpeg?height=450&width=300",
-      releaseDate: "Jul 2, 2025",
+      releaseDate: "Jun 24, 2025",
       status: "upcoming" as const,
     },
     {
