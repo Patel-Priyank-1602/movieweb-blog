@@ -4,8 +4,11 @@ import { ThemeProvider } from "@/components/theme-provider"
 import { Film, Instagram, Twitter, Github, Linkedin } from "lucide-react"
 
 export const metadata = {
-  title: "CineVerse 2025 - Movies & Web Series",
+  title: "CineVerse 2025",
   description: "Discover the latest movies and web series of 2025",
+  icons: {
+    icon: "/cv-logo.png",
+  },
 }
 
 export default function RootLayout({
@@ -16,22 +19,8 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-
-        {/* Favicon & PWA Icons */}
-        {/* Favicons */}
-        <link rel="icon" type="image/png" sizes="32x32" href="/icon-192.png" />
-        <link rel="icon" type="image/png" sizes="16x16" href="/icon-192.png" />
-        <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon.png" />
-        <link rel="manifest" href="/site.webmanifest" />
-
-        {/* PWA Meta Tags */}
-        <meta name="theme-color" content="#7C3AED" />
-        <meta name="msapplication-TileColor" content="#7C3AED" />
-        <meta name="application-name" content="CineVerse 2025" />
-        <meta name="apple-mobile-web-app-title" content="CineVerse" />
-        <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        {/* The <head> tag and <meta> tags are not supported directly in Next.js App Router layout.tsx.
+            Use the Metadata API or a custom Head component if needed. */}
       </head>
       <body className="min-h-screen bg-black text-white flex flex-col">
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
