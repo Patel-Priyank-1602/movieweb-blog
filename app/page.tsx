@@ -667,8 +667,8 @@ export default function CineVerse() {
                   </Badge>
                   <span>Coming Soon</span>
                 </h3>
-                <Link href="/upcoming" className="text-sm text-blue-600 hover:text-blue-800 flex items-center">
-                  View all <ChevronRight className="h-4 w-64" />
+                <Link href="/released" className="text-sm text-blue-600 hover:text-blue-800 flex items-center">
+                  View all <ChevronRight className="h-4 w-4" />
                 </Link>
               </div>
 
