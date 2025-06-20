@@ -451,6 +451,7 @@ export default function CineVerse() {
   const [contentType, setContentType] = useState<"movies" | "series">("movies");
   const [isLoading, setIsLoading] = useState(true);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const router = useRouter();
 
   const handleLoadingComplete = () => setIsLoading(false);
   const toggleMenu = () => setIsMenuOpen((o) => !o);
@@ -494,11 +495,21 @@ export default function CineVerse() {
             <Film className="h-6 w-6 text-primary" />
             <span className="text-xl font-bold">CineVerse 2025</span>
           </div>
-          <nav className="hidden md:flex gap-8">
+          <nav className="hidden md:flex items-center gap-8">
             <Link href="/" className="text-base font-medium text-white">Home</Link>
             <Link href="/released" className="text-base font-medium text-gray-400 transition-colors hover:text-white">Released</Link>
             <Link href="/upcoming" className="text-base font-medium text-gray-400 transition-colors hover:text-white">Upcoming</Link>
             <Link href="/search" className="text-base font-medium text-gray-400 transition-colors hover:text-white">Search</Link>
+            <Button
+              variant="outline"
+              className="text-blue-400 border-blue-600 hover:bg-blue-600/20"
+              asChild
+            >
+              <Link href="https://cvrecommendation.netlify.app/">
+                <Film className="h-4 w-4 mr-2" />
+                Get Recommendations
+              </Link>
+            </Button>
           </nav>
           <div className="md:hidden">
             <Button variant="ghost" size="icon" onClick={toggleMenu} aria-label="Toggle menu">
@@ -510,20 +521,31 @@ export default function CineVerse() {
 
       <div
         className={`
-          md:hidden
-          overflow-hidden
-          transition-all duration-300
-          bg-black/95 border-b border-gray-800
-          shadow-lg
-          ${isMenuOpen ? "max-h-80 max-h-screen py-4" : "max-h-0 py-0"}
+          md:hidden fixed top-0 right-0 h-full w-64 bg-black/95 border-l border-gray-800
+          shadow-lg z-50 transform transition-transform duration-300 ease-in-out
+          ${isMenuOpen ? "translate-x-0" : "translate-x-full"}
         `}
-        style={{ transitionProperty: "max-height, padding" }}
       >
-        <nav className="container flex flex-col gap-4">
+        <div className="flex justify-end p-4">
+          <Button variant="ghost" size="icon" onClick={toggleMenu} aria-label="Close menu">
+            <X className="h-6 w-6 text-white" />
+          </Button>
+        </div>
+        <nav className="flex flex-col gap-4 px-6 py-4">
           <Link href="/" className="text-base font-medium text-white" onClick={toggleMenu}>Home</Link>
           <Link href="/released" className="text-base font-medium text-gray-400 hover:text-white" onClick={toggleMenu}>Released</Link>
           <Link href="/upcoming" className="text-base font-medium text-gray-400 hover:text-white" onClick={toggleMenu}>Upcoming</Link>
           <Link href="/search" className="text-base font-medium text-gray-400 hover:text-white" onClick={toggleMenu}>Search</Link>
+          <Button
+            variant="outline"
+            className="text-blue-400 border-blue-600 hover:bg-blue-600/20 w-fit"
+            asChild
+          >
+            <Link href="https://cvrecommendation.netlify.app/" onClick={toggleMenu}>
+              <Film className="h-4 w-4 mr-2" />
+              Get Recommendations
+            </Link>
+          </Button>
         </nav>
       </div>
 
@@ -646,7 +668,7 @@ export default function CineVerse() {
                   <span>Coming Soon</span>
                 </h3>
                 <Link href="/upcoming" className="text-sm text-blue-600 hover:text-blue-800 flex items-center">
-                  View all <ChevronRight className="h-4 w-4" />
+                  View all <ChevronRight className="h-4 w-64" />
                 </Link>
               </div>
 
@@ -676,7 +698,7 @@ export default function CineVerse() {
                 ))}
                 {upcomingContent.length === 0 && (
                   <div className="flex-1 py-4 text-center">
-                    <p className="text-gray-500">
+                    <p className="text-gray-400">
                       No {contentType === "movies" ? "movies" : "series"} available in this category.
                     </p>
                   </div>
@@ -696,11 +718,11 @@ export default function CineVerse() {
           `}</style>
         </section>
 
-        <section className="py-12 bg-gradient-to-b from-gray-900 to-black">
+        <section className="py-12 bg-black">
           <div className="container px-2 sm:px-4">
             <div className="text-center space-y-4 max-w-3xl mx-auto mb-12">
               <h2 className="text-3xl font-bold">The Last Update on this Website was on 20/6/2025</h2>
-              <p className="text-gray-400">For some Movies/Series, the official Trailer is not Available, so only a Teaser has been released. In some cases, neither a Teaser nor a Trailer is Available — only a Date Announcement Video is Provided.</p>
+              <p className="text-gray-400">For some Movies/Series, the official trailer is not Available, but only a Teaser has been released. In some cases, neither a Teaser nor a Trailer is Available — only a Date Announcement Video is Provided.</p>
             </div>
           </div>
         </section>
