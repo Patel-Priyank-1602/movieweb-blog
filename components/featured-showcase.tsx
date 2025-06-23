@@ -51,7 +51,7 @@ export default function FeaturedShowcase() {
         "The fourth season of this beloved Indian comedy-drama continues to follow Abhishek Tripathi, the secretary of the Phulera village panchayat, as he navigates rural life and village administration.",
       image: "/series/pan.jpeg?height=600&width=1200",
       type: "Series",
-      releaseDate: "July 2, 2025",
+      releaseDate: "June 24, 2025",
       slug: "panchayat",
       trailerUrl: "https://youtu.be/AHMEtNAZTP4?si=CV85goqlNRNAFJdt",
     },
