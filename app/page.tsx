@@ -500,6 +500,7 @@ export default function CineVerse() {
             <Link href="/released" className="text-base font-medium text-gray-400 transition-colors hover:text-white">Released</Link>
             <Link href="/upcoming" className="text-base font-medium text-gray-400 transition-colors hover:text-white">Upcoming</Link>
             <Link href="/search" className="text-base font-medium text-gray-400 transition-colors hover:text-white">Search</Link>
+            <Link href="https://patel-priyank-1602.github.io/contactcvr/" className="text-base font-medium text-gray-400 transition-colors hover:text-white">Contact Us</Link>
             <Button
               variant="outline"
               className="text-blue-400 border-blue-600 hover:bg-blue-600/20"
@@ -536,6 +537,7 @@ export default function CineVerse() {
           <Link href="/released" className="text-base font-medium text-gray-400 hover:text-white" onClick={toggleMenu}>Released</Link>
           <Link href="/upcoming" className="text-base font-medium text-gray-400 hover:text-white" onClick={toggleMenu}>Upcoming</Link>
           <Link href="/search" className="text-base font-medium text-gray-400 hover:text-white" onClick={toggleMenu}>Search</Link>
+          <Link href="https://patel-priyank-1602.github.io/contactcvr/" className="text-base font-medium text-gray-400 hover:text-white" onClick={toggleMenu}>Contact Us</Link>
           <Button
             variant="outline"
             className="text-blue-400 border-blue-600 hover:bg-blue-600/20 w-fit"
