@@ -6,27 +6,6 @@ Welcome to **Cineverse**, a smart and modern movie and series recommender tailor
 
 ---
 
-## 🧠 How It Works
-
-Cineverse makes discovering your next favorite watch effortless through a simple, user-friendly recommendation flow:
-
-- 🌏 **Indian or Global Cinema?** Choose your cinematic universe.
-- 🎥 **Movies, Series, or Both?** Select your preferred format.
-- ⭐ **Minimum IMDb Rating?** Set your personal quality threshold.
-- 🕐 **Time Period?** Explore only 2025 releases – past or upcoming.
-- 🎭 **Genre Preference?** Choose from a wide range – action, romance, thriller, and more.
-
-### 🔍 After answering:
-- **Search** or **Filter** by title, genre, and more.
-- **Sort** your results by:
-  - Popularity
-  - IMDb Rating
-  - A-Z
-  - Oldest First
-  - Newest First
-
----
-
 ## ✨ Key Features
 
 - 📅 **2025-Focused Content**: Discover only 2025 releases—no distractions.
