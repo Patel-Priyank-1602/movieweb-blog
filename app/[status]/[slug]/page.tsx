@@ -686,7 +686,7 @@ function getMovieData(slug: string, status: string) {
       releaseDate: "June 24, 2025",
       director: "Deepak Kumar Mishra",
       productionCompany: "Amazon Prime Video",
-      imdbRating: null,
+      imdbRating: 9,
       duration: "8 Episodes",
       genre: "Comedy/Drama",
       description:
@@ -703,7 +703,7 @@ function getMovieData(slug: string, status: string) {
       releaseDate: "June 27, 2025",
       director: "Hwang Dong-hyuk",
       productionCompany: "Netflix",
-      imdbRating: null,
+      imdbRating: 8,
       duration: "6 Episodes",
       genre: "Thriller/Drama",
       description:
@@ -720,7 +720,7 @@ function getMovieData(slug: string, status: string) {
       releaseDate: "June 24, 2025",
       director: "Sam Bailey, Angela Barnes",
       productionCompany: "Marvel Studios",
-      imdbRating: null,
+      imdbRating: 3.7,
       duration: "6 episodes",
       genre: "Superhero/Action",
       description:

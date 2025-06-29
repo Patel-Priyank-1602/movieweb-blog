@@ -336,81 +336,81 @@ const upcomingSeries: ContentItem[] = [
 
 const top10Content: ContentItem[] = [
   {
-    title: "Pataal Lok",
+    title: "Panchayat",
     type: "Series",
-    image: "/series/patc.jpeg?height=450&width=300",
-    rating: 4.9,
-    releaseDate: "Jan 17, 2025",
+    image: "/series/pancc.jpeg?height=450&width=300",
+    rating: 4.3,
+    releaseDate: "Jun 24, 2025",
     status: "released",
-    slug: "pataal-lok"
+    slug: "panchayat"
+  },
+  {
+    title: "Squid Game",
+    type: "Series",
+    image: "/series/sqq.jpeg?height=450&width=300",
+    rating: 4.6,
+    releaseDate: "Jun 27, 2025",
+    status: "released",
+    slug: "squid-game"
+  },
+  {
+    title: "F1: The Movie",
+    type: "Movie",
+    image: "/series/f1.jpeg?height=450&width=300",
+    rating: 4.7,
+    releaseDate: "Jun 27, 2025",
+    status: "upcoming",
+    slug: "f1-the-movie"
   },
   {
     title: "Raid 2",
     type: "Movie",
-    image: "/series/radc.jpeg?height=450&width=300",
+    image: "/series/radcc.jpeg?height=450&width=300",
     rating: 4.8,
     releaseDate: "May 1, 2025",
     status: "released",
     slug: "raid-2"
   },
   {
-    title: "The Last of Us",
-    type: "Series",
-    image: "/series/thlou.jpeg?height=450&width=300",
-    rating: 4.8,
-    releaseDate: "Apr 13, 2025",
+    title: "28 Years Later",
+    type: "Movie",
+    image: "/series/28y.jpeg?height=450&width=300",
+    rating: 4.5,
+    releaseDate: "June 20, 2025",
     status: "released",
-    slug: "the-last-of-us"
+    slug: "28-years-later"
+  },
+  {
+    title: "Pataal Lok",
+    type: "Series",
+    image: "/series/patcc.jpeg?height=450&width=300",
+    rating: 4.9,
+    releaseDate: "Jan 17, 2025",
+    status: "released",
+    slug: "pataal-lok"
   },
   {
     title: "Ballerina",
     type: "Movie",
-    image: "/series/ban.jpeg?height=450&width=300",
+    image: "/series/bann.jpeg?height=450&width=300",
     rating: 4.7,
     releaseDate: "June 6, 2025",
     status: "released",
     slug: "ballerina"
   },
   {
-    title: "You",
-    type: "Series",
-    image: "/series/youc.jpeg?height=450&width=300",
-    rating: 4.7,
-    releaseDate: "Apr 24, 2025",
-    status: "released",
-    slug: "you"
-  },
-  {
-    title: "Thunderbolt",
-    type: "Movie",
-    image: "/series/thnc.jpeg?height=450&width=300",
-    rating: 4.6,
-    releaseDate: "May 1, 2025",
-    status: "released",
-    slug: "thunderbolt"
-  },
-  {
     title: "Daredevil",
     type: "Series",
-    image: "/series/dar.jpeg?height=450&width=300",
+    image: "/series/dart.jpeg?height=450&width=300",
     rating: 4.6,
     releaseDate: "Mar 4, 2025",
     status: "released",
     slug: "daredevil"
   },
   {
-    title: "Final Destination",
-    type: "Movie",
-    image: "/series/fdc.jpeg?height=450&width=300",
-    rating: 4.5,
-    releaseDate: "May 16, 2025",
-    status: "released",
-    slug: "final-destination"
-  },
-  {
     title: "Mission Impossible: Final Reckoning",
     type: "Movie",
-    image: "/series/mic.jpeg?height=450&width=300",
+    image: "/series/mii.jpeg?height=450&width=300",
     rating: 4.5,
     releaseDate: "May 17, 2025",
     status: "released",
@@ -419,7 +419,7 @@ const top10Content: ContentItem[] = [
   {
     title: "Chhava",
     type: "Movie",
-    image: "/series/ch.jpeg?height=450&width=300",
+    image: "/series/chh.jpeg?height=450&width=300",
     rating: 4.3,
     releaseDate: "Feb 14, 2025",
     status: "released",
