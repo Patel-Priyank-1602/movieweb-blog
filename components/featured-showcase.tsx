@@ -449,11 +449,11 @@ export default function FeaturedContentCarousel() {
       <Button
         variant="outline"
         size="sm"
-        className="absolute top-4 right-4 z-50 bg-black/50 hover:bg-black/70 text-white border-white/30 text-xs px-3 py-1 h-8"
+        className="absolute top-4 left-4 z-50 bg-black/50 hover:bg-black/70 text-white border-white/30 text-xs px-3 py-1 h-8"
         onClick={toggleCarouselMode}
       >
-        <Layers className="h-4 w-4 mr-1" />
-        {carouselMode === "showcase" ? "Rotating" : "Showcase"}
+        <Layers className="h-4 w-4" />
+        {carouselMode === "showcase" ? "" : ""}
       </Button>
 
       {carouselMode === "showcase" ? (
