@@ -112,6 +112,24 @@ const arrivedMovies: ContentItem[] = [
     status: "released",
     slug: "sitaare-zameen-par"
   },
+  {
+    title: "F1: The Movie",
+    type: "Movie",
+    image: "/series/f1.jpeg?height=450&width=300",
+    rating: 4.7,
+    releaseDate: "Jun 27, 2025",
+    status: "upcoming",
+    slug: "f1-the-movie"
+  },
+  {
+    title: "Minecraft: The Movie",
+    type: "Movie",
+    image: "/series/mnc.jpeg?height=450&width=300",
+    rating: 3.9,
+    releaseDate: "April 4, 2025",
+    status: "released",
+    slug: "minecraft-the-movie"
+  },
 ];
 
 const upcomingMovies: ContentItem[] = [
@@ -183,6 +201,24 @@ const upcomingMovies: ContentItem[] = [
 
 const arrivedSeries: ContentItem[] = [
   {
+    title: "Panchayat",
+    type: "Series",
+    image: "/series/panc.jpeg?height=450&width=300",
+    rating: 4.3,
+    releaseDate: "Jun 24, 2025",
+    status: "released",
+    slug: "panchayat"
+  },
+  {
+    title: "Squid Game",
+    type: "Series",
+    image: "/series/sq.jpeg?height=450&width=300",
+    rating: 4.6,
+    releaseDate: "Jun 27, 2025",
+    status: "released",
+    slug: "squid-game"
+  },
+  {
     title: "You",
     type: "Series",
     image: "/series/youc.jpeg?height=450&width=300",
@@ -236,6 +272,15 @@ const arrivedSeries: ContentItem[] = [
     status: "released",
     slug: "khakee-the-bengal-chapter"
   },
+  {
+    title: "Ironheart",
+    type: "Series",
+    image: "/series/ir.jpeg?height=450&width=300",
+    rating: 3.6,
+    releaseDate: "June 24, 2025",
+    status: "released",
+    slug: "ironheart"
+  },
 ];
 
 const upcomingSeries: ContentItem[] = [
@@ -254,22 +299,6 @@ const upcomingSeries: ContentItem[] = [
     releaseDate: "Sept, 2025",
     status: "upcoming",
     slug: "alice-in-borderland"
-  },
-  {
-    title: "Panchayat",
-    type: "Series",
-    image: "/series/panc.jpeg?height=450&width=300",
-    releaseDate: "Jun 24, 2025",
-    status: "upcoming",
-    slug: "panchayat"
-  },
-  {
-    title: "Squid Game",
-    type: "Series",
-    image: "/series/sq.jpeg?height=450&width=300",
-    releaseDate: "Jun 27, 2025",
-    status: "upcoming",
-    slug: "squid-game"
   },
   {
     title: "Wednesday",
@@ -294,14 +323,6 @@ const upcomingSeries: ContentItem[] = [
     releaseDate: "Late 2025",
     status: "upcoming",
     slug: "the-witcher"
-  },
-  {
-    title: "Ironheart",
-    type: "Series",
-    image: "/series/ir.jpeg?height=450&width=300",
-    releaseDate: "June 24, 2025",
-    status: "upcoming",
-    slug: "ironheart"
   },
   {
     title: "The Sandman",
@@ -424,18 +445,18 @@ function TopMovieCard({ title, type, image, rating, releaseDate, status, rank, s
           <span className="text-white text-sm font-bold">{rank}</span>
         </div>
       </div>
-      
+
       <div className="aspect-[2/3] overflow-hidden relative">
         <img
           src={image}
           alt={title}
           className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
         />
-        
+
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-        
+
         <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-4 group-hover:translate-y-0">
-          <button 
+          <button
             onClick={handleMoreInfo}
             className="bg-white/90 hover:bg-white text-black px-4 py-2 rounded-full text-xs font-semibold backdrop-blur-sm transition-all duration-200 hover:scale-105 shadow-lg"
           >
@@ -562,7 +583,7 @@ export default function CineVerse() {
             </h2>
           </div>
 
-          <div 
+          <div
             className="flex gap-2 sm:gap-4 md:gap-6 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide cursor-grab active:cursor-grabbing"
             style={{
               scrollbarWidth: 'none',
@@ -572,8 +593,8 @@ export default function CineVerse() {
             onMouseDown={handleMouseDrag}
           >
             {top10Content.map((item, index) => (
-              <div 
-                key={`${item.title}-${index}`} 
+              <div
+                key={`${item.title}-${index}`}
                 className="flex-shrink-0 w-[140px] sm:w-48 md:w-56 lg:w-64 snap-start"
               >
                 <TopMovieCard
@@ -669,7 +690,7 @@ export default function CineVerse() {
                   </Badge>
                   <span>Coming Soon</span>
                 </h3>
-                <Link href="/released" className="text-sm text-blue-600 hover:text-blue-800 flex items-center">
+                <Link href="/upcoming" className="text-sm text-blue-600 hover:text-blue-800 flex items-center">
                   View all <ChevronRight className="h-4 w-4" />
                 </Link>
               </div>

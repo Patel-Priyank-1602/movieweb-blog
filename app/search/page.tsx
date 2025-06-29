@@ -123,6 +123,22 @@ export default function SearchPage() {
       releaseDate: "Jun 13, 2025",
       status: "released" as const
     },
+    {
+      title: "F1: The Movie",
+      type: "Movie",
+      image: "/series/f1.jpeg?height=450&width=300",
+      rating: 4.7, 
+      releaseDate: "Jun 27, 2025",
+      status: "released" as const,
+    },
+    {
+      title: "Minecraft: The Movie",
+      type: "Movie",
+      image: "/series/mnc.jpeg?height=450&width=300",
+      rating: 3.9, 
+      releaseDate: "Apr 4, 2025",
+      status: "released" as const,
+    },
     // Movies - Upcoming
     {
       title: "Jurassic World: Rebirth",
@@ -229,6 +245,30 @@ export default function SearchPage() {
       releaseDate: "Mar 20, 2025",
       status: "released" as const,
     },
+    {
+      title: "Panchayat",
+      type: "Series",
+      image: "/series/panc.jpeg?height=450&width=300",
+      rating: 4.3,
+      releaseDate: "Jun 24, 2025",
+      status: "released" as const,
+    },
+    {
+      title: "Squid Game",
+      type: "Series",
+      image: "/series/sq.jpeg?height=450&width=300",
+      rating: 4.6,
+      releaseDate: "Jun 27, 2025",
+      status: "released" as const,
+    },
+    {
+      title: "Ironheart",
+      type: "Series",
+      image: "/series/ir.jpeg?height=450&width=300",
+      rating: 3.6,
+      releaseDate: "Jun 24, 2025",
+      status: "released" as const,
+    },
     // Series - Upcoming
     {
       title: "Stranger Things",
@@ -242,20 +282,6 @@ export default function SearchPage() {
       type: "Series",
       image: "/series/aibb.jpeg?height=450&width=300",
       releaseDate: "Sept, 2025",
-      status: "upcoming" as const,
-    },
-    {
-      title: "Panchayat",
-      type: "Series",
-      image: "/series/panc.jpeg?height=450&width=300",
-      releaseDate: "Jun 24, 2025",
-      status: "upcoming" as const,
-    },
-    {
-      title: "Squid Game",
-      type: "Series",
-      image: "/series/sq.jpeg?height=450&width=300",
-      releaseDate: "Jun 27, 2025",
       status: "upcoming" as const,
     },
     {
@@ -277,13 +303,6 @@ export default function SearchPage() {
       type: "Series",
       image: "/series/wi.jpeg?height=450&width=300",
       releaseDate: "Late 2025",
-      status: "upcoming" as const,
-    },
-    {
-      title: "Ironheart",
-      type: "Series",
-      image: "/series/ir.jpeg?height=450&width=300",
-      releaseDate: "Jun 24, 2025",
       status: "upcoming" as const,
     },
     {

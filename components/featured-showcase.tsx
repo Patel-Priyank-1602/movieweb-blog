@@ -66,14 +66,14 @@ const FEATURED_CONTENT: FeaturedContent[] = [
   },
   {
     id: 5,
-    title: "The Last of Us",
-    nameImage: "/series/thlous_r.png",
-    description: "In a post-apocalyptic world ravaged by a fungal infection, hardened survivor Joel is tasked with smuggling 14-year-old Ellie, who may hold the key to humanity's survival, across a dangerous United States.",
-    image: "/series/thlou_r.jpeg?height=600&width=1200",
-    type: "Series",
-    releaseDate: "April 13, 2025",
-    slug: "the-last-of-us",
-    trailerUrl: "https://youtu.be/_zHPsmXCjB0",
+    title: "F1: The Movie",
+    nameImage: "/series/f1ct.png",
+    description: "Set in the fast-paced world of Formula 1, this high-octane drama follows a seasoned driver mentoring a rising star as they battle personal demons, team rivalries, and the limits of speed on the world’s biggest racing stage.",
+    image: "/series/f1f.jpeg?height=600&width=1200",
+    type: "Movie",
+    releaseDate: "June 27, 2025",
+    slug: "f1-the-movie",
+    trailerUrl: "https://youtu.be/8yh9BPUBbbQ?si=8l-0LrSlZL6hB4L1"
   },
   {
     id: 6,
@@ -449,7 +449,7 @@ export default function FeaturedContentCarousel() {
       <Button
         variant="outline"
         size="sm"
-        className="absolute top-4 left-12 z-50 bg-black/50 hover:bg-black/70 text-white border-white/30 text-xs px-3 py-1 h-8"
+        className="absolute top-4 left-4 z-50 bg-black/50 hover:bg-black/70 text-white border-white/30 text-xs px-3 py-1 h-8"
         onClick={toggleCarouselMode}
       >
         <Layers className="h-4 w-4" />
@@ -494,9 +494,8 @@ export default function FeaturedContentCarousel() {
           </div>
 
           <div
-            className={`relative h-full container flex flex-col justify-end md:justify-end items-center md:items-start text-center md:text-left pb-16 transition-opacity duration-200 ${
-              isFading ? "opacity-0" : "opacity-100"
-            }`}
+            className={`relative h-full container flex flex-col justify-end md:justify-end items-center md:items-start text-center md:text-left pb-16 transition-opacity duration-200 ${isFading ? "opacity-0" : "opacity-100"
+              }`}
           >
             <div className="max-w-3xl space-y-4 flex flex-col items-center md:items-start">
               <div className="relative w-fit max-w-[80vw]">
@@ -553,9 +552,8 @@ export default function FeaturedContentCarousel() {
                 <button
                   key={item.id}
                   onClick={() => handleBannerChange(item.id - 1)}
-                  className={`w-3 h-3 rounded-full ${
-                    item.id - 1 === currentIndex ? "bg-white" : "bg-gray-600"
-                  }`}
+                  className={`w-3 h-3 rounded-full ${item.id - 1 === currentIndex ? "bg-white" : "bg-gray-600"
+                    }`}
                   aria-label={`View ${item.title} featured content`}
                 />
               ))}
@@ -570,11 +568,10 @@ export default function FeaturedContentCarousel() {
                 <button
                   key={item.id}
                   onClick={() => handleBannerChange(index)}
-                  className={`relative group transition-all duration-200 flex-shrink-0 ${
-                    index === currentIndex
+                  className={`relative group transition-all duration-200 flex-shrink-0 ${index === currentIndex
                       ? "ring-2 ring-white scale-105"
                       : "hover:scale-105 hover:ring-1 hover:ring-white/50"
-                  }`}
+                    }`}
                   style={{ width: "5rem", height: "3.5rem" }}
                 >
                   <div className="relative w-full h-full rounded overflow-hidden">
@@ -686,7 +683,7 @@ export default function FeaturedContentCarousel() {
                     <PlayCircle className="mr-1 h-4 w-4" />
                     Watch Trailer
                   </Button>
-                    <Link href={`/${featured.type.toLowerCase()}/${featured.slug}`} passHref>
+                  <Link href={`/${featured.type.toLowerCase()}/${featured.slug}`} passHref>
                     <Button
                       variant="outline"
                       className="border-white/30 text-white hover:bg-white/20 px-8 py-2 rounded-full backdrop-blur-md transition-all duration-200 font-medium text-sm flex items-center gap-2 min-w-[140px]"
@@ -695,7 +692,7 @@ export default function FeaturedContentCarousel() {
                       <Info className="h-5 w-5 mr-2" />
                       <span>More Info</span>
                     </Button>
-                    </Link>
+                  </Link>
                 </div>
               </div>
             </header>

@@ -95,20 +95,6 @@ export default function UpcomingPage() {
       status: "upcoming" as const,
     },
     {
-      title: "Panchayat",
-      type: "Series",
-      image: "/series/panc.jpeg?height=450&width=300",
-      releaseDate: "Jun 24, 2025",
-      status: "upcoming" as const,
-    },
-    {
-      title: "Squid Game",
-      type: "Series",
-      image: "/series/sq.jpeg?height=450&width=300",
-      releaseDate: "Jun 27, 2025",
-      status: "upcoming" as const,
-    },
-    {
       title: "Wednesday",
       type: "Series",
       image: "/series/wenc.jpeg?height=450&width=300",
@@ -127,13 +113,6 @@ export default function UpcomingPage() {
       type: "Series",
       image: "/series/wi.jpeg?height=450&width=300",
       releaseDate: "Late 2025",
-      status: "upcoming" as const,
-    },
-    {
-      title: "Ironheart",
-      type: "Series",
-      image: "/series/ir.jpeg?height=450&width=300",
-      releaseDate: "Jun 24, 2025",
       status: "upcoming" as const,
     },
     {
