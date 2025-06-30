@@ -110,7 +110,7 @@ export default function Loading({ onComplete }: { onComplete: () => void }) {
       {/* Bottom branding */}
       <div className="absolute bottom-8 text-center">
         <p className="text-gray-500 text-xs font-light tracking-widest">
-          POWERED BY CINEVERSE TECHNOLOGY
+          POWERED BY PRIYANK PATEL
         </p>
       </div>
 
