@@ -9,7 +9,7 @@ export default function Loading({ onComplete }: { onComplete: () => void }) {
   const [displayedText, setDisplayedText] = useState("")
   const [currentPhase, setCurrentPhase] = useState(0)
 
-  const fullText = "CineVerse 2025"
+  const fullText = "CineVerse Hub"
   const tagline = "Your Movie & WebSeries Planner"
   const phases = [
     "Initializing streaming engine...",

@@ -512,10 +512,13 @@ export default function CineVerse() {
     <div className="flex flex-col min-h-screen bg-black text-white">
       <header className="sticky top-0 z-50 w-full border-b border-gray-800 bg-black/95 backdrop-blur supports-[backdrop-filter]:bg-black/60">
         <div className="container flex h-16 items-center justify-between">
-          <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2">
             <Film className="h-6 w-6 text-primary" />
-            <span className="text-xl font-bold">CineVerse 2025</span>
-          </div>
+            <span className="text-xl font-bold">
+              CineVers
+                <span className="text-[#6325c3]">e Hub</span>
+            </span>
+            </div>
           <nav className="hidden md:flex items-center gap-8">
             <Link href="/" className="text-base font-medium text-white">Home</Link>
             <Link href="/released" className="text-base font-medium text-gray-400 transition-colors hover:text-white">Released</Link>

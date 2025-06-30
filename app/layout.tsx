@@ -4,7 +4,7 @@ import { ThemeProvider } from "@/components/theme-provider"
 import { Film, Instagram, Twitter, Github, Linkedin } from "lucide-react"
 
 export const metadata = {
-  title: "CineVerse 2025",
+  title: "CineVerse Hub",
   description: "Discover the latest movies and web series of 2025",
   icons: {
     icon: "/cv-logo.png",
@@ -30,10 +30,13 @@ export default function RootLayout({
             <div className="container flex flex-col md:flex-row justify-between items-center gap-4">
               <div className="flex items-center gap-2">
                 <Film className="h-5 w-5 text-primary" />
-                <span className="font-semibold">CineVerse 2025</span>
+                <span className="font-semibold">
+                  CineVers
+                  <span className="text-primary">e Hub</span>
+                </span>
               </div>
               <div className="text-xs sm:text-sm text-gray-400">
-                © {new Date().getFullYear()} CineVerse. All rights reserved.
+                © {new Date().getFullYear()} CineVerse Hub. All rights reserved.
               </div>
               <div className="flex gap-4 sm:gap-6">
                 <a href="#" className="text-gray-400 hover:text-white transition-colors">
