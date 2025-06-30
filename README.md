@@ -1,6 +1,6 @@
 # 🎬 Cineverse Hub – Your Ultimate Movie & Series Planner for 2025!
 
-Welcome to **Cineverse Hub**, a smart and modern movie and series recommender tailored for Indian and global cinema fans. Originally inspired as a clone, Cineverse hub has evolved into a unique **OTT-style platform** designed to help you plan your 2025 watchlist with ease.
+Welcome to **Cineverse Hub**, a smart and modern movie and series recommender tailored for Indian and global cinema fans. Originally inspired as a clone, Cineverse Hub has evolved into a unique **OTT-style platform** designed to help you plan your 2025 watchlist with ease.
 
 🔗 **Try Cineverse Hub Now:** [https://cineverse-p.netlify.app/](https://cineverse-p.netlify.app/)
 
@@ -38,7 +38,7 @@ Welcome to **Cineverse Hub**, a smart and modern movie and series recommender ta
 ## 🔗 Get Started
 
 👉 **Visit Cineverse Hub**: [https://cineverse-p.netlify.app/](https://cineverse-p.netlify.app/)  
-💬 **Feedback Welcome**: Help us grow – your input makes Cineverse better!
+💬 **Feedback Welcome**: Help us grow – your input makes Cineverse Hub better!
 
 ---
 
