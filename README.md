@@ -1,8 +1,8 @@
-# 🎬 Cineverse – Your Ultimate Movie & Series Planner for 2025!
+# 🎬 Cineverse Hub – Your Ultimate Movie & Series Planner for 2025!
 
-Welcome to **Cineverse**, a smart and modern movie and series recommender tailored for Indian and global cinema fans. Originally inspired as a clone, Cineverse has evolved into a unique **OTT-style platform** designed to help you plan your 2025 watchlist with ease.
+Welcome to **Cineverse Hub**, a smart and modern movie and series recommender tailored for Indian and global cinema fans. Originally inspired as a clone, Cineverse hub has evolved into a unique **OTT-style platform** designed to help you plan your 2025 watchlist with ease.
 
-🔗 **Try Cineverse Now:** [https://cineverse-p.netlify.app/](https://cineverse-p.netlify.app/)
+🔗 **Try Cineverse Hub Now:** [https://cineverse-p.netlify.app/](https://cineverse-p.netlify.app/)
 
 ---
 
@@ -29,18 +29,18 @@ Welcome to **Cineverse**, a smart and modern movie and series recommender tailor
   
 ---
 
-## 🚀 Why Cineverse?
+## 🚀 Why Cineverse Hub?
 
-> Whether you're planning your weekend binge or curating a year-long list, Cineverse provides a seamless and stylish way to explore your favorite genres, languages, and cinematic trends — all focused on 2025!
+> Whether you're planning your weekend binge or curating a year-long list, Cineverse Hub provides a seamless and stylish way to explore your favorite genres, languages, and cinematic trends — all focused on 2025!
 
 ---
 
 ## 🔗 Get Started
 
-👉 **Visit Cineverse**: [https://cineverse-p.netlify.app/](https://cineverse-p.netlify.app/)  
+👉 **Visit Cineverse Hub**: [https://cineverse-p.netlify.app/](https://cineverse-p.netlify.app/)  
 💬 **Feedback Welcome**: Help us grow – your input makes Cineverse better!
 
 ---
 
-**Happy watching, and let’s make 2025 a cinematic adventure with Cineverse! 🎥**
+**Happy watching, and let’s make 2025 a cinematic adventure with Cineverse Hub! 🎥**
 
