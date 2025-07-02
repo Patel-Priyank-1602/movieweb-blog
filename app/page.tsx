@@ -534,6 +534,7 @@ export default function CineVerse() {
                       { name: "Netflix", icon: "netflix", link: "https://www.netflix.com/" },
                       { name: "Prime Video", icon: "primev", link: "https://www.primevideo.com/" },
                       { name: "Apple TV+", icon: "appletv", link: "https://tv.apple.com/" },
+                      { name: "SonyLiv", icon: "sonyliv", link: "https://www.sonyliv.com/" },
                     ].map((app) => (
                       <a
                         key={app.name}
