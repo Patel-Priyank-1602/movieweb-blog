@@ -512,13 +512,49 @@ export default function CineVerse() {
     <div className="flex flex-col min-h-screen bg-black text-white">
       <header className="sticky top-0 z-50 w-full border-b border-gray-800 bg-black/95 backdrop-blur supports-[backdrop-filter]:bg-black/60">
         <div className="container flex h-16 items-center justify-between">
-            <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2">
             <Film className="h-6 w-6 text-primary" />
-            <span className="text-xl font-bold">
-              CineVers
-                <span className="text-[#6325c3]">e Hub</span>
-            </span>
+            <div className="relative group z-[9999]">
+              {/* Brand Name */}
+              <span className="text-xl font-bold cursor-pointer select-none">
+                CineVers<span className="text-[#6325c3]">e Hub</span>
+              </span>
+
+              {/* Sidebar OTT Menu - Slides from Left, Always on Top */}
+              <div
+                className="fixed top-0 left-0 h-screen w-72 bg-gradient-to-b from-[#18181b] to-[#0a0a0a] border-r border-gray-700 shadow-2xl transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300 z-[9999] overflow-y-auto"
+              >
+                <div className="py-6 px-4">
+                    <span className="text-gray-400 text-base uppercase tracking-wider mb-4 block font-semibold">
+                    OTT Apps
+                    </span>
+                  <div className="flex flex-col gap-2">
+                    {[
+                      { name: "JioHotstar", icon: "jioh", link: "https://www.jiohotstar.com/" },
+                      { name: "Netflix", icon: "netflix", link: "https://www.netflix.com/" },
+                      { name: "Prime Video", icon: "primev", link: "https://www.primevideo.com/" },
+                      { name: "Apple TV+", icon: "appletv", link: "https://tv.apple.com/" },
+                    ].map((app) => (
+                      <a
+                        key={app.name}
+                        href={app.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-3 px-3 py-2 rounded hover:bg-gray-800 transition-colors"
+                      >
+                        <img
+                          src={`/icons/${app.icon}.png`}
+                          alt={app.name}
+                          className="w-7 h-7 object-contain"
+                        />
+                        <span className="text-white">{app.name}</span>
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              </div>
             </div>
+          </div>
           <nav className="hidden md:flex items-center gap-8">
             <Link href="/" className="text-base font-medium text-white">Home</Link>
             <Link href="/released" className="text-base font-medium text-gray-400 transition-colors hover:text-white">Released</Link>

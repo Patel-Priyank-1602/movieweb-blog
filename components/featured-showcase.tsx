@@ -449,13 +449,12 @@ export default function FeaturedContentCarousel() {
       <Button
         variant="outline"
         size="sm"
-        className="absolute top-4 left-4 z-50 bg-black/50 hover:bg-black/70 text-white border-white/30 text-xs px-3 py-1 h-8"
+        className="absolute top-4 left-4 z-[25] bg-black/50 hover:bg-black/70 text-white border-white/30 text-xs px-3 py-1 h-8 flex items-center gap-1"
         onClick={toggleCarouselMode}
       >
         <Layers className="h-4 w-4" />
         {carouselMode === "showcase" ? "" : ""}
       </Button>
-
       {carouselMode === "showcase" ? (
         <div className="relative w-full h-[85vh] overflow-hidden" ref={containerRef}>
           <div className="absolute inset-0">
@@ -569,8 +568,8 @@ export default function FeaturedContentCarousel() {
                   key={item.id}
                   onClick={() => handleBannerChange(index)}
                   className={`relative group transition-all duration-200 flex-shrink-0 ${index === currentIndex
-                      ? "ring-2 ring-white scale-105"
-                      : "hover:scale-105 hover:ring-1 hover:ring-white/50"
+                    ? "ring-2 ring-white scale-105"
+                    : "hover:scale-105 hover:ring-1 hover:ring-white/50"
                     }`}
                   style={{ width: "5rem", height: "3.5rem" }}
                 >
