@@ -525,9 +525,9 @@ export default function CineVerse() {
                 className="fixed top-0 left-0 h-screen w-72 bg-gradient-to-b from-[#18181b] to-[#0a0a0a] border-r border-gray-700 shadow-2xl transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300 z-[9999] overflow-y-auto"
               >
                 <div className="py-6 px-4">
-                    <span className="text-gray-400 text-base uppercase tracking-wider mb-4 block font-semibold">
+                  <span className="text-gray-400 text-base uppercase tracking-wider mb-4 block font-semibold">
                     OTT Apps
-                    </span>
+                  </span>
                   <div className="flex flex-col gap-2">
                     {[
                       { name: "JioHotstar", icon: "jioh", link: "https://www.jiohotstar.com/" },
@@ -561,7 +561,9 @@ export default function CineVerse() {
             <Link href="/released" className="text-base font-medium text-gray-400 transition-colors hover:text-white">Released</Link>
             <Link href="/upcoming" className="text-base font-medium text-gray-400 transition-colors hover:text-white">Upcoming</Link>
             <Link href="/search" className="text-base font-medium text-gray-400 transition-colors hover:text-white">Search</Link>
-            <Link href="https://patel-priyank-1602.github.io/contactcvr/" className="text-base font-medium text-gray-400 transition-colors hover:text-white">Contact Us</Link>
+            <Link href="/about" className="text-base font-medium text-gray-400 transition-colors hover:text-white">
+              About Me
+            </Link>
             <Button
               variant="outline"
               className="text-blue-400 border-blue-600 hover:bg-blue-600/20"
@@ -598,7 +600,9 @@ export default function CineVerse() {
           <Link href="/released" className="text-base font-medium text-gray-400 hover:text-white" onClick={toggleMenu}>Released</Link>
           <Link href="/upcoming" className="text-base font-medium text-gray-400 hover:text-white" onClick={toggleMenu}>Upcoming</Link>
           <Link href="/search" className="text-base font-medium text-gray-400 hover:text-white" onClick={toggleMenu}>Search</Link>
-          <Link href="https://patel-priyank-1602.github.io/contactcvr/" className="text-base font-medium text-gray-400 hover:text-white" onClick={toggleMenu}>Contact Us</Link>
+          <Link href="/about" className="text-base font-medium text-gray-400 hover:text-white">
+            About me
+          </Link>
           <Button
             variant="outline"
             className="text-blue-400 border-blue-600 hover:bg-blue-600/20 w-fit"
