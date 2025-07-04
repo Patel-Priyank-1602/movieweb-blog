@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { ArrowLeft, Film, Code, Github, Linkedin, Mail, MapPin, Coffee, Heart, Zap, Instagram, Twitter, Contact } from "lucide-react"
+import { ArrowLeft, Film, Code, Github, Linkedin, Mail, Instagram, Twitter, Contact, Laptop } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -80,6 +80,31 @@ export default function AboutPage() {
                             <span className="sr-only">Email</span>
                         </a>
                         <a
+                            href="https://www.linkedin.com/in/patel-priyank-945131288/"
+                            className="text-gray-400 hover:text-white transition-colors"
+                            target="_blank" rel="noopener noreferrer"
+                        >
+                            <Linkedin className="h-8 w-8 sm:h-10 sm:w-10" />
+                            <span className="sr-only">LinkedIn</span>
+                        </a>
+                        <a
+                            href="https://github.com/Patel-Priyank-1602"
+                            className="text-gray-400 hover:text-white transition-colors"
+                            target="_blank" rel="noopener noreferrer"
+                        >
+                            <Github className="h-8 w-8 sm:h-10 sm:w-10" />
+                            <span className="sr-only">GitHub</span>
+                        </a>
+                        <a
+                            href="https://priyank-patel-d.netlify.app/"
+                            className="text-gray-400 hover:text-white transition-colors"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            <Laptop className="h-8 w-8 sm:h-10 sm:w-10" />
+                            <span className="sr-only">Portfolio</span>
+                        </a>
+                        <a
                             href="https://www.instagram.com/patelpriyank.d/"
                             className="text-gray-400 hover:text-white transition-colors"
                             target="_blank" rel="noopener noreferrer"
@@ -94,22 +119,6 @@ export default function AboutPage() {
                         >
                             <Twitter className="h-8 w-8 sm:h-10 sm:w-10" />
                             <span className="sr-only">Twitter</span>
-                        </a>
-                        <a
-                            href="https://github.com/Patel-Priyank-1602"
-                            className="text-gray-400 hover:text-white transition-colors"
-                            target="_blank" rel="noopener noreferrer"
-                        >
-                            <Github className="h-8 w-8 sm:h-10 sm:w-10" />
-                            <span className="sr-only">GitHub</span>
-                        </a>
-                        <a
-                            href="https://www.linkedin.com/in/patel-priyank-945131288/"
-                            className="text-gray-400 hover:text-white transition-colors"
-                            target="_blank" rel="noopener noreferrer"
-                        >
-                            <Linkedin className="h-8 w-8 sm:h-10 sm:w-10" />
-                            <span className="sr-only">LinkedIn</span>
                         </a>
                     </div>
                 </div>
