@@ -143,7 +143,7 @@ export default function SearchPage() {
       title: "Kesari: Chapter 2",
       type: "Movie",
       image: "/series/kc.jpeg?height=450&width=300",
-      rating: 4.0,
+      rating: 4.1,
       releaseDate: "Apr 18, 2025",
       status: "released" as const,
     },
