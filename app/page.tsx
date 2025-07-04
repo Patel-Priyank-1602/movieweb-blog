@@ -130,17 +130,45 @@ const arrivedMovies: ContentItem[] = [
     status: "released",
     slug: "minecraft-the-movie"
   },
-];
-
-const upcomingMovies: ContentItem[] = [
+  {
+    title: "Kesari: Chapter 2",
+    type: "Movie",
+    image: "/series/kc.jpeg?height=450&width=300",
+    rating: 4.0,
+    releaseDate: "Apr 18, 2025",
+    status: "released",
+    slug: "kesari-chapter-2"
+  },
+  {
+    title: "Dragon",
+    type: "Movie",
+    image: "/series/dr.jpeg?height=450&width=300",
+    rating: 4.1,
+    releaseDate: "Feb 21, 2025",
+    status: "released",
+    slug: "dragon"
+  },
   {
     title: "Jurassic World: Rebirth",
     type: "Movie",
     image: "/series/ju.jpeg?height=450&width=300",
-    releaseDate: "July 4, 2025",
-    status: "upcoming",
+    rating: 4.3,
+    releaseDate: "Jul 4, 2025",
+    status: "released",
     slug: "jurassic-world-rebirth"
   },
+  {
+    title: "Eleven",
+    type: "Movie",
+    image: "/series/ele.jpeg?height=450&width=300",
+    rating: 3.9,
+    releaseDate: "May 16, 2025",
+    status: "released",
+    slug: "eleven"
+  },
+];
+
+const upcomingMovies: ContentItem[] = [
   {
     title: "Superman",
     type: "Movie",
@@ -281,6 +309,24 @@ const arrivedSeries: ContentItem[] = [
     status: "released",
     slug: "ironheart"
   },
+  {
+    title: "Criminal Justice",
+    type: "Series",
+    image: "/series/cr.jpeg?height=450&width=300",
+    rating: 4.2,
+    releaseDate: "May 29, 2025",
+    status: "released" as const,
+    slug: "criminal-justice"
+  },
+  {
+    title: "The Sandman",
+    type: "Series",
+    image: "/series/sad.jpeg?height=450&width=300",
+    rating: 4.1,
+    releaseDate: "July 3, 2025",
+    status: "released",
+    slug: "the-sandman"
+  },
 ];
 
 const upcomingSeries: ContentItem[] = [
@@ -288,7 +334,7 @@ const upcomingSeries: ContentItem[] = [
     title: "Stranger Things",
     type: "Series",
     image: "/series/stc.jpeg?height=450&width=300",
-    releaseDate: "Oct - Nov, 2025",
+    releaseDate: "Nov 26, 2025",
     status: "upcoming",
     slug: "stranger-things"
   },
@@ -323,14 +369,6 @@ const upcomingSeries: ContentItem[] = [
     releaseDate: "Late 2025",
     status: "upcoming",
     slug: "the-witcher"
-  },
-  {
-    title: "The Sandman",
-    type: "Series",
-    image: "/series/sad.jpeg?height=450&width=300",
-    releaseDate: "July 3, 2025",
-    status: "upcoming",
-    slug: "the-sandman"
   },
 ];
 
@@ -788,7 +826,7 @@ export default function CineVerse() {
         <section className="py-12 bg-black">
           <div className="container px-2 sm:px-4">
             <div className="text-center space-y-4 max-w-3xl mx-auto mb-12">
-              <h2 className="text-3xl font-bold">The Last Update on this Website was on 29/6/2025</h2>
+              <h2 className="text-3xl font-bold">The Last Update on this Website was on 4/7/2025</h2>
               <p className="text-gray-400">For some Movies/Series, the official trailer is not Available, but only a Teaser has been released. In some cases, neither a Teaser nor a Trailer is Available — only a Date Announcement Video is Provided.</p>
             </div>
           </div>

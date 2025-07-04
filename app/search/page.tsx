@@ -139,14 +139,39 @@ export default function SearchPage() {
       releaseDate: "Apr 4, 2025",
       status: "released" as const,
     },
-    // Movies - Upcoming
+    {
+      title: "Kesari: Chapter 2",
+      type: "Movie",
+      image: "/series/kc.jpeg?height=450&width=300",
+      rating: 4.0,
+      releaseDate: "Apr 18, 2025",
+      status: "released" as const,
+    },
+    {
+      title: "Dragon",
+      type: "Movie",
+      image: "/series/dr.jpeg?height=450&width=300",
+      rating: 4.1,
+      releaseDate: "Feb 21, 2025",
+      status: "released" as const,
+    },
     {
       title: "Jurassic World: Rebirth",
       type: "Movie",
       image: "/series/ju.jpeg?height=450&width=300",
+      rating: 4.3,
       releaseDate: "Jul 4, 2025",
-      status: "upcoming" as const,
+      status: "released" as const,
     },
+    {
+      title: "Eleven",
+      type: "Movie",
+      image: "/series/ele.jpeg?height=450&width=300",
+      rating: 3.9,
+      releaseDate: "May 16, 2025",
+      status: "released" as const,
+    },
+    // Movies - Upcoming
     {
       title: "Superman",
       type: "Movie",
@@ -269,12 +294,28 @@ export default function SearchPage() {
       releaseDate: "Jun 24, 2025",
       status: "released" as const,
     },
+    {
+      title: "Criminal Justice",
+      type: "Series",
+      image: "/series/cr.jpeg?height=450&width=300",
+      rating: 4.2,
+      releaseDate: "May 29, 2025",
+      status: "released" as const,
+    },
+    {
+      title: "The Sandman",
+      type: "Series",
+      image: "/series/sad.jpeg?height=450&width=300",
+      rating: 4.1,
+      releaseDate: "Jul 3, 2025",
+      status: "released" as const,
+    },
     // Series - Upcoming
     {
       title: "Stranger Things",
       type: "Series",
       image: "/series/stc.jpeg?height=450&width=300",
-      releaseDate: "Oct - Nov, 2025",
+      releaseDate: "Nov 26, 2025",
       status: "upcoming" as const,
     },
     {
@@ -303,13 +344,6 @@ export default function SearchPage() {
       type: "Series",
       image: "/series/wi.jpeg?height=450&width=300",
       releaseDate: "Late 2025",
-      status: "upcoming" as const,
-    },
-    {
-      title: "The Sandman",
-      type: "Series",
-      image: "/series/sad.jpeg?height=450&width=300",
-      releaseDate: "Jul 3, 2025",
       status: "upcoming" as const,
     },
   ]

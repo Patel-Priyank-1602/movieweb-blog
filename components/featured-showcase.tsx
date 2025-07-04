@@ -27,7 +27,7 @@ const FEATURED_CONTENT: FeaturedContent[] = [
     description: "The fifth and final season of the beloved sci-fi series brings the story of Hawkins to an epic conclusion as the friends face their greatest challenge yet against the forces of the Upside Down.",
     image: "/series/sttt.jpeg?height=600&width=1200",
     type: "Series",
-    releaseDate: "October - November, 2025",
+    releaseDate: "November 26, 2025",
     slug: "stranger-things",
     trailerUrl: "https://youtu.be/QlYrNC_1Xmk?si=Ps2bq-3gXZsncNCr",
   },

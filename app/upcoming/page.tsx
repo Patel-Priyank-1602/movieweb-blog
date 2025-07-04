@@ -22,13 +22,6 @@ export default function UpcomingPage() {
 
   const upcomingMovies = [
     {
-      title: "Jurassic World: Rebirth",
-      type: "Movie",
-      image: "/series/ju.jpeg?height=450&width=300",
-      releaseDate: "Jul 4, 2025",
-      status: "upcoming" as const,
-    },
-    {
       title: "Superman",
       type: "Movie",
       image: "/series/suc.jpeg?height=450&width=300",
@@ -84,7 +77,7 @@ export default function UpcomingPage() {
       title: "Stranger Things",
       type: "Series",
       image: "/series/stc.jpeg?height=450&width=300",
-      releaseDate: "Oct - Nov, 2025",
+      releaseDate: "Nov 26, 2025",
       status: "upcoming" as const,
     },
     {
@@ -113,13 +106,6 @@ export default function UpcomingPage() {
       type: "Series",
       image: "/series/wi.jpeg?height=450&width=300",
       releaseDate: "Late 2025",
-      status: "upcoming" as const,
-    },
-    {
-      title: "The Sandman",
-      type: "Series",
-      image: "/series/sad.jpeg?height=450&width=300",
-      releaseDate: "Jul 3, 2025",
       status: "upcoming" as const,
     },
   ]
