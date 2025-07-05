@@ -828,6 +828,7 @@ export default function CineVerse() {
             <div className="text-center space-y-4 max-w-3xl mx-auto mb-12">
               <h2 className="text-3xl font-bold">The Last Update on this Website was on 4/7/2025</h2>
               <p className="text-gray-400">For some Movies/Series, the official trailer is not Available, but only a Teaser has been released. In some cases, neither a Teaser nor a Trailer is Available — only a Date Announcement Video is Provided.</p>
+              <p className="text-gray-600">The Rating out of 5 is Provided by the Developer.</p>
             </div>
           </div>
         </section>
