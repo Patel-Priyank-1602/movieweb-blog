@@ -77,11 +77,14 @@ export default function MovieDetailsPage({ params }: MovieDetailsProps) {
       {/* Full-screen background image */}
       <div className="fixed inset-0 z-0">
         <Image
-          src={movieData.posterImage || "/placeholder.svg?height=450&width=300"}
-          alt={movieData.title}
+          src={movieData?.posterImage || "/placeholder.svg"}
+          alt={movieData?.title || "Poster"}
           fill
           className="object-cover opacity-20 blur-sm"
-          priority
+          loading="lazy"
+          placeholder="blur"
+          blurDataURL="/blur.svg"
+          priority={false}
         />
         <div className="absolute inset-0 bg-black/70" />
       </div>
@@ -89,11 +92,14 @@ export default function MovieDetailsPage({ params }: MovieDetailsProps) {
       <div className="relative z-10">
         <div className="relative h-[50vh] md:h-[60vh] w-full">
           <Image
-            src={movieData.coverImage || "/placeholder.svg?height=600&width=1200"}
-            alt={movieData.title}
+            src={movieData?.coverImage || "/placeholder.svg"}
+            alt={movieData?.title || "Cover Image"}
             fill
             className="object-cover"
-            priority
+            loading="lazy"
+            placeholder="blur"
+            blurDataURL="/blur-cover.svg"
+            priority={false}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-transparent" />
 
@@ -112,10 +118,13 @@ export default function MovieDetailsPage({ params }: MovieDetailsProps) {
             <div className="w-full md:w-1/3 lg:w-1/4">
               <div className="relative aspect-[2/3] rounded-lg overflow-hidden shadow-xl">
                 <Image
-                  src={movieData.posterImage || "/placeholder.svg?height=450&width=300"}
-                  alt={movieData.title}
+                  src={movieData?.posterImage || "/placeholder.svg"}
+                  alt={movieData?.title || "Poster"}
                   fill
                   className="object-cover"
+                  loading="lazy"
+                  placeholder="blur"
+                  blurDataURL="/blur-poster.svg"
                 />
               </div>
 
@@ -455,7 +464,7 @@ function getMovieData(slug: string, status: string) {
       genre: "Romance/Drama",
       description:
         "A brilliant engineering student spirals into chaos after heartbreak and reinvents himself as 'Dragon'—a street-smart hustler navigating lies, love, and identity in corporate Chennai. The film balances emotion, humor, and redemption in a youth-centric narrative.",
-      trailerUrl: "https://youtu.be/1ONb0CBbgPQ?si=xiZDXjoxkH1bYH_8",  
+      trailerUrl: "https://youtu.be/1ONb0CBbgPQ?si=xiZDXjoxkH1bYH_8",
       status: status === "released" ? "released" : "released"
     },
     "jurassic-world-rebirth": {
@@ -487,7 +496,7 @@ function getMovieData(slug: string, status: string) {
       genre: "Crime/Thriller/Mystery",
       description:
         "An honest and intelligent officer, ACP Aravindan IPS, is assigned to crack a chilling serial killing case that spans multiple cities. As the clues get darker and the killer more ruthless, Aravindan must rely on instinct, intellect, and integrity to uncover the shocking truth.",
-      trailerUrl: "https://youtu.be/wGvaO0_pWtA?si=hrPlD6wkRc7JbQzx",  
+      trailerUrl: "https://youtu.be/wGvaO0_pWtA?si=hrPlD6wkRc7JbQzx",
       status: status === "released" ? "released" : "released"
     },
     // Movies - Upcoming

@@ -480,11 +480,12 @@ export default function FeaturedContentCarousel() {
             ) : (
               <>
                 <Image
-                  src={featured.image}
+                  src={featured.image || "/placeholder-image.jpg"}
                   alt={`${featured.title} background`}
                   fill
                   className={`object-cover transition-opacity duration-500 ${isFading ? "opacity-0" : "opacity-100"}`}
                   priority={currentIndex === 0}
+                  loading={currentIndex === 0 ? "eager" : "lazy"}
                   sizes="100vw"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent" />
@@ -499,13 +500,14 @@ export default function FeaturedContentCarousel() {
             <div className="max-w-3xl space-y-4 flex flex-col items-center md:items-start">
               <div className="relative w-fit max-w-[80vw]">
                 <Image
-                  src={featured.nameImage}
+                  src={featured.nameImage || "/placeholder-logo.png"}
                   alt={`${featured.title} logo`}
                   width={400}
                   height={120}
                   className="h-16 sm:h-20 md:h-24 lg:h-28 xl:h-32 w-auto object-contain"
                   style={{ filter: "drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5))" }}
                   priority={currentIndex === 0}
+                  loading={currentIndex === 0 ? "eager" : "lazy"}
                 />
               </div>
 
@@ -575,11 +577,12 @@ export default function FeaturedContentCarousel() {
                 >
                   <div className="relative w-full h-full rounded overflow-hidden">
                     <Image
-                      src={item.image}
+                      src={item.image || "/placeholder-image.jpg"}
                       alt={item.title}
                       fill
                       className="object-cover"
                       sizes="80px"
+                      loading="lazy"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                   </div>
@@ -627,11 +630,12 @@ export default function FeaturedContentCarousel() {
         <div className="relative w-full min-h-[90vh] bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 overflow-hidden select-none">
           <div className="absolute inset-0 transition-all duration-1000">
             <img
-              src={featured.image}
+              src={featured.image || "/placeholder-image.jpg"}
               alt={featured.title}
+              loading="lazy"
               className="w-full h-full object-cover opacity-12 blur-sm scale-110"
               onError={(e) => {
-                (e.target as HTMLImageElement).style.display = "none";
+                (e.target as HTMLImageElement).src = "/placeholder-image.jpg"
               }}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-black/10" />
@@ -645,6 +649,7 @@ export default function FeaturedContentCarousel() {
                   <img
                     src={featured.nameImage}
                     alt={featured.title}
+                    loading="lazy"
                     className="h-12 sm:h-14 md:h-16 lg:h-20 w-auto mx-auto drop-shadow-2xl transition-all duration-700 max-w-full"
                     onError={(e) => {
                       const img = e.target as HTMLImageElement;
@@ -732,10 +737,11 @@ export default function FeaturedContentCarousel() {
                               <img
                                 src={item.image}
                                 alt={item.title}
+                                loading="lazy"
                                 className="w-full h-3/4 object-cover transition-transform duration-500 group-hover:scale-105"
                                 onError={(e) => {
                                   (e.target as HTMLImageElement).src =
-                                    "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjQwMCIgdmlld0JveD0iMCAwIDMwMCA0MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjMzc0MTUxIi8+Cjx0ZXh0IHg9IjE1MCIgeT0iMjAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjOUNBM0FGIiBmb250LXNpemU9IjE2Ij5JbWFnZSBOb3QgRm91bmQ8L3RleHQ+Cjwvc3ZnPgo=";
+                                    "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjQwMCIgdmlld0JveD0iMCAwIDMwMCA0MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjMzc0MTUxIi8+Cjx0ZXh0IHg9IjE1MCIgeT0iMjAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjOUNBM0FGIiBmb250LXNpemU9IjE2Ij5JbWFnZSBOb3QgRm91bmQ8L3RleHQ+Cjwvc3ZnPg==";
                                 }}
                               />
                               <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />

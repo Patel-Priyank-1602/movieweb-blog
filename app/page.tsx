@@ -486,11 +486,11 @@ function TopMovieCard({ title, type, image, rating, releaseDate, status, rank, s
 
       <div className="aspect-[2/3] overflow-hidden relative">
         <img
-          src={image}
+          src={image || "/placeholder-image.jpg"}
           alt={title}
+          loading="lazy"
           className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
         />
-
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
 
         <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-4 group-hover:translate-y-0">
@@ -584,6 +584,7 @@ export default function CineVerse() {
                         <img
                           src={`/icons/${app.icon}.png`}
                           alt={app.name}
+                          loading="lazy"
                           className="w-7 h-7 object-contain"
                         />
                         <span className="text-white">{app.name}</span>
@@ -743,11 +744,13 @@ export default function CineVerse() {
                     <MovieCard
                       title={movie.title}
                       type={movie.type}
-                      image={movie.image}
+                      image={movie.image || "/placeholder-image.jpg"}
                       rating={movie.rating}
                       releaseDate={movie.releaseDate}
                       status="released"
                       slug={movie.slug}
+                      loading="lazy"
+                      blurDataURL="/blur-movie.svg"
                     />
                   </div>
                 ))}
@@ -794,10 +797,12 @@ export default function CineVerse() {
                     <MovieCard
                       title={movie.title}
                       type={movie.type}
-                      image={movie.image}
+                      image={movie.image || "/placeholder-image.jpg"}
                       releaseDate={movie.releaseDate}
                       status="upcoming"
                       slug={movie.slug}
+                      loading="lazy"
+                      blurDataURL="/blur-upcoming.svg"
                     />
                   </div>
                 ))}
