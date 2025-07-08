@@ -819,7 +819,7 @@ function getMovieData(slug: string, status: string) {
       genre: "Thriller/Sci-Fi",
       description:
         "In the third season of this Japanese thriller, survivors of the deadly games must face new challenges as they uncover the truth behind the mysterious world they're trapped in. As the final stage of games begins, Arisu and his allies race to find a way back to reality before time runs out.",
-      trailerUrl: "https://youtu.be/HQtrqkKkq7E?si=K1uihqMEx55NAN0V",
+      trailerUrl: "https://youtu.be/CaWRDITtT1U?si=BRcG5ehylMkyGNy9",
       status: status === "released" ? "released" : "upcoming",
     },
     wednesday: {

@@ -49,9 +49,9 @@ const FEATURED_CONTENT: FeaturedContent[] = [
     description: "In the third season of this Japanese thriller, survivors of the deadly games must face new challenges as they uncover the truth behind the mysterious world they're trapped in.",
     image: "/series/aibbb.jpeg?height=600&width=1200",
     type: "Series",
-    releaseDate: "September, 2025",
+    releaseDate: "September 25, 2025",
     slug: "alice-in-borderland",
-    trailerUrl: "https://youtu.be/HQtrqkKkq7E?si=XsWo1rqDMw3mYIeG",
+    trailerUrl: "https://youtu.be/CaWRDITtT1U?si=BRcG5ehylMkyGNy9",
   },
   {
     id: 4,

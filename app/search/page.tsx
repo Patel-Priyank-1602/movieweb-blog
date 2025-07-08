@@ -322,7 +322,7 @@ export default function SearchPage() {
       title: "Alice in Borderland",
       type: "Series",
       image: "/series/aibb.jpeg?height=450&width=300",
-      releaseDate: "Sept, 2025",
+      releaseDate: "Sept 25, 2025",
       status: "upcoming" as const,
     },
     {
