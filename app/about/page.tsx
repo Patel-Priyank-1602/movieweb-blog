@@ -5,8 +5,24 @@ import { ArrowLeft, Film, Code, Github, Linkedin, Mail, Instagram, Twitter, Cont
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
+import Loading from "../loading"
+import { SiteFooter } from "@/components/footer"
+import { useEffect, useState } from "react"
 
 export default function AboutPage() {
+    const [isLoading, setIsLoading] = useState(true)
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setIsLoading(false)
+        }, 1500)
+        return () => clearTimeout(timer)
+    }, [])
+
+    if (isLoading) {
+        return <Loading onComplete={() => { }} />
+    }
+
     return (
         <div className="min-h-screen bg-black text-white">
             {/* Header */}
@@ -49,7 +65,7 @@ export default function AboutPage() {
                         </div>
                         <div className="text-left">
                             <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
-                                Hi, I'm the Developer
+                                Hi, I'm Priyank Patel
                             </h1>
                             <p className="text-lg text-primary font-medium">Frontend Developer</p>
                         </div>
@@ -142,12 +158,13 @@ export default function AboutPage() {
                         <Link href="https://patel-priyank-1602.github.io/contactcvr/" target="_blank" rel="noopener noreferrer">
                             <Button size="lg" variant="outline" className="gap-2 bg-transparent">
                                 <Contact className="h-5 w-5" />
-                                Contact Me
+                                Contact
                             </Button>
                         </Link>
                     </div>
                 </div>
             </section>
+            <SiteFooter /> {/* Use SiteFooter instead of Footer */}
         </div >
     )
 }

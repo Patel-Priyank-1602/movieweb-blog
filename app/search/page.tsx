@@ -8,6 +8,7 @@ import { Input } from "@/components/ui/input"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import MovieCard from "@/components/movie-card"
 import Loading from "../loading"
+import { SiteFooter } from "@/components/footer"
 
 // Utility function to parse and normalize release dates
 function parseReleaseDate(dateStr: string): Date {
@@ -473,6 +474,7 @@ export default function SearchPage() {
           </div>
         )}
       </div>
+      <SiteFooter /> {/* Use SiteFooter instead of Footer */}
     </div>
   )
 }
