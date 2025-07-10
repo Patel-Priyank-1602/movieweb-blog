@@ -835,7 +835,7 @@ function getMovieData(slug: string, status: string) {
       genre: "Fantasy/Comedy",
       description:
         "In the second season, Wednesday Addams returns to Nevermore Academy for her sophomore year, where she faces new supernatural mysteries and gothic intrigue. As she hones her psychic abilities, Wednesday uncovers dark secrets about her family's past while navigating the complexities of friendship, rivalry, and first love.",
-      trailerUrl: "https://youtu.be/uQx8jKiIDTI?si=6oxVd7Z2vtxXXBXE",
+      trailerUrl: "https://youtu.be/03u4xyj0TH4?si=20-EHsGIgv5X6DDu",
       status: status === "released" ? "released" : "upcoming",
     },
     "family-man": {

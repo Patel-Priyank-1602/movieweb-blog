@@ -5,3 +5,23 @@
   <Search className="h-6 w-6 text-gray-400 md:h-8 md:w-8" />
   <User className="h-6 w-6 text-gray-400 md:h-8 md:w-8" />
 </nav>
+
+<nav className="hidden md:flex items-center gap-8">
+            <Link href="/" className="text-base font-medium text-white">Home</Link>
+            <Link href="/released" className="text-base font-medium text-gray-400 transition-colors hover:text-white">Released</Link>
+            <Link href="/upcoming" className="text-base font-medium text-gray-400 transition-colors hover:text-white">Upcoming</Link>
+            <Link href="/search" className="text-base font-medium text-gray-400 transition-colors hover:text-white">Search</Link>
+            <Link href="/about" className="text-base font-medium text-gray-400 transition-colors hover:text-white">
+              About Me
+            </Link>
+            <Button
+              variant="outline"
+              className="text-blue-400 border-blue-600 hover:bg-blue-600/20"
+              asChild
+            >
+              <Link href="https://cvrecommendation.netlify.app/">
+                <Film className="h-4 w-4 mr-2" />
+                Get Recommendations
+              </Link>
+            </Button>
+          </nav>
