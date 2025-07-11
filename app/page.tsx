@@ -177,6 +177,15 @@ const arrivedMovies: ContentItem[] = [
     status: "released",
     slug: "superman",
   },
+  {
+    title: "Lilo & Stitch",
+    type: "Movie",
+    image: "/series/ls.jpeg?height=450&width=300",
+    rating: 4.6,
+    releaseDate: "May 23, 2025",
+    status: "released",
+    slug: "liloAndStitch"
+  },
 ]
 
 const upcomingMovies: ContentItem[] = [
@@ -757,7 +766,7 @@ export default function CineVerse() {
                   className="w-full justify-start text-gray-300 hover:text-white hover:bg-gray-800 relative"
                 >
                   <Bell className="h-4 w-4 mr-3" />
-                  Bell
+                  Updates
                 </Button>
               </Link>
               <Button
@@ -948,7 +957,7 @@ export default function CineVerse() {
           <section className="py-12 bg-black">
             <div className="container px-2 sm:px-4">
               <div className="text-center space-y-4 max-w-3xl mx-auto mb-12">
-                <h2 className="text-3xl font-bold">The Last Update on this Website was on 4/7/2025</h2>
+                <h2 className="text-3xl font-bold">The Last Update on this Website was on 11/7/2025</h2>
                 <p className="text-gray-400">
                   For some Movies/Series, the official trailer is not Available, but only a Teaser has been released. In
                   some cases, neither a Teaser nor a Trailer is Available — only a Date Announcement Video is Provided.

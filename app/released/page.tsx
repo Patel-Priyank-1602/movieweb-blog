@@ -159,6 +159,14 @@ export default function ReleasedPage() {
       releaseDate: "Jul 11, 2025",
       status: "released" as const,
     },
+    {
+      title: "Lilo & Stitch",
+      type: "Movie",
+      image: "/series/ls.jpeg?height=450&width=300",
+      rating: 4.6,
+      releaseDate: "May 23, 2025",
+      status: "released" as const,
+    },
   ]
 
   const arrivedSeries = [

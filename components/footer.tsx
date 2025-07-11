@@ -56,6 +56,11 @@ export function SiteFooter() {
               </Link>
             </li>
             <li>
+              <Link href="/notifications" className="text-muted-foreground hover:text-foreground transition-colors">
+                Updates
+              </Link>
+            </li>
+            <li>
               <Link href="/about" className="text-muted-foreground hover:text-foreground transition-colors">
                 About Developer
               </Link>

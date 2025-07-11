@@ -83,7 +83,7 @@ const notifications: Notification[] = [
     type: "new season",
     title: "Panchayat Season 4",
     message: "Panchayat Season 4 is here! Join the Phulera gang for more rural drama and comedy.",
-    movieTitle: "Avaliable on Prime Video",
+    movieTitle: "Avaliable On Prime Video",
     movieSlug: "panchayat",
     movieType: "Series",
     movieImage: "/series/pancc.jpeg?height=450&width=300",
@@ -97,7 +97,7 @@ const notifications: Notification[] = [
     type: "new season",
     title: "Squid Game Season 3",
     message: "Squid Game Season 3 is now streaming! Dive into the final chapter of this thrilling series.",
-    movieTitle: "Avaliable on Netflix",
+    movieTitle: "Avaliable On Netflix",
     movieSlug: "squid-game",
     movieType: "Series",
     movieImage: "/series/sqq.jpeg?height=450&width=300",
@@ -105,6 +105,20 @@ const notifications: Notification[] = [
     actionUrl: "/released/squid-game",
     priority: "high",
     category: "Thriller/Drama",
+  },
+  {
+    id: "notif-7",
+    type: "in theater",
+    title: "F1: The Movie",
+    message: "F1: The Movie is available in theaters! Experience the adrenaline rush of Formula 1 racing.",
+    movieTitle: "Avaliable In Theater",
+    movieSlug: "f1-the-movie",
+    movieType: "Movie",
+    movieImage: "/series/f1.jpeg?height=450&width=300",
+    isRead: false,
+    actionUrl: "/released/f1-the-movie",
+    priority: "high",
+    category: "Sports/Drama",
   },
 ]
 
@@ -134,7 +148,7 @@ export default function NotificationsPage() {
             </Link>
             <div className="flex items-center gap-2">
               <Bell className="h-5 w-5 sm:h-6 sm:w-6 text-primary" />
-              <span className="text-lg sm:text-xl font-bold">Notifications</span>
+              <span className="text-lg sm:text-xl font-bold">Updates</span>
             </div>
           </div>
         </div>
@@ -188,7 +202,7 @@ export default function NotificationsPage() {
             <div className="w-20 h-20 sm:w-24 sm:h-24 bg-gray-800 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
               <Bell className="h-10 w-10 sm:h-12 sm:w-12 text-gray-600" />
             </div>
-            <h3 className="text-lg sm:text-xl font-semibold mb-2">No notifications yet</h3>
+            <h3 className="text-lg sm:text-xl font-semibold mb-2">No Updates yet</h3>
             <p className="text-gray-400 text-sm sm:text-base max-w-xs sm:max-w-md mx-auto">
               We'll notify you when there are new releases, trailers, or updates.
             </p>

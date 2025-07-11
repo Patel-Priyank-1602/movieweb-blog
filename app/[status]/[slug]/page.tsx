@@ -499,6 +499,23 @@ function getMovieData(slug: string, status: string) {
       trailerUrl: "https://youtu.be/wGvaO0_pWtA?si=hrPlD6wkRc7JbQzx",
       status: status === "released" ? "released" : "released"
     },
+    "lilo-stitch": {
+      title: "Lilo & Stitch",
+      type: "Movie",
+      posterImage: "/series/ls.jpeg?height=450&width=300",
+      coverImage: "/series/lsc.png?height=600&width=1200",
+      releaseDate: "May 23, 2025",
+      director: "Dean Fleischer Camp",
+      productionCompany: "Walt Disney Pictures",
+      imdbRating: 6.9,
+      duration: "1h 48m",
+      genre: "Animation/Adventure/Comedy",
+      description:
+        "A young Hawaiian girl named Lilo adopts what she thinks is a dog, but it turns out to be a dangerous alien experiment named Stitch. Together, they form an unlikely bond, teaching the true meaning of family and love.",
+      trailerUrl: "https://youtu.be/VWqJifMMgZE?si=xI_2Cb98F4ES_9O7",
+      status: status === "released" ? "released" : "released"
+    },
+
     // Movies - Upcoming
     superman: {
       title: "Superman",
