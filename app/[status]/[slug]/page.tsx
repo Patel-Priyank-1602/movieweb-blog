@@ -508,13 +508,13 @@ function getMovieData(slug: string, status: string) {
       releaseDate: "July 11, 2025",
       director: "James Gunn",
       productionCompany: "DC Studios",
-      imdbRating: null,
-      duration: "2h 20m",
+      imdbRating: 7.8,
+      duration: "2h 9m",
       genre: "Superhero/Action",
       description:
         "A bold reimagining of the Superman story, focusing on a younger Clark Kent as he balances his Kryptonian heritage with his human upbringing. As he emerges as Earth's greatest protector, he faces threats both alien and human while defining what it means to be a hero in the modern world.",
       trailerUrl: "https://youtu.be/brI3gt9girI?si=01A0-x3pFRT1Rbpl",
-      status: status === "released" ? "released" : "upcoming",
+      status: status === "released" ? "released" : "released",
     },
     "fantastic-4": {
       title: "Fantastic 4",

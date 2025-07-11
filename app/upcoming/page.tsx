@@ -23,13 +23,6 @@ export default function UpcomingPage() {
 
   const upcomingMovies = [
     {
-      title: "Superman",
-      type: "Movie",
-      image: "/series/suc.jpeg?height=450&width=300",
-      releaseDate: "Jul 11, 2025",
-      status: "upcoming" as const,
-    },
-    {
       title: "Fantastic 4",
       type: "Movie",
       image: "/series/fanc.jpeg?height=450&width=300",

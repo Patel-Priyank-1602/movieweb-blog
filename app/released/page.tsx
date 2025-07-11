@@ -151,6 +151,14 @@ export default function ReleasedPage() {
       releaseDate: "May 16, 2025",
       status: "released" as const,
     },
+    {
+      title: "Superman",
+      type: "Movie",
+      image: "/series/suc.jpeg?height=450&width=300",
+      rating: 4.3,
+      releaseDate: "Jul 11, 2025",
+      status: "released" as const,
+    },
   ]
 
   const arrivedSeries = [

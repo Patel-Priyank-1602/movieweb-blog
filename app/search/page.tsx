@@ -172,14 +172,15 @@ export default function SearchPage() {
       releaseDate: "May 16, 2025",
       status: "released" as const,
     },
-    // Movies - Upcoming
     {
       title: "Superman",
       type: "Movie",
       image: "/series/suc.jpeg?height=450&width=300",
+      rating: 4.3,
       releaseDate: "Jul 11, 2025",
-      status: "upcoming" as const,
+      status: "released" as const,
     },
+    // Movies - Upcoming
     {
       title: "Fantastic 4",
       type: "Movie",

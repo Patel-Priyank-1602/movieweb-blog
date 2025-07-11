@@ -169,17 +169,17 @@ const arrivedMovies: ContentItem[] = [
     status: "released",
     slug: "eleven",
   },
-]
-
-const upcomingMovies: ContentItem[] = [
   {
     title: "Superman",
     type: "Movie",
     image: "/series/suc.jpeg?height=450&width=300",
     releaseDate: "July 11, 2025",
-    status: "upcoming",
+    status: "released",
     slug: "superman",
   },
+]
+
+const upcomingMovies: ContentItem[] = [
   {
     title: "Fantastic 4",
     type: "Movie",
@@ -404,13 +404,13 @@ const top10Content: ContentItem[] = [
     slug: "f1-the-movie",
   },
   {
-    title: "Raid 2",
+    title: "Superman",
     type: "Movie",
-    image: "/series/radcc.jpeg?height=450&width=300",
-    rating: 4.8,
-    releaseDate: "May 1, 2025",
+    image: "/series/suc.jpeg?height=450&width=300",
+    rating: 4.3,
+    releaseDate: "July 11, 2025",
     status: "released",
-    slug: "raid-2",
+    slug: "superman",
   },
   {
     title: "28 Years Later",
@@ -641,9 +641,9 @@ export default function CineVerse() {
                   <Search className="h-4 w-4" />
                 </Button>
               </Link>
-              <Link href="https://patel-priyank-1602.github.io/contactcvr/">
+              <Link href="/notifications">
                 <Button variant="ghost" size="sm" className="text-gray-300 hover:text-white relative">
-                  <Contact className="h-4 w-4" />
+                  <Bell className="h-4 w-4" />
                 </Button>
               </Link>
               <Button
@@ -750,14 +750,14 @@ export default function CineVerse() {
                   Search
                 </Button>
               </Link>
-              <Link href="https://patel-priyank-1602.github.io/contactcvr/">
+              <Link href="/notifications">
                 <Button
                   variant="ghost"
                   size="sm"
                   className="w-full justify-start text-gray-300 hover:text-white hover:bg-gray-800 relative"
                 >
-                  <Contact className="h-4 w-4 mr-3" />
-                  Contact
+                  <Bell className="h-4 w-4 mr-3" />
+                  Bell
                 </Button>
               </Link>
               <Button
