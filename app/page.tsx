@@ -173,6 +173,7 @@ const arrivedMovies: ContentItem[] = [
     title: "Superman",
     type: "Movie",
     image: "/series/suc.jpeg?height=450&width=300",
+    rating: 4.3,
     releaseDate: "July 11, 2025",
     status: "released",
     slug: "superman",
