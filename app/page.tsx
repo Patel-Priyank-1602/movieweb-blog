@@ -384,6 +384,14 @@ const upcomingSeries: ContentItem[] = [
     status: "upcoming",
     slug: "the-witcher",
   },
+  {
+      title: "Alien: Earth",
+      type: "Series",
+      image: "/series/aal.jpeg?height=450&width=300",
+      releaseDate: "Aug 12, 2025",
+      status: "upcoming",
+      slug: "alien-earth",
+    },
 ]
 
 const top10Content: ContentItem[] = [
@@ -539,6 +547,11 @@ export default function CineVerse() {
   const arrivedContent = contentType === "movies" ? arrivedMovies : arrivedSeries
   const upcomingContent = contentType === "movies" ? upcomingMovies : upcomingSeries
 
+  // Split arrivedContent into two chunks for two rows
+  const midPoint = Math.ceil(arrivedContent.length / 2)
+  const arrivedContentRow1 = arrivedContent.slice(0, midPoint)
+  const arrivedContentRow2 = arrivedContent.slice(midPoint)
+
   if (isLoading) {
     return <Loading onComplete={handleLoadingComplete} />
   }
@@ -639,44 +652,83 @@ export default function CineVerse() {
                     </Badge>
                     <span>Recently Released</span>
                   </h3>
-                  <Link href="/released" className="text-sm text-blue-600 hover:text-blue-800 flex items-center">
+                  <Link href="/released" className="text-sm text-green-600 hover:text-green-800 flex items-center">
                     View all <ChevronRight className="h-4 w-4" />
                   </Link>
                 </div>
-                <div
-                  className="flex gap-2 sm:gap-4 md:gap-5 lg:gap-6 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide cursor-grab active:cursor-grabbing"
-                  style={{
-                    scrollbarWidth: "none",
-                    msOverflowStyle: "none",
-                    WebkitOverflowScrolling: "touch",
-                  }}
-                  onMouseDown={handleMouseDrag}
-                >
-                  {arrivedContent.map((movie, index) => (
-                    <div
-                      key={`${movie.title}-${index}`}
-                      className="flex-shrink-0 w-[90px] sm:w-[140px] md:w-[180px] lg:w-[220px] snap-start"
-                    >
-                      <MovieCard
-                        title={movie.title}
-                        type={movie.type}
-                        image={movie.image || "/placeholder-image.jpg"}
-                        rating={movie.rating}
-                        releaseDate={movie.releaseDate}
-                        status="released"
-                        slug={movie.slug}
-                        loading="lazy"
-                        blurDataURL="/blur-movie.svg"
-                      />
-                    </div>
-                  ))}
-                  {arrivedContent.length === 0 && (
-                    <div className="flex-1 py-4 text-center">
-                      <p className="text-gray-500">
-                        No {contentType === "movies" ? "movies" : "series"} available in this category.
-                      </p>
-                    </div>
-                  )}
+                <div className="space-y-8">
+                  {/* Row 1 */}
+                  <div
+                    className="flex gap-2 sm:gap-4 md:gap-5 lg:gap-6 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide cursor-grab active:cursor-grabbing"
+                    style={{
+                      scrollbarWidth: "none",
+                      msOverflowStyle: "none",
+                      WebkitOverflowScrolling: "touch",
+                    }}
+                    onMouseDown={handleMouseDrag}
+                  >
+                    {arrivedContentRow1.map((movie, index) => (
+                      <div
+                        key={`${movie.title}-${index}`}
+                        className="flex-shrink-0 w-[90px] sm:w-[140px] md:w-[180px] lg:w-[220px] snap-start"
+                      >
+                        <MovieCard
+                          title={movie.title}
+                          type={movie.type}
+                          image={movie.image || "/placeholder-image.jpg"}
+                          rating={movie.rating}
+                          releaseDate={movie.releaseDate}
+                          status="released"
+                          slug={movie.slug}
+                          loading="lazy"
+                          blurDataURL="/blur-movie.svg"
+                        />
+                      </div>
+                    ))}
+                    {arrivedContentRow1.length === 0 && (
+                      <div className="flex-1 py-4 text-center">
+                        <p className="text-gray-500">
+                          No {contentType === "movies" ? "movies" : "series"} available in this category.
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                  {/* Row 2 */}
+                  <div
+                    className="flex gap-2 sm:gap-4 md:gap-5 lg:gap-6 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide cursor-grab active:cursor-grabbing"
+                    style={{
+                      scrollbarWidth: "none",
+                      msOverflowStyle: "none",
+                      WebkitOverflowScrolling: "touch",
+                    }}
+                    onMouseDown={handleMouseDrag}
+                  >
+                    {arrivedContentRow2.map((movie, index) => (
+                      <div
+                        key={`${movie.title}-${index}`}
+                        className="flex-shrink-0 w-[90px] sm:w-[140px] md:w-[180px] lg:w-[220px] snap-start"
+                      >
+                        <MovieCard
+                          title={movie.title}
+                          type={movie.type}
+                          image={movie.image || "/placeholder-image.jpg"}
+                          rating={movie.rating}
+                          releaseDate={movie.releaseDate}
+                          status="released"
+                          slug={movie.slug}
+                          loading="lazy"
+                          blurDataURL="/blur-movie.svg"
+                        />
+                      </div>
+                    ))}
+                    {arrivedContentRow2.length === 0 && (
+                      <div className="flex-1 py-4 text-center">
+                        <p className="text-gray-500">
+                          No {contentType === "movies" ? "movies" : "series"} available in this category.
+                        </p>
+                      </div>
+                    )}
+                  </div>
                 </div>
               </div>
               <div>

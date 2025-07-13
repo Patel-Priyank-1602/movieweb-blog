@@ -103,6 +103,13 @@ export default function UpcomingPage() {
       releaseDate: "Late 2025",
       status: "upcoming" as const,
     },
+    {
+      title: "Alien: Earth",
+      type: "Series",
+      image: "/series/aal.jpeg?height=450&width=300",
+      releaseDate: "Aug 12, 2025",
+      status: "upcoming" as const,
+    },
   ]
 
   // Function to parse release dates for sorting

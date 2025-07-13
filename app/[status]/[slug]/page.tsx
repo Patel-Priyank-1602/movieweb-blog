@@ -887,6 +887,22 @@ function getMovieData(slug: string, status: string) {
       trailerUrl: "https://youtu.be/kr3br-3i8TY?si=jAox8ye-oQZA7V-f",
       status: status === "released" ? "released" : "upcoming",
     },
+    "alien-earth": {
+      title: "Alien: Earth",
+      type: "Series",
+      posterImage: "/series/aal.jpeg?height=450&width=300",
+      coverImage: "/series/aalc.jpeg?height=600&width=1200",
+      releaseDate: "August 12, 2025",
+      director: "Noah Hawley",
+      productionCompany: "FX Productions / Scott Free Productions (exec. Ridley Scott)",
+      imdbRating: null,
+      duration: "8 episodes",
+      genre: "Sci‑Fi / Horror",
+      description:
+        "Set in the year 2120, two years before the original 1979 Alien film, the series follows hybrid prototype “Wendy” (Sydney Chandler) and a team of tactical soldiers investigating the crash‑landing of the USCSS Maginot on Earth. As mega‑corporations vie for control, they uncover terrifying life forms and face a planetary threat.",
+      trailerUrl: "https://youtu.be/ZbsiKjVAV28?si=30lmuEQPi0NYBWX2",
+      status: "upcoming"
+    },
   }
 
   // Convert slug to key format
