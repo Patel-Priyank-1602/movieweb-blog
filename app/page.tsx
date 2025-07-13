@@ -13,6 +13,7 @@ import MovieCard from "@/components/movie-card"
 import { Badge } from "@/components/ui/badge"
 import Loading from "./loading"
 import { SiteFooter } from "@/components/footer"
+import Navbar from "@/components/nav"
 
 interface ContentItem {
   title: string
@@ -568,223 +569,8 @@ export default function CineVerse() {
 
   return (
     <div className="flex flex-col min-h-screen bg-black text-white">
-      {/* Professional Navigation Bar */}
-      <header
-        className={`fixed top-0 z-50 w-full transition-all duration-300 ${scrolled ? "bg-black/95 backdrop-blur-md border-b border-gray-800 shadow-lg" : "bg-black/80 backdrop-blur-sm"
-          }`}
-      >
-        <div className="container mx-auto px-4">
-          <div className="flex h-16 items-center justify-between">
-            {/* Brand Section with OTT Sidebar */}
-            <div className="flex items-center">
-              <div className="relative group z-[9999]">
-                <div className="flex items-center gap-3">
-                  <Film className="h-6 w-6 text-primary" />
-                  {/* Brand Name */}
-                  <span className="text-xl font-bold cursor-pointer select-none">
-                    CineVers<span className="text-[#6325c3]">e Hub</span>
-                  </span>
-                </div>
-
-                {/* Full Screen OTT Sidebar - Slides from Left, Covers Screen Top to Bottom */}
-                <div className="fixed top-0 left-0 h-screen w-80 bg-gradient-to-b from-[#18181b] to-[#0a0a0a] border-r border-gray-700 shadow-2xl transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300 z-[9999] overflow-y-auto">
-                  <div className="py-6 px-4">
-                    <span className="text-gray-400 text-base uppercase tracking-wider mb-4 block font-semibold">
-                      OTT Apps
-                    </span>
-                    <div className="flex flex-col gap-2">
-                      {[
-                        { name: "JioHotstar", icon: "jioh", link: "https://www.jiohotstar.com/" },
-                        { name: "Netflix", icon: "netflix", link: "https://www.netflix.com/" },
-                        { name: "Prime Video", icon: "primev", link: "https://www.primevideo.com/" },
-                        { name: "Apple TV+", icon: "appletv", link: "https://tv.apple.com/" },
-                        { name: "SonyLiv", icon: "sonyliv", link: "https://www.sonyliv.com/" },
-                      ].map((app) => (
-                        <a
-                          key={app.name}
-                          href={app.link}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex items-center gap-3 px-3 py-2 rounded hover:bg-gray-800 transition-colors"
-                        >
-                          <img
-                            src={`/icons/${app.icon}.png`}
-                            alt={app.name}
-                            loading="lazy"
-                            className="w-7 h-7 object-contain"
-                          />
-                          <span className="text-white">{app.name}</span>
-                        </a>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Desktop Navigation */}
-            <nav className="hidden md:flex items-center space-x-8">
-              <Link
-                href="/"
-                className="text-sm font-medium text-white border-b-2 border-blue-500 pb-1 transition-colors"
-              >
-                Home
-              </Link>
-              <Link href="/released" className="text-sm font-medium text-gray-300 hover:text-white transition-colors">
-                Released
-              </Link>
-              <Link href="/upcoming" className="text-sm font-medium text-gray-300 hover:text-white transition-colors">
-                Upcoming
-              </Link>
-              <Link href="/search" className="text-sm font-medium text-gray-300 hover:text-white transition-colors">
-                Search
-              </Link>
-              <Link href="/about" className="text-sm font-medium text-gray-300 hover:text-white transition-colors">
-                About
-              </Link>
-            </nav>
-
-            {/* Action Buttons */}
-            <div className="hidden md:flex items-center gap-4">
-              <Link href="/search">
-                <Button variant="ghost" size="sm" className="text-gray-300 hover:text-white">
-                  <Search className="h-4 w-4" />
-                </Button>
-              </Link>
-              <Link href="/notifications">
-                <Button variant="ghost" size="sm" className="text-gray-300 hover:text-white relative">
-                  <Bell className="h-4 w-4" />
-                </Button>
-              </Link>
-              <Button
-                variant="outline"
-                size="sm"
-                className="border-blue-600 text-blue-400 hover:bg-blue-600 hover:text-white bg-transparent"
-                asChild
-              >
-                <Link href="https://cvrecommendation.netlify.app/">
-                  <Film className="h-4 w-4 mr-2" />
-                  Recommendations
-                </Link>
-              </Button>
-            </div>
-
-            {/* Mobile Menu Button */}
-            <Button variant="ghost" size="sm" onClick={toggleMenu} className="md:hidden text-gray-300 hover:text-white">
-              {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-            </Button>
-          </div>
-        </div>
-      </header>
-
-      {/* Enhanced Mobile Menu with Slow Animation */}
-      <div
-        className={`md:hidden fixed inset-0 z-40 transition-all duration-700 ease-in-out ${isMenuOpen ? "opacity-100 visible" : "opacity-0 invisible"
-          }`}
-      >
-        {/* Backdrop */}
-        <div
-          className={`fixed inset-0 bg-black/50 backdrop-blur-sm transition-opacity duration-700 ${isMenuOpen ? "opacity-100" : "opacity-0"
-            }`}
-          onClick={toggleMenu}
-        ></div>
-
-        {/* Menu Panel */}
-        <div
-          className={`fixed top-0 right-0 w-80 h-full bg-gradient-to-b from-gray-900/95 to-black/95 backdrop-blur-xl border-l border-gray-700 shadow-2xl transform transition-all duration-700 ease-in-out ${isMenuOpen ? "translate-x-0" : "translate-x-full"
-            }`}
-        >
-          {/* Menu Header */}
-          <div className="flex items-center justify-between p-6 border-b border-gray-700">
-            <div className="flex items-center gap-3">
-              <Film className="h-6 w-6 text-[#6325c3]" />
-              <span className="text-lg font-semibold">
-                CineVers<span className="text-[#6325c3]">e Hub</span>
-              </span>
-            </div>
-            <Button variant="ghost" size="sm" onClick={toggleMenu} className="text-gray-400 hover:text-white">
-              <X className="h-5 w-5" />
-            </Button>
-          </div>
-
-          {/* Menu Content */}
-          <nav className="p-6 space-y-4">
-            <Link
-              href="/"
-              onClick={toggleMenu}
-              className="block text-sm font-medium text-white py-3 px-4 rounded-lg bg-blue-600/20 border-l-4 border-blue-500"
-              style={{ borderLeftColor: "#7336d5" }}
-            >
-              Home
-            </Link>
-            <Link
-              href="/released"
-              onClick={toggleMenu}
-              className="block text-sm font-medium text-gray-300 hover:text-white py-3 px-4 rounded-lg hover:bg-gray-800 transition-all duration-300"
-              style={{ borderLeftColor: "#7336d5" }}
-            >
-              Released
-            </Link>
-            <Link
-              href="/upcoming"
-              onClick={toggleMenu}
-              className="block text-sm font-medium text-gray-300 hover:text-white py-3 px-4 rounded-lg hover:bg-gray-800 transition-all duration-300"
-              style={{ borderLeftColor: "#7336d5" }}
-            >
-              Upcoming
-            </Link>
-            <Link
-              href="/search"
-              onClick={toggleMenu}
-              className="block text-sm font-medium text-gray-300 hover:text-white py-3 px-4 rounded-lg hover:bg-gray-800 transition-all duration-300"
-              style={{ borderLeftColor: "#7336d5" }}            >
-              Search
-            </Link>
-            <Link
-              href="/about"
-              onClick={toggleMenu}
-              className="block text-sm font-medium text-gray-300 hover:text-white py-3 px-4 rounded-lg hover:bg-gray-800 transition-all duration-300"
-              style={{ borderLeftColor: "#7336d5" }}            >
-              About
-            </Link>
-
-            {/* Mobile Action Buttons */}
-            <div className="pt-6 border-t border-gray-700 space-y-3">
-              <Link href="/search">
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className="w-full justify-start text-gray-300 hover:text-white hover:bg-gray-800"
-                >
-                  <Search className="h-4 w-4 mr-3" />
-                  Search
-                </Button>
-              </Link>
-              <Link href="/notifications">
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className="w-full justify-start text-gray-300 hover:text-white hover:bg-gray-800 relative"
-                >
-                  <Bell className="h-4 w-4 mr-3" />
-                  Updates
-                </Button>
-              </Link>
-              <Button
-                variant="outline"
-                size="sm"
-                className="w-full border-blue-600 text-blue-400 hover:bg-blue-600 hover:text-white bg-transparent"
-                asChild
-              >
-                <Link href="https://cvrecommendation.netlify.app/" onClick={toggleMenu}>
-                  <Film className="h-4 w-4 mr-2" />
-                  Get Recommendations
-                </Link>
-              </Button>
-            </div>
-          </nav>
-        </div>
-      </div>
+      {/* Navbar */}
+      <Navbar />
 
       {/* Main Content */}
       <div className="pt-16">
@@ -817,14 +603,14 @@ export default function CineVerse() {
               ))}
             </div>
             <style jsx>{`
-              .scrollbar-hide::-webkit-scrollbar {
-                display: none;
-              }
-              .scrollbar-hide {
-                -ms-overflow-style: none;
-                scrollbar-width: none;
-              }
-            `}</style>
+                .scrollbar-hide::-webkit-scrollbar {
+                  display: none;
+                }
+                .scrollbar-hide {
+                  -ms-overflow-style: none;
+                  scrollbar-width: none;
+                }
+              `}</style>
           </section>
 
           <section className="container px-2 sm:px-4 py-12">
@@ -945,14 +731,14 @@ export default function CineVerse() {
               </div>
             </div>
             <style jsx>{`
-              .scrollbar-hide::-webkit-scrollbar {
-                display: none;
-              }
-              .scrollbar-hide {
-                -ms-overflow-style: none;
-                scrollbar-width: none;
-              }
-            `}</style>
+                .scrollbar-hide::-webkit-scrollbar {
+                  display: none;
+                }
+                .scrollbar-hide {
+                  -ms-overflow-style: none;
+                  scrollbar-width: none;
+                }
+              `}</style>
           </section>
 
           <section className="py-12 bg-black">

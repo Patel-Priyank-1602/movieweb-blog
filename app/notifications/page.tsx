@@ -5,6 +5,7 @@ import { ArrowLeft, Bell } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
+import Navbar from "@/components/nav"
 
 interface Notification {
   id: string
@@ -137,24 +138,10 @@ export default function NotificationsPage() {
 
   return (
     <div className="min-h-screen bg-black text-white">
-      <header className="sticky top-0 z-50 w-full border-b border-gray-800 bg-black/95">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex h-16 items-center justify-between">
-          <div className="flex items-center gap-2 sm:gap-4">
-            <Link href="/">
-              <Button variant="ghost" size="icon">
-                <ArrowLeft className="h-4 w-4 sm:h-5 sm:w-5" />
-                <span className="sr-only">Back to home</span>
-              </Button>
-            </Link>
-            <div className="flex items-center gap-2">
-              <Bell className="h-5 w-5 sm:h-6 sm:w-6 text-primary" />
-              <span className="text-lg sm:text-xl font-bold">Updates</span>
-            </div>
-          </div>
-        </div>
-      </header>
+      {/* Navbar */}
+      <Navbar />
 
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-20">
         {notifications.length > 0 ? (
           <div className="space-y-4">
             {notifications.map((notification) => (

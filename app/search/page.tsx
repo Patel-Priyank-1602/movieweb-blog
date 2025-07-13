@@ -9,6 +9,7 @@ import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import MovieCard from "@/components/movie-card"
 import Loading from "../loading"
 import { SiteFooter } from "@/components/footer"
+import Navbar from "@/components/nav"
 
 // Utility function to parse and normalize release dates
 function parseReleaseDate(dateStr: string): Date {
@@ -380,7 +381,9 @@ export default function SearchPage() {
 
   return (
     <div className="min-h-screen bg-black text-white">
-      <div className="container py-8">
+      {/* Navbar */}
+      <Navbar />
+      <div className="container py-20">
         <div className="flex items-center gap-4 mb-8">
           <Link href="/">
             <Button variant="ghost" size="icon">
@@ -396,7 +399,7 @@ export default function SearchPage() {
             <SearchIcon className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-500" />
             <Input
               placeholder="Search titles..."
-              className="pl-9 bg-gray-900 border-gray-800 focus-visible:ring-primary"
+              className="pl-9 bg-gray-900 border-gray-800 focus-visible:ring-primary w-full"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
@@ -405,7 +408,7 @@ export default function SearchPage() {
             <Filter className="h-4 w-4" />
             Filters
           </Button> */}
-          <Tabs value={contentType} onValueChange={setContentType} className="w-[300px]">
+          <Tabs value={contentType} onValueChange={setContentType} className="w-full md:w-[300px]">
             <TabsList className="grid w-full grid-cols-3 bg-gray-900">
               <TabsTrigger value="all">All</TabsTrigger>
               <TabsTrigger value="movies">Movies</TabsTrigger>

@@ -2,13 +2,14 @@
 
 import { useState, useEffect } from "react"
 import Link from "next/link"
-import { ArrowLeft, Filter, Search } from "lucide-react"
+import { ArrowLeft, Search } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import MovieCard from "@/components/movie-card"
 import Loading from "../loading"
 import { SiteFooter } from "@/components/footer"
+import Navbar from "@/components/nav"
 
 export default function ReleasedPage() {
   const [contentType, setContentType] = useState("all")
@@ -275,7 +276,9 @@ export default function ReleasedPage() {
 
   return (
     <div className="min-h-screen bg-black text-white">
-      <div className="container py-8">
+      {/* Navbar */}
+      <Navbar />
+      <div className="container py-20">
         <div className="flex items-center gap-4 mb-8">
           <Link href="/">
             <Button variant="ghost" size="icon">
@@ -287,19 +290,15 @@ export default function ReleasedPage() {
         </div>
 
         <div className="flex flex-col md:flex-row gap-6 mb-8">
-          <Link href="/search" className="relative flex-1">
+          <Link href="/search" className="relative w-full md:flex-1">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-500 z-10" />
             <Input
               placeholder="Search titles..."
-              className="pl-9 bg-gray-900 border-gray-800 focus-visible:ring-primary"
+              className="pl-9 bg-gray-900 border-gray-800 focus-visible:ring-primary w-full"
               readOnly
             />
           </Link>
-          {/* <Button variant="outline" className="gap-2">
-            <Filter className="h-4 w-4" />
-            Filters
-          </Button> */}
-          <Tabs value={contentType} onValueChange={setContentType} className="w-[300px]">
+          <Tabs value={contentType} onValueChange={setContentType} className="w-full md:w-[300px]">
             <TabsList className="grid w-full grid-cols-3 bg-gray-900">
               <TabsTrigger value="all">All</TabsTrigger>
               <TabsTrigger value="movies">Movies</TabsTrigger>
@@ -352,7 +351,7 @@ export default function ReleasedPage() {
           </div>
         )}
       </div>
-      <SiteFooter /> {/* Use SiteFooter instead of Footer */}
+      <SiteFooter />
     </div>
   )
 }
