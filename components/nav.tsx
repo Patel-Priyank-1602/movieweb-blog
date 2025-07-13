@@ -64,9 +64,10 @@ export default function Navbar() {
 
                                 {/* Full Screen OTT Sidebar - Slides from Left, Covers Screen Top to Bottom */}
                                 <div
-                                    className={`fixed top-0 left-0 h-screen w-80 bg-gradient-to-b from-[#18181b] to-[#0a0a0a] border-r border-gray-700 shadow-2xl transform transition-transform duration-300 z-[9999] overflow-y-auto md:group-hover:translate-x-0 ${isOTTSidebarOpen ? "translate-x-0" : "-translate-x-full"
+                                    className={`fixed top-0 left-0 h-screen w-80 bg-gradient-to-b from-[#18181b] to-[#0a0a0a] border-r border-gray-700 shadow-2xl transform transition-transform duration-300 z-[9999] overflow-y-auto ${isOTTSidebarOpen ? "translate-x-0" : "-translate-x-full"
                                         }`}
                                 >
+                                    {/* Header with Title and Close Button */}
                                     <div className="flex items-center justify-between p-6 border-b border-gray-700">
                                         <span className="text-lg font-semibold text-gray-400 uppercase tracking-wider">
                                             OTT Apps
@@ -80,14 +81,36 @@ export default function Navbar() {
                                             <X className="h-5 w-5" />
                                         </Button>
                                     </div>
+
+                                    {/* OTT App Links */}
                                     <div className="py-6 px-4">
-                                        <div className="flex flex-col gap-2">
+                                        <div className="flex flex-col space-y-2">
                                             {[
-                                                { name: "JioHotstar", icon: "jioh", link: "https://www.jiohotstar.com/" },
-                                                { name: "Netflix", icon: "netflix", link: "https://www.netflix.com/" },
-                                                { name: "Prime Video", icon: "primev", link: "https://www.primevideo.com/" },
-                                                { name: "Apple TV+", icon: "appletv", link: "https://tv.apple.com/" },
-                                                { name: "SonyLiv", icon: "sonyliv", link: "https://www.sonyliv.com/" },
+                                                {
+                                                    name: "JioHotstar",
+                                                    icon: "jioh",
+                                                    link: "https://www.jiohotstar.com/",
+                                                },
+                                                {
+                                                    name: "Netflix",
+                                                    icon: "netflix",
+                                                    link: "https://www.netflix.com/",
+                                                },
+                                                {
+                                                    name: "Prime Video",
+                                                    icon: "primev",
+                                                    link: "https://www.primevideo.com/",
+                                                },
+                                                {
+                                                    name: "Apple TV+",
+                                                    icon: "appletv",
+                                                    link: "https://tv.apple.com/",
+                                                },
+                                                {
+                                                    name: "SonyLiv",
+                                                    icon: "sonyliv",
+                                                    link: "https://www.sonyliv.com/",
+                                                },
                                             ].map((app) => (
                                                 <a
                                                     key={app.name}
@@ -371,39 +394,47 @@ export default function Navbar() {
 
                         {/* Mobile Action Buttons */}
                         <div className="pt-6 border-t border-gray-700 space-y-3">
-                            <Link href="/search">
-                                <Button
-                                    variant="ghost"
-                                    size="sm"
-                                    className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-800 ${pathname === "/search" ? "bg-gray-800" : ""
-                                        }`}
-                                >
-                                    <Search className="h-4 w-4 mr-3" />
-                                    Search
-                                </Button>
-                            </Link>
-                            <Link href="/notifications">
-                                <Button
-                                    variant="ghost"
-                                    size="sm"
-                                    className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-800 relative ${pathname === "/notifications" ? "bg-gray-800" : ""
-                                        }`}
-                                >
-                                    <Bell className="h-4 w-4 mr-3" />
-                                    Updates
-                                </Button>
-                            </Link>
-                            <Button
-                                variant="outline"
-                                size="sm"
-                                className="w-full border-blue-600 text-blue-400 hover:bg-[#6d28d9] hover:text-white bg-transparent"
-                                asChild
-                            >
-                                <Link href="https://cvrecommendation.netlify.app/" onClick={toggleMenu}>
-                                    <Film className="h-4 w-4 mr-2" />
-                                    Get Recommendations
+                            <div>
+                                <Link href="/search">
+                                    <Button
+                                        variant="ghost"
+                                        size="sm"
+                                        className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-800 ${pathname === "/search" ? "bg-gray-800" : ""
+                                            }`}
+                                    >
+                                        <Search className="h-4 w-4 mr-3" />
+                                        Search
+                                    </Button>
                                 </Link>
-                            </Button>
+                            </div>
+
+                            <div>
+                                <Link href="/notifications">
+                                    <Button
+                                        variant="ghost"
+                                        size="sm"
+                                        className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-800 relative ${pathname === "/notifications" ? "bg-gray-800" : ""
+                                            }`}
+                                    >
+                                        <Bell className="h-4 w-4 mr-3" />
+                                        Updates
+                                    </Button>
+                                </Link>
+                            </div>
+
+                            <div>
+                                <Button
+                                    variant="outline"
+                                    size="sm"
+                                    className="w-full border-blue-600 text-blue-400 hover:bg-[#6d28d9] hover:text-white bg-transparent"
+                                    asChild
+                                >
+                                    <Link href="https://cvrecommendation.netlify.app/" onClick={toggleMenu}>
+                                        <Film className="h-4 w-4 mr-2" />
+                                        Get Recommendations
+                                    </Link>
+                                </Button>
+                            </div>
                         </div>
                     </nav>
                 </div>
