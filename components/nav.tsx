@@ -3,7 +3,7 @@
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useEffect, useState } from "react"
-import { Bell, Film, Menu, Search, X } from "lucide-react"
+import { Bell, Film, Menu, Search, TrendingUp, TrendingUpIcon, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 export default function Navbar() {
@@ -14,7 +14,6 @@ export default function Navbar() {
     const pathname = usePathname()
 
     const toggleMenu = () => setIsMenuOpen(!isMenuOpen)
-    const toggleOTTSidebar = () => setIsOTTSidebarOpen(!isOTTSidebarOpen)
     const toggleTabletMenu = () => setIsTabletMenuOpen(!isTabletMenuOpen)
 
     useEffect(() => {
@@ -26,10 +25,10 @@ export default function Navbar() {
         return () => window.removeEventListener("scroll", handleScroll)
     }, [])
 
-    // Close menus when clicking outside
+    // Close tablet menu when clicking outside
     useEffect(() => {
-        const handleClickOutside = (event: MouseEvent) => {
-            const target = event.target as HTMLElement;
+        const handleClickOutside = (event: { target: any }) => {
+            const target = event.target;
             if (isTabletMenuOpen && target && !target.closest('.tablet-menu-container')) {
                 setIsTabletMenuOpen(false);
             }
@@ -38,7 +37,6 @@ export default function Navbar() {
         document.addEventListener('mousedown', handleClickOutside);
         return () => document.removeEventListener('mousedown', handleClickOutside);
     }, [isTabletMenuOpen]);
-
 
     return (
         <>
@@ -50,24 +48,29 @@ export default function Navbar() {
                     }`}
             >
                 <div className="container mx-auto px-4">
-                    <div className="flex h-16 items-center justify-between">
-                        {/* Brand Section with OTT Sidebar */}
-                        <div className="flex items-center">
-                            <div className="relative group z-[9999]">
-                                <div className="flex items-center gap-3" onClick={toggleOTTSidebar}>
+                    <div className="flex h-16 items-center justify-between ">
+                        {/* Brand Section with OTT Sidebar and Trending Button */}
+                        <div className="flex items-center gap-10">
+                            {/* Brand + OTT Sidebar Trigger */}
+                            <div
+                                className="relative group z-[9999]"
+                                onMouseEnter={() => setIsOTTSidebarOpen(true)}
+                                onMouseLeave={() => setIsOTTSidebarOpen(false)}
+                            >
+                                <div className="flex items-center gap-3">
                                     <Film className="h-6 w-6 text-primary" />
-                                    {/* Brand Name */}
                                     <span className="text-xl font-bold cursor-pointer select-none">
                                         CineVers<span className="text-[#6325c3]">e Hub</span>
                                     </span>
                                 </div>
 
-                                {/* Full Screen OTT Sidebar - Slides from Left, Covers Screen Top to Bottom */}
+                                {/* OTT Sidebar */}
                                 <div
-                                    className={`fixed top-0 left-0 h-screen w-80 bg-gradient-to-b from-[#18181b] to-[#0a0a0a] border-r border-gray-700 shadow-2xl transform transition-transform duration-300 z-[9999] overflow-y-auto ${isOTTSidebarOpen ? "translate-x-0" : "-translate-x-full"
-                                        }`}
+                                    className={`fixed top-0 left-0 h-screen w-80 bg-gradient-to-b from-[#18181b] to-[#0a0a0a] border-r border-gray-700 shadow-2xl transform transition-transform duration-300 z-[9999] overflow-y-auto ${isOTTSidebarOpen ? "translate-x-0" : "-translate-x-full"}`}
+                                    onMouseEnter={() => setIsOTTSidebarOpen(true)}
+                                    onMouseLeave={() => setIsOTTSidebarOpen(false)}
                                 >
-                                    {/* Header with Title and Close Button */}
+                                    {/* Sidebar Header */}
                                     <div className="flex items-center justify-between p-6 border-b border-gray-700">
                                         <span className="text-lg font-semibold text-gray-400 uppercase tracking-wider">
                                             OTT Apps
@@ -75,7 +78,7 @@ export default function Navbar() {
                                         <Button
                                             variant="ghost"
                                             size="sm"
-                                            onClick={toggleOTTSidebar}
+                                            onClick={() => setIsOTTSidebarOpen(false)}
                                             className="text-gray-400 hover:text-white"
                                         >
                                             <X className="h-5 w-5" />
@@ -118,7 +121,7 @@ export default function Navbar() {
                                                     target="_blank"
                                                     rel="noopener noreferrer"
                                                     className="flex items-center gap-3 px-3 py-2 rounded hover:bg-gray-800 transition-colors"
-                                                    onClick={toggleOTTSidebar}
+                                                    onClick={() => setIsOTTSidebarOpen(false)}
                                                 >
                                                     <img
                                                         src={`/icons/${app.icon}.png`}
@@ -133,10 +136,23 @@ export default function Navbar() {
                                     </div>
                                 </div>
                             </div>
+
+                            {/* Trending Button with gap */}
+                            <div className="hidden lg:flex items-center">
+                                <Link href="/top10">
+                                    <Button
+                                        variant="ghost"
+                                        size="sm"
+                                        className={`text-gray-300 hover:text-white ${pathname === "/top10" ? "bg-[#6d28d9]" : ""}`}
+                                    >
+                                        <TrendingUp className="h-4 w-4" />
+                                    </Button>
+                                </Link>
+                            </div>
                         </div>
 
                         {/* Desktop Navigation - Hidden on tablet */}
-                        <nav className="hidden lg:flex items-center space-x-8">
+                        <nav className="hidden lg:flex items-center justify-center space-x-8">
                             <Link
                                 href="/"
                                 className={`text-sm font-medium transition-colors ${pathname === "/" ? "text-white border-b-2 border-[#6d28d9] pb-1" : "text-gray-300 hover:text-white"
@@ -211,6 +227,16 @@ export default function Navbar() {
 
                         {/* Tablet Menu Button - Shows on tablet (md to lg) */}
                         <div className="hidden md:flex lg:hidden items-center gap-4">
+                            <Link href="/top10">
+                                <Button
+                                    variant="ghost"
+                                    size="sm"
+                                    className={`text-gray-300 hover:text-white ${pathname === "/top10" ? "bg-[#6d28d9]" : ""
+                                        }`}
+                                >
+                                    <TrendingUp className="h-4 w-4" />
+                                </Button>
+                            </Link>
                             <Link href="/search">
                                 <Button
                                     variant="ghost"
@@ -395,15 +421,15 @@ export default function Navbar() {
                         {/* Mobile Action Buttons */}
                         <div className="pt-6 border-t border-gray-700 space-y-3">
                             <div>
-                                <Link href="/search">
+                                <Link href="/top10">
                                     <Button
                                         variant="ghost"
                                         size="sm"
-                                        className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-800 ${pathname === "/search" ? "bg-gray-800" : ""
+                                        className={`w-full justify-start text-gray-300 hover:text-white hover:bg-gray-800 ${pathname === "/top10" ? "bg-gray-800" : ""
                                             }`}
                                     >
-                                        <Search className="h-4 w-4 mr-3" />
-                                        Search
+                                        <TrendingUpIcon className="h-4 w-4 mr-3" />
+                                        Trending
                                     </Button>
                                 </Link>
                             </div>

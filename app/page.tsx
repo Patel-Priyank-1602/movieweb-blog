@@ -315,15 +315,6 @@ const arrivedSeries: ContentItem[] = [
     slug: "khakee-the-bengal-chapter",
   },
   {
-    title: "Adolescence",
-    type: "Series",
-    image: "/series/adc.jpeg?height=450&width=300",
-    rating: 4.2,
-    releaseDate: "Mar 13, 2025",
-    status: "released",
-    slug: "adolescence",
-  },
-  {
     title: "Daredevil",
     type: "Series",
     image: "/series/dar.jpeg?height=450&width=300",
@@ -345,20 +336,20 @@ const arrivedSeries: ContentItem[] = [
 
 const upcomingSeries: ContentItem[] = [
   {
-    title: "Alien: Earth",
-    type: "Series",
-    image: "/series/aal.jpeg?height=450&width=300",
-    releaseDate: "Aug 12, 2025",
-    status: "upcoming",
-    slug: "alien-earth",
-  },
-  {
     title: "Wednesday",
     type: "Series",
     image: "/series/wenc.jpeg?height=450&width=300",
     releaseDate: "Aug 6, 2025",
     status: "upcoming",
     slug: "wednesday",
+  },
+  {
+    title: "Alien: Earth",
+    type: "Series",
+    image: "/series/aal.jpeg?height=450&width=300",
+    releaseDate: "Aug 12, 2025",
+    status: "upcoming",
+    slug: "alien-earth",
   },
   {
     title: "Alice in Borderland",
@@ -414,6 +405,15 @@ const top10Content: ContentItem[] = [
     slug: "squid-game",
   },
   {
+    title: "Superman",
+    type: "Movie",
+    image: "/series/suc.jpeg?height=450&width=300",
+    rating: 4.3,
+    releaseDate: "July 11, 2025",
+    status: "released",
+    slug: "superman",
+  },
+  {
     title: "F1: The Movie",
     type: "Movie",
     image: "/series/f1.jpeg?height=450&width=300",
@@ -423,13 +423,31 @@ const top10Content: ContentItem[] = [
     slug: "f1-the-movie",
   },
   {
-    title: "Superman",
+    title: "Criminal Justice",
+    type: "Series",
+    image: "/series/cr.jpeg?height=450&width=300",
+    rating: 4.2,
+    releaseDate: "May 29, 2025",
+    status: "released" as const,
+    slug: "criminal-justice",
+  },
+  {
+    title: "Jurassic World: Rebirth",
     type: "Movie",
-    image: "/series/suc.jpeg?height=450&width=300",
+    image: "/series/ju.jpeg?height=450&width=300",
     rating: 4.3,
-    releaseDate: "July 11, 2025",
+    releaseDate: "Jul 4, 2025",
     status: "released",
-    slug: "superman",
+    slug: "jurassic-world-rebirth",
+  },
+  {
+    title: "Kesari: Chapter 2",
+    type: "Movie",
+    image: "/series/kc.jpeg?height=450&width=300",
+    rating: 4.1,
+    releaseDate: "Apr 18, 2025",
+    status: "released",
+    slug: "kesari-chapter-2",
   },
   {
     title: "28 Years Later",
@@ -441,15 +459,6 @@ const top10Content: ContentItem[] = [
     slug: "28-years-later",
   },
   {
-    title: "Pataal Lok",
-    type: "Series",
-    image: "/series/patcc.jpeg?height=450&width=300",
-    rating: 4.9,
-    releaseDate: "Jan 17, 2025",
-    status: "released",
-    slug: "pataal-lok",
-  },
-  {
     title: "Ballerina",
     type: "Movie",
     image: "/series/bann.jpeg?height=450&width=300",
@@ -459,31 +468,13 @@ const top10Content: ContentItem[] = [
     slug: "ballerina",
   },
   {
-    title: "Daredevil",
+    title: "Adolescence",
     type: "Series",
-    image: "/series/dart.jpeg?height=450&width=300",
-    rating: 4.6,
-    releaseDate: "Mar 4, 2025",
+    image: "/series/adc.jpeg?height=450&width=300",
+    rating: 4.2,
+    releaseDate: "Mar 13, 2025",
     status: "released",
-    slug: "daredevil",
-  },
-  {
-    title: "Mission Impossible: Final Reckoning",
-    type: "Movie",
-    image: "/series/mii.jpeg?height=450&width=300",
-    rating: 4.5,
-    releaseDate: "May 17, 2025",
-    status: "released",
-    slug: "mission-impossible-final-reckoning",
-  },
-  {
-    title: "Chhava",
-    type: "Movie",
-    image: "/series/chh.jpeg?height=450&width=300",
-    rating: 4.3,
-    releaseDate: "Feb 14, 2025",
-    status: "released",
-    slug: "chhava",
+    slug: "adolescence",
   },
 ]
 
@@ -594,9 +585,18 @@ export default function CineVerse() {
             <div className="flex items-center mb-8">
               <h2 className="text-3xl font-bold tracking-tight flex items-center gap-3">
                 <TrendingUp className="h-8 w-8 text-blue-500" />
-                <span>Top 10 Movies & Series</span>
+                <span>Top 10</span>
               </h2>
+              <Link href="/top10" className="ml-auto">
+                <Button
+                  variant="outline"
+                  className="bg-blue-900/30 text-blue-400 hover:bg-blue-600/30 border-blue-800"
+                >
+                  Trending
+                </Button>
+              </Link>
             </div>
+
             <div
               className="flex gap-2 sm:gap-4 md:gap-6 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide cursor-grab active:cursor-grabbing"
               style={{

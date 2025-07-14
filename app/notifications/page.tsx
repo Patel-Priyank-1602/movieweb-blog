@@ -14,7 +14,7 @@ interface Notification {
   message: string
   movieTitle: string
   movieSlug: string
-  movieType: "Movie" | "Series"
+  movieType: "Movie" | "Series" | "New Addition"
   movieImage: string
   isRead: boolean
   actionUrl?: string
@@ -23,8 +23,22 @@ interface Notification {
 }
 
 const notifications: Notification[] = [
-    {
+  {
     id: "notif-1",
+    type: "new_addition",
+    title: "New Section Added",
+    message: "Check out our New Section for Trending Movies and Series! Stay updated with the latest releases.",
+    movieTitle: "Up Arrow icon in the Navbar",
+    movieSlug: "superman",
+    movieType: "New Addition",
+    movieImage: "/notify/trend.png?height=450&width=300",
+    isRead: false,
+    actionUrl: "/released/superman",
+    priority: "medium",
+    category: "Trending",
+  },
+    {
+    id: "notif-2",
     type: "release",
     title: "Superman 2025",
     message: "Superman is now in theaters! Experience the epic return",
@@ -38,7 +52,7 @@ const notifications: Notification[] = [
     category: "Drama",
   },
   {
-    id: "notif-2",
+    id: "notif-3",
     type: "trailer",
     title: "Alice in Borderland Season 3",
     message: "Alice in Borderland Season 3 trailer is out now! Get ready for more thrilling adventures.",
@@ -52,7 +66,7 @@ const notifications: Notification[] = [
     category: "Thriller/Sci-Fi",
   },
   {
-    id: "notif-3",
+    id: "notif-4",
     type: "trailer",
     title: "Wednesday Season 2",
     message: "Wednesday Season 2 trailer is out now! Watch it and get ready for more spooky adventures.",
@@ -66,7 +80,7 @@ const notifications: Notification[] = [
     category: "Fantasy/Comedy",
   },
   {
-    id: "notif-4",
+    id: "notif-5",
     type: "in theater",
     title: "Jurassic World Rebirth",
     message: "Jurassic World Rebirth is available in theaters! Don't miss the action-packed adventure.",
@@ -80,7 +94,7 @@ const notifications: Notification[] = [
     category: "Adventure/Sci-Fi",
   },
   {
-    id: "notif-5",
+    id: "notif-6",
     type: "new season",
     title: "Panchayat Season 4",
     message: "Panchayat Season 4 is here! Join the Phulera gang for more rural drama and comedy.",
@@ -94,7 +108,7 @@ const notifications: Notification[] = [
     category: "Comedy/Drama",
   },
   {
-    id: "notif-6",
+    id: "notif-7",
     type: "new season",
     title: "Squid Game Season 3",
     message: "Squid Game Season 3 is now streaming! Dive into the final chapter of this thrilling series.",
@@ -108,7 +122,7 @@ const notifications: Notification[] = [
     category: "Thriller/Drama",
   },
   {
-    id: "notif-7",
+    id: "notif-8",
     type: "in theater",
     title: "F1: The Movie",
     message: "F1: The Movie is available in theaters! Experience the adrenaline rush of Formula 1 racing.",
