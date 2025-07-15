@@ -801,9 +801,6 @@ export default function CineVerse() {
                   For some Movies/Series, the official trailer is not Available, but only a Teaser has been released. In
                   some cases, neither a Teaser nor a Trailer is Available — only a Date Announcement Video is Provided.
                 </p>
-                <p className="text-gray-400">
-                  
-                </p>
               </div>
             </div>
           </section>
