@@ -811,7 +811,7 @@ function getMovieData(slug: string, status: string) {
       title: "Stranger Things",
       type: "Series",
       posterImage: "/series/stc.jpeg?height=450&width=300",
-      coverImage: "/series/stttt.jpeg?height=600&width=1200",
+      coverImage: "/series/stcc.jpeg?height=600&width=1200",
       releaseDate: "November 26, 2025",
       director: "The Duffer Brothers",
       productionCompany: "Netflix",
@@ -820,7 +820,7 @@ function getMovieData(slug: string, status: string) {
       genre: "Sci-Fi/Horror",
       description:
         "The fifth and final season of the beloved sci-fi series brings the story of Hawkins to an epic conclusion. As the friends face their greatest challenge yet against the forces of the Upside Down, they must uncover the origin of the dimensional rift and find a way to end the threat once and for all.",
-      trailerUrl: "https://youtu.be/QlYrNC_1Xmk?si=Ps2bq-3gXZsncNCr",
+      trailerUrl: "https://youtu.be/iKZyYdwS3Wg?si=ZzIi2p_prO9Kb7fi",
       status: status === "released" ? "released" : "upcoming",
     },
     "alice-in-borderland": {

@@ -29,7 +29,7 @@ const FEATURED_CONTENT: FeaturedContent[] = [
     type: "Series",
     releaseDate: "November 26, 2025",
     slug: "stranger-things",
-    trailerUrl: "https://youtu.be/QlYrNC_1Xmk?si=Ps2bq-3gXZsncNCr",
+    trailerUrl: "https://youtu.be/iKZyYdwS3Wg?si=ZzIi2p_prO9Kb7fi",
   },
   {
     id: 2,
