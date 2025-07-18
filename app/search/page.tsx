@@ -232,6 +232,13 @@ export default function SearchPage() {
       releaseDate: "Aug 1, 2025",
       status: "upcoming" as const,
     },
+    {
+      title: "Demon Slayer: Kimetsu no Yaiba – Infinity Castle Arc",
+      type: "Movie",
+      image: "/series/dl.jpeg?height=450&width=300",
+      releaseDate: "Sept 12, 2025",
+      status: "upcoming" as const,
+    },
     // Series - Released
     {
       title: "You",

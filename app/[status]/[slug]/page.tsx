@@ -629,6 +629,22 @@ function getMovieData(slug: string, status: string) {
       trailerUrl: "https://youtu.be/HvLHYox_Vq8?si=FZL0qbo14WBBsRq2",
       status: status === "released" ? "released" : "upcoming",
     },
+    "demon-slayer-kimetsu-no-yaiba-infinity-castle-arc": {
+      title: "Demon Slayer: Kimetsu No Yaiba The Movie 2025",
+      type: "Movie",
+      posterImage: "/series/dl.jpeg?height=450&width=300",
+      coverImage: "/series/dlc.jpeg?height=600&width=1200",
+      releaseDate: "September 12, 2025", 
+      director: "Haruo Sotozaki",
+      productionCompany: "Ufotable",
+      imdbRating: null,
+      duration: "2h 30m",
+      genre: "Animation/Action/Fantasy",
+      description:
+        "Tanjiro and his allies return in the latest Demon Slayer movie, continuing their fierce battle against the Upper Rank demons. As new alliances form and secrets are revealed, the Demon Slayer Corps faces a deadly new threat that could change their world forever.",
+      trailerUrl: "https://youtu.be/3AUm3j6Bi5A?si=ZBYdgkA5Ip8fzz8M", 
+      status: status === "released" ? "released" : "upcoming",
+    },
     // Series - Released
     you: {
       title: "You",

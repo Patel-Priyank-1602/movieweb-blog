@@ -200,6 +200,14 @@ const upcomingMovies: ContentItem[] = [
     slug: "fantastic-4",
   },
   {
+    title: "Demon Slayer: Kimetsu no Yaiba – Infinity Castle Arc",
+    type: "Movie",
+    image: "/series/dl.jpeg?height=450&width=300",
+    releaseDate: "Sept 12, 2025",
+    status: "upcoming",
+    slug: "demon-slayer-kimetsu-no-yaiba-infinity-castle-arc",
+  },
+  {
     title: "The Bad Guys 2",
     type: "Movie",
     image: "/series/bd.jpeg?height=450&width=300",
