@@ -1,11 +1,10 @@
 "use client"
 
 import type React from "react"
-
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
-import { ChevronRight, Film, Menu, TrendingUp, X, Search, Bell, Contact } from "lucide-react"
+import { ChevronRight, TrendingUp, ChevronLeft } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import FeaturedShowcase from "@/components/featured-showcase"
@@ -96,7 +95,7 @@ const arrivedMovies: ContentItem[] = [
     rating: 4.6,
     releaseDate: "May 23, 2025",
     status: "released",
-    slug: "liloAndStitch"
+    slug: "liloAndStitch",
   },
   {
     title: "Mission Impossible: Final Reckoning",
@@ -492,6 +491,7 @@ interface TopMovieCardProps extends ContentItem {
 
 function TopMovieCard({ title, type, image, rating, releaseDate, status, rank, slug }: TopMovieCardProps) {
   const router = useRouter()
+
   const handleMoreInfo = () => {
     router.push(`/${status}/${slug}`)
   }
@@ -524,12 +524,92 @@ function TopMovieCard({ title, type, image, rating, releaseDate, status, rank, s
   )
 }
 
+// Sliding Button Component - Desktop Only
+interface SlidingButtonsProps {
+  onPrevious: () => void
+  onNext: () => void
+  showPrevious: boolean
+  showNext: boolean
+}
+
+function SlidingButtons({ onPrevious, onNext, showPrevious, showNext }: SlidingButtonsProps) {
+  return (
+    <>
+      {showNext && (
+        <div className="hidden lg:flex absolute right-0 top-0 h-full w-20 z-10 items-center justify-center bg-gradient-to-l from-black/90 to-transparent">
+          <button
+            onClick={onNext}
+            aria-label="Next"
+            className="text-white"
+          >
+            <ChevronRight className="h-9 w-9" />
+          </button>
+        </div>
+      )}
+
+      {showPrevious && (
+        <div className="hidden lg:flex absolute left-0 top-0 h-full w-20 z-10 items-center justify-center bg-gradient-to-r from-black/90 to-transparent">
+          <button
+            onClick={onPrevious}
+            aria-label="Previous"
+            className="text-white"
+          >
+            <ChevronLeft className="h-9 w-9" />
+          </button>
+        </div>
+      )}
+    </>
+  )
+}
+
+// Custom hook for scroll navigation
+function useScrollNavigation() {
+  const [canScrollLeft, setCanScrollLeft] = useState(false)
+  const [canScrollRight, setCanScrollRight] = useState(true)
+
+  const checkScrollButtons = (element: HTMLElement) => {
+    const { scrollLeft, scrollWidth, clientWidth } = element
+    setCanScrollLeft(scrollLeft > 0)
+    setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 1)
+  }
+
+  const scrollLeft = (element: HTMLElement) => {
+    const scrollAmount = element.clientWidth * 0.8
+    element.scrollBy({ left: -scrollAmount, behavior: "smooth" })
+  }
+
+  const scrollRight = (element: HTMLElement) => {
+    const scrollAmount = element.clientWidth * 0.8
+    element.scrollBy({ left: scrollAmount, behavior: "smooth" })
+  }
+
+  return {
+    canScrollLeft,
+    canScrollRight,
+    checkScrollButtons,
+    scrollLeft,
+    scrollRight,
+  }
+}
+
 export default function CineVerse() {
   const [contentType, setContentType] = useState<"movies" | "series">("movies")
   const [isLoading, setIsLoading] = useState(true)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const router = useRouter()
+
+  // Refs for scroll containers
+  const top10Ref = useRef<HTMLDivElement>(null)
+  const releasedRow1Ref = useRef<HTMLDivElement>(null)
+  const releasedRow2Ref = useRef<HTMLDivElement>(null)
+  const upcomingRef = useRef<HTMLDivElement>(null)
+
+  // Scroll navigation hooks
+  const top10Scroll = useScrollNavigation()
+  const releasedRow1Scroll = useScrollNavigation()
+  const releasedRow2Scroll = useScrollNavigation()
+  const upcomingScroll = useScrollNavigation()
 
   const handleLoadingComplete = () => setIsLoading(false)
   const toggleMenu = () => setIsMenuOpen((o) => !o)
@@ -542,6 +622,20 @@ export default function CineVerse() {
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
+
+  // Initialize scroll button states
+  useEffect(() => {
+    const initializeScrollStates = () => {
+      if (top10Ref.current) top10Scroll.checkScrollButtons(top10Ref.current)
+      if (releasedRow1Ref.current) releasedRow1Scroll.checkScrollButtons(releasedRow1Ref.current)
+      if (releasedRow2Ref.current) releasedRow2Scroll.checkScrollButtons(releasedRow2Ref.current)
+      if (upcomingRef.current) upcomingScroll.checkScrollButtons(upcomingRef.current)
+    }
+
+    // Small delay to ensure content is rendered
+    const timer = setTimeout(initializeScrollStates, 100)
+    return () => clearTimeout(timer)
+  }, [contentType])
 
   const arrivedContent = contentType === "movies" ? arrivedMovies : arrivedSeries
   const upcomingContent = contentType === "movies" ? upcomingMovies : upcomingSeries
@@ -589,6 +683,7 @@ export default function CineVerse() {
         <main className="flex-1">
           <FeaturedShowcase />
 
+          {/* Top 10 Section */}
           <section className="container px-2 sm:px-4 py-12">
             <div className="flex items-center mb-8">
               <h2 className="text-3xl font-bold tracking-tight flex items-center gap-3">
@@ -596,44 +691,42 @@ export default function CineVerse() {
                 <span>Top 10</span>
               </h2>
               <Link href="/top10" className="ml-auto">
-                <Button
-                  variant="outline"
-                  className="bg-blue-900/30 text-blue-400 hover:bg-blue-600/30 border-blue-800"
-                >
+                <Button variant="outline" className="bg-blue-900/30 text-blue-400 hover:bg-blue-600/30 border-blue-800">
                   Trending
                 </Button>
               </Link>
             </div>
-
-            <div
-              className="flex gap-2 sm:gap-4 md:gap-6 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide cursor-grab active:cursor-grabbing"
-              style={{
-                scrollbarWidth: "none",
-                msOverflowStyle: "none",
-                WebkitOverflowScrolling: "touch",
-              }}
-              onMouseDown={handleMouseDrag}
-            >
-              {top10Content.map((item, index) => (
-                <div
-                  key={`${item.title}-${index}`}
-                  className="flex-shrink-0 w-[140px] sm:w-48 md:w-56 lg:w-64 snap-start"
-                >
-                  <TopMovieCard {...item} rank={index + 1} />
-                </div>
-              ))}
+            <div className="relative">
+              <div
+                ref={top10Ref}
+                className="flex gap-2 sm:gap-4 md:gap-6 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide cursor-grab active:cursor-grabbing"
+                style={{
+                  scrollbarWidth: "none",
+                  msOverflowStyle: "none",
+                  WebkitOverflowScrolling: "touch",
+                }}
+                onMouseDown={handleMouseDrag}
+                onScroll={(e) => top10Scroll.checkScrollButtons(e.currentTarget)}
+              >
+                {top10Content.map((item, index) => (
+                  <div
+                    key={`${item.title}-${index}`}
+                    className="flex-shrink-0 w-[140px] sm:w-48 md:w-56 lg:w-64 snap-start"
+                  >
+                    <TopMovieCard {...item} rank={index + 1} />
+                  </div>
+                ))}
+              </div>
+              <SlidingButtons
+                onPrevious={() => top10Ref.current && top10Scroll.scrollLeft(top10Ref.current)}
+                onNext={() => top10Ref.current && top10Scroll.scrollRight(top10Ref.current)}
+                showPrevious={top10Scroll.canScrollLeft}
+                showNext={top10Scroll.canScrollRight}
+              />
             </div>
-            <style jsx>{`
-                .scrollbar-hide::-webkit-scrollbar {
-                  display: none;
-                }
-                .scrollbar-hide {
-                  -ms-overflow-style: none;
-                  scrollbar-width: none;
-                }
-              `}</style>
           </section>
 
+          {/* 2025 Releases Section */}
           <section className="container px-2 sm:px-4 py-12">
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-2xl font-bold tracking-tight">2025 Releases</h2>
@@ -648,7 +741,9 @@ export default function CineVerse() {
                 </TabsList>
               </Tabs>
             </div>
+
             <div className="space-y-12">
+              {/* Recently Released Section */}
               <div>
                 <div className="flex items-center justify-between mb-6">
                   <h3 className="text-xl font-semibold flex items-center gap-2">
@@ -664,81 +759,109 @@ export default function CineVerse() {
                     View all <ChevronRight className="h-4 w-4" />
                   </Link>
                 </div>
+
                 <div className="space-y-8">
                   {/* Row 1 */}
-                  <div
-                    className="flex gap-2 sm:gap-4 md:gap-5 lg:gap-6 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide cursor-grab active:cursor-grabbing"
-                    style={{
-                      scrollbarWidth: "none",
-                      msOverflowStyle: "none",
-                      WebkitOverflowScrolling: "touch",
-                    }}
-                    onMouseDown={handleMouseDrag}
-                  >
-                    {arrivedContentRow1.map((movie, index) => (
-                      <div
-                        key={`${movie.title}-${index}`}
-                        className="flex-shrink-0 w-[90px] sm:w-[140px] md:w-[180px] lg:w-[220px] snap-start"
-                      >
-                        <MovieCard
-                          title={movie.title}
-                          type={movie.type}
-                          image={movie.image || "/placeholder-image.jpg"}
-                          rating={movie.rating}
-                          releaseDate={movie.releaseDate}
-                          status="released"
-                          slug={movie.slug}
-                          loading="lazy"
-                          blurDataURL="/blur-movie.svg"
-                        />
-                      </div>
-                    ))}
-                    {arrivedContentRow1.length === 0 && (
-                      <div className="flex-1 py-4 text-center">
-                        <p className="text-gray-500">
-                          No {contentType === "movies" ? "movies" : "series"} available in this category.
-                        </p>
-                      </div>
-                    )}
+                  <div className="relative">
+                    <div
+                      ref={releasedRow1Ref}
+                      className="flex gap-2 sm:gap-4 md:gap-5 lg:gap-6 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide cursor-grab active:cursor-grabbing"
+                      style={{
+                        scrollbarWidth: "none",
+                        msOverflowStyle: "none",
+                        WebkitOverflowScrolling: "touch",
+                      }}
+                      onMouseDown={handleMouseDrag}
+                      onScroll={(e) => releasedRow1Scroll.checkScrollButtons(e.currentTarget)}
+                    >
+                      {arrivedContentRow1.map((movie, index) => (
+                        <div
+                          key={`${movie.title}-${index}`}
+                          className="flex-shrink-0 w-[90px] sm:w-[140px] md:w-[180px] lg:w-[220px] snap-start"
+                        >
+                          <MovieCard
+                            title={movie.title}
+                            type={movie.type}
+                            image={movie.image || "/placeholder-image.jpg"}
+                            rating={movie.rating}
+                            releaseDate={movie.releaseDate}
+                            status="released"
+                            slug={movie.slug}
+                            loading="lazy"
+                            blurDataURL="/blur-movie.svg"
+                          />
+                        </div>
+                      ))}
+                      {arrivedContentRow1.length === 0 && (
+                        <div className="flex-1 py-4 text-center">
+                          <p className="text-gray-500">
+                            No {contentType === "movies" ? "movies" : "series"} available in this category.
+                          </p>
+                        </div>
+                      )}
+                    </div>
+                    <SlidingButtons
+                      onPrevious={() =>
+                        releasedRow1Ref.current && releasedRow1Scroll.scrollLeft(releasedRow1Ref.current)
+                      }
+                      onNext={() => releasedRow1Ref.current && releasedRow1Scroll.scrollRight(releasedRow1Ref.current)}
+                      showPrevious={releasedRow1Scroll.canScrollLeft}
+                      showNext={releasedRow1Scroll.canScrollRight}
+                    />
                   </div>
+
                   {/* Row 2 */}
-                  <div
-                    className="flex gap-2 sm:gap-4 md:gap-5 lg:gap-6 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide cursor-grab active:cursor-grabbing"
-                    style={{
-                      scrollbarWidth: "none",
-                      msOverflowStyle: "none",
-                      WebkitOverflowScrolling: "touch",
-                    }}
-                    onMouseDown={handleMouseDrag}
-                  >
-                    {arrivedContentRow2.map((movie, index) => (
-                      <div
-                        key={`${movie.title}-${index}`}
-                        className="flex-shrink-0 w-[90px] sm:w-[140px] md:w-[180px] lg:w-[220px] snap-start"
-                      >
-                        <MovieCard
-                          title={movie.title}
-                          type={movie.type}
-                          image={movie.image || "/placeholder-image.jpg"}
-                          rating={movie.rating}
-                          releaseDate={movie.releaseDate}
-                          status="released"
-                          slug={movie.slug}
-                          loading="lazy"
-                          blurDataURL="/blur-movie.svg"
-                        />
-                      </div>
-                    ))}
-                    {arrivedContentRow2.length === 0 && (
-                      <div className="flex-1 py-4 text-center">
-                        <p className="text-gray-500">
-                          No {contentType === "movies" ? "movies" : "series"} available in this category.
-                        </p>
-                      </div>
-                    )}
+                  <div className="relative">
+                    <div
+                      ref={releasedRow2Ref}
+                      className="flex gap-2 sm:gap-4 md:gap-5 lg:gap-6 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide cursor-grab active:cursor-grabbing"
+                      style={{
+                        scrollbarWidth: "none",
+                        msOverflowStyle: "none",
+                        WebkitOverflowScrolling: "touch",
+                      }}
+                      onMouseDown={handleMouseDrag}
+                      onScroll={(e) => releasedRow2Scroll.checkScrollButtons(e.currentTarget)}
+                    >
+                      {arrivedContentRow2.map((movie, index) => (
+                        <div
+                          key={`${movie.title}-${index}`}
+                          className="flex-shrink-0 w-[90px] sm:w-[140px] md:w-[180px] lg:w-[220px] snap-start"
+                        >
+                          <MovieCard
+                            title={movie.title}
+                            type={movie.type}
+                            image={movie.image || "/placeholder-image.jpg"}
+                            rating={movie.rating}
+                            releaseDate={movie.releaseDate}
+                            status="released"
+                            slug={movie.slug}
+                            loading="lazy"
+                            blurDataURL="/blur-movie.svg"
+                          />
+                        </div>
+                      ))}
+                      {arrivedContentRow2.length === 0 && (
+                        <div className="flex-1 py-4 text-center">
+                          <p className="text-gray-500">
+                            No {contentType === "movies" ? "movies" : "series"} available in this category.
+                          </p>
+                        </div>
+                      )}
+                    </div>
+                    <SlidingButtons
+                      onPrevious={() =>
+                        releasedRow2Ref.current && releasedRow2Scroll.scrollLeft(releasedRow2Ref.current)
+                      }
+                      onNext={() => releasedRow2Ref.current && releasedRow2Scroll.scrollRight(releasedRow2Ref.current)}
+                      showPrevious={releasedRow2Scroll.canScrollLeft}
+                      showNext={releasedRow2Scroll.canScrollRight}
+                    />
                   </div>
                 </div>
               </div>
+
+              {/* Coming Soon Section */}
               <div>
                 <div className="flex items-center justify-between mb-6">
                   <h3 className="text-xl font-semibold flex items-center gap-2">
@@ -754,51 +877,62 @@ export default function CineVerse() {
                     View all <ChevronRight className="h-4 w-4" />
                   </Link>
                 </div>
-                <div
-                  className="flex gap-2 sm:gap-4 md:gap-5 lg:gap-6 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide cursor-grab active:cursor-grabbing"
-                  style={{
-                    scrollbarWidth: "none",
-                    msOverflowStyle: "none",
-                    WebkitOverflowScrolling: "touch",
-                  }}
-                  onMouseDown={handleMouseDrag}
-                >
-                  {upcomingContent.map((movie, index) => (
-                    <div
-                      key={`${movie.title}-${index}`}
-                      className="flex-shrink-0 w-[90px] sm:w-[140px] md:w-[180px] lg:w-[220px] snap-start"
-                    >
-                      <MovieCard
-                        title={movie.title}
-                        type={movie.type}
-                        image={movie.image || "/placeholder-image.jpg"}
-                        releaseDate={movie.releaseDate}
-                        status="upcoming"
-                        slug={movie.slug}
-                        loading="lazy"
-                        blurDataURL="/blur-upcoming.svg"
-                      />
-                    </div>
-                  ))}
-                  {upcomingContent.length === 0 && (
-                    <div className="flex-1 py-4 text-center">
-                      <p className="text-gray-400">
-                        No {contentType === "movies" ? "movies" : "series"} available in this category.
-                      </p>
-                    </div>
-                  )}
+                <div className="relative">
+                  <div
+                    ref={upcomingRef}
+                    className="flex gap-2 sm:gap-4 md:gap-5 lg:gap-6 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide cursor-grab active:cursor-grabbing"
+                    style={{
+                      scrollbarWidth: "none",
+                      msOverflowStyle: "none",
+                      WebkitOverflowScrolling: "touch",
+                    }}
+                    onMouseDown={handleMouseDrag}
+                    onScroll={(e) => upcomingScroll.checkScrollButtons(e.currentTarget)}
+                  >
+                    {upcomingContent.map((movie, index) => (
+                      <div
+                        key={`${movie.title}-${index}`}
+                        className="flex-shrink-0 w-[90px] sm:w-[140px] md:w-[180px] lg:w-[220px] snap-start"
+                      >
+                        <MovieCard
+                          title={movie.title}
+                          type={movie.type}
+                          image={movie.image || "/placeholder-image.jpg"}
+                          releaseDate={movie.releaseDate}
+                          status="upcoming"
+                          slug={movie.slug}
+                          loading="lazy"
+                          blurDataURL="/blur-upcoming.svg"
+                        />
+                      </div>
+                    ))}
+                    {upcomingContent.length === 0 && (
+                      <div className="flex-1 py-4 text-center">
+                        <p className="text-gray-400">
+                          No {contentType === "movies" ? "movies" : "series"} available in this category.
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                  <SlidingButtons
+                    onPrevious={() => upcomingRef.current && upcomingScroll.scrollLeft(upcomingRef.current)}
+                    onNext={() => upcomingRef.current && upcomingScroll.scrollRight(upcomingRef.current)}
+                    showPrevious={upcomingScroll.canScrollLeft}
+                    showNext={upcomingScroll.canScrollRight}
+                  />
                 </div>
               </div>
             </div>
+
             <style jsx>{`
-                .scrollbar-hide::-webkit-scrollbar {
-                  display: none;
-                }
-                .scrollbar-hide {
-                  -ms-overflow-style: none;
-                  scrollbar-width: none;
-                }
-              `}</style>
+              .scrollbar-hide::-webkit-scrollbar {
+                display: none;
+              }
+              .scrollbar-hide {
+                -ms-overflow-style: none;
+                scrollbar-width: none;
+              }
+            `}</style>
           </section>
 
           <section className="py-12 bg-black">
