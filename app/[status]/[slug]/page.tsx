@@ -916,7 +916,7 @@ function getMovieData(slug: string, status: string) {
       genre: "Sci‑Fi / Horror",
       description:
         "Set in the year 2120, two years before the original 1979 Alien film, the series follows hybrid prototype “Wendy” (Sydney Chandler) and a team of tactical soldiers investigating the crash‑landing of the USCSS Maginot on Earth. As mega‑corporations vie for control, they uncover terrifying life forms and face a planetary threat.",
-      trailerUrl: "https://youtu.be/ZbsiKjVAV28?si=30lmuEQPi0NYBWX2",
+      trailerUrl: "https://youtu.be/FqIi3N9dusk?si=TBHYDfd4ISwIWjwv",
       status: "upcoming"
     },
   }
