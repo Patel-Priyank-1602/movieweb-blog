@@ -61,7 +61,7 @@ const notifications: Notification[] = [
     movieType: "New Addition",
     movieImage: "/notify/trend.png?height=450&width=300",
     isRead: false,
-    actionUrl: "/released/superman",
+    actionUrl: "/notifications",
     priority: "medium",
     category: "Trending",
   },
