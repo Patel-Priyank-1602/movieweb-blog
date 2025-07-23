@@ -1,8 +1,8 @@
 "use client"
 
-import React from "react"
+import React, { useState, useEffect, useRef } from "react"
 import { useRouter } from "next/navigation"
-import { TrendingUp } from "lucide-react"
+import { ChevronLeft, ChevronRight, TrendingUp } from "lucide-react"
 import Navbar from "@/components/nav"
 import { SiteFooter } from "@/components/footer"
 
@@ -130,12 +130,21 @@ const top10Content: ContentItem[] = [
     slug: "squid-game",
   },
   {
+    title: "Special OPS 2",
+    type: "Series",
+    image: "/series/spcc.jpeg?height=450&width=300",
+    rating: 4.5,
+    releaseDate: "Jul 17, 2025",
+    status: "released",
+    slug: "special-ops-2",
+  },
+  {
     title: "Criminal Justice",
     type: "Series",
     image: "/series/cr.jpeg?height=450&width=300",
     rating: 4.2,
     releaseDate: "May 29, 2025",
-    status: "released" as const,
+    status: "released",
     slug: "criminal-justice",
   },
   {
@@ -182,7 +191,7 @@ const top10Content: ContentItem[] = [
     releaseDate: "Jan 17, 2025",
     status: "released",
     slug: "pataal-lok",
-  }, 
+  },
 ]
 
 // Split top10Content into movies and series
@@ -223,7 +232,90 @@ function TopMovieCard({ title, type, image, rating, releaseDate, status, rank, s
   )
 }
 
+// Sliding Button Component - Desktop Only
+interface SlidingButtonsProps {
+  onPrevious: () => void
+  onNext: () => void
+  showPrevious: boolean
+  showNext: boolean
+}
+
+function SlidingButtons({ onPrevious, onNext, showPrevious, showNext }: SlidingButtonsProps) {
+  return (
+    <>
+      {showNext && (
+        <div className="hidden lg:flex absolute right-0 top-0 h-full w-20 z-10 items-center justify-center bg-gradient-to-l from-black/90 to-transparent">
+          <button
+            onClick={onNext}
+            aria-label="Next"
+            className="text-white"
+          >
+            <ChevronRight className="h-9 w-9" />
+          </button>
+        </div>
+      )}
+
+      {showPrevious && (
+        <div className="hidden lg:flex absolute left-0 top-0 h-full w-20 z-10 items-center justify-center bg-gradient-to-r from-black/90 to-transparent">
+          <button
+            onClick={onPrevious}
+            aria-label="Previous"
+            className="text-white"
+          >
+            <ChevronLeft className="h-9 w-9" />
+          </button>
+        </div>
+      )}
+    </>
+  )
+}
+
+// Custom hook for scroll navigation
+function useScrollNavigation() {
+  const [canScrollLeft, setCanScrollLeft] = useState(false)
+  const [canScrollRight, setCanScrollRight] = useState(true)
+
+  const checkScrollButtons = (element: HTMLElement) => {
+    const { scrollLeft, scrollWidth, clientWidth } = element
+    setCanScrollLeft(scrollLeft > 0)
+    setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 1)
+  }
+
+  const scrollLeft = (element: HTMLElement) => {
+    const scrollAmount = element.clientWidth * 0.8
+    element.scrollBy({ left: -scrollAmount, behavior: "smooth" })
+  }
+
+  const scrollRight = (element: HTMLElement) => {
+    const scrollAmount = element.clientWidth * 0.8
+    element.scrollBy({ left: scrollAmount, behavior: "smooth" })
+  }
+
+  return {
+    canScrollLeft,
+    canScrollRight,
+    checkScrollButtons,
+    scrollLeft,
+    scrollRight,
+  }
+}
+
 export default function Top10Page() {
+  const moviesRef = useRef<HTMLDivElement>(null)
+  const seriesRef = useRef<HTMLDivElement>(null)
+  const moviesScroll = useScrollNavigation()
+  const seriesScroll = useScrollNavigation()
+
+  useEffect(() => {
+    const initializeScrollStates = () => {
+      if (moviesRef.current) moviesScroll.checkScrollButtons(moviesRef.current)
+      if (seriesRef.current) seriesScroll.checkScrollButtons(seriesRef.current)
+    }
+
+    const timer = setTimeout(initializeScrollStates, 100)
+    return () => clearTimeout(timer)
+  }, [])
+
   const handleMouseDrag = (e: React.MouseEvent<HTMLDivElement>) => {
     const container = e.currentTarget
     const startX = e.pageX - container.offsetLeft
@@ -250,10 +342,7 @@ export default function Top10Page() {
 
   return (
     <div className="flex flex-col min-h-screen bg-black text-white">
-      {/* Navbar */}
       <Navbar />
-
-      {/* Main Content */}
       <div className="pt-16">
         <main className="flex-1">
           <section className="container px-2 sm:px-4 py-12">
@@ -264,28 +353,38 @@ export default function Top10Page() {
                 <span>Top Movies</span>
               </h2>
             </div>
-            <div
-              className="flex gap-2 sm:gap-4 md:gap-6 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide cursor-grab active:cursor-grabbing"
-              style={{
-                scrollbarWidth: "none",
-                msOverflowStyle: "none",
-                WebkitOverflowScrolling: "touch",
-              }}
-              onMouseDown={handleMouseDrag}
-            >
-              {top10Movies.map((item, index) => (
-                <div
-                  key={`${item.title}-${index}`}
-                  className="flex-shrink-0 w-[140px] sm:w-48 md:w-56 lg:w-64 snap-start"
-                >
-                  <TopMovieCard {...item} rank={index + 1} />
-                </div>
-              ))}
-              {top10Movies.length === 0 && (
-                <div className="flex-1 py-4 text-center">
-                  <p className="text-gray-500">No movies available in this category.</p>
-                </div>
-              )}
+            <div className="relative">
+              <div
+                ref={moviesRef}
+                className="flex gap-2 sm:gap-4 md:gap-6 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide cursor-grab active:cursor-grabbing"
+                style={{
+                  scrollbarWidth: "none",
+                  msOverflowStyle: "none",
+                  WebkitOverflowScrolling: "touch",
+                }}
+                onMouseDown={handleMouseDrag}
+                onScroll={(e) => moviesScroll.checkScrollButtons(e.currentTarget)}
+              >
+                {top10Movies.map((item, index) => (
+                  <div
+                    key={`${item.title}-${index}`}
+                    className="flex-shrink-0 w-[140px] sm:w-48 md:w-56 lg:w-64 snap-start"
+                  >
+                    <TopMovieCard {...item} rank={index + 1} />
+                  </div>
+                ))}
+                {top10Movies.length === 0 && (
+                  <div className="flex-1 py-4 text-center">
+                    <p className="text-gray-500">No movies available in this category.</p>
+                  </div>
+                )}
+              </div>
+              <SlidingButtons
+                onPrevious={() => moviesRef.current && moviesScroll.scrollLeft(moviesRef.current)}
+                onNext={() => moviesRef.current && moviesScroll.scrollRight(moviesRef.current)}
+                showPrevious={moviesScroll.canScrollLeft}
+                showNext={moviesScroll.canScrollRight}
+              />
             </div>
 
             {/* Top 10 Series Section */}
@@ -295,28 +394,38 @@ export default function Top10Page() {
                 <span>Top WebSeries</span>
               </h2>
             </div>
-            <div
-              className="flex gap-2 sm:gap-4 md:gap-6 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide cursor-grab active:cursor-grabbing"
-              style={{
-                scrollbarWidth: "none",
-                msOverflowStyle: "none",
-                WebkitOverflowScrolling: "touch",
-              }}
-              onMouseDown={handleMouseDrag}
-            >
-              {top10Series.map((item, index) => (
-                <div
-                  key={`${item.title}-${index}`}
-                  className="flex-shrink-0 w-[140px] sm:w-48 md:w-56 lg:w-64 snap-start"
-                >
-                  <TopMovieCard {...item} rank={index + 1} />
-                </div>
-              ))}
-              {top10Series.length === 0 && (
-                <div className="flex-1 py-4 text-center">
-                  <p className="text-gray-500">No series available in this category.</p>
-                </div>
-              )}
+            <div className="relative">
+              <div
+                ref={seriesRef}
+                className="flex gap-2 sm:gap-4 md:gap-6 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide cursor-grab active:cursor-grabbing"
+                style={{
+                  scrollbarWidth: "none",
+                  msOverflowStyle: "none",
+                  WebkitOverflowScrolling: "touch",
+                }}
+                onMouseDown={handleMouseDrag}
+                onScroll={(e) => seriesScroll.checkScrollButtons(e.currentTarget)}
+              >
+                {top10Series.map((item, index) => (
+                  <div
+                    key={`${item.title}-${index}`}
+                    className="flex-shrink-0 w-[140px] sm:w-48 md:w-56 lg:w-64 snap-start"
+                  >
+                    <TopMovieCard {...item} rank={index + 1} />
+                  </div>
+                ))}
+                {top10Series.length === 0 && (
+                  <div className="flex-1 py-4 text-center">
+                    <p className="text-gray-500">No series available in this category.</p>
+                  </div>
+                )}
+              </div>
+              <SlidingButtons
+                onPrevious={() => seriesRef.current && seriesScroll.scrollLeft(seriesRef.current)}
+                onNext={() => seriesRef.current && seriesScroll.scrollRight(seriesRef.current)}
+                showPrevious={seriesScroll.canScrollLeft}
+                showNext={seriesScroll.canScrollRight}
+              />
             </div>
 
             <style jsx>{`
@@ -331,7 +440,6 @@ export default function Top10Page() {
           </section>
         </main>
       </div>
-
       <SiteFooter />
     </div>
   )

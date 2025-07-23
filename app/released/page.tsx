@@ -259,6 +259,14 @@ export default function ReleasedPage() {
       releaseDate: "Jul 3, 2025",
       status: "released" as const,
     },
+    {
+      title: "Special OPS 2",
+      type: "Series",
+      image: "/series/sp.jpeg?height=450&width=300",
+      rating: 4.5,
+      releaseDate: "Jul 17, 2025",
+      status: "released" as const,
+    }
   ]
 
   // Sort movies and series by release date (ascending)

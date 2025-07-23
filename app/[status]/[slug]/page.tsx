@@ -634,7 +634,7 @@ function getMovieData(slug: string, status: string) {
       type: "Movie",
       posterImage: "/series/dl.jpeg?height=450&width=300",
       coverImage: "/series/dlc.jpeg?height=600&width=1200",
-      releaseDate: "September 12, 2025", 
+      releaseDate: "September 12, 2025",
       director: "Haruo Sotozaki",
       productionCompany: "Ufotable",
       imdbRating: null,
@@ -642,7 +642,7 @@ function getMovieData(slug: string, status: string) {
       genre: "Animation/Action/Fantasy",
       description:
         "Tanjiro and his allies return in the latest Demon Slayer movie, continuing their fierce battle against the Upper Rank demons. As new alliances form and secrets are revealed, the Demon Slayer Corps faces a deadly new threat that could change their world forever.",
-      trailerUrl: "https://youtu.be/3AUm3j6Bi5A?si=ZBYdgkA5Ip8fzz8M", 
+      trailerUrl: "https://youtu.be/3AUm3j6Bi5A?si=ZBYdgkA5Ip8fzz8M",
       status: status === "released" ? "released" : "upcoming",
     },
     // Series - Released
@@ -820,6 +820,22 @@ function getMovieData(slug: string, status: string) {
       description:
         "In Season 2, Dream continues rebuilding the Dreaming and restoring cosmic balance as new threats emerge from both realms and beyond. As old gods stir and ancient grudges resurface, the Endless face new trials that test their roles and relationships in Neil Gaiman’s ever-deepening universe.",
       trailerUrl: "https://youtu.be/Er18gmgqy2k?si=_S7iOjr2rhf9Mtvk",
+      status: status === "released" ? "released" : "released",
+    },
+    "special-ops-2": {
+      title: "Special OPS 2",
+      type: "Series",
+      posterImage: "/series/sp.jpeg?height=450&width=300",
+      coverImage: "/series/spc.jpeg?height=600&width=1200",
+      releaseDate: "July 17, 2025",
+      director: "Neeraj Pandey",
+      productionCompany: "Hotstar Specials",
+      imdbRating: 8.6,
+      duration: "7 episodes",
+      genre: "Action/Thriller",
+      description:
+        "Himmat Singh returns in Season 2 with a new team and deadlier enemies. As geopolitical tensions rise, covert operations span across nations, and the stakes get personal. Loyalties are tested in this gripping continuation of India's elite spy saga.",
+      trailerUrl: "https://youtu.be/iaNXfCYW91U?si=0C5X0IGWjntXlKw5",
       status: status === "released" ? "released" : "released",
     },
     // Series - Upcoming
