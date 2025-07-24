@@ -24,13 +24,6 @@ export default function UpcomingPage() {
 
   const upcomingMovies = [
     {
-      title: "Fantastic 4",
-      type: "Movie",
-      image: "/series/fanc.jpeg?height=450&width=300",
-      releaseDate: "Jul 25, 2025",
-      status: "upcoming" as const,
-    },
-    {
       title: "War 2",
       type: "Movie",
       image: "/series/warr.jpeg?height=450&width=300",

@@ -547,7 +547,7 @@ function getMovieData(slug: string, status: string) {
       description:
         "Marvel's First Family finally joins the MCU in this origin story set in the 1960s. When four explorers gain extraordinary abilities after exposure to cosmic rays, they must learn to harness their new powers while facing threats from both Earth and beyond, including the mysterious ruler of Latveria.",
       trailerUrl: "https://youtu.be/pAsmrKyMqaA?si=khrrTA7d7mmrjnbj",
-      status: status === "released" ? "released" : "upcoming",
+      status: status === "released" ? "released" : "released",
     },
     "war-2": {
       title: "War 2",

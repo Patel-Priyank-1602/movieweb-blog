@@ -26,6 +26,15 @@ interface ContentItem {
 
 const arrivedMovies: ContentItem[] = [
   {
+    title: "Fantastic 4",
+    type: "Movie",
+    image: "/series/fanc.jpeg?height=450&width=300",
+    rating: 4.5,
+    releaseDate: "Jul 25, 2025",
+    status: "upcoming",
+    slug: "fantastic-4",
+  },
+  {
     title: "Superman",
     type: "Movie",
     image: "/series/suc.jpeg?height=450&width=300",
@@ -191,22 +200,6 @@ const arrivedMovies: ContentItem[] = [
 
 const upcomingMovies: ContentItem[] = [
   {
-    title: "Fantastic 4",
-    type: "Movie",
-    image: "/series/fanc.jpeg?height=450&width=300",
-    releaseDate: "Jul 25, 2025",
-    status: "upcoming",
-    slug: "fantastic-4",
-  },
-  {
-    title: "Demon Slayer: Kimetsu no Yaiba – Infinity Castle Arc",
-    type: "Movie",
-    image: "/series/dl.jpeg?height=450&width=300",
-    releaseDate: "Sept 12, 2025",
-    status: "upcoming",
-    slug: "demon-slayer-kimetsu-no-yaiba-infinity-castle-arc",
-  },
-  {
     title: "The Bad Guys 2",
     type: "Movie",
     image: "/series/bd.jpeg?height=450&width=300",
@@ -229,6 +222,14 @@ const upcomingMovies: ContentItem[] = [
     releaseDate: "Sept 5, 2025",
     status: "upcoming",
     slug: "the-conjuring",
+  },
+   {
+    title: "Demon Slayer: Kimetsu no Yaiba – Infinity Castle Arc",
+    type: "Movie",
+    image: "/series/dl.jpeg?height=450&width=300",
+    releaseDate: "Sept 12, 2025",
+    status: "upcoming",
+    slug: "demon-slayer-kimetsu-no-yaiba-infinity-castle-arc",
   },
   {
     title: "Zootopia 2",
@@ -946,7 +947,7 @@ export default function CineVerse() {
           <section className="py-12 bg-black">
             <div className="container px-2 sm:px-4">
               <div className="text-center space-y-4 max-w-3xl mx-auto mb-12">
-                <h2 className="text-3xl font-bold">The Last Update on this Website was on 23/07/2025</h2>
+                <h2 className="text-3xl font-bold">The Last Update on this Website was on 25/07/2025</h2>
                 <p className="text-gray-400">
                   For some Movies/Series, the official trailer is not Available, but only a Teaser has been released. In
                   some cases, neither a Teaser nor a Trailer is Available — only a Date Announcement Video is Provided.

@@ -26,6 +26,20 @@ const notifications: Notification[] = [
   {
     id: "notif-1",
     type: "release",
+    title: "The Fantastic 4 : First Steps",
+    message: "Fantastic 4 is now available! Watch the epic origin story of Marvel's First Family.",
+    movieTitle: "New Release",
+    movieSlug: "fantastic-4",
+    movieType: "Movie",
+    movieImage: "/series/fanc.jpeg?height=450&width=300",
+    isRead: false,
+    actionUrl: "/released/fantastic-4",
+    priority: "high",
+    category: "Action/Sci-fi",
+  },
+  {
+    id: "notif-2",
+    type: "release",
     title: "Special OPS 2",
     message: "Special OPS 2 is now available! Watch the thrilling new season of this action-packed series.",
     movieTitle: "New Release",
@@ -38,7 +52,7 @@ const notifications: Notification[] = [
     category: "Action/Thriller",
   },
   {
-    id: "notif-2",
+    id: "notif-3",
     type: "teaser",
     title: "Stranger Things Season 5",
     message: "Stranger Things Season 5 teaser is out now! Get ready for the final season of this epic series.",
@@ -52,7 +66,7 @@ const notifications: Notification[] = [
     category: "Sci-Fi/Horror",
   },
   {
-    id: "notif-3",
+    id: "notif-4",
     type: "new_addition",
     title: "New Section Added",
     message: "Check out our New Section for Trending Movies and Series! Stay updated with the latest releases.",
@@ -66,7 +80,7 @@ const notifications: Notification[] = [
     category: "Trending",
   },
     {
-    id: "notif-4",
+    id: "notif-5",
     type: "release",
     title: "Superman 2025",
     message: "Superman is now in theaters! Experience the epic return",
@@ -80,7 +94,7 @@ const notifications: Notification[] = [
     category: "Drama/Superhero",
   },
   {
-    id: "notif-5",
+    id: "notif-6",
     type: "trailer",
     title: "Alice in Borderland Season 3",
     message: "Alice in Borderland Season 3 trailer is out now! Get ready for more thrilling adventures.",
@@ -94,7 +108,7 @@ const notifications: Notification[] = [
     category: "Thriller/Sci-Fi",
   },
   {
-    id: "notif-6",
+    id: "notif-7",
     type: "trailer",
     title: "Wednesday Season 2",
     message: "Wednesday Season 2 trailer is out now! Watch it and get ready for more spooky adventures.",
@@ -108,7 +122,7 @@ const notifications: Notification[] = [
     category: "Fantasy/Comedy",
   },
   {
-    id: "notif-7",
+    id: "notif-8",
     type: "in theater",
     title: "Jurassic World Rebirth",
     message: "Jurassic World Rebirth is available in theaters! Don't miss the action-packed adventure.",
@@ -122,7 +136,7 @@ const notifications: Notification[] = [
     category: "Adventure/Sci-Fi",
   },
   {
-    id: "notif-8",
+    id: "notif-9",
     type: "new season",
     title: "Panchayat Season 4",
     message: "Panchayat Season 4 is here! Join the Phulera gang for more rural drama and comedy.",
@@ -136,7 +150,7 @@ const notifications: Notification[] = [
     category: "Comedy/Drama",
   },
   {
-    id: "notif-9",
+    id: "notif-10",
     type: "new season",
     title: "Squid Game Season 3",
     message: "Squid Game Season 3 is now streaming! Dive into the final chapter of this thrilling series.",
@@ -148,20 +162,6 @@ const notifications: Notification[] = [
     actionUrl: "/released/squid-game",
     priority: "high",
     category: "Thriller/Drama",
-  },
-  {
-    id: "notif-10",
-    type: "in theater",
-    title: "F1: The Movie",
-    message: "F1: The Movie is available in theaters! Experience the adrenaline rush of Formula 1 racing.",
-    movieTitle: "Avaliable In Theater",
-    movieSlug: "f1-the-movie",
-    movieType: "Movie",
-    movieImage: "/series/f1.jpeg?height=450&width=300",
-    isRead: false,
-    actionUrl: "/released/f1-the-movie",
-    priority: "high",
-    category: "Sports/Drama",
   },
 ]
 

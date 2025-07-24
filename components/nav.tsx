@@ -105,6 +105,11 @@ export default function Navbar() {
                                                     link: "https://www.primevideo.com/",
                                                 },
                                                 {
+                                                    name: "Crunchyroll",
+                                                    icon: "crunchyroll",
+                                                    link: "https://www.crunchyroll.com/",
+                                                },
+                                                {
                                                     name: "Apple TV+",
                                                     icon: "appletv",
                                                     link: "https://tv.apple.com/",
