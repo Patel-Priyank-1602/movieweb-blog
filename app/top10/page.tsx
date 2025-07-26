@@ -22,11 +22,20 @@ interface TopMovieCardProps extends ContentItem {
 
 const top10Content: ContentItem[] = [
   {
+    title: "Fantastic 4",
+    type: "Movie",
+    image: "/series/fanc1.jpeg?height=450&width=300",
+    rating: 4.5,
+    releaseDate: "Jul 25, 2025",
+    status: "upcoming",
+    slug: "fantastic-4",
+  },
+  {
     title: "Superman",
     type: "Movie",
     image: "/series/suc.jpeg?height=450&width=300",
     rating: 4.3,
-    releaseDate: "July 11, 2025",
+    releaseDate: "Jul 11, 2025",
     status: "released",
     slug: "superman",
   },

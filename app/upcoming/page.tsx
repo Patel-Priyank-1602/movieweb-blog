@@ -65,6 +65,20 @@ export default function UpcomingPage() {
       releaseDate: "Sept 12, 2025",
       status: "upcoming" as const,
     },
+    {
+      title: "Predator: Badlands",
+      type: "Movie",
+      image: "/series/pb.jpeg?height=450&width=300",
+      releaseDate: "Nov 7, 2025",
+      status: "upcoming" as const,
+    },
+    {
+      title: "Coolie",
+      type: "Movie",
+      image: "/series/cl.jpeg?height=450&width=300",
+      releaseDate: "Aug 14, 2025",
+      status: "upcoming" as const,
+    },
   ]
 
   const upcomingSeries = [

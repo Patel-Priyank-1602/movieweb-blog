@@ -562,7 +562,7 @@ function getMovieData(slug: string, status: string) {
       genre: "Action/Thriller",
       description:
         "The sequel to the blockbuster action film continues the story of India's elite agents as they face a new international threat. When a rogue agent threatens global security, Kabir must team up with a new partner to stop a conspiracy that could trigger a world war.",
-      trailerUrl: "https://youtu.be/dK1W-AViQ-M?si=_P-UXmnyDFLKxMM0",
+      trailerUrl: "https://youtu.be/mjBym9uKth4?si=EEiwtbRRrGMSicVZ",
       status: status === "released" ? "released" : "upcoming",
     },
     "the-conjuring": {
@@ -643,6 +643,38 @@ function getMovieData(slug: string, status: string) {
       description:
         "Tanjiro and his allies return in the latest Demon Slayer movie, continuing their fierce battle against the Upper Rank demons. As new alliances form and secrets are revealed, the Demon Slayer Corps faces a deadly new threat that could change their world forever.",
       trailerUrl: "https://youtu.be/3AUm3j6Bi5A?si=ZBYdgkA5Ip8fzz8M",
+      status: status === "released" ? "released" : "upcoming",
+    },
+    "predator-badlands": {
+      title: "Predator: Badlands",
+      type: "Movie",
+      posterImage: "/series/pb.jpeg?height=450&width=300",
+      coverImage: "/series/pbc.jpeg?height=600&width=1200",
+      releaseDate: "November 7, 2025",
+      director: "Dan Trachtenberg",
+      productionCompany: "20th Century Studios",
+      imdbRating: null,
+      duration: "1h 55m",
+      genre: "Action/Sci-Fi/Thriller",
+      description:
+        "Set in the harsh and unforgiving Badlands, a new Predator stalks a desolate wasteland where survival is the only rule. A group of unlikely warriors must band together to fight the ultimate hunter in this gritty reboot of the iconic sci-fi franchise.",
+      trailerUrl: "https://youtu.be/43R9l7EkJwE?si=FhJDOvrHRKG1P-bs",
+      status: status === "released" ? "released" : "upcoming",
+    },
+    "coolie": {
+      title: "Coolie",
+      type: "Movie",
+      posterImage: "/series/cl.jpeg?height=450&width=300",
+      coverImage: "/series/clc.jpeg?height=600&width=1200",
+      releaseDate: "August 14, 2025",
+      director: "Lokesh Kanagaraj",
+      productionCompany: "Seven Screen Studio",
+      imdbRating: null,
+      duration: "2h 35m",
+      genre: "Action/Drama",
+      description:
+        "Coolie marks the explosive return of Rajinikanth in a high-octane action drama directed by Lokesh Kanagaraj. Set in a gritty world of crime and justice, this film blends mass appeal with stylish filmmaking as a former coolie rises against a corrupt system.",
+      trailerUrl: "https://youtu.be/lH4a2_2ffCw?si=twpNdB7sSmsrXExh", 
       status: status === "released" ? "released" : "upcoming",
     },
     // Series - Released

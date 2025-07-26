@@ -216,6 +216,13 @@ const upcomingMovies: ContentItem[] = [
     slug: "war-2",
   },
   {
+    title: "Coolie",
+    type: "Movie",
+    image: "/series/cl.jpeg?height=450&width=300",
+    releaseDate: "Aug 14, 2025",
+    status: "upcoming" as const,
+  },
+  {
     title: "The Conjuring",
     type: "Movie",
     image: "/series/can.jpeg?height=450&width=300",
@@ -223,13 +230,20 @@ const upcomingMovies: ContentItem[] = [
     status: "upcoming",
     slug: "the-conjuring",
   },
-   {
+  {
     title: "Demon Slayer: Kimetsu no Yaiba – Infinity Castle Arc",
     type: "Movie",
     image: "/series/dl.jpeg?height=450&width=300",
     releaseDate: "Sept 12, 2025",
     status: "upcoming",
     slug: "demon-slayer-kimetsu-no-yaiba-infinity-castle-arc",
+  },
+  {
+    title: "Predator: Badlands",
+    type: "Movie",
+    image: "/series/pb.jpeg?height=450&width=300",
+    releaseDate: "Nov 7, 2025",
+    status: "upcoming" as const,
   },
   {
     title: "Zootopia 2",
@@ -403,6 +417,15 @@ const upcomingSeries: ContentItem[] = [
 
 const top10Content: ContentItem[] = [
   {
+    title: "Fantastic 4",
+    type: "Movie",
+    image: "/series/fanc1.jpeg?height=450&width=300",
+    rating: 4.5,
+    releaseDate: "Jul 25, 2025",
+    status: "upcoming",
+    slug: "fantastic-4",
+  },
+  {
     title: "Panchayat",
     type: "Series",
     image: "/series/pancc.jpeg?height=450&width=300",
@@ -455,15 +478,6 @@ const top10Content: ContentItem[] = [
     releaseDate: "Jul 4, 2025",
     status: "released",
     slug: "jurassic-world-rebirth",
-  },
-  {
-    title: "Kesari: Chapter 2",
-    type: "Movie",
-    image: "/series/kc.jpeg?height=450&width=300",
-    rating: 4.1,
-    releaseDate: "Apr 18, 2025",
-    status: "released",
-    slug: "kesari-chapter-2",
   },
   {
     title: "28 Years Later",

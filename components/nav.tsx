@@ -191,7 +191,7 @@ export default function Navbar() {
                                 className={`text-sm font-medium transition-colors ${pathname === "/about" ? "text-white border-b-2 border-[#6d28d9] pb-1" : "text-gray-300 hover:text-white"
                                     }`}
                             >
-                                About
+                                About Me
                             </Link>
                         </nav>
 
@@ -299,7 +299,7 @@ export default function Navbar() {
                                                 className={`block text-sm font-medium py-2 px-3 rounded-lg transition-all duration-300 ${pathname === "/about" ? "text-white bg-[#6d28d9]/20 border-l-4 border-[#6d28d9]" : "text-gray-300 hover:text-white hover:bg-gray-800"
                                                     }`}
                                             >
-                                                About
+                                                About Developer
                                             </Link>
                                         </nav>
 
@@ -420,7 +420,7 @@ export default function Navbar() {
                                 }`}
                             style={{ borderLeftColor: "#7336d5" }}
                         >
-                            About
+                            About Developer
                         </Link>
 
                         {/* Mobile Action Buttons */}
