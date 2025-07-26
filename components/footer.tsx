@@ -125,13 +125,13 @@ export function SiteFooter() {
             </p>
             <div className="flex gap-6">
               <Link
-                href="/privacy"
+                href="/privacyterms/privacy"
                 className="text-muted-foreground hover:text-primary transition-colors duration-200"
               >
                 Privacy Policy
               </Link>
               <Link
-                href="/terms"
+                href="/privacyterms/terms"
                 className="text-muted-foreground hover:text-primary transition-colors duration-200"
               >
                 Terms of Service
