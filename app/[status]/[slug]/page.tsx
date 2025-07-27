@@ -17,13 +17,9 @@ interface MovieDetailsProps {
 }
 
 export default function MovieDetailsPage({ params }: MovieDetailsProps) {
-  // State to control trailer modal visibility
   const [isTrailerOpen, setIsTrailerOpen] = useState(false)
-
-  // Unwrap params using React.use()
   const resolvedParams = use(params)
 
-  // Ensure params are defined before accessing
   if (!resolvedParams || !resolvedParams.slug || !resolvedParams.status) {
     return (
       <div className="min-h-screen bg-black text-white flex items-center justify-center">
@@ -37,18 +33,13 @@ export default function MovieDetailsPage({ params }: MovieDetailsProps) {
     )
   }
 
-  // In a real app, you would fetch this data from an API or database
-  // For now, we'll use mock data based on the slug
   const movieData = getMovieData(resolvedParams.slug, resolvedParams.status)
-
-  // Function to extract YouTube video ID from URL
   const getYouTubeId = (url: string) => {
     const regex = /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/
     const match = url.match(regex)
     return match ? match[1] : null
   }
 
-  // YouTube player options
   const opts: YouTubeProps['opts'] = {
     height: '100%',
     width: '100%',
@@ -72,9 +63,41 @@ export default function MovieDetailsPage({ params }: MovieDetailsProps) {
 
   const youtubeId = movieData.trailerUrl ? getYouTubeId(movieData.trailerUrl) : null
 
+  // Streaming Platforms Component
+  const StreamingPlatforms = () => (
+    movieData.streamingPlatforms && movieData.streamingPlatforms.length > 0 ? (
+      <div className="mt-4">
+        <h4 className="font-medium text-gray-300 mb-3">Watch on:</h4>
+        <div className="flex flex-wrap gap-2">
+          {movieData.streamingPlatforms.map((platform, index) => (
+            <a
+              key={index}
+              href={platform.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 bg-gray-800 hover:bg-gray-700 border border-gray-700 hover:border-gray-600 rounded-lg px-3 py-2 transition-all duration-200 group text-sm"
+            >
+              {"icon" in platform && platform.icon ? (
+                <span className="text-base">{platform.icon}</span>
+              ) : "image" in platform && platform.image ? (
+                <Image
+                  src={platform.image}
+                  alt={platform.name}
+                  width={20}
+                  height={20}
+                  className="inline-block"
+                />
+              ) : null}
+              <span className="font-medium text-gray-300 group-hover:text-white">{platform.name}</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    ) : null
+  )
+
   return (
     <div className="min-h-screen bg-black text-white">
-      {/* Full-screen background image */}
       <div className="fixed inset-0 z-0">
         <Image
           src={movieData?.posterImage || "/placeholder.svg"}
@@ -102,7 +125,6 @@ export default function MovieDetailsPage({ params }: MovieDetailsProps) {
             priority={false}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-transparent" />
-
           <div className="absolute top-4 left-4 z-10">
             <Link href="/">
               <Button variant="ghost" size="icon" className="bg-black/50 hover:bg-black/70">
@@ -127,8 +149,7 @@ export default function MovieDetailsPage({ params }: MovieDetailsProps) {
                   blurDataURL="/blur-poster.svg"
                 />
               </div>
-
-              <div className="mt-6">
+              <div className="mt-6 space-y-4">
                 {youtubeId ? (
                   <Button className="w-full gap-2" onClick={() => setIsTrailerOpen(true)}>
                     <Play className="h-4 w-4" />
@@ -140,6 +161,10 @@ export default function MovieDetailsPage({ params }: MovieDetailsProps) {
                     Trailer Not Available
                   </Button>
                 )}
+                {/* Streaming Platforms for Mobile and Tablet (below md) */}
+                <div className="block md:hidden">
+                  <StreamingPlatforms />
+                </div>
               </div>
             </div>
 
@@ -162,9 +187,7 @@ export default function MovieDetailsPage({ params }: MovieDetailsProps) {
                   <span className="text-sm text-gray-400">{movieData.duration}</span>
                   <span className="text-sm text-gray-400">{movieData.genre}</span>
                 </div>
-
                 <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold">{movieData.title}</h1>
-
                 <div className="flex items-center gap-2 text-yellow-500">
                   <Star className="h-5 w-5 fill-yellow-500" />
                   <span className="text-lg font-medium">{movieData.imdbRating || 'TBD'} / 10</span>
@@ -180,7 +203,6 @@ export default function MovieDetailsPage({ params }: MovieDetailsProps) {
                     <p className="font-medium">{movieData.releaseDate}</p>
                   </div>
                 </div>
-
                 <div className="flex items-center gap-3">
                   <Users className="h-5 w-5 text-gray-400" />
                   <div>
@@ -188,13 +210,16 @@ export default function MovieDetailsPage({ params }: MovieDetailsProps) {
                     <p className="font-medium">{movieData.director}</p>
                   </div>
                 </div>
-
                 <div className="flex items-center gap-3">
                   <Film className="h-5 w-5 text-gray-400" />
                   <div>
                     <p className="text-sm text-gray-400">Production Company</p>
                     <p className="font-medium">{movieData.productionCompany}</p>
                   </div>
+                </div>
+                {/* Streaming Platforms for Desktop (md and larger) */}
+                <div className="hidden md:block">
+                  <StreamingPlatforms />
                 </div>
               </div>
 
@@ -212,7 +237,6 @@ export default function MovieDetailsPage({ params }: MovieDetailsProps) {
         </div>
       </div>
 
-      {/* Trailer Modal */}
       {isTrailerOpen && youtubeId && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80">
           <div className="relative w-full max-w-3xl p-4">
@@ -260,6 +284,9 @@ function getMovieData(slug: string, status: string) {
         "Following the success of the first film, Raid 2 continues the story of an honest income tax officer who takes on powerful corrupt individuals. This time, he faces an even more dangerous network of corruption that reaches the highest levels of government.",
       trailerUrl: "https://youtu.be/kQF1gl7nLaU?si=mt9-hO2Rnsh1Sicu",
       status: status === "released" ? "released" : "released",
+      streamingPlatforms: [
+        { name: "Netflix", image: "/icons/netflix.png", url: "https://www.netflix.com/in/title/81760050" },
+      ],
     },
     thunderbolt: {
       title: "Thunderbolt",
@@ -276,6 +303,10 @@ function getMovieData(slug: string, status: string) {
         "When a brilliant engineer develops a revolutionary technology that harnesses lightning as an unlimited energy source, powerful interests will stop at nothing to control it. As global powers race to acquire the technology, the inventor must protect his creation from falling into the wrong hands.",
       trailerUrl: "https://youtu.be/-sAOWhvheK8?si=kelc3zzg3EToo0mg",
       status: status === "released" ? "released" : "released",
+      streamingPlatforms: [
+        { name: "Prime Video", image: "/icons/primev.png", url: "https://www.primevideo.com/detail/Thunderbolts/0NHFIZLPDPLA503QCNMNCWG0LH" },
+        { name: "Apple TV+", image: "/icons/appletv.png", url: "https://tv.apple.com/us/movie/thunderbolts/umc.cmc.67bgkyn0fzr8n7ngw0v4mi2df" },
+      ],
     },
     chhava: {
       title: "Chhava",
@@ -292,6 +323,7 @@ function getMovieData(slug: string, status: string) {
         "Based on the life of Chhatrapati Sambhaji Maharaj, the son and successor of Chhatrapati Shivaji Maharaj. The film portrays his courage, military genius, and the challenges he faced while defending the Maratha kingdom against powerful enemies.",
       trailerUrl: "https://youtu.be/hs3w32RG8L8?si=4K8VgukqALdqlboa",
       status: status === "released" ? "released" : "released",
+      streamingPlatforms: [{ name: "Netflix", image: "/icons/netflix.png", url: "https://www.netflix.com/in/title/81902061" }],
     },
     "final-destination": {
       title: "Final Destination Bloodlines",
@@ -308,6 +340,10 @@ function getMovieData(slug: string, status: string) {
         "The latest installment in the popular horror franchise follows a new group of survivors who cheat death after one of them has a premonition about a catastrophic event. As they begin to die in increasingly elaborate and gruesome ways, they race to find a way to break the cycle of death.",
       trailerUrl: "https://youtu.be/UWMzKXsY9A4?si=zLqRiBGlkzReUe1G",
       status: status === "released" ? "released" : "released",
+      streamingPlatforms: [
+        { name: "Prime Video", image: "/icons/primev.png", url: "https://www.primevideo.com/detail/Final-Destination-Bloodlines/0HQWQLL7HKLA4LEUNTS3ANVMP7" },
+        { name: "Apple TV+", image: "/icons/appletv.png", url: "https://tv.apple.com/in/movie/final-destination-bloodlines/umc.cmc.5qfqpx54akwcmzwfwwwq43kb5" },
+      ],
     },
     "mission-impossible-final-reckoning": {
       title: "Mission Impossible: Final Reckoning",
@@ -324,6 +360,10 @@ function getMovieData(slug: string, status: string) {
         "In the epic conclusion to the Mission Impossible saga, Ethan Hunt faces his most personal mission yet as he confronts enemies from his past while trying to prevent a global catastrophe. With the IMF disbanded and his allies scattered, Hunt must rely on new allies and old friends to complete his final mission.",
       trailerUrl: "https://youtu.be/fsQgc9pCyDU?si=BBElSbmi-HVWQlc5",
       status: status === "released" ? "released" : "released",
+      streamingPlatforms: [
+        { name: "Apple TV+", image: "/icons/appletv.png", url: "https://tv.apple.com/us/movie/mission-impossible---the-final-reckoning/umc.cmc.492oh9izvznxkfxk934zdz941" },
+        { name: "Prime Video", image: "/icons/primev.png", url: "https://www.primevideo.com/detail/Mission-Impossible---The-Final-Reckoning/0KT5HNE3OBR4TOFORPUHDR4G9U" },
+      ],
     },
     "ballerina": {
       title: "Ballerina",
@@ -340,6 +380,10 @@ function getMovieData(slug: string, status: string) {
         "A young female assassin, trained in the traditions of the Ruska Roma, seeks vengeance in the underworld of the John Wick universe. This spin-off explores her deadly skills and relentless pursuit of justice in a gritty, action-packed narrative.",
       trailerUrl: "https://youtu.be/0FSwsrFpkbw?si=xaEjWThoXDltcjm1",
       status: status === "released" ? "released" : "released",
+      streamingPlatforms: [
+        { name: "Prime Video", image: "/icons/primev.png", url: "https://www.primevideo.com/detail/BALLERINA-FROM-THE-WORLD-OF-JOHN-WICK/0OX3M1GTROXBOOUMLU14EX2D94" },
+        { name: "Apple TV+", image: "/icons/appletv.png", url: "https://tv.apple.com/in/movie/ballerina-from-the-world-of-john-wick/umc.cmc.2dniikyfhc78agajle1hsckfw?action=play" },
+      ],
     },
     "captain-america-brave-new-world": {
       title: "Captain America: Brave New World",
@@ -356,6 +400,11 @@ function getMovieData(slug: string, status: string) {
         "Sam Wilson, now Captain America, navigates an international conspiracy after meeting with U.S. President Thaddeus Ross. As he uncovers a nefarious global plot, Sam must rally allies to prevent chaos, balancing his new role as a hero with high-stakes action and political intrigue.",
       trailerUrl: "https://youtu.be/1pHDWnXmK7Y?si=0S3d7WR3blRSGl4-",
       status: status === "released" ? "released" : "released",
+      streamingPlatforms: [
+        { name: "Jio Hotstar", image: "/icons/jioh.png", url: "https://www.hotstar.com/in/movies/captain-america-brave-new-world/1271337438" },
+        { name: "Prime Video", image: "/icons/primev.png", url: "https://www.primevideo.com/detail/Captain-America-Brave-New-World/0PQWXONK7YBT2JKTFUF0ZXAKNF" },
+        { name: "Apple TV+", image: "/icons/appletv.png", url: "https://tv.apple.com/us/movie/captain-america-brave-new-world/umc.cmc.3nc4irsrl9u6jk87kytlbvqu2" }
+      ],
     },
     "28-years-later": {
       title: "28 Years Later",
@@ -366,12 +415,16 @@ function getMovieData(slug: string, status: string) {
       director: "Danny Boyle",
       productionCompany: "Columbia Pictures",
       imdbRating: 7.2,
-      duration: "2h 6m",
+      duration: "1h 55m",
       genre: "Horror/Sci-Fi",
       description:
         "Set nearly three decades after the rage virus outbreak, this third installment in the 28 Days Later series explores a world still ravaged by infection. A new group of survivors faces the horrors of a post-apocalyptic landscape, with hope and humanity hanging in the balance.",
       trailerUrl: "https://youtu.be/IYGG55qwQZQ?si=M6JMYo1Mg-csYlQ9",
       status: status === "released" ? "released" : "released",
+      streamingPlatforms: [
+        { name: "Prime Video", image: "/icons/primev.png", url: "https://www.primevideo.com/detail/28-Years-Later/0PWT8O5128DA0DYUWYLZP7ONVB" },
+        { name: "Apple TV+", image: "/icons/appletv.png", url: "https://tv.apple.com/us/movie/28-years-later/umc.cmc.1by2zb4d0qbto5tumjnsn40da" },
+      ],
     },
     "sitaare-zameen-par": {
       title: "Sitaare Zameen Par",
@@ -384,9 +437,12 @@ function getMovieData(slug: string, status: string) {
       imdbRating: 7.3,
       duration: "2h 35m",
       genre: "Comedy/Drama/Sports",
-      description: "A spiritual successor to Taare Zameen Par, this film follows Gulshan, a disgraced basketball coach sentenced to community service after a drunk-driving incident. Tasked with training a team of neurodivergent adults, he initially approaches the job with prejudice but soon learns valuable life lessons from his players, finding redemption and purpose.",
+      description:
+        "A spiritual successor to Taare Zameen Par, this film follows Gulshan, a disgraced basketball coach sentenced to community service after a drunk-driving incident. Tasked with training a team of neurodivergent adults, he initially approaches the job with prejudice but soon learns valuable life lessons from his players, finding redemption and purpose.",
       trailerUrl: "https://youtu.be/YH6k5weqwy8?si=YzouQEcww3dopE3l",
       status: status === "released" ? "released" : "released",
+      streamingPlatforms: [
+      ],
     },
     "how-to-train-your-dragon": {
       title: "How to Train Your Dragon",
@@ -399,9 +455,14 @@ function getMovieData(slug: string, status: string) {
       imdbRating: 8.1,
       duration: "2h 18m",
       genre: "Action/Adventure/Fantasy",
-      description: "A live-action remake of the 2010 animated film, set on the rugged isle of Berk where Vikings and dragons are bitter enemies. Hiccup, an inventive yet overlooked young Viking, defies tradition by befriending Toothless, a rare Night Fury dragon. Their unlikely bond challenges the foundations of Viking society, revealing the true nature of dragons and forging a path toward peace as they confront an ancient threat.",
+      description:
+        "A live-action remake of the 2010 animated film, set on the rugged isle of Berk where Vikings and dragons are bitter enemies. Hiccup, an inventive yet overlooked young Viking, defies tradition by befriending Toothless, a rare Night Fury dragon. Their unlikely bond challenges the foundations of Viking society, revealing the true nature of dragons and forging a path toward peace as they confront an ancient threat.",
       trailerUrl: "https://youtu.be/OWEq2Pf8qpk?si=guhXV2kKgYPbH6t8",
-      status: "released"
+      status: "released",
+      streamingPlatforms: [
+        { name: "Prime Video", image: "/icons/primev.png", url: "https://www.primevideo.com/detail/How-to-Train-Your-Dragon-2025/0RDCY52NPSM1U7B61TVG4QYADL" },
+        { name: "Apple TV+", image: "/icons/appletv.png", url: "https://tv.apple.com/us/movie/how-to-train-your-dragon/umc.cmc.6xnfodk272f9zoyd6y7rlu4tw" },
+      ],
     },
     "f1-the-movie": {
       title: "F1: The Movie",
@@ -416,8 +477,12 @@ function getMovieData(slug: string, status: string) {
       genre: "Sports/Drama",
       description:
         "Set in the fast-paced world of Formula 1 racing, this high-octane drama follows a seasoned driver mentoring a rising star as they face personal and professional challenges on the road to glory. With real F1 teams and tracks, this film brings motorsport to the cinematic edge.",
-      trailerUrl: "https://youtu.be/8yh9BPUBbbQ?si=8l-0LrSlZL6hB4L1",
-      status: status === "released" ? "released" : "released"
+      trailerUrl: "https://youtu.be/8B1EtVPBSMw?si=Hq7u8tNC3nvbpRT1",
+      status: status === "released" ? "released" : "released",
+      streamingPlatforms: [
+        { name: "Apple TV+", image: "/icons/appletv.png", url: "https://tv.apple.com/us/movie/f1-the-movie/umc.cmc.3t6dvnnr87zwd4wmvpdx5came" },
+        { name: "Prime Video", image: "/icons/primev.png", url: "https://www.amazon.com/F1-Joseph-Kosinski/dp/B0DK9TQT7V" },
+      ],
     },
     "minecraft-the-movie": {
       title: "Minecraft: The Movie",
@@ -433,7 +498,11 @@ function getMovieData(slug: string, status: string) {
       description:
         "In a blocky world full of creativity and danger, a teenage girl and her unlikely team of adventurers must save the Overworld from the destructive Ender Dragon. Adapted from the beloved video game, this epic tale mixes humor, heart, and heroism.",
       trailerUrl: "https://youtu.be/8B1EtVPBSMw?si=Hq7u8tNC3nvbpRT1",
-      status: status === "released" ? "released" : "released"
+      status: status === "released" ? "released" : "released",
+      streamingPlatforms: [
+        { name: "Apple TV+", image: "/icons/appletv.png", url: "https://tv.apple.com/in/movie/a-minecraft-movie/umc.cmc.1od4a1ayyjqn43uz8fel7ei5e?action=play" },
+        { name: "Prime Video", image: "/icons/primev.png", url: "https://www.primevideo.com/dp/amzn1.dv.gti.f939f84b-b792-4f6f-82ea-7432a332c90a?autoplay=0&ref_=atv_cf_strg_wb" },
+      ],
     },
     "kesari-chapter-2": {
       title: "Kesari: Chapter 2",
@@ -449,7 +518,10 @@ function getMovieData(slug: string, status: string) {
       description:
         "Following the victory at Saragarhi, Havildar Ishar Singh’s legacy continues as the next generation of Sikh warriors confronts new colonial threats. 'Kesari: Chapter 2' brings an untold chapter of bravery, sacrifice, and honor to life.",
       trailerUrl: "https://youtu.be/r-7g08INMSI?si=oGRd6vdvcIa30_TT",
-      status: status === "released" ? "released" : "released"
+      status: status === "released" ? "released" : "released",
+      streamingPlatforms: [
+        { name: "JioHotstar", image: "/icons/Jioh.png", url: "https://www.hotstar.com/in/movies/kesari-chapter-2/1271423966" },
+      ],
     },
     "dragon": {
       title: "Dragon",
@@ -465,7 +537,9 @@ function getMovieData(slug: string, status: string) {
       description:
         "A brilliant engineering student spirals into chaos after heartbreak and reinvents himself as 'Dragon'—a street-smart hustler navigating lies, love, and identity in corporate Chennai. The film balances emotion, humor, and redemption in a youth-centric narrative.",
       trailerUrl: "https://youtu.be/1ONb0CBbgPQ?si=xiZDXjoxkH1bYH_8",
-      status: status === "released" ? "released" : "released"
+      status: status === "released" ? "released" : "released",
+      streamingPlatforms: [
+      ],
     },
     "jurassic-world-rebirth": {
       title: "Jurassic World: Rebirth",
@@ -482,6 +556,10 @@ function getMovieData(slug: string, status: string) {
         "Ten years after the events of Jurassic World Dominion, dinosaurs have adapted to living alongside humans in various ecosystems around the world. When a new genetic breakthrough threatens to upset this delicate balance, a team of scientists and adventurers must prevent a new extinction event that could wipe out both dinosaurs and humanity.",
       trailerUrl: "https://youtu.be/6m1eOoUoVao?si=m2zUiKS5MTJZAITv",
       status: status === "released" ? "released" : "released",
+      streamingPlatforms: [
+        { name: "Apple TV+", image: "/icons/appletv.png", url: "https://tv.apple.com/us/movie/jurassic-world-rebirth/umc.cmc.70puysxqi6jvumt17hpngqjbb" },
+        { name: "Prime Video", image: "/icons/primev.png", url: "https://www.primevideo.com/detail/Jurassic-World-Rebirth/0LDEOBW5YKKQBSLD80CPD0J6UY" },
+      ],
     },
     "eleven": {
       title: "Eleven",
@@ -497,7 +575,9 @@ function getMovieData(slug: string, status: string) {
       description:
         "An honest and intelligent officer, ACP Aravindan IPS, is assigned to crack a chilling serial killing case that spans multiple cities. As the clues get darker and the killer more ruthless, Aravindan must rely on instinct, intellect, and integrity to uncover the shocking truth.",
       trailerUrl: "https://youtu.be/wGvaO0_pWtA?si=hrPlD6wkRc7JbQzx",
-      status: status === "released" ? "released" : "released"
+      status: status === "released" ? "released" : "released",
+      streamingPlatforms: [
+      ],
     },
     "lilo-stitch": {
       title: "Lilo & Stitch",
@@ -513,10 +593,12 @@ function getMovieData(slug: string, status: string) {
       description:
         "A young Hawaiian girl named Lilo adopts what she thinks is a dog, but it turns out to be a dangerous alien experiment named Stitch. Together, they form an unlikely bond, teaching the true meaning of family and love.",
       trailerUrl: "https://youtu.be/VWqJifMMgZE?si=xI_2Cb98F4ES_9O7",
-      status: status === "released" ? "released" : "released"
+      status: status === "released" ? "released" : "released",
+      streamingPlatforms: [
+        { name: "Prime Video", image: "/icons/Primev.png", url: "https://www.primevideo.com/detail/Lilo-Stitch-2025/0RIK82RI02E0638IH1I0YIKADR" },
+        { name: "Apple TV+", image: "/icons/appletv.png", url: "https://tv.apple.com/us/movie/lilo--stitch-2025/umc.cmc.3zbigg07xzhmyf3h7uvkdsaua" },
+      ],
     },
-
-    // Movies - Upcoming
     superman: {
       title: "Superman",
       type: "Movie",
@@ -532,6 +614,8 @@ function getMovieData(slug: string, status: string) {
         "A bold reimagining of the Superman story, focusing on a younger Clark Kent as he balances his Kryptonian heritage with his human upbringing. As he emerges as Earth's greatest protector, he faces threats both alien and human while defining what it means to be a hero in the modern world.",
       trailerUrl: "https://youtu.be/brI3gt9girI?si=01A0-x3pFRT1Rbpl",
       status: status === "released" ? "released" : "released",
+      streamingPlatforms: [
+      ],
     },
     "fantastic-4": {
       title: "Fantastic 4",
@@ -548,7 +632,10 @@ function getMovieData(slug: string, status: string) {
         "Marvel's First Family finally joins the MCU in this origin story set in the 1960s. When four explorers gain extraordinary abilities after exposure to cosmic rays, they must learn to harness their new powers while facing threats from both Earth and beyond, including the mysterious ruler of Latveria.",
       trailerUrl: "https://youtu.be/pAsmrKyMqaA?si=khrrTA7d7mmrjnbj",
       status: status === "released" ? "released" : "released",
+      streamingPlatforms: [
+      ],
     },
+    // Movies - Upcoming
     "war-2": {
       title: "War 2",
       type: "Movie",
@@ -564,6 +651,8 @@ function getMovieData(slug: string, status: string) {
         "The sequel to the blockbuster action film continues the story of India's elite agents as they face a new international threat. When a rogue agent threatens global security, Kabir must team up with a new partner to stop a conspiracy that could trigger a world war.",
       trailerUrl: "https://youtu.be/mjBym9uKth4?si=EEiwtbRRrGMSicVZ",
       status: status === "released" ? "released" : "upcoming",
+      streamingPlatforms: [
+      ],
     },
     "the-conjuring": {
       title: "The Conjuring: The Last Rites",
@@ -580,6 +669,8 @@ function getMovieData(slug: string, status: string) {
         "The next chapter in the Conjuring Universe follows paranormal investigators Ed and Lorraine Warren as they take on their most terrifying case yet. Based on another true case from their files, the Warrens face a demonic entity that has haunted a family for generations, revealing dark secrets about the history of the occult in America.",
       trailerUrl: "https://youtu.be/FSAz556s0fM?si=9ZduIyY3z0HVjxAd",
       status: status === "released" ? "released" : "upcoming",
+      streamingPlatforms: [
+      ],
     },
     "avatar-3": {
       title: "Avatar 3",
@@ -596,6 +687,8 @@ function getMovieData(slug: string, status: string) {
         "Return to Pandora as Jake Sully and Neytiri continue their journey, exploring new regions of the planet and facing a threat that tests the bonds of their family and the Na'vi people. This third installment introduces the Ash People, a fire-based Na'vi tribe, and delves deeper into the conflict between humans and the indigenous population of Pandora.",
       trailerUrl: "",
       status: status === "released" ? "released" : "upcoming",
+      streamingPlatforms: [
+      ],
     },
     "zootopia-2": {
       title: "Zootopia 2",
@@ -612,6 +705,8 @@ function getMovieData(slug: string, status: string) {
         "Nick Wilde and Judy Hopps return to Zootopia, tackling a new mystery involving a mysterious reptile disrupting the animal metropolis. Their investigation tests their partnership and uncovers secrets that shake the city’s harmony.",
       trailerUrl: "https://youtu.be/xo4rkcC7kFc?si=ncEilBey3W_eRMPM",
       status: status === "released" ? "released" : "upcoming",
+      streamingPlatforms: [
+      ],
     },
     "the-bad-guys-2": {
       title: "The Bad Guys 2",
@@ -628,6 +723,8 @@ function getMovieData(slug: string, status: string) {
         "The reformed criminal crew of The Bad Guys faces new challenges as they navigate their lives as heroes. A fresh heist and unexpected threats push their skills and loyalty to the limit in this action-packed animated sequel.",
       trailerUrl: "https://youtu.be/HvLHYox_Vq8?si=FZL0qbo14WBBsRq2",
       status: status === "released" ? "released" : "upcoming",
+      streamingPlatforms: [
+      ],
     },
     "demon-slayer-kimetsu-no-yaiba-infinity-castle-arc": {
       title: "Demon Slayer: Kimetsu No Yaiba The Movie 2025",
@@ -644,6 +741,8 @@ function getMovieData(slug: string, status: string) {
         "Tanjiro and his allies return in the latest Demon Slayer movie, continuing their fierce battle against the Upper Rank demons. As new alliances form and secrets are revealed, the Demon Slayer Corps faces a deadly new threat that could change their world forever.",
       trailerUrl: "https://youtu.be/3AUm3j6Bi5A?si=ZBYdgkA5Ip8fzz8M",
       status: status === "released" ? "released" : "upcoming",
+      streamingPlatforms: [
+      ],
     },
     "predator-badlands": {
       title: "Predator: Badlands",
@@ -660,6 +759,8 @@ function getMovieData(slug: string, status: string) {
         "Set in the harsh and unforgiving Badlands, a new Predator stalks a desolate wasteland where survival is the only rule. A group of unlikely warriors must band together to fight the ultimate hunter in this gritty reboot of the iconic sci-fi franchise.",
       trailerUrl: "https://youtu.be/43R9l7EkJwE?si=FhJDOvrHRKG1P-bs",
       status: status === "released" ? "released" : "upcoming",
+      streamingPlatforms: [
+      ],
     },
     "coolie": {
       title: "Coolie",
@@ -674,8 +775,10 @@ function getMovieData(slug: string, status: string) {
       genre: "Action/Drama",
       description:
         "Coolie marks the explosive return of Rajinikanth in a high-octane action drama directed by Lokesh Kanagaraj. Set in a gritty world of crime and justice, this film blends mass appeal with stylish filmmaking as a former coolie rises against a corrupt system.",
-      trailerUrl: "https://youtu.be/lH4a2_2ffCw?si=twpNdB7sSmsrXExh", 
+      trailerUrl: "https://youtu.be/lH4a2_2ffCw?si=twpNdB7sSmsrXExh",
       status: status === "released" ? "released" : "upcoming",
+      streamingPlatforms: [
+      ],
     },
     // Series - Released
     you: {
@@ -693,6 +796,9 @@ function getMovieData(slug: string, status: string) {
         "In the final season of the psychological thriller, Joe Goldberg attempts to leave his murderous past behind and start anew. However, his obsessive tendencies resurface when he becomes fixated on a mysterious woman who seems to know too much about his dark secrets.",
       trailerUrl: "https://youtu.be/kQdEHQLHDAI?si=Im5UUHBkOHmZjGqA",
       status: status === "released" ? "released" : "released",
+      streamingPlatforms: [
+        { name: "Netflix", image: "/icons/netflix.png", url: "https://www.netflix.com/in/title/80211991" },
+      ],
     },
     adolescence: {
       title: "Adolescence",
@@ -709,6 +815,9 @@ function getMovieData(slug: string, status: string) {
         "A raw and unflinching look at the lives of a group of high school students as they navigate the complexities of modern teenage life. Dealing with issues of identity, trauma, addiction, and relationships, the series offers a powerful portrayal of the challenges facing today's youth.",
       trailerUrl: "https://youtu.be/Wk5OxqtpBR4?si=pm7gbZO7bNlKcgLB",
       status: status === "released" ? "released" : "released",
+      streamingPlatforms: [
+        { name: "Netflix", image: "/icons/netflix.png", url: "https://www.netflix.com/in/title/81756069?source=35&fromWatch=true" },
+      ],
     },
     "pataal-lok": {
       title: "Pataal Lok",
@@ -725,6 +834,9 @@ function getMovieData(slug: string, status: string) {
         "In the second season of this critically acclaimed series, Inspector Hathiram Chaudhary investigates a new case that takes him deeper into the dark underbelly of Indian society. As he uncovers layers of corruption, politics, and crime, he must confront his own demons while navigating a system designed to break him.",
       trailerUrl: "https://youtu.be/RyzVgy8JteA?si=EoO1KEZiwyA_fKe3",
       status: status === "released" ? "released" : "released",
+      streamingPlatforms: [
+        { name: "Prime Video", image: "/icons/primev.png", url: "https://www.primevideo.com/detail/Paatal-Lok/0TJUQYHPIQC5R8KOUZ5P1C3F22" },
+      ],
     },
     "the-last-of-us": {
       title: "The Last of Us",
@@ -741,6 +853,10 @@ function getMovieData(slug: string, status: string) {
         "The second season adapts the events of the acclaimed video game 'The Last of Us Part II'. Five years after the events of the first season, Joel and Ellie have settled in Jackson, Wyoming. When a violent event disrupts their peace, Ellie embarks on a journey for justice that forces her to confront the physical and emotional toll of her actions.",
       trailerUrl: "https://youtu.be/_zHPsmXCjB0?si=cS6rx7sKlYtm7IEg",
       status: status === "released" ? "released" : "released",
+      streamingPlatforms: [
+        { name: "JioHotstar", image: "/icons/jioh.png", url: "https://www.hotstar.com/in/shows/the-last-of-us/1971002868?search_query=The+Last+of+Us+2025  " },
+        { name: "Prime Video", image: "/icons/primev.png", url: "https://www.primevideo.com/detail/The-Last-of-Us/0G20ZS1Z1H28FQAJIVU3PBTI4Y" },
+      ],
     },
     daredevil: {
       title: "Daredevil",
@@ -757,6 +873,9 @@ function getMovieData(slug: string, status: string) {
         "Daredevil: Born Again sees Matt Murdock return to Hell's Kitchen, where he must balance his dual life as a lawyer and vigilante. When Wilson Fisk rises to political power in New York City, Matt faces his greatest challenge yet as he confronts old enemies and new threats while trying to protect his city and those he loves.",
       trailerUrl: "https://youtu.be/7xALolZzhSM?si=0eizTuJ62nh4Bllf",
       status: status === "released" ? "released" : "released",
+      streamingPlatforms: [
+        { name: "JioHotstar", image: "/icons/jioh.png", url: "https://www.hotstar.com/in/shows/daredevil-born-again/1271337449" },
+      ],
     },
     "khakee-the-bengal-chapter": {
       title: "Khakee: The Bengal Chapter",
@@ -766,13 +885,16 @@ function getMovieData(slug: string, status: string) {
       releaseDate: "March 20, 2025",
       director: "Neeraj Pandey",
       productionCompany: "Netflix",
-      imdbRating: "7.5",
+      imdbRating: 7.5,
       duration: "7 episodes",
       genre: "Action/Drama",
       description:
         "A gritty police drama following a determined cop’s pursuit of a notorious criminal in West Bengal. Amid corruption, betrayal, and personal struggles, the battle between law and crime unfolds in a tense, action-driven narrative.",
       trailerUrl: "https://youtu.be/OErVaC--Bxk?si=9RSoejDPTF2GqUjD",
       status: status === "released" ? "released" : "released",
+      streamingPlatforms: [
+        { name: "Netflix", image: "/icons/netflix.png", url: "https://www.netflix.com/in/title/81995349?source=35&fromWatch=true" },
+      ],
     },
     panchayat: {
       title: "Panchayat",
@@ -789,6 +911,9 @@ function getMovieData(slug: string, status: string) {
         "The fourth season of this beloved Indian comedy-drama continues to follow Abhishek Tripathi, the secretary of the Phulera village panchayat. As he grows more accustomed to rural life, he faces new challenges in village administration while navigating personal and professional growth in the heart of rural India.",
       trailerUrl: "https://youtu.be/AHMEtNAZTP4?si=CV85goqlNRNAFJdt",
       status: status === "released" ? "released" : "released",
+      streamingPlatforms: [
+        { name: "Prime Video", image: "/icons/primev.png", url: "https://www.primevideo.com/detail/Panchayat/0S889MF6A5RLBABFIURRMZ51MJ" },
+      ],
     },
     "squid-game": {
       title: "Squid Game",
@@ -805,6 +930,9 @@ function getMovieData(slug: string, status: string) {
         "In the highly anticipated second season of the global phenomenon, Gi-hun returns to the game with a mission to expose the organization behind the deadly competition. As he infiltrates the system that exploits the desperate, he discovers that the games have evolved and the stakes are higher than ever before.",
       trailerUrl: "https://youtu.be/ULi6SmLifVg?si=MPHkgrcL0ulDhnrj",
       status: status === "released" ? "released" : "released",
+      streamingPlatforms: [
+        { name: "Netflix", image: "/icons/netflix.png", url: "https://www.netflix.com/in/title/81040344" },
+      ],
     },
     "ironheart": {
       title: "Ironheart",
@@ -821,6 +949,9 @@ function getMovieData(slug: string, status: string) {
         "Riri Williams, a brilliant young inventor, returns to Chicago to make her mark with her innovative iron suits. Her ambitions entangle her with the mysterious Parker Robbins, aka The Hood, in a battle of technology versus magic in this Marvel series.",
       trailerUrl: "https://youtu.be/WpW36ldAqnM?si=Ptga7C5NSlLkVQp5",
       status: status === "released" ? "released" : "released",
+      streamingPlatforms: [
+        { name: "JioHotstar", image: "/icons/jioh.png", url: "https://www.hotstar.com/in/shows/ironheart/1271341039" },
+      ],
     },
     "criminal-justice": {
       title: "Criminal Justice",
@@ -836,7 +967,10 @@ function getMovieData(slug: string, status: string) {
       description:
         "Madhav Mishra returns with a new complex case that tests the limits of justice when a famous influencer is found dead and all evidence points to an underage suspect. What is truth and who really decides justice?",
       trailerUrl: "https://youtu.be/98pKCUl4ljM?si=EiBjgp6ufAKrZEqY",
-      status: status === "released" ? "released" : "released"
+      status: status === "released" ? "released" : "released",
+      streamingPlatforms: [
+        { name: "JioHotstar", image: "/icons/jioh.png", url: "https://www.hotstar.com/in/shows/criminal-justice/1271316088" },
+      ],
     },
     "the-sandman": {
       title: "The Sandman",
@@ -853,6 +987,9 @@ function getMovieData(slug: string, status: string) {
         "In Season 2, Dream continues rebuilding the Dreaming and restoring cosmic balance as new threats emerge from both realms and beyond. As old gods stir and ancient grudges resurface, the Endless face new trials that test their roles and relationships in Neil Gaiman’s ever-deepening universe.",
       trailerUrl: "https://youtu.be/Er18gmgqy2k?si=_S7iOjr2rhf9Mtvk",
       status: status === "released" ? "released" : "released",
+      streamingPlatforms: [
+        { name: "Netflix", image: "/icons/netflix.png", url: "https://www.netflix.com/in/title/81150303" },
+      ],
     },
     "special-ops-2": {
       title: "Special OPS 2",
@@ -869,6 +1006,9 @@ function getMovieData(slug: string, status: string) {
         "Himmat Singh returns in Season 2 with a new team and deadlier enemies. As geopolitical tensions rise, covert operations span across nations, and the stakes get personal. Loyalties are tested in this gripping continuation of India's elite spy saga.",
       trailerUrl: "https://youtu.be/iaNXfCYW91U?si=0C5X0IGWjntXlKw5",
       status: status === "released" ? "released" : "released",
+      streamingPlatforms: [
+        { name: "JioHotstar", image: "/icons/Jioh.png", url: "https://www.hotstar.com/in/shows/special-ops/1260022894?search_query=Special+OPS+2" },
+      ],
     },
     // Series - Upcoming
     "stranger-things": {
@@ -886,6 +1026,9 @@ function getMovieData(slug: string, status: string) {
         "The fifth and final season of the beloved sci-fi series brings the story of Hawkins to an epic conclusion. As the friends face their greatest challenge yet against the forces of the Upside Down, they must uncover the origin of the dimensional rift and find a way to end the threat once and for all.",
       trailerUrl: "https://youtu.be/iKZyYdwS3Wg?si=ZzIi2p_prO9Kb7fi",
       status: status === "released" ? "released" : "upcoming",
+      streamingPlatforms: [
+        { name: "Netflix", icon: "🎬", url: "https://www.netflix.com" },
+      ],
     },
     "alice-in-borderland": {
       title: "Alice in Borderland",
@@ -902,6 +1045,10 @@ function getMovieData(slug: string, status: string) {
         "In the third season of this Japanese thriller, survivors of the deadly games must face new challenges as they uncover the truth behind the mysterious world they're trapped in. As the final stage of games begins, Arisu and his allies race to find a way back to reality before time runs out.",
       trailerUrl: "https://youtu.be/CaWRDITtT1U?si=BRcG5ehylMkyGNy9",
       status: status === "released" ? "released" : "upcoming",
+      streamingPlatforms: [
+        { name: "Netflix", icon: "🎬", url: "https://www.netflix.com" },
+        { name: "Crunchyroll", icon: "🍥", url: "https://www.crunchyroll.com" },
+      ],
     },
     wednesday: {
       title: "Wednesday",
@@ -918,6 +1065,9 @@ function getMovieData(slug: string, status: string) {
         "In the second season, Wednesday Addams returns to Nevermore Academy for her sophomore year, where she faces new supernatural mysteries and gothic intrigue. As she hones her psychic abilities, Wednesday uncovers dark secrets about her family's past while navigating the complexities of friendship, rivalry, and first love.",
       trailerUrl: "https://youtu.be/03u4xyj0TH4?si=20-EHsGIgv5X6DDu",
       status: status === "released" ? "released" : "upcoming",
+      streamingPlatforms: [
+        { name: "Netflix", icon: "🎬", url: "https://www.netflix.com" },
+      ],
     },
     "family-man": {
       title: "Family Man",
@@ -934,6 +1084,9 @@ function getMovieData(slug: string, status: string) {
         "In the third season of this acclaimed Indian spy thriller, intelligence officer Srikant Tiwari faces his most dangerous mission yet as he confronts a new threat to national security. While balancing his family life with his secret identity, Srikant must navigate geopolitical tensions and personal crises that test his resolve and loyalty.",
       trailerUrl: "https://youtu.be/ZnapjfATb6w?si=oICXgMqiM14wWBkL",
       status: status === "released" ? "released" : "upcoming",
+      streamingPlatforms: [
+        { name: "Prime Video", icon: "📺", url: "https://www.primevideo.com" },
+      ],
     },
     "the-witcher": {
       title: "The Witcher",
@@ -950,6 +1103,9 @@ function getMovieData(slug: string, status: string) {
         "In Season 4, Geralt of Rivia, now portrayed by Liam Hemsworth, continues his quest to protect Ciri amidst mounting political tensions and looming war across the Continent. As destinies collide and old enemies return, the stakes rise higher than ever for Geralt, Yennefer, and Ciri.",
       trailerUrl: "https://youtu.be/kr3br-3i8TY?si=jAox8ye-oQZA7V-f",
       status: status === "released" ? "released" : "upcoming",
+      streamingPlatforms: [
+        { name: "Netflix", icon: "🎬", url: "https://www.netflix.com" },
+      ],
     },
     "alien-earth": {
       title: "Alien: Earth",
@@ -965,7 +1121,10 @@ function getMovieData(slug: string, status: string) {
       description:
         "Set in the year 2120, two years before the original 1979 Alien film, the series follows hybrid prototype “Wendy” (Sydney Chandler) and a team of tactical soldiers investigating the crash‑landing of the USCSS Maginot on Earth. As mega‑corporations vie for control, they uncover terrifying life forms and face a planetary threat.",
       trailerUrl: "https://youtu.be/FqIi3N9dusk?si=TBHYDfd4ISwIWjwv",
-      status: "upcoming"
+      status: "upcoming",
+      streamingPlatforms: [
+        { name: "Hulu", icon: "📺", url: "https://www.hulu.com" },
+      ],
     },
   }
 

@@ -309,6 +309,14 @@ const arrivedSeries: ContentItem[] = [
     slug: "ironheart",
   },
   {
+    title: "Adolescence",
+    type: "Series",
+    image: "/series/adc.jpeg?height=450&width=300",
+    rating: 4.2,
+    releaseDate: "Mar 13, 2025",
+    status: "released" as const,
+  },
+  {
     title: "Criminal Justice",
     type: "Series",
     image: "/series/cr.jpeg?height=450&width=300",
