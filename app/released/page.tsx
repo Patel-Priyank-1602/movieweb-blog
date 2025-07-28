@@ -176,6 +176,14 @@ export default function ReleasedPage() {
       releaseDate: "Jul 25, 2025",
       status: "released" as const,
     },
+    {
+      title: "Mahavatar Narsimha",
+      type: "Movie",
+      rating: 4.7,
+      image: "/series/ma.jpeg?height=450&width=300",
+      releaseDate: "Jul 25, 2025",
+      status: "released" as const,
+    },
   ]
 
   const arrivedSeries = [

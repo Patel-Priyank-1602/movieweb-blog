@@ -635,6 +635,24 @@ function getMovieData(slug: string, status: string) {
       streamingPlatforms: [
       ],
     },
+    "mahavatar-narsimha": {
+      title: "Mahavatar Narsimha",
+      type: "Movie",
+      posterImage: "/series/ma.jpeg?height=450&width=300",
+      coverImage: "/series/mac.jpeg?height=600&width=1200",
+      releaseDate: "July 25, 2025",
+      director: "Ashwin Kumar",
+      productionCompany: "Hombale Films",
+      imdbRating: 9.8,
+      duration: "2h 21m",
+      genre: "Animation/Action",
+      description:
+        "An epic retelling of the powerful tale of Lord Narasimha, the fourth avatar of Lord Vishnu. Set against a mythological backdrop, the film brings to life the fierce battle between divinity and evil as Narasimha emerges to protect his devotee Prahlad and restore dharma.",
+      trailerUrl: "https://youtu.be/p7eE_dn9u4k?si=D84jQ0qBJSYXPPLL", 
+      status: status === "released" ? "released" : "released",
+      streamingPlatforms: [
+      ],
+    },
     // Movies - Upcoming
     "war-2": {
       title: "War 2",
