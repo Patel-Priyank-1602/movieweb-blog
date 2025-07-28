@@ -443,6 +443,15 @@ const top10Content: ContentItem[] = [
     slug: "fantastic-4",
   },
   {
+    title: "Mahavatar Narsimha",
+    type: "Movie",
+    rating: 4.7,
+    image: "/series/ma.jpeg?height=450&width=300",
+    releaseDate: "Jul 25, 2025",
+    status: "released",
+    slug: "mahavatar-narsimha",
+  },
+  {
     title: "Panchayat",
     type: "Series",
     image: "/series/pancc.jpeg?height=450&width=300",
@@ -513,15 +522,6 @@ const top10Content: ContentItem[] = [
     releaseDate: "June 6, 2025",
     status: "released",
     slug: "ballerina",
-  },
-  {
-    title: "Adolescence",
-    type: "Series",
-    image: "/series/adc.jpeg?height=450&width=300",
-    rating: 4.2,
-    releaseDate: "Mar 13, 2025",
-    status: "released",
-    slug: "adolescence",
   },
 ]
 

@@ -27,8 +27,17 @@ const top10Content: ContentItem[] = [
     image: "/series/fanc1.jpeg?height=450&width=300",
     rating: 4.5,
     releaseDate: "Jul 25, 2025",
-    status: "upcoming",
+    status: "released",
     slug: "fantastic-4",
+  },
+  {
+    title: "Mahavatar Narsimha",
+    type: "Movie",
+    rating: 4.7,
+    image: "/series/ma.jpeg?height=450&width=300",
+    releaseDate: "Jul 25, 2025",
+    status: "released",
+    slug: "mahavatar-narsimha",
   },
   {
     title: "Superman",
