@@ -25,6 +25,20 @@ interface Notification {
 const notifications: Notification[] = [
   {
     id: "notif-1",
+    type: "trailer",
+    title: "Avatar: Fire and Ash",
+    message: "Avatar: Fire and Ash trailer is out now! Watch the epic journey of the Na'vi in this new installment.",
+    movieTitle: "New Trailer",
+    movieSlug: "avatar-3",
+    movieType: "Movie",
+    movieImage: "/series/av.jpeg?height=450&width=300",
+    isRead: false,
+    actionUrl: "/upcoming/avatar-3",
+    priority: "high",
+    category: "Action/Fantasy",
+  },
+  {
+    id: "notif-2",
     type: "release",
     title: "Mahavatar Narsimha",
     message: "Mahavatar Narsimha is now available! Experience the epic tale of Lord Narasimha's divine intervention.",
@@ -35,10 +49,10 @@ const notifications: Notification[] = [
     isRead: false,
     actionUrl: "/released/mahavatar-narsimha",
     priority: "high",
-    category: "Action/Animation ",
+    category: "Action/Animation",
   },
   {
-    id: "notif-2",
+    id: "notif-3",
     type: "release",
     title: "The Fantastic 4 : First Steps",
     message: "Fantastic 4 is now available! Watch the epic origin story of Marvel's First Family.",
@@ -52,7 +66,7 @@ const notifications: Notification[] = [
     category: "Action/Sci-fi",
   },
   {
-    id: "notif-3",
+    id: "notif-4",
     type: "release",
     title: "Special OPS 2",
     message: "Special OPS 2 is now available! Watch the thrilling new season of this action-packed series.",
@@ -66,7 +80,7 @@ const notifications: Notification[] = [
     category: "Action/Thriller",
   },
   {
-    id: "notif-4",
+    id: "notif-5",
     type: "teaser",
     title: "Stranger Things Season 5",
     message: "Stranger Things Season 5 teaser is out now! Get ready for the final season of this epic series.",
@@ -80,7 +94,7 @@ const notifications: Notification[] = [
     category: "Sci-Fi/Horror",
   },
   {
-    id: "notif-5",
+    id: "notif-6",
     type: "new_addition",
     title: "New Section Added",
     message: "Check out our New Section for Trending Movies and Series! Stay updated with the latest releases.",
@@ -94,7 +108,7 @@ const notifications: Notification[] = [
     category: "Trending",
   },
     {
-    id: "notif-6",
+    id: "notif-7",
     type: "release",
     title: "Superman 2025",
     message: "Superman is now in theaters! Experience the epic return",
@@ -108,7 +122,7 @@ const notifications: Notification[] = [
     category: "Drama/Superhero",
   },
   {
-    id: "notif-7",
+    id: "notif-8",
     type: "trailer",
     title: "Alice in Borderland Season 3",
     message: "Alice in Borderland Season 3 trailer is out now! Get ready for more thrilling adventures.",
@@ -122,7 +136,7 @@ const notifications: Notification[] = [
     category: "Thriller/Sci-Fi",
   },
   {
-    id: "notif-8",
+    id: "notif-9",
     type: "trailer",
     title: "Wednesday Season 2",
     message: "Wednesday Season 2 trailer is out now! Watch it and get ready for more spooky adventures.",
@@ -136,7 +150,7 @@ const notifications: Notification[] = [
     category: "Fantasy/Comedy",
   },
   {
-    id: "notif-9",
+    id: "notif-10",
     type: "in theater",
     title: "Jurassic World Rebirth",
     message: "Jurassic World Rebirth is available in theaters! Don't miss the action-packed adventure.",
@@ -148,20 +162,6 @@ const notifications: Notification[] = [
     actionUrl: "/released/jurassic-world-rebirth",
     priority: "low",
     category: "Adventure/Sci-Fi",
-  },
-  {
-    id: "notif-10",
-    type: "new season",
-    title: "Panchayat Season 4",
-    message: "Panchayat Season 4 is here! Join the Phulera gang for more rural drama and comedy.",
-    movieTitle: "Avaliable On Prime Video",
-    movieSlug: "panchayat",
-    movieType: "Series",
-    movieImage: "/series/pancc.jpeg?height=450&width=300",
-    isRead: false,
-    actionUrl: "/released/panchayat",
-    priority: "high",
-    category: "Comedy/Drama",
   },
 ]
 

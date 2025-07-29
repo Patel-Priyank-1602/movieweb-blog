@@ -703,7 +703,7 @@ function getMovieData(slug: string, status: string) {
       genre: "Sci-Fi/Adventure",
       description:
         "Return to Pandora as Jake Sully and Neytiri continue their journey, exploring new regions of the planet and facing a threat that tests the bonds of their family and the Na'vi people. This third installment introduces the Ash People, a fire-based Na'vi tribe, and delves deeper into the conflict between humans and the indigenous population of Pandora.",
-      trailerUrl: "",
+      trailerUrl: "https://youtu.be/UuGf9fYHOpo?si=RIvmGcvnELM_R7Yh",
       status: status === "released" ? "released" : "upcoming",
       streamingPlatforms: [
       ],
