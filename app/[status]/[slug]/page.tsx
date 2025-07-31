@@ -721,7 +721,7 @@ function getMovieData(slug: string, status: string) {
       genre: "Animation/Comedy",
       description:
         "Nick Wilde and Judy Hopps return to Zootopia, tackling a new mystery involving a mysterious reptile disrupting the animal metropolis. Their investigation tests their partnership and uncovers secrets that shake the city’s harmony.",
-      trailerUrl: "https://youtu.be/xo4rkcC7kFc?si=ncEilBey3W_eRMPM",
+      trailerUrl: "https://youtu.be/BjkIOU5PhyQ?si=kMvP-vJoyCd70fwA",
       status: status === "released" ? "released" : "upcoming",
       streamingPlatforms: [
       ],
