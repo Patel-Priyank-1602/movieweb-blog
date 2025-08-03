@@ -1,7 +1,6 @@
 "use client"
 
-import React from "react"
-import { useEffect, useState } from "react"
+import React, { useEffect, useState } from "react"
 import { Film } from "lucide-react"
 
 export default function Loading({ onComplete }: { onComplete: () => void }) {
@@ -19,7 +18,7 @@ export default function Loading({ onComplete }: { onComplete: () => void }) {
   ]
 
   useEffect(() => {
-    const duration = 3000 // 4 seconds total
+    const duration = 2200 // 2.2 seconds animation
     const frameRate = 50
     const progressStep = 100 / (duration / frameRate)
     const charsPerFrame = fullText.length / (duration / 200)
@@ -29,11 +28,9 @@ export default function Loading({ onComplete }: { onComplete: () => void }) {
     let phaseTimer = 0
 
     const interval = setInterval(() => {
-      // Update progress
       currentProgress = Math.min(currentProgress + progressStep, 100)
       setProgress(currentProgress)
 
-      // Update text animation
       if (currentCharIndex < fullText.length && currentProgress < 40) {
         const newCharIndex = Math.min(
           Math.floor(currentCharIndex + charsPerFrame),
@@ -45,18 +42,16 @@ export default function Loading({ onComplete }: { onComplete: () => void }) {
         setDisplayedText(fullText)
       }
 
-      // Update phases
       phaseTimer++
-      if (phaseTimer % 20 === 0) { // Change phase every second
+      if (phaseTimer % 20 === 0) {
         setCurrentPhase(prev => Math.min(prev + 1, phases.length - 1))
       }
 
-      // Check for completion
       if (currentProgress >= 100) {
         clearInterval(interval)
         setTimeout(() => {
           if (onComplete) onComplete()
-        }, 800)
+        }, 800) // final wait
       }
     }, frameRate)
 
@@ -89,7 +84,6 @@ export default function Loading({ onComplete }: { onComplete: () => void }) {
 
         {/* Progress section */}
         <div className="flex flex-col items-center w-80 sm:w-96">
-          {/* Progress bar */}
           <div className="w-full h-1.5 bg-gray-800/50 rounded-full overflow-hidden mb-4 shadow-inner">
             <div
               className="h-full bg-gradient-to-r from-[#6224c3] via-[#7e3ff2] to-[#a780ff] rounded-full transition-all duration-100 ease-out shadow-lg"
@@ -99,7 +93,6 @@ export default function Loading({ onComplete }: { onComplete: () => void }) {
             </div>
           </div>
 
-          {/* Progress percentage and phase */}
           <div className="flex justify-between items-center w-full text-sm">
             <span className="text-gray-400 font-mono">{Math.round(progress)}%</span>
             <span className="text-gray-300 font-medium">{phases[currentPhase]}</span>

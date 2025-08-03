@@ -205,6 +205,14 @@ export default function SearchPage() {
       releaseDate: "Jul 25, 2025",
       status: "released" as const,
     },
+    {
+      title: "The Bad Guys 2",
+      type: "Movie",
+      rating: 4.4,
+      image: "/series/bd.jpeg?height=450&width=300",
+      releaseDate: "Aug 1, 2025",
+      status: "released" as const,
+    },
     // Movies - Upcoming
     {
       title: "War 2",
@@ -232,13 +240,6 @@ export default function SearchPage() {
       type: "Movie",
       image: "/series/zoo.jpeg?height=450&width=300",
       releaseDate: "Nov 26, 2025",
-      status: "upcoming" as const,
-    },
-    {
-      title: "The Bad Guys 2",
-      type: "Movie",
-      image: "/series/bd.jpeg?height=450&width=300",
-      releaseDate: "Aug 1, 2025",
       status: "upcoming" as const,
     },
     {

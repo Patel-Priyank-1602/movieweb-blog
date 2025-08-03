@@ -26,6 +26,15 @@ interface ContentItem {
 
 const arrivedMovies: ContentItem[] = [
   {
+    title: "The Bad Guys 2",
+    type: "Movie",
+    rating: 4.4,
+    image: "/series/bd.jpeg?height=450&width=300",
+    releaseDate: "Aug 1, 2025",
+    status: "upcoming",
+    slug: "the-bad-guys-2",
+  },
+  {
     title: "Mahavatar Narsimha",
     type: "Movie",
     rating: 4.7,
@@ -208,14 +217,6 @@ const arrivedMovies: ContentItem[] = [
 ]
 
 const upcomingMovies: ContentItem[] = [
-  {
-    title: "The Bad Guys 2",
-    type: "Movie",
-    image: "/series/bd.jpeg?height=450&width=300",
-    releaseDate: "Aug 1, 2025",
-    status: "upcoming",
-    slug: "the-bad-guys-2",
-  },
   {
     title: "War 2",
     type: "Movie",
@@ -978,7 +979,7 @@ export default function CineVerse() {
           <section className="py-12 bg-black">
             <div className="container px-2 sm:px-4">
               <div className="text-center space-y-4 max-w-3xl mx-auto mb-12">
-                <h2 className="text-3xl font-bold">The Last Update on this Website was on 27/07/2025</h2>
+                <h2 className="text-3xl font-bold">The Last Update on this Website was on 03/08/2025</h2>
                 <p className="text-gray-400">
                   For some Movies/Series, the official trailer is not Available, but only a Teaser has been released. In
                   some cases, neither a Teaser nor a Trailer is Available — only a Date Announcement Video is Provided.

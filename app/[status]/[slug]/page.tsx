@@ -653,6 +653,24 @@ function getMovieData(slug: string, status: string) {
       streamingPlatforms: [
       ],
     },
+    "the-bad-guys-2": {
+      title: "The Bad Guys 2",
+      type: "Movie",
+      posterImage: "/series/bd.jpeg?height=450&width=300",
+      coverImage: "/series/bdc.jpeg?height=600&width=1200",
+      releaseDate: "August 1, 2025",
+      director: "Pierre Perifel",
+      productionCompany: "DreamWorks Animation",
+      imdbRating: 7.2,
+      duration: "1h 42m",
+      genre: "Animation/Comedy",
+      description:
+        "The reformed criminal crew of The Bad Guys faces new challenges as they navigate their lives as heroes. A fresh heist and unexpected threats push their skills and loyalty to the limit in this action-packed animated sequel.",
+      trailerUrl: "https://youtu.be/HvLHYox_Vq8?si=FZL0qbo14WBBsRq2",
+      status: status === "released" ? "released" : "released",
+      streamingPlatforms: [
+      ],
+    },
     // Movies - Upcoming
     "war-2": {
       title: "War 2",
@@ -685,7 +703,7 @@ function getMovieData(slug: string, status: string) {
       genre: "Horror/Supernatural",
       description:
         "The next chapter in the Conjuring Universe follows paranormal investigators Ed and Lorraine Warren as they take on their most terrifying case yet. Based on another true case from their files, the Warrens face a demonic entity that has haunted a family for generations, revealing dark secrets about the history of the occult in America.",
-      trailerUrl: "https://youtu.be/FSAz556s0fM?si=9ZduIyY3z0HVjxAd",
+      trailerUrl: "https://youtu.be/iJn5buVemKQ?si=yQqmsWgQ0PetaCAb",
       status: status === "released" ? "released" : "upcoming",
       streamingPlatforms: [
       ],
@@ -726,24 +744,6 @@ function getMovieData(slug: string, status: string) {
       streamingPlatforms: [
       ],
     },
-    "the-bad-guys-2": {
-      title: "The Bad Guys 2",
-      type: "Movie",
-      posterImage: "/series/bd.jpeg?height=450&width=300",
-      coverImage: "/series/bdc.jpeg?height=600&width=1200",
-      releaseDate: "August 1, 2025",
-      director: "Pierre Perifel",
-      productionCompany: "DreamWorks Animation",
-      imdbRating: null,
-      duration: "1h 42m",
-      genre: "Animation/Comedy",
-      description:
-        "The reformed criminal crew of The Bad Guys faces new challenges as they navigate their lives as heroes. A fresh heist and unexpected threats push their skills and loyalty to the limit in this action-packed animated sequel.",
-      trailerUrl: "https://youtu.be/HvLHYox_Vq8?si=FZL0qbo14WBBsRq2",
-      status: status === "released" ? "released" : "upcoming",
-      streamingPlatforms: [
-      ],
-    },
     "demon-slayer-kimetsu-no-yaiba-infinity-castle-arc": {
       title: "Demon Slayer: Kimetsu No Yaiba The Movie 2025",
       type: "Movie",
@@ -757,7 +757,7 @@ function getMovieData(slug: string, status: string) {
       genre: "Animation/Action/Fantasy",
       description:
         "Tanjiro and his allies return in the latest Demon Slayer movie, continuing their fierce battle against the Upper Rank demons. As new alliances form and secrets are revealed, the Demon Slayer Corps faces a deadly new threat that could change their world forever.",
-      trailerUrl: "https://youtu.be/3AUm3j6Bi5A?si=ZBYdgkA5Ip8fzz8M",
+      trailerUrl: "https://youtu.be/VCC958XvXpA?si=yg-SI6Cb4PW5Ty1D",
       status: status === "released" ? "released" : "upcoming",
       streamingPlatforms: [
       ],
@@ -793,7 +793,7 @@ function getMovieData(slug: string, status: string) {
       genre: "Action/Drama",
       description:
         "Coolie marks the explosive return of Rajinikanth in a high-octane action drama directed by Lokesh Kanagaraj. Set in a gritty world of crime and justice, this film blends mass appeal with stylish filmmaking as a former coolie rises against a corrupt system.",
-      trailerUrl: "https://youtu.be/lH4a2_2ffCw?si=twpNdB7sSmsrXExh",
+      trailerUrl: "https://youtu.be/5-qi2TGQ4a4?si=hsT6WfccYHaLRvMq",
       status: status === "released" ? "released" : "upcoming",
       streamingPlatforms: [
       ],

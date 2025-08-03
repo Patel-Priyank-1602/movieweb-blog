@@ -52,13 +52,6 @@ export default function UpcomingPage() {
       status: "upcoming" as const,
     },
     {
-      title: "The Bad Guys 2",
-      type: "Movie",
-      image: "/series/bd.jpeg?height=450&width=300",
-      releaseDate: "Aug 1, 2025",
-      status: "upcoming" as const,
-    },
-    {
       title: "Demon Slayer: Kimetsu no Yaiba – Infinity Castle Arc",
       type: "Movie",
       image: "/series/dl.jpeg?height=450&width=300",

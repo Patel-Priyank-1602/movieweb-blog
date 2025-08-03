@@ -184,6 +184,14 @@ export default function ReleasedPage() {
       releaseDate: "Jul 25, 2025",
       status: "released" as const,
     },
+    {
+      title: "The Bad Guys 2",
+      type: "Movie",
+      rating: 4.4,
+      image: "/series/bd.jpeg?height=450&width=300",
+      releaseDate: "Aug 1, 2025",
+      status: "released" as const,
+    },
   ]
 
   const arrivedSeries = [
