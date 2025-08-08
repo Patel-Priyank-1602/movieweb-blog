@@ -648,7 +648,7 @@ function getMovieData(slug: string, status: string) {
       genre: "Animation/Action",
       description:
         "An epic retelling of the powerful tale of Lord Narasimha, the fourth avatar of Lord Vishnu. Set against a mythological backdrop, the film brings to life the fierce battle between divinity and evil as Narasimha emerges to protect his devotee Prahlad and restore dharma.",
-      trailerUrl: "https://youtu.be/p7eE_dn9u4k?si=D84jQ0qBJSYXPPLL", 
+      trailerUrl: "https://youtu.be/p7eE_dn9u4k?si=D84jQ0qBJSYXPPLL",
       status: status === "released" ? "released" : "released",
       streamingPlatforms: [
       ],
@@ -1045,7 +1045,6 @@ function getMovieData(slug: string, status: string) {
       trailerUrl: "https://youtu.be/iKZyYdwS3Wg?si=ZzIi2p_prO9Kb7fi",
       status: status === "released" ? "released" : "upcoming",
       streamingPlatforms: [
-        { name: "Netflix", icon: "🎬", url: "https://www.netflix.com" },
       ],
     },
     "alice-in-borderland": {
@@ -1064,8 +1063,6 @@ function getMovieData(slug: string, status: string) {
       trailerUrl: "https://youtu.be/CaWRDITtT1U?si=BRcG5ehylMkyGNy9",
       status: status === "released" ? "released" : "upcoming",
       streamingPlatforms: [
-        { name: "Netflix", icon: "🎬", url: "https://www.netflix.com" },
-        { name: "Crunchyroll", icon: "🍥", url: "https://www.crunchyroll.com" },
       ],
     },
     wednesday: {
@@ -1076,15 +1073,15 @@ function getMovieData(slug: string, status: string) {
       releaseDate: "August 6, 2025",
       director: "Tim Burton",
       productionCompany: "Netflix",
-      imdbRating: null,
-      duration: "9 Episodes",
+      imdbRating: 8.0,
+      duration: "8 Episodes",
       genre: "Fantasy/Comedy",
       description:
         "In the second season, Wednesday Addams returns to Nevermore Academy for her sophomore year, where she faces new supernatural mysteries and gothic intrigue. As she hones her psychic abilities, Wednesday uncovers dark secrets about her family's past while navigating the complexities of friendship, rivalry, and first love.",
       trailerUrl: "https://youtu.be/03u4xyj0TH4?si=20-EHsGIgv5X6DDu",
-      status: status === "released" ? "released" : "upcoming",
+      status: status === "released" ? "released" : "released",
       streamingPlatforms: [
-        { name: "Netflix", icon: "🎬", url: "https://www.netflix.com" },
+        { name: "Netflix", image: "/icons/netflix.png", url: "https://www.netflix.com/in/title/81231974" },
       ],
     },
     "family-man": {
@@ -1103,7 +1100,6 @@ function getMovieData(slug: string, status: string) {
       trailerUrl: "https://youtu.be/ZnapjfATb6w?si=oICXgMqiM14wWBkL",
       status: status === "released" ? "released" : "upcoming",
       streamingPlatforms: [
-        { name: "Prime Video", icon: "📺", url: "https://www.primevideo.com" },
       ],
     },
     "the-witcher": {
@@ -1122,7 +1118,6 @@ function getMovieData(slug: string, status: string) {
       trailerUrl: "https://youtu.be/kr3br-3i8TY?si=jAox8ye-oQZA7V-f",
       status: status === "released" ? "released" : "upcoming",
       streamingPlatforms: [
-        { name: "Netflix", icon: "🎬", url: "https://www.netflix.com" },
       ],
     },
     "alien-earth": {
@@ -1141,7 +1136,6 @@ function getMovieData(slug: string, status: string) {
       trailerUrl: "https://youtu.be/FqIi3N9dusk?si=TBHYDfd4ISwIWjwv",
       status: "upcoming",
       streamingPlatforms: [
-        { name: "Hulu", icon: "📺", url: "https://www.hulu.com" },
       ],
     },
   }

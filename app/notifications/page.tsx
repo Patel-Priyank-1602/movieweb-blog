@@ -25,6 +25,20 @@ interface Notification {
 const notifications: Notification[] = [
   {
     id: "notif-1",
+    type: "release",
+    title: "Wednesday Season 2",
+    message: "Wednesday Season 2 is now available! Join Wednesday Addams in her new adventures at Nevermore Academy.",
+    movieTitle: "New Release",
+    movieSlug: "wednesday",
+    movieType: "Series",
+    movieImage: "/series/wenc.jpeg?height=450&width=300",
+    isRead: false,
+    actionUrl: "/released/wednesday",
+    priority: "high",
+    category: "Horror /Thriller",
+  },
+  {
+    id: "notif-2",
     type: "trailer",
     title: "Coolie",
     message: "Coolie trailer is out now! Watch the explosive return of Rajinikanth in this high-octane action drama.",
@@ -38,7 +52,7 @@ const notifications: Notification[] = [
     category: "Family/Comedy",
   },
   {
-    id: "notif-2",
+    id: "notif-3",
     type: "release",
     title: "The Bad Guys 2",
     message: "The Bad Guys 2 is now available! Join the hilarious heist team in their latest adventure.",
@@ -52,7 +66,7 @@ const notifications: Notification[] = [
     category: "Family/Comedy",
   },
   {
-    id: "notif-3",
+    id: "notif-4",
     type: "trailer",
     title: "Zootopia 2",
     message: "Zootopia 2 New trailer is out now! Watch the adventures of Judy Hopps and Nick Wilde in this new installment.",
@@ -66,7 +80,7 @@ const notifications: Notification[] = [
     category: "Family/Comedy",
   },
   {
-    id: "notif-4",
+    id: "notif-5",
     type: "trailer",
     title: "Avatar: Fire and Ash",
     message: "Avatar: Fire and Ash trailer is out now! Watch the epic journey of the Na'vi in this new installment.",
@@ -80,7 +94,7 @@ const notifications: Notification[] = [
     category: "Action/Fantasy",
   },
   {
-    id: "notif-5",
+    id: "notif-6",
     type: "release",
     title: "Mahavatar Narsimha",
     message: "Mahavatar Narsimha is now available! Experience the epic tale of Lord Narasimha's divine intervention.",
@@ -94,7 +108,7 @@ const notifications: Notification[] = [
     category: "Action/Animation",
   },
   {
-    id: "notif-6",
+    id: "notif-7",
     type: "release",
     title: "The Fantastic 4 : First Steps",
     message: "Fantastic 4 is now available! Watch the epic origin story of Marvel's First Family.",
@@ -106,20 +120,6 @@ const notifications: Notification[] = [
     actionUrl: "/released/fantastic-4",
     priority: "high",
     category: "Action/Sci-fi",
-  },
-  {
-    id: "notif-7",
-    type: "release",
-    title: "Special OPS 2",
-    message: "Special OPS 2 is now available! Watch the thrilling new season of this action-packed series.",
-    movieTitle: "New Release",
-    movieSlug: "special-ops-2",
-    movieType: "Series",
-    movieImage: "/series/sp.jpeg?height=450&width=300",
-    isRead: false,
-    actionUrl: "/released/special-ops-2",
-    priority: "high",
-    category: "Action/Thriller",
   },
   {
     id: "notif-8",

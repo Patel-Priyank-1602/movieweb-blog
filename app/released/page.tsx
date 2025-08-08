@@ -196,6 +196,14 @@ export default function ReleasedPage() {
 
   const arrivedSeries = [
     {
+      title: "Wednesday",
+      type: "Series",
+      image: "/series/wenc.jpeg?height=450&width=300",
+      rating: 4.5,
+      releaseDate: "Aug 6, 2025",
+      status: "released" as const,
+    },
+    {
       title: "You",
       type: "Series",
       image: "/series/youc.jpeg?height=450&width=300",

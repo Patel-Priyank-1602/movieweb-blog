@@ -33,6 +33,17 @@ const FEATURED_CONTENT: FeaturedContent[] = [
   },
   {
     id: 2,
+    title: "Wednesday",
+    nameImage: "/series/went.png",
+    description: "Wednesday Addams returns in a new season of the hit series, navigating the challenges of Nevermore Academy while uncovering dark secrets and facing supernatural threats.",
+    image: "/series/wenmc.jpeg?height=600&width=1200",
+    type: "Series",
+    releaseDate: "August 6, 2025",
+    slug: "wednesday",
+    trailerUrl: "https://youtu.be/SvTcEBzgfkk?si=iGJOcck-QbYL38Ys"
+  },
+  {
+    id: 3,
     title: "Panchayat",
     nameImage: "/series/pan_r.png",
     description: "The fourth season of this beloved Indian comedy-drama continues to follow Abhishek Tripathi, the secretary of the Phulera village panchayat, as he navigates rural life and village administration.",
@@ -43,7 +54,7 @@ const FEATURED_CONTENT: FeaturedContent[] = [
     trailerUrl: "https://youtu.be/AHMEtNAZTP4?si=CV85goqlNRNAFJdt",
   },
   {
-    id: 3,
+    id: 4,
     title: "Alice in Borderland",
     nameImage: "/series/alic_r.png",
     description: "In the third season of this Japanese thriller, survivors of the deadly games must face new challenges as they uncover the truth behind the mysterious world they're trapped in.",
@@ -54,7 +65,7 @@ const FEATURED_CONTENT: FeaturedContent[] = [
     trailerUrl: "https://youtu.be/CaWRDITtT1U?si=BRcG5ehylMkyGNy9",
   },
   {
-    id: 4,
+    id: 5,
     title: "Demon Slayer: Kimetsu no Yaiba – Infinity Castle Arc",
     nameImage: "/series/dmlsg.png",
     description: "In the final battle against Muzan Kibutsuji, Tanjiro and the Demon Slayer Corps infiltrate the Infinity Castle. With fate hanging in the balance, breathtaking battles and heartbreaking moments unfold in this ultimate showdown between good and evil.",
@@ -63,17 +74,6 @@ const FEATURED_CONTENT: FeaturedContent[] = [
     releaseDate: "September 12, 2025",
     slug: "demon-slayer-kimetsu-no-yaiba-infinity-castle-arc",
     trailerUrl: "https://youtu.be/3AUm3j6Bi5A?si=ZBYdgkA5Ip8fzz8M",
-  },
-  {
-    id: 5,
-    title: "F1: The Movie",
-    nameImage: "/series/f1ct.png",
-    description: "Set in the fast-paced world of Formula 1, this high-octane drama follows a seasoned driver mentoring a rising star as they battle personal demons, team rivalries, and the limits of speed on the world’s biggest racing stage.",
-    image: "/series/f1f.jpeg?height=600&width=1200",
-    type: "Movie",
-    releaseDate: "June 27, 2025",
-    slug: "f1-the-movie",
-    trailerUrl: "https://youtu.be/8yh9BPUBbbQ?si=8l-0LrSlZL6hB4L1"
   },
   {
     id: 6,

@@ -265,6 +265,14 @@ export default function SearchPage() {
     },
     // Series - Released
     {
+      title: "Wednesday",
+      type: "Series",
+      image: "/series/wenc.jpeg?height=450&width=300",
+      rating: 4.5,
+      releaseDate: "Aug 6, 2025",
+      status: "released" as const,
+    },
+    {
       title: "You",
       type: "Series",
       image: "/series/youc.jpeg?height=450&width=300",
@@ -373,13 +381,6 @@ export default function SearchPage() {
       type: "Series",
       image: "/series/aibb.jpeg?height=450&width=300",
       releaseDate: "Sept 25, 2025",
-      status: "upcoming" as const,
-    },
-    {
-      title: "Wednesday",
-      type: "Series",
-      image: "/series/wenc.jpeg?height=450&width=300",
-      releaseDate: "Aug 6, 2025",
       status: "upcoming" as const,
     },
     {

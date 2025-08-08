@@ -275,6 +275,15 @@ const upcomingMovies: ContentItem[] = [
 
 const arrivedSeries: ContentItem[] = [
   {
+    title: "Wednesday",
+    type: "Series",
+    image: "/series/wenc.jpeg?height=450&width=300",
+    rating: 4.5,
+    releaseDate: "Aug 6, 2025",
+    status: "upcoming",
+    slug: "wednesday",
+  },
+  {
     title: "Special OPS 2",
     type: "Series",
     image: "/series/sp.jpeg?height=450&width=300",
@@ -384,14 +393,6 @@ const arrivedSeries: ContentItem[] = [
 
 const upcomingSeries: ContentItem[] = [
   {
-    title: "Wednesday",
-    type: "Series",
-    image: "/series/wenc.jpeg?height=450&width=300",
-    releaseDate: "Aug 6, 2025",
-    status: "upcoming",
-    slug: "wednesday",
-  },
-  {
     title: "Alien: Earth",
     type: "Series",
     image: "/series/aal.jpeg?height=450&width=300",
@@ -462,6 +463,15 @@ const top10Content: ContentItem[] = [
     slug: "panchayat",
   },
   {
+    title: "Wednesday",
+    type: "Series",
+    image: "/series/wenc.jpeg?height=450&width=300",
+    rating: 4.5,
+    releaseDate: "Aug 6, 2025",
+    status: "released",
+    slug: "wednesday",
+  },
+  {
     title: "Squid Game",
     type: "Series",
     image: "/series/sqq.jpeg?height=450&width=300",
@@ -478,6 +488,15 @@ const top10Content: ContentItem[] = [
     releaseDate: "July 11, 2025",
     status: "released",
     slug: "superman",
+  },
+   {
+    title: "The Bad Guys 2",
+    type: "Movie",
+    rating: 4.4,
+    image: "/series/bd.jpeg?height=450&width=300",
+    releaseDate: "Aug 1, 2025",
+    status: "released",
+    slug: "the-bad-guys-2",
   },
   {
     title: "F1: The Movie",
@@ -505,24 +524,6 @@ const top10Content: ContentItem[] = [
     releaseDate: "Jul 4, 2025",
     status: "released",
     slug: "jurassic-world-rebirth",
-  },
-  {
-    title: "28 Years Later",
-    type: "Movie",
-    image: "/series/28y.jpeg?height=450&width=300",
-    rating: 4.5,
-    releaseDate: "June 20, 2025",
-    status: "released",
-    slug: "28-years-later",
-  },
-  {
-    title: "Ballerina",
-    type: "Movie",
-    image: "/series/bann.jpeg?height=450&width=300",
-    rating: 4.7,
-    releaseDate: "June 6, 2025",
-    status: "released",
-    slug: "ballerina",
   },
 ]
 
@@ -979,7 +980,7 @@ export default function CineVerse() {
           <section className="py-12 bg-black">
             <div className="container px-2 sm:px-4">
               <div className="text-center space-y-4 max-w-3xl mx-auto mb-12">
-                <h2 className="text-3xl font-bold">The Last Update on this Website was on 03/08/2025</h2>
+                <h2 className="text-3xl font-bold">The Last Update on this Website was on 08/08/2025</h2>
                 <p className="text-gray-400">
                   For some Movies/Series, the official trailer is not Available, but only a Teaser has been released. In
                   some cases, neither a Teaser nor a Trailer is Available — only a Date Announcement Video is Provided.

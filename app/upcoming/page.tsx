@@ -90,13 +90,6 @@ export default function UpcomingPage() {
       status: "upcoming" as const,
     },
     {
-      title: "Wednesday",
-      type: "Series",
-      image: "/series/wenc.jpeg?height=450&width=300",
-      releaseDate: "Aug 6, 2025",
-      status: "upcoming" as const,
-    },
-    {
       title: "Family Man",
       type: "Series",
       image: "/series/fm.jpeg?height=450&width=300",
