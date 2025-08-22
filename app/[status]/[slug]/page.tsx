@@ -671,7 +671,6 @@ function getMovieData(slug: string, status: string) {
       streamingPlatforms: [
       ],
     },
-    // Movies - Upcoming
     "war-2": {
       title: "War 2",
       type: "Movie",
@@ -680,16 +679,35 @@ function getMovieData(slug: string, status: string) {
       releaseDate: "August 14, 2025",
       director: "Ayan Mukerji",
       productionCompany: "YRF Films",
-      imdbRating: null,
+      imdbRating: 6.1,
       duration: "2h 39m",
       genre: "Action/Thriller",
       description:
         "The sequel to the blockbuster action film continues the story of India's elite agents as they face a new international threat. When a rogue agent threatens global security, Kabir must team up with a new partner to stop a conspiracy that could trigger a world war.",
       trailerUrl: "https://youtu.be/mjBym9uKth4?si=EEiwtbRRrGMSicVZ",
-      status: status === "released" ? "released" : "upcoming",
+      status: status === "released" ? "released" : "released",
       streamingPlatforms: [
       ],
     },
+    "coolie": {
+      title: "Coolie",
+      type: "Movie",
+      posterImage: "/series/cl.jpeg?height=450&width=300",
+      coverImage: "/series/clc.jpeg?height=600&width=1200",
+      releaseDate: "August 14, 2025",
+      director: "Lokesh Kanagaraj",
+      productionCompany: "Seven Screen Studio",
+      imdbRating: 6.4,
+      duration: "2h 35m",
+      genre: "Action/Drama",
+      description:
+        "Coolie marks the explosive return of Rajinikanth in a high-octane action drama directed by Lokesh Kanagaraj. Set in a gritty world of crime and justice, this film blends mass appeal with stylish filmmaking as a former coolie rises against a corrupt system.",
+      trailerUrl: "https://youtu.be/5-qi2TGQ4a4?si=hsT6WfccYHaLRvMq",
+      status: status === "released" ? "released" : "released",
+      streamingPlatforms: [
+      ],
+    },
+    // Movies - Upcoming
     "the-conjuring": {
       title: "The Conjuring: The Last Rites",
       type: "Movie",
@@ -776,24 +794,6 @@ function getMovieData(slug: string, status: string) {
       description:
         "Set in the harsh and unforgiving Badlands, a new Predator stalks a desolate wasteland where survival is the only rule. A group of unlikely warriors must band together to fight the ultimate hunter in this gritty reboot of the iconic sci-fi franchise.",
       trailerUrl: "https://youtu.be/43R9l7EkJwE?si=FhJDOvrHRKG1P-bs",
-      status: status === "released" ? "released" : "upcoming",
-      streamingPlatforms: [
-      ],
-    },
-    "coolie": {
-      title: "Coolie",
-      type: "Movie",
-      posterImage: "/series/cl.jpeg?height=450&width=300",
-      coverImage: "/series/clc.jpeg?height=600&width=1200",
-      releaseDate: "August 14, 2025",
-      director: "Lokesh Kanagaraj",
-      productionCompany: "Seven Screen Studio",
-      imdbRating: null,
-      duration: "2h 35m",
-      genre: "Action/Drama",
-      description:
-        "Coolie marks the explosive return of Rajinikanth in a high-octane action drama directed by Lokesh Kanagaraj. Set in a gritty world of crime and justice, this film blends mass appeal with stylish filmmaking as a former coolie rises against a corrupt system.",
-      trailerUrl: "https://youtu.be/5-qi2TGQ4a4?si=hsT6WfccYHaLRvMq",
       status: status === "released" ? "released" : "upcoming",
       streamingPlatforms: [
       ],
@@ -1028,6 +1028,25 @@ function getMovieData(slug: string, status: string) {
         { name: "JioHotstar", image: "/icons/Jioh.png", url: "https://www.hotstar.com/in/shows/special-ops/1260022894?search_query=Special+OPS+2" },
       ],
     },
+    "alien-earth": {
+      title: "Alien: Earth",
+      type: "Series",
+      posterImage: "/series/aal.jpeg?height=450&width=300",
+      coverImage: "/series/aalc.jpeg?height=600&width=1200",
+      releaseDate: "August 12, 2025",
+      director: "Noah Hawley",
+      productionCompany: "FX Productions / Scott Free Productions (exec. Ridley Scott)",
+      imdbRating: null,
+      duration: "8 episodes",
+      genre: "Sci‑Fi / Horror",
+      description:
+        "Set in the year 2120, two years before the original 1979 Alien film, the series follows hybrid prototype “Wendy” (Sydney Chandler) and a team of tactical soldiers investigating the crash‑landing of the USCSS Maginot on Earth. As mega‑corporations vie for control, they uncover terrifying life forms and face a planetary threat.",
+      trailerUrl: "https://youtu.be/FqIi3N9dusk?si=TBHYDfd4ISwIWjwv",
+      status: "released",
+      streamingPlatforms: [
+        { name: "JioHotstar", image: "/icons/Jioh.png", url: "https://www.hotstar.com/in/shows/alien-earth/1271381985" },
+      ],
+    },
     // Series - Upcoming
     "stranger-things": {
       title: "Stranger Things",
@@ -1117,24 +1136,6 @@ function getMovieData(slug: string, status: string) {
         "In Season 4, Geralt of Rivia, now portrayed by Liam Hemsworth, continues his quest to protect Ciri amidst mounting political tensions and looming war across the Continent. As destinies collide and old enemies return, the stakes rise higher than ever for Geralt, Yennefer, and Ciri.",
       trailerUrl: "https://youtu.be/kr3br-3i8TY?si=jAox8ye-oQZA7V-f",
       status: status === "released" ? "released" : "upcoming",
-      streamingPlatforms: [
-      ],
-    },
-    "alien-earth": {
-      title: "Alien: Earth",
-      type: "Series",
-      posterImage: "/series/aal.jpeg?height=450&width=300",
-      coverImage: "/series/aalc.jpeg?height=600&width=1200",
-      releaseDate: "August 12, 2025",
-      director: "Noah Hawley",
-      productionCompany: "FX Productions / Scott Free Productions (exec. Ridley Scott)",
-      imdbRating: null,
-      duration: "8 episodes",
-      genre: "Sci‑Fi / Horror",
-      description:
-        "Set in the year 2120, two years before the original 1979 Alien film, the series follows hybrid prototype “Wendy” (Sydney Chandler) and a team of tactical soldiers investigating the crash‑landing of the USCSS Maginot on Earth. As mega‑corporations vie for control, they uncover terrifying life forms and face a planetary threat.",
-      trailerUrl: "https://youtu.be/FqIi3N9dusk?si=TBHYDfd4ISwIWjwv",
-      status: "upcoming",
       streamingPlatforms: [
       ],
     },

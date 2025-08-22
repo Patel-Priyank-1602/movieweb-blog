@@ -213,14 +213,23 @@ export default function SearchPage() {
       releaseDate: "Aug 1, 2025",
       status: "released" as const,
     },
-    // Movies - Upcoming
+    {
+      title: "Coolie",
+      type: "Movie",
+      image: "/series/cl.jpeg?height=450&width=300",
+      rating: 4.0,
+      releaseDate: "Aug 14, 2025",
+      status: "released" as const,
+    },
     {
       title: "War 2",
       type: "Movie",
       image: "/series/warr.jpeg?height=450&width=300",
+      rating: 4.0,
       releaseDate: "Aug 14, 2025",
-      status: "upcoming" as const,
+      status: "released" as const,
     },
+    // Movies - Upcoming
     {
       title: "The Conjuring",
       type: "Movie",
@@ -254,13 +263,6 @@ export default function SearchPage() {
       type: "Movie",
       image: "/series/pb.jpeg?height=450&width=300",
       releaseDate: "Nov 7, 2025",
-      status: "upcoming" as const,
-    },
-    {
-      title: "Coolie",
-      type: "Movie",
-      image: "/series/cl.jpeg?height=450&width=300",
-      releaseDate: "Aug 14, 2025",
       status: "upcoming" as const,
     },
     // Series - Released
@@ -368,6 +370,14 @@ export default function SearchPage() {
       releaseDate: "Jul 17, 2025",
       status: "released" as const,
     },
+    {
+      title: "Alien: Earth",
+      type: "Series",
+      image: "/series/aal.jpeg?height=450&width=300",
+      rating: 4.3,
+      releaseDate: "Aug 12, 2025",
+      status: "released" as const,
+    },
     // Series - Upcoming
     {
       title: "Stranger Things",
@@ -395,13 +405,6 @@ export default function SearchPage() {
       type: "Series",
       image: "/series/wi.jpeg?height=450&width=300",
       releaseDate: "Late 2025",
-      status: "upcoming" as const,
-    },
-    {
-      title: "Alien: Earth",
-      type: "Series",
-      image: "/series/aal.jpeg?height=450&width=300",
-      releaseDate: "Aug 12, 2025",
       status: "upcoming" as const,
     },
   ]

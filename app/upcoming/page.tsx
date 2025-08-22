@@ -24,13 +24,6 @@ export default function UpcomingPage() {
 
   const upcomingMovies = [
     {
-      title: "War 2",
-      type: "Movie",
-      image: "/series/warr.jpeg?height=450&width=300",
-      releaseDate: "Aug 14, 2025",
-      status: "upcoming" as const,
-    },
-    {
       title: "The Conjuring",
       type: "Movie",
       image: "/series/can.jpeg?height=450&width=300",
@@ -65,13 +58,6 @@ export default function UpcomingPage() {
       releaseDate: "Nov 7, 2025",
       status: "upcoming" as const,
     },
-    {
-      title: "Coolie",
-      type: "Movie",
-      image: "/series/cl.jpeg?height=450&width=300",
-      releaseDate: "Aug 14, 2025",
-      status: "upcoming" as const,
-    },
   ]
 
   const upcomingSeries = [
@@ -101,13 +87,6 @@ export default function UpcomingPage() {
       type: "Series",
       image: "/series/wi.jpeg?height=450&width=300",
       releaseDate: "Late 2025",
-      status: "upcoming" as const,
-    },
-    {
-      title: "Alien: Earth",
-      type: "Series",
-      image: "/series/aal.jpeg?height=450&width=300",
-      releaseDate: "Aug 12, 2025",
       status: "upcoming" as const,
     },
   ]

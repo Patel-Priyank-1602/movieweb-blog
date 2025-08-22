@@ -192,9 +192,33 @@ export default function ReleasedPage() {
       releaseDate: "Aug 1, 2025",
       status: "released" as const,
     },
+    {
+      title: "Coolie",
+      type: "Movie",
+      image: "/series/cl.jpeg?height=450&width=300",
+      rating: 4.0,
+      releaseDate: "Aug 14, 2025",
+      status: "released" as const,
+    },
+    {
+      title: "War 2",
+      type: "Movie",
+      image: "/series/warr.jpeg?height=450&width=300",
+      rating: 4.0,
+      releaseDate: "Aug 14, 2025",
+      status: "released" as const,
+    },
   ]
 
   const arrivedSeries = [
+    {
+      title: "Alien: Earth",
+      type: "Series",
+      image: "/series/aal.jpeg?height=450&width=300",
+      rating: 4.3,
+      releaseDate: "Aug 12, 2025",
+      status: "released" as const,
+    },
     {
       title: "Wednesday",
       type: "Series",
