@@ -492,7 +492,7 @@ const top10Content: ContentItem[] = [
     status: "released",
     slug: "superman",
   },
-   {
+  {
     title: "The Bad Guys 2",
     type: "Movie",
     rating: 4.4,
@@ -533,7 +533,7 @@ const top10Content: ContentItem[] = [
 interface TopMovieCardProps extends ContentItem {
   rank: number
 }
-
+// REPLACE your old TopMovieCard function with this one
 function TopMovieCard({ title, type, image, rating, releaseDate, status, rank, slug }: TopMovieCardProps) {
   const router = useRouter()
 
@@ -542,33 +542,59 @@ function TopMovieCard({ title, type, image, rating, releaseDate, status, rank, s
   }
 
   return (
-    <div className="group relative overflow-hidden rounded-xl bg-gradient-to-b from-gray-800 to-gray-900 transition-all duration-300 hover:scale-105 hover:shadow-2xl border border-gray-700">
-      <div className="absolute top-3 left-3 z-20">
-        <div className="w-8 h-8 rounded-full bg-black/80 backdrop-blur-sm border border-white/20 flex items-center justify-center">
-          <span className="text-white text-sm font-bold">{rank}</span>
-        </div>
+    <div className="relative flex flex-shrink-0 items-center snap-start">
+      {/* Background rank number */}
+      <div
+        className="
+          text-[10rem] sm:text-[13rem] md:text-[15rem] lg:text-[18rem]
+          font-black 
+          text-gray-800/80
+          select-none 
+          leading-none
+          -mr-8 sm:-mr-12 md:-mr-14 lg:-mr-16
+          stroke-gray-700
+        "
+        style={{
+          WebkitTextStroke: "2px rgba(55, 65, 81, 0.5)",
+          textShadow: "0 0 20px rgba(0, 0, 0, 0.5)"
+        }}
+      >
+        {rank}
       </div>
-      <div className="aspect-[2/3] overflow-hidden relative">
-        <img
-          src={image || "/placeholder-image.jpg"}
-          alt={title}
-          loading="lazy"
-          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-        <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-4 group-hover:translate-y-0">
-          <button
-            onClick={handleMoreInfo}
-            className="bg-white/90 hover:bg-white text-black px-4 py-2 rounded-full text-xs font-semibold backdrop-blur-sm transition-all duration-200 hover:scale-105 shadow-lg"
-          >
-            More Info
-          </button>
+
+      {/* Movie Card */}
+      <div
+        className="
+          group relative z-10 
+          w-[140px] sm:w-48 md:w-56 lg:w-64
+          flex-shrink-0 
+          overflow-hidden rounded-xl 
+          bg-gradient-to-b from-gray-800 to-gray-900 
+          transition-all duration-300 hover:scale-105 hover:shadow-2xl 
+          border border-gray-700
+        "
+      >
+        <div className="aspect-[2/3] overflow-hidden relative">
+          <img
+            src={image || "/placeholder-image.jpg"}
+            alt={title}
+            loading="lazy"
+            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-4 group-hover:translate-y-0">
+            <button
+              onClick={handleMoreInfo}
+              className="bg-white/90 hover:bg-white text-black px-4 py-2 rounded-full text-xs font-semibold backdrop-blur-sm transition-all duration-200 hover:scale-105 shadow-lg"
+            >
+              More Info
+            </button>
+          </div>
         </div>
       </div>
     </div>
   )
 }
-
 // Sliding Button Component - Desktop Only
 interface SlidingButtonsProps {
   onPrevious: () => void
@@ -744,7 +770,7 @@ export default function CineVerse() {
             <div className="relative">
               <div
                 ref={top10Ref}
-                className="flex gap-2 sm:gap-4 md:gap-6 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide cursor-grab active:cursor-grabbing"
+                className="flex gap-2 sm:gap-4 md:gap-5 lg:gap-6 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide cursor-grab active:cursor-grabbing"
                 style={{
                   scrollbarWidth: "none",
                   msOverflowStyle: "none",
@@ -754,12 +780,8 @@ export default function CineVerse() {
                 onScroll={(e) => top10Scroll.checkScrollButtons(e.currentTarget)}
               >
                 {top10Content.map((item, index) => (
-                  <div
-                    key={`${item.title}-${index}`}
-                    className="flex-shrink-0 w-[140px] sm:w-48 md:w-56 lg:w-64 snap-start"
-                  >
-                    <TopMovieCard {...item} rank={index + 1} />
-                  </div>
+                  // The wrapper div is removed.
+                  <TopMovieCard key={`${item.title}-${index}`} {...item} rank={index + 1} />
                 ))}
               </div>
               <SlidingButtons
