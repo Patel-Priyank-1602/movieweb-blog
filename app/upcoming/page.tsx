@@ -26,35 +26,35 @@ export default function UpcomingPage() {
     {
       title: "The Conjuring",
       type: "Movie",
-      image: "/series/can.jpeg?height=450&width=300",
+      image: "/series/can.webp?height=450&width=300",
       releaseDate: "Sept 5, 2025",
       status: "upcoming" as const,
     },
     {
       title: "Avatar 3",
       type: "Movie",
-      image: "/series/av.jpeg?height=450&width=300",
+      image: "/series/av.webp?height=450&width=300",
       releaseDate: "Dec 19, 2025",
       status: "upcoming" as const,
     },
     {
       title: "Zootopia 2",
       type: "Movie",
-      image: "/series/zoo.jpeg?height=450&width=300",
+      image: "/series/zoo.webp?height=450&width=300",
       releaseDate: "Nov 26, 2025",
       status: "upcoming" as const,
     },
     {
       title: "Demon Slayer: Kimetsu no Yaiba – Infinity Castle Arc",
       type: "Movie",
-      image: "/series/dl.jpeg?height=450&width=300",
+      image: "/series/dl.webp?height=450&width=300",
       releaseDate: "Sept 12, 2025",
       status: "upcoming" as const,
     },
     {
       title: "Predator: Badlands",
       type: "Movie",
-      image: "/series/pb.jpeg?height=450&width=300",
+      image: "/series/pb.webp?height=450&width=300",
       releaseDate: "Nov 7, 2025",
       status: "upcoming" as const,
     },
@@ -64,28 +64,28 @@ export default function UpcomingPage() {
     {
       title: "Stranger Things",
       type: "Series",
-      image: "/series/stc.jpeg?height=450&width=300",
+      image: "/series/stc.webp?height=450&width=300",
       releaseDate: "Nov 26, 2025",
       status: "upcoming" as const,
     },
     {
       title: "Alice in Borderland",
       type: "Series",
-      image: "/series/aibb.jpeg?height=450&width=300",
+      image: "/series/aibb.webp?height=450&width=300",
       releaseDate: "Sept 25, 2025",
       status: "upcoming" as const,
     },
     {
       title: "Family Man",
       type: "Series",
-      image: "/series/fm.jpeg?height=450&width=300",
+      image: "/series/fm.webp?height=450&width=300",
       releaseDate: "Nov, 2025",
       status: "upcoming" as const,
     },
     {
       title: "The Witcher",
       type: "Series",
-      image: "/series/wi.jpeg?height=450&width=300",
+      image: "/series/wi.webp?height=450&width=300",
       releaseDate: "Late 2025",
       status: "upcoming" as const,
     },
@@ -163,7 +163,7 @@ export default function UpcomingPage() {
                   key={`movie-${index}`}
                   title={movie.title}
                   type={movie.type as "Movie"}
-                  image={movie.image ?? "/placeholder-image.jpg"}
+                  image={movie.image ?? "/placeholder-image.webp"}
                   releaseDate={movie.releaseDate}
                   status="upcoming"
                 />
@@ -181,7 +181,7 @@ export default function UpcomingPage() {
                   key={`series-${index}`}
                   title={series.title}
                   type={series.type as "Series"}
-                  image={series.image ?? "/placeholder-image.jpg"}
+                  image={series.image ?? "/placeholder-image.webp"}
                   releaseDate={series.releaseDate}
                   status="upcoming"
                 />

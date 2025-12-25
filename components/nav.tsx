@@ -129,7 +129,7 @@ export default function Navbar() {
                                                     onClick={() => setIsOTTSidebarOpen(false)}
                                                 >
                                                     <img
-                                                        src={`/icons/${app.icon}.png`}
+                                                        src={`/icons/${app.icon}.webp`}
                                                         alt={app.name}
                                                         loading="lazy"
                                                         className="w-7 h-7 object-contain"

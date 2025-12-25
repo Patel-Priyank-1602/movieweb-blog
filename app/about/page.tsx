@@ -37,7 +37,7 @@ export default function AboutPage() {
                         <div className="flex items-center justify-center gap-4 mb-4">
                             <div className="w-28 h-28 bg-gradient-to-br from-purple-500 to-primary rounded-full flex items-center justify-center shadow-2xl overflow-hidden">
                                 <img
-                                    src="/Priyank.jpg"
+                                    src="/Priyank.webp"
                                     alt="Developer Profile"
                                     className="w-full h-full object-cover"
                                 />

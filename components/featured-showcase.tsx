@@ -23,9 +23,9 @@ const FEATURED_CONTENT: FeaturedContent[] = [
   {
     id: 1,
     title: "Stranger Things",
-    nameImage: "/series/st_tr.png",
+    nameImage: "/series/st_tr.webp",
     description: "The fifth and final season of the beloved sci-fi series brings the story of Hawkins to an epic conclusion as the friends face their greatest challenge yet against the forces of the Upside Down.",
-    image: "/series/sttt.jpeg?height=600&width=1200",
+    image: "/series/sttt.webp?height=600&width=1200",
     type: "Series",
     releaseDate: "November 26, 2025",
     slug: "stranger-things",
@@ -34,9 +34,9 @@ const FEATURED_CONTENT: FeaturedContent[] = [
   {
     id: 2,
     title: "Wednesday",
-    nameImage: "/series/went.png",
+    nameImage: "/series/went.webp",
     description: "Wednesday Addams returns in a new season of the hit series, navigating the challenges of Nevermore Academy while uncovering dark secrets and facing supernatural threats.",
-    image: "/series/wenmc.jpeg?height=600&width=1200",
+    image: "/series/wenmc.webp?height=600&width=1200",
     type: "Series",
     releaseDate: "August 6, 2025",
     slug: "wednesday",
@@ -45,9 +45,9 @@ const FEATURED_CONTENT: FeaturedContent[] = [
   {
     id: 3,
     title: "Panchayat",
-    nameImage: "/series/pan_r.png",
+    nameImage: "/series/pan_r.webp",
     description: "The fourth season of this beloved Indian comedy-drama continues to follow Abhishek Tripathi, the secretary of the Phulera village panchayat, as he navigates rural life and village administration.",
-    image: "/series/pan.jpeg?height=600&width=1200",
+    image: "/series/pan.webp?height=600&width=1200",
     type: "Series",
     releaseDate: "June 24, 2025",
     slug: "panchayat",
@@ -56,9 +56,9 @@ const FEATURED_CONTENT: FeaturedContent[] = [
   {
     id: 4,
     title: "Alice in Borderland",
-    nameImage: "/series/alic_r.png",
+    nameImage: "/series/alic_r.webp",
     description: "In the third season of this Japanese thriller, survivors of the deadly games must face new challenges as they uncover the truth behind the mysterious world they're trapped in.",
-    image: "/series/aibbb.jpeg?height=600&width=1200",
+    image: "/series/aibbb.webp?height=600&width=1200",
     type: "Series",
     releaseDate: "September 25, 2025",
     slug: "alice-in-borderland",
@@ -67,9 +67,9 @@ const FEATURED_CONTENT: FeaturedContent[] = [
   {
     id: 5,
     title: "Demon Slayer: Kimetsu no Yaiba – Infinity Castle Arc",
-    nameImage: "/series/dmlsg.png",
+    nameImage: "/series/dmlsg.webp",
     description: "In the final battle against Muzan Kibutsuji, Tanjiro and the Demon Slayer Corps infiltrate the Infinity Castle. With fate hanging in the balance, breathtaking battles and heartbreaking moments unfold in this ultimate showdown between good and evil.",
-    image: "/series/dlcc.jpeg?height=600&width=1200",
+    image: "/series/dlcc.webp?height=600&width=1200",
     type: "Movie",
     releaseDate: "September 12, 2025",
     slug: "demon-slayer-kimetsu-no-yaiba-infinity-castle-arc",
@@ -78,9 +78,9 @@ const FEATURED_CONTENT: FeaturedContent[] = [
   {
     id: 6,
     title: "How to Train Your Dragon",
-    nameImage: "/series/httd_t.png",
+    nameImage: "/series/httd_t.webp",
     description: "A live-action remake set on the isle of Berk, where Hiccup, a young Viking, forms an unlikely bond with Toothless, a Night Fury dragon, challenging Viking traditions and working to bring peace between humans and dragons while facing an ancient threat.",
-    image: "/series/httd.jpeg?height=600&width=1200",
+    image: "/series/httd.webp?height=600&width=1200",
     type: "Movie",
     releaseDate: "June 13, 2025",
     slug: "how-to-train-your-dragon",
@@ -89,9 +89,9 @@ const FEATURED_CONTENT: FeaturedContent[] = [
   {
     id: 7,
     title: "Superman 2025",
-    nameImage: "/series/supp_t.png",
+    nameImage: "/series/supp_t.webp",
     description: "Soar into a new era with Clark Kent as he embraces his destiny as Superman, confronting a formidable threat to Metropolis while balancing his Kryptonian heritage with his human heart.",
-    image: "/series/sup.jpeg?height=600&width=1200",
+    image: "/series/sup.webp?height=600&width=1200",
     type: "Movie",
     releaseDate: "July 11, 2025",
     slug: "superman",
@@ -480,7 +480,7 @@ export default function FeaturedContentCarousel() {
             ) : (
               <>
                 <Image
-                  src={featured.image || "/placeholder-image.jpg"}
+                  src={featured.image || "/placeholder-image.webp"}
                   alt={`${featured.title} background`}
                   fill
                   className={`object-cover transition-opacity duration-500 ${isFading ? "opacity-0" : "opacity-100"}`}
@@ -500,7 +500,7 @@ export default function FeaturedContentCarousel() {
             <div className="max-w-3xl space-y-4 flex flex-col items-center md:items-start">
               <div className="relative w-fit max-w-[80vw]">
                 <Image
-                  src={featured.nameImage || "/placeholder-logo.png"}
+                  src={featured.nameImage || "/placeholder-logo.webp"}
                   alt={`${featured.title} logo`}
                   width={400}
                   height={120}
@@ -577,7 +577,7 @@ export default function FeaturedContentCarousel() {
                 >
                   <div className="relative w-full h-full rounded overflow-hidden">
                     <Image
-                      src={item.image || "/placeholder-image.jpg"}
+                      src={item.image || "/placeholder-image.webp"}
                       alt={item.title}
                       fill
                       className="object-cover"
@@ -630,12 +630,12 @@ export default function FeaturedContentCarousel() {
         <div className="relative w-full min-h-[90vh] bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 overflow-hidden select-none">
           <div className="absolute inset-0 transition-all duration-1000">
             <img
-              src={featured.image || "/placeholder-image.jpg"}
+              src={featured.image || "/placeholder-image.webp"}
               alt={featured.title}
               loading="lazy"
               className="w-full h-full object-cover opacity-12 blur-sm scale-110"
               onError={(e) => {
-                (e.target as HTMLImageElement).src = "/placeholder-image.jpg"
+                (e.target as HTMLImageElement).src = "/placeholder-image.webp"
               }}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-black/10" />

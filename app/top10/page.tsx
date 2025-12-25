@@ -24,7 +24,7 @@ const top10Content: ContentItem[] = [
   {
     title: "Fantastic 4",
     type: "Movie",
-    image: "/series/fanc1.jpeg?height=450&width=300",
+    image: "/series/fanc1.webp?height=450&width=300",
     rating: 4.5,
     releaseDate: "Jul 25, 2025",
     status: "released",
@@ -34,7 +34,7 @@ const top10Content: ContentItem[] = [
     title: "Mahavatar Narsimha",
     type: "Movie",
     rating: 4.7,
-    image: "/series/ma.jpeg?height=450&width=300",
+    image: "/series/ma.webp?height=450&width=300",
     releaseDate: "Jul 25, 2025",
     status: "released",
     slug: "mahavatar-narsimha",
@@ -42,7 +42,7 @@ const top10Content: ContentItem[] = [
   {
     title: "Superman",
     type: "Movie",
-    image: "/series/suc.jpeg?height=450&width=300",
+    image: "/series/suc.webp?height=450&width=300",
     rating: 4.3,
     releaseDate: "Jul 11, 2025",
     status: "released",
@@ -52,7 +52,7 @@ const top10Content: ContentItem[] = [
     title: "The Bad Guys 2",
     type: "Movie",
     rating: 4.4,
-    image: "/series/bd.jpeg?height=450&width=300",
+    image: "/series/bd.webp?height=450&width=300",
     releaseDate: "Aug 1, 2025",
     status: "released",
     slug: "the-bad-guys-2",
@@ -60,7 +60,7 @@ const top10Content: ContentItem[] = [
   {
     title: "F1: The Movie",
     type: "Movie",
-    image: "/series/f1.jpeg?height=450&width=300",
+    image: "/series/f1.webp?height=450&width=300",
     rating: 4.7,
     releaseDate: "Jun 27, 2025",
     status: "upcoming",
@@ -69,7 +69,7 @@ const top10Content: ContentItem[] = [
   {
     title: "How to Train Your Dragon",
     type: "Movie",
-    image: "/series/htt.jpeg?height=450&width=300",
+    image: "/series/htt.webp?height=450&width=300",
     rating: 4.4,
     releaseDate: "Jun 13, 2025",
     status: "released",
@@ -78,7 +78,7 @@ const top10Content: ContentItem[] = [
   {
     title: "Jurassic World: Rebirth",
     type: "Movie",
-    image: "/series/ju.jpeg?height=450&width=300",
+    image: "/series/ju.webp?height=450&width=300",
     rating: 4.3,
     releaseDate: "Jul 4, 2025",
     status: "released",
@@ -87,7 +87,7 @@ const top10Content: ContentItem[] = [
   {
     title: "Kesari: Chapter 2",
     type: "Movie",
-    image: "/series/kc.jpeg?height=450&width=300",
+    image: "/series/kc.webp?height=450&width=300",
     rating: 4.1,
     releaseDate: "Apr 18, 2025",
     status: "released",
@@ -96,7 +96,7 @@ const top10Content: ContentItem[] = [
   {
     title: "28 Years Later",
     type: "Movie",
-    image: "/series/28y.jpeg?height=450&width=300",
+    image: "/series/28y.webp?height=450&width=300",
     rating: 4.5,
     releaseDate: "June 20, 2025",
     status: "released",
@@ -105,7 +105,7 @@ const top10Content: ContentItem[] = [
   {
     title: "Ballerina",
     type: "Movie",
-    image: "/series/bann.jpeg?height=450&width=300",
+    image: "/series/bann.webp?height=450&width=300",
     rating: 4.7,
     releaseDate: "June 6, 2025",
     status: "released",
@@ -114,7 +114,7 @@ const top10Content: ContentItem[] = [
   {
     title: "Panchayat",
     type: "Series",
-    image: "/series/pancc.jpeg?height=450&width=300",
+    image: "/series/pancc.webp?height=450&width=300",
     rating: 4.3,
     releaseDate: "Jun 24, 2025",
     status: "released",
@@ -123,7 +123,7 @@ const top10Content: ContentItem[] = [
   {
     title: "Wednesday",
     type: "Series",
-    image: "/series/wenc.jpeg?height=450&width=300",
+    image: "/series/wenc.webp?height=450&width=300",
     rating: 4.5,
     releaseDate: "Aug 6, 2025",
     status: "released",
@@ -132,7 +132,7 @@ const top10Content: ContentItem[] = [
   {
     title: "Squid Game",
     type: "Series",
-    image: "/series/sqq.jpeg?height=450&width=300",
+    image: "/series/sqq.webp?height=450&width=300",
     rating: 4.6,
     releaseDate: "Jun 27, 2025",
     status: "released",
@@ -141,7 +141,7 @@ const top10Content: ContentItem[] = [
   {
     title: "Special OPS 2",
     type: "Series",
-    image: "/series/spcc.jpeg?height=450&width=300",
+    image: "/series/spcc.webp?height=450&width=300",
     rating: 4.5,
     releaseDate: "Jul 17, 2025",
     status: "released",
@@ -150,7 +150,7 @@ const top10Content: ContentItem[] = [
   {
     title: "Criminal Justice",
     type: "Series",
-    image: "/series/cr.jpeg?height=450&width=300",
+    image: "/series/cr.webp?height=450&width=300",
     rating: 4.2,
     releaseDate: "May 29, 2025",
     status: "released",
@@ -159,7 +159,7 @@ const top10Content: ContentItem[] = [
   {
     title: "Adolescence",
     type: "Series",
-    image: "/series/adc.jpeg?height=450&width=300",
+    image: "/series/adc.webp?height=450&width=300",
     rating: 4.2,
     releaseDate: "Mar 13, 2025",
     status: "released",
@@ -168,7 +168,7 @@ const top10Content: ContentItem[] = [
   {
     title: "You",
     type: "Series",
-    image: "/series/youc.jpeg?height=450&width=300",
+    image: "/series/youc.webp?height=450&width=300",
     rating: 4.7,
     releaseDate: "Apr 24, 2025",
     status: "released",
@@ -177,7 +177,7 @@ const top10Content: ContentItem[] = [
   {
     title: "The Last of Us",
     type: "Series",
-    image: "/series/thlou.jpeg?height=450&width=300",
+    image: "/series/thlou.webp?height=450&width=300",
     rating: 4.8,
     releaseDate: "Apr 13, 2025",
     status: "released",
@@ -186,7 +186,7 @@ const top10Content: ContentItem[] = [
   {
     title: "Daredevil",
     type: "Series",
-    image: "/series/dart.jpeg?height=450&width=300",
+    image: "/series/dart.webp?height=450&width=300",
     rating: 4.6,
     releaseDate: "Mar 4, 2025",
     status: "released",
@@ -195,7 +195,7 @@ const top10Content: ContentItem[] = [
   {
     title: "Pataal Lok",
     type: "Series",
-    image: "/series/patcc.jpeg?height=450&width=300",
+    image: "/series/patcc.webp?height=450&width=300",
     rating: 4.9,
     releaseDate: "Jan 17, 2025",
     status: "released",
@@ -247,7 +247,7 @@ function TopMovieCard({ title, type, image, rating, releaseDate, status, rank, s
       >
         <div className="aspect-[2/3] overflow-hidden relative">
           <img
-            src={image || "/placeholder-image.jpg"}
+            src={image || "/placeholder-image.webp"}
             alt={title}
             loading="lazy"
             className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"

@@ -28,7 +28,7 @@ const arrivedMovies: ContentItem[] = [
   {
     title: "War 2",
     type: "Movie",
-    image: "/series/warr.jpeg?height=450&width=300",
+    image: "/series/warr.webp?height=450&width=300",
     rating: 4.0,
     releaseDate: "Aug 14, 2025",
     status: "upcoming",
@@ -37,7 +37,7 @@ const arrivedMovies: ContentItem[] = [
   {
     title: "Coolie",
     type: "Movie",
-    image: "/series/cl.jpeg?height=450&width=300",
+    image: "/series/cl.webp?height=450&width=300",
     rating: 4.0,
     releaseDate: "Aug 14, 2025",
     status: "upcoming" as const,
@@ -46,7 +46,7 @@ const arrivedMovies: ContentItem[] = [
     title: "The Bad Guys 2",
     type: "Movie",
     rating: 4.4,
-    image: "/series/bd.jpeg?height=450&width=300",
+    image: "/series/bd.webp?height=450&width=300",
     releaseDate: "Aug 1, 2025",
     status: "upcoming",
     slug: "the-bad-guys-2",
@@ -55,7 +55,7 @@ const arrivedMovies: ContentItem[] = [
     title: "Mahavatar Narsimha",
     type: "Movie",
     rating: 4.7,
-    image: "/series/ma.jpeg?height=450&width=300",
+    image: "/series/ma.webp?height=450&width=300",
     releaseDate: "Jul 25, 2025",
     status: "released",
     slug: "mahavatar-narsimha",
@@ -63,7 +63,7 @@ const arrivedMovies: ContentItem[] = [
   {
     title: "Fantastic 4",
     type: "Movie",
-    image: "/series/fanc.jpeg?height=450&width=300",
+    image: "/series/fanc.webp?height=450&width=300",
     rating: 4.5,
     releaseDate: "Jul 25, 2025",
     status: "upcoming",
@@ -72,7 +72,7 @@ const arrivedMovies: ContentItem[] = [
   {
     title: "Superman",
     type: "Movie",
-    image: "/series/suc.jpeg?height=450&width=300",
+    image: "/series/suc.webp?height=450&width=300",
     rating: 4.3,
     releaseDate: "Jul 11, 2025",
     status: "released",
@@ -81,7 +81,7 @@ const arrivedMovies: ContentItem[] = [
   {
     title: "Jurassic World: Rebirth",
     type: "Movie",
-    image: "/series/ju.jpeg?height=450&width=300",
+    image: "/series/ju.webp?height=450&width=300",
     rating: 4.3,
     releaseDate: "Jul 4, 2025",
     status: "released",
@@ -90,7 +90,7 @@ const arrivedMovies: ContentItem[] = [
   {
     title: "F1: The Movie",
     type: "Movie",
-    image: "/series/f1.jpeg?height=450&width=300",
+    image: "/series/f1.webp?height=450&width=300",
     rating: 4.7,
     releaseDate: "Jun 27, 2025",
     status: "upcoming",
@@ -99,7 +99,7 @@ const arrivedMovies: ContentItem[] = [
   {
     title: "28 Years Later",
     type: "Movie",
-    image: "/series/28y.jpeg?height=450&width=300",
+    image: "/series/28y.webp?height=450&width=300",
     rating: 4.5,
     releaseDate: "Jun 20, 2025",
     status: "released",
@@ -108,7 +108,7 @@ const arrivedMovies: ContentItem[] = [
   {
     title: "Sitaare Zameen Par",
     type: "Movie",
-    image: "/series/si.jpeg?height=450&width=300",
+    image: "/series/si.webp?height=450&width=300",
     rating: 3.9,
     releaseDate: "Jun 20, 2025",
     status: "released",
@@ -117,7 +117,7 @@ const arrivedMovies: ContentItem[] = [
   {
     title: "How to Train Your Dragon",
     type: "Movie",
-    image: "/series/htt.jpeg?height=450&width=300",
+    image: "/series/htt.webp?height=450&width=300",
     rating: 4.4,
     releaseDate: "Jun 13, 2025",
     status: "released",
@@ -126,7 +126,7 @@ const arrivedMovies: ContentItem[] = [
   {
     title: "Ballerina",
     type: "Movie",
-    image: "/series/ban.jpeg?height=450&width=300",
+    image: "/series/ban.webp?height=450&width=300",
     rating: 4.7,
     releaseDate: "Jun 6, 2025",
     status: "released",
@@ -135,7 +135,7 @@ const arrivedMovies: ContentItem[] = [
   {
     title: "Lilo & Stitch",
     type: "Movie",
-    image: "/series/ls.jpeg?height=450&width=300",
+    image: "/series/ls.webp?height=450&width=300",
     rating: 4.6,
     releaseDate: "May 23, 2025",
     status: "released",
@@ -144,7 +144,7 @@ const arrivedMovies: ContentItem[] = [
   {
     title: "Mission Impossible: Final Reckoning",
     type: "Movie",
-    image: "/series/mic.jpeg?height=450&width=300",
+    image: "/series/mic.webp?height=450&width=300",
     rating: 4.5,
     releaseDate: "May 17, 2025",
     status: "released",
@@ -153,7 +153,7 @@ const arrivedMovies: ContentItem[] = [
   {
     title: "Final Destination",
     type: "Movie",
-    image: "/series/fdc.jpeg?height=450&width=300",
+    image: "/series/fdc.webp?height=450&width=300",
     rating: 4.5,
     releaseDate: "May 16, 2025",
     status: "released",
@@ -162,7 +162,7 @@ const arrivedMovies: ContentItem[] = [
   {
     title: "Eleven",
     type: "Movie",
-    image: "/series/ele.jpeg?height=450&width=300",
+    image: "/series/ele.webp?height=450&width=300",
     rating: 3.9,
     releaseDate: "May 16, 2025",
     status: "released",
@@ -171,7 +171,7 @@ const arrivedMovies: ContentItem[] = [
   {
     title: "Raid 2",
     type: "Movie",
-    image: "/series/radc.jpeg?height=450&width=300",
+    image: "/series/radc.webp?height=450&width=300",
     rating: 4.8,
     releaseDate: "May 1, 2025",
     status: "released",
@@ -180,7 +180,7 @@ const arrivedMovies: ContentItem[] = [
   {
     title: "Thunderbolt",
     type: "Movie",
-    image: "/series/thnc.jpeg?height=450&width=300",
+    image: "/series/thnc.webp?height=450&width=300",
     rating: 4.6,
     releaseDate: "May 1, 2025",
     status: "released",
@@ -189,7 +189,7 @@ const arrivedMovies: ContentItem[] = [
   {
     title: "Kesari: Chapter 2",
     type: "Movie",
-    image: "/series/kc.jpeg?height=450&width=300",
+    image: "/series/kc.webp?height=450&width=300",
     rating: 4.1,
     releaseDate: "Apr 18, 2025",
     status: "released",
@@ -198,7 +198,7 @@ const arrivedMovies: ContentItem[] = [
   {
     title: "Minecraft: The Movie",
     type: "Movie",
-    image: "/series/mnc.jpeg?height=450&width=300",
+    image: "/series/mnc.webp?height=450&width=300",
     rating: 3.9,
     releaseDate: "April 4, 2025",
     status: "released",
@@ -207,7 +207,7 @@ const arrivedMovies: ContentItem[] = [
   {
     title: "Dragon",
     type: "Movie",
-    image: "/series/dr.jpeg?height=450&width=300",
+    image: "/series/dr.webp?height=450&width=300",
     rating: 4.1,
     releaseDate: "Feb 21, 2025",
     status: "released",
@@ -216,7 +216,7 @@ const arrivedMovies: ContentItem[] = [
   {
     title: "Chhava",
     type: "Movie",
-    image: "/series/ch.jpeg?height=450&width=300",
+    image: "/series/ch.webp?height=450&width=300",
     rating: 4.3,
     releaseDate: "Feb 14, 2025",
     status: "released",
@@ -225,7 +225,7 @@ const arrivedMovies: ContentItem[] = [
   {
     title: "Captain America: Brave New World",
     type: "Movie",
-    image: "/series/cam.jpeg?height=450&width=300",
+    image: "/series/cam.webp?height=450&width=300",
     rating: 4.1,
     releaseDate: "Feb 14, 2025",
     status: "released",
@@ -237,7 +237,7 @@ const upcomingMovies: ContentItem[] = [
   {
     title: "The Conjuring",
     type: "Movie",
-    image: "/series/can.jpeg?height=450&width=300",
+    image: "/series/can.webp?height=450&width=300",
     releaseDate: "Sept 5, 2025",
     status: "upcoming",
     slug: "the-conjuring",
@@ -245,7 +245,7 @@ const upcomingMovies: ContentItem[] = [
   {
     title: "Demon Slayer: Kimetsu no Yaiba – Infinity Castle Arc",
     type: "Movie",
-    image: "/series/dl.jpeg?height=450&width=300",
+    image: "/series/dl.webp?height=450&width=300",
     releaseDate: "Sept 12, 2025",
     status: "upcoming",
     slug: "demon-slayer-kimetsu-no-yaiba-infinity-castle-arc",
@@ -253,14 +253,14 @@ const upcomingMovies: ContentItem[] = [
   {
     title: "Predator: Badlands",
     type: "Movie",
-    image: "/series/pb.jpeg?height=450&width=300",
+    image: "/series/pb.webp?height=450&width=300",
     releaseDate: "Nov 7, 2025",
     status: "upcoming" as const,
   },
   {
     title: "Zootopia 2",
     type: "Movie",
-    image: "/series/zoo.jpeg?height=450&width=300",
+    image: "/series/zoo.webp?height=450&width=300",
     releaseDate: "Nov 26, 2025",
     status: "upcoming",
     slug: "zootopia-2",
@@ -268,7 +268,7 @@ const upcomingMovies: ContentItem[] = [
   {
     title: "Avatar 3",
     type: "Movie",
-    image: "/series/av.jpeg?height=450&width=300",
+    image: "/series/av.webp?height=450&width=300",
     releaseDate: "Dec 19, 2025",
     status: "upcoming",
     slug: "avatar-3",
@@ -279,7 +279,7 @@ const arrivedSeries: ContentItem[] = [
   {
     title: "Alien: Earth",
     type: "Series",
-    image: "/series/aal.jpeg?height=450&width=300",
+    image: "/series/aal.webp?height=450&width=300",
     rating: 4.3,
     releaseDate: "Aug 12, 2025",
     status: "released",
@@ -288,7 +288,7 @@ const arrivedSeries: ContentItem[] = [
   {
     title: "Wednesday",
     type: "Series",
-    image: "/series/wenc.jpeg?height=450&width=300",
+    image: "/series/wenc.webp?height=450&width=300",
     rating: 4.5,
     releaseDate: "Aug 6, 2025",
     status: "upcoming",
@@ -297,7 +297,7 @@ const arrivedSeries: ContentItem[] = [
   {
     title: "Special OPS 2",
     type: "Series",
-    image: "/series/sp.jpeg?height=450&width=300",
+    image: "/series/sp.webp?height=450&width=300",
     rating: 4.5,
     releaseDate: "Jul 17, 2025",
     status: "released" as const,
@@ -305,7 +305,7 @@ const arrivedSeries: ContentItem[] = [
   {
     title: "The Sandman",
     type: "Series",
-    image: "/series/sad.jpeg?height=450&width=300",
+    image: "/series/sad.webp?height=450&width=300",
     rating: 4.1,
     releaseDate: "Jul 3, 2025",
     status: "released",
@@ -314,7 +314,7 @@ const arrivedSeries: ContentItem[] = [
   {
     title: "Squid Game",
     type: "Series",
-    image: "/series/sq.jpeg?height=450&width=300",
+    image: "/series/sq.webp?height=450&width=300",
     rating: 4.6,
     releaseDate: "Jun 27, 2025",
     status: "released",
@@ -323,7 +323,7 @@ const arrivedSeries: ContentItem[] = [
   {
     title: "Panchayat",
     type: "Series",
-    image: "/series/panc.jpeg?height=450&width=300",
+    image: "/series/panc.webp?height=450&width=300",
     rating: 4.3,
     releaseDate: "Jun 24, 2025",
     status: "released",
@@ -332,7 +332,7 @@ const arrivedSeries: ContentItem[] = [
   {
     title: "Ironheart",
     type: "Series",
-    image: "/series/ir.jpeg?height=450&width=300",
+    image: "/series/ir.webp?height=450&width=300",
     rating: 3.6,
     releaseDate: "Jun 24, 2025",
     status: "released",
@@ -341,7 +341,7 @@ const arrivedSeries: ContentItem[] = [
   {
     title: "Adolescence",
     type: "Series",
-    image: "/series/adc.jpeg?height=450&width=300",
+    image: "/series/adc.webp?height=450&width=300",
     rating: 4.2,
     releaseDate: "Mar 13, 2025",
     status: "released" as const,
@@ -349,7 +349,7 @@ const arrivedSeries: ContentItem[] = [
   {
     title: "Criminal Justice",
     type: "Series",
-    image: "/series/cr.jpeg?height=450&width=300",
+    image: "/series/cr.webp?height=450&width=300",
     rating: 4.2,
     releaseDate: "May 29, 2025",
     status: "released" as const,
@@ -358,7 +358,7 @@ const arrivedSeries: ContentItem[] = [
   {
     title: "You",
     type: "Series",
-    image: "/series/youc.jpeg?height=450&width=300",
+    image: "/series/youc.webp?height=450&width=300",
     rating: 4.7,
     releaseDate: "Apr 24, 2025",
     status: "released",
@@ -367,7 +367,7 @@ const arrivedSeries: ContentItem[] = [
   {
     title: "The Last of Us",
     type: "Series",
-    image: "/series/thlou.jpeg?height=450&width=300",
+    image: "/series/thlou.webp?height=450&width=300",
     rating: 4.8,
     releaseDate: "Apr 13, 2025",
     status: "released",
@@ -376,7 +376,7 @@ const arrivedSeries: ContentItem[] = [
   {
     title: "Khakee: The Bengal Chapter",
     type: "Series",
-    image: "/series/kk.jpeg?height=450&width=300",
+    image: "/series/kk.webp?height=450&width=300",
     rating: 4.2,
     releaseDate: "Mar 20, 2025",
     status: "released",
@@ -385,7 +385,7 @@ const arrivedSeries: ContentItem[] = [
   {
     title: "Daredevil",
     type: "Series",
-    image: "/series/dar.jpeg?height=450&width=300",
+    image: "/series/dar.webp?height=450&width=300",
     rating: 4.6,
     releaseDate: "Mar 4, 2025",
     status: "released",
@@ -394,7 +394,7 @@ const arrivedSeries: ContentItem[] = [
   {
     title: "Pataal Lok",
     type: "Series",
-    image: "/series/patc.jpeg?height=450&width=300",
+    image: "/series/patc.webp?height=450&width=300",
     rating: 4.9,
     releaseDate: "Jan 17, 2025",
     status: "released",
@@ -406,7 +406,7 @@ const upcomingSeries: ContentItem[] = [
   {
     title: "Alice in Borderland",
     type: "Series",
-    image: "/series/aibb.jpeg?height=450&width=300",
+    image: "/series/aibb.webp?height=450&width=300",
     releaseDate: "Sept 25, 2025",
     status: "upcoming",
     slug: "alice-in-borderland",
@@ -414,7 +414,7 @@ const upcomingSeries: ContentItem[] = [
   {
     title: "Stranger Things",
     type: "Series",
-    image: "/series/stc.jpeg?height=450&width=300",
+    image: "/series/stc.webp?height=450&width=300",
     releaseDate: "Nov 26, 2025",
     status: "upcoming",
     slug: "stranger-things",
@@ -422,7 +422,7 @@ const upcomingSeries: ContentItem[] = [
   {
     title: "Family Man",
     type: "Series",
-    image: "/series/fm.jpeg?height=450&width=300",
+    image: "/series/fm.webp?height=450&width=300",
     releaseDate: "Nov, 2025",
     status: "upcoming",
     slug: "family-man",
@@ -430,7 +430,7 @@ const upcomingSeries: ContentItem[] = [
   {
     title: "The Witcher",
     type: "Series",
-    image: "/series/wi.jpeg?height=450&width=300",
+    image: "/series/wi.webp?height=450&width=300",
     releaseDate: "Late 2025",
     status: "upcoming",
     slug: "the-witcher",
@@ -441,7 +441,7 @@ const top10Content: ContentItem[] = [
   {
     title: "Fantastic 4",
     type: "Movie",
-    image: "/series/fanc1.jpeg?height=450&width=300",
+    image: "/series/fanc1.webp?height=450&width=300",
     rating: 4.5,
     releaseDate: "Jul 25, 2025",
     status: "upcoming",
@@ -451,7 +451,7 @@ const top10Content: ContentItem[] = [
     title: "Mahavatar Narsimha",
     type: "Movie",
     rating: 4.7,
-    image: "/series/ma.jpeg?height=450&width=300",
+    image: "/series/ma.webp?height=450&width=300",
     releaseDate: "Jul 25, 2025",
     status: "released",
     slug: "mahavatar-narsimha",
@@ -459,7 +459,7 @@ const top10Content: ContentItem[] = [
   {
     title: "Panchayat",
     type: "Series",
-    image: "/series/pancc.jpeg?height=450&width=300",
+    image: "/series/pancc.webp?height=450&width=300",
     rating: 4.3,
     releaseDate: "Jun 24, 2025",
     status: "released",
@@ -468,7 +468,7 @@ const top10Content: ContentItem[] = [
   {
     title: "Wednesday",
     type: "Series",
-    image: "/series/wenc.jpeg?height=450&width=300",
+    image: "/series/wenc.webp?height=450&width=300",
     rating: 4.5,
     releaseDate: "Aug 6, 2025",
     status: "released",
@@ -477,7 +477,7 @@ const top10Content: ContentItem[] = [
   {
     title: "Squid Game",
     type: "Series",
-    image: "/series/sqq.jpeg?height=450&width=300",
+    image: "/series/sqq.webp?height=450&width=300",
     rating: 4.6,
     releaseDate: "Jun 27, 2025",
     status: "released",
@@ -486,7 +486,7 @@ const top10Content: ContentItem[] = [
   {
     title: "Superman",
     type: "Movie",
-    image: "/series/suc.jpeg?height=450&width=300",
+    image: "/series/suc.webp?height=450&width=300",
     rating: 4.3,
     releaseDate: "July 11, 2025",
     status: "released",
@@ -496,7 +496,7 @@ const top10Content: ContentItem[] = [
     title: "The Bad Guys 2",
     type: "Movie",
     rating: 4.4,
-    image: "/series/bd.jpeg?height=450&width=300",
+    image: "/series/bd.webp?height=450&width=300",
     releaseDate: "Aug 1, 2025",
     status: "released",
     slug: "the-bad-guys-2",
@@ -504,7 +504,7 @@ const top10Content: ContentItem[] = [
   {
     title: "F1: The Movie",
     type: "Movie",
-    image: "/series/f1.jpeg?height=450&width=300",
+    image: "/series/f1.webp?height=450&width=300",
     rating: 4.7,
     releaseDate: "Jun 27, 2025",
     status: "upcoming",
@@ -513,7 +513,7 @@ const top10Content: ContentItem[] = [
   {
     title: "Criminal Justice",
     type: "Series",
-    image: "/series/cr.jpeg?height=450&width=300",
+    image: "/series/cr.webp?height=450&width=300",
     rating: 4.2,
     releaseDate: "May 29, 2025",
     status: "released" as const,
@@ -522,7 +522,7 @@ const top10Content: ContentItem[] = [
   {
     title: "Jurassic World: Rebirth",
     type: "Movie",
-    image: "/series/ju.jpeg?height=450&width=300",
+    image: "/series/ju.webp?height=450&width=300",
     rating: 4.3,
     releaseDate: "Jul 4, 2025",
     status: "released",
@@ -576,7 +576,7 @@ function TopMovieCard({ title, type, image, rating, releaseDate, status, rank, s
       >
         <div className="aspect-[2/3] overflow-hidden relative">
           <img
-            src={image || "/placeholder-image.jpg"}
+            src={image || "/placeholder-image.webp"}
             alt={title}
             loading="lazy"
             className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
@@ -849,7 +849,7 @@ export default function CineVerse() {
                           <MovieCard
                             title={movie.title}
                             type={movie.type}
-                            image={movie.image || "/placeholder-image.jpg"}
+                            image={movie.image || "/placeholder-image.webp"}
                             rating={movie.rating}
                             releaseDate={movie.releaseDate}
                             status="released"
@@ -898,7 +898,7 @@ export default function CineVerse() {
                           <MovieCard
                             title={movie.title}
                             type={movie.type}
-                            image={movie.image || "/placeholder-image.jpg"}
+                            image={movie.image || "/placeholder-image.webp"}
                             rating={movie.rating}
                             releaseDate={movie.releaseDate}
                             status="released"
@@ -964,7 +964,7 @@ export default function CineVerse() {
                         <MovieCard
                           title={movie.title}
                           type={movie.type}
-                          image={movie.image || "/placeholder-image.jpg"}
+                          image={movie.image || "/placeholder-image.webp"}
                           releaseDate={movie.releaseDate}
                           status="upcoming"
                           slug={movie.slug}
