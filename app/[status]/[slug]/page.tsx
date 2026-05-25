@@ -16,6 +16,14 @@ interface MovieDetailsProps {
   }>
 }
 
+const opts: YouTubeProps['opts'] = {
+  height: '100%',
+  width: '100%',
+  playerVars: {
+    autoplay: 1,
+  },
+}
+
 export default function MovieDetailsPage({ params }: MovieDetailsProps) {
   const [isTrailerOpen, setIsTrailerOpen] = useState(false)
   const resolvedParams = use(params)
@@ -40,13 +48,6 @@ export default function MovieDetailsPage({ params }: MovieDetailsProps) {
     return match ? match[1] : null
   }
 
-  const opts: YouTubeProps['opts'] = {
-    height: '100%',
-    width: '100%',
-    playerVars: {
-      autoplay: 1,
-    },
-  }
 
   if (!movieData) {
     return (

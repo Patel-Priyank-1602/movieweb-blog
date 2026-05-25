@@ -108,6 +108,19 @@ const CAROUSEL_CONFIG = {
   LARGE_DESKTOP_RADIUS: 350,
 };
 
+const opts: YouTubeProps["opts"] = {
+  height: "100%",
+  width: "100%",
+  playerVars: {
+    autoplay: 1,
+    controls: 1,
+    showinfo: 0,
+    rel: 0,
+    iv_load_policy: 3,
+    modestbranding: 1,
+  },
+};
+
 export default function FeaturedContentCarousel() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTrailerOpen, setIsTrailerOpen] = useState(false);
@@ -138,18 +151,6 @@ export default function FeaturedContentCarousel() {
 
   const youtubeId = featured.trailerUrl ? getYouTubeId(featured.trailerUrl) : null;
 
-  const opts: YouTubeProps["opts"] = {
-    height: "100%",
-    width: "100%",
-    playerVars: {
-      autoplay: 1,
-      controls: 1,
-      showinfo: 0,
-      rel: 0,
-      iv_load_policy: 3,
-      modestbranding: 1,
-    },
-  };
 
   // Device detection for showcase mode
   useEffect(() => {
@@ -629,14 +630,12 @@ export default function FeaturedContentCarousel() {
       ) : (
         <div className="relative w-full min-h-[90vh] bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 overflow-hidden select-none">
           <div className="absolute inset-0 transition-all duration-1000">
-            <img
+            <Image
               src={featured.image || "/placeholder-image.webp"}
               alt={featured.title}
-              loading="lazy"
-              className="w-full h-full object-cover opacity-12 blur-sm scale-110"
-              onError={(e) => {
-                (e.target as HTMLImageElement).src = "/placeholder-image.webp"
-              }}
+              fill
+              className="object-cover opacity-12 blur-sm scale-110"
+              sizes="100vw"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-black/10" />
             <div className="absolute inset-0 bg-gradient-to-r from-purple-900/15 to-pink-900/15" />
@@ -646,18 +645,12 @@ export default function FeaturedContentCarousel() {
             <header className="flex-shrink-0 flex items-center justify-center pt-4 px-4 min-h-[40vh]">
               <div className="text-center max-w-5xl w-full">
                 <div className="mb-3">
-                  <img
+                  <Image
                     src={featured.nameImage}
                     alt={featured.title}
-                    loading="lazy"
+                    width={400}
+                    height={120}
                     className="h-12 sm:h-14 md:h-16 lg:h-20 w-auto mx-auto drop-shadow-2xl transition-all duration-700 max-w-full"
-                    onError={(e) => {
-                      const img = e.target as HTMLImageElement;
-                      img.style.display = "none";
-                      if (img.nextSibling && img.nextSibling instanceof HTMLElement) {
-                        (img.nextSibling as HTMLElement).style.display = "block";
-                      }
-                    }}
                   />
                   <h1
                     className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white hidden"
@@ -734,16 +727,15 @@ export default function FeaturedContentCarousel() {
                         >
                           <article className="w-40 h-56 sm:w-48 sm:h-64 md:w-52 md:h-72 lg:w-56 lg:h-80 mx-auto">
                             <div className="relative w-full h-full rounded-xl overflow-hidden shadow-2xl bg-gradient-to-br from-gray-800 to-gray-900 border border-white/20 group-hover:border-white/40 transition-all duration-300">
-                              <img
-                                src={item.image}
-                                alt={item.title}
-                                loading="lazy"
-                                className="w-full h-3/4 object-cover transition-transform duration-500 group-hover:scale-105"
-                                onError={(e) => {
-                                  (e.target as HTMLImageElement).src =
-                                    "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjQwMCIgdmlld0JveD0iMCAwIDMwMCA0MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjMzc0MTUxIi8+Cjx0ZXh0IHg9IjE1MCIgeT0iMjAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjOUNBM0FGIiBmb250LXNpemU9IjE2Ij5JbWFnZSBOb3QgRm91bmQ8L3RleHQ+Cjwvc3ZnPg==";
-                                }}
-                              />
+                              <div className="relative w-full h-3/4">
+                                <Image
+                                  src={item.image}
+                                  alt={item.title}
+                                  fill
+                                  sizes="(max-width: 768px) 160px, 224px"
+                                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                                />
+                              </div>
                               <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
                               <div className="absolute bottom-0 left-0 right-0 p-2 text-white">
                                 <h3 className="font-bold text-xs md:text-sm lg:text-base mb-1 line-clamp-1">

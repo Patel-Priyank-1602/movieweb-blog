@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef } from "react"
 import { useRouter } from "next/navigation"
+import Image from "next/image"
 import { ChevronLeft, ChevronRight, TrendingUp } from "lucide-react"
 import Navbar from "@/components/nav"
 import { SiteFooter } from "@/components/footer"
@@ -246,11 +247,11 @@ function TopMovieCard({ title, type, image, rating, releaseDate, status, rank, s
         "
       >
         <div className="aspect-[2/3] overflow-hidden relative">
-          <img
+          <Image
             src={image || "/placeholder-image.webp"}
             alt={title}
-            loading="lazy"
-            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+            fill
+            className="object-cover transition-transform duration-500 group-hover:scale-110"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
           <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-4 group-hover:translate-y-0">

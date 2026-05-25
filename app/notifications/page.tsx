@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link"
+import Image from "next/image"
 import { ArrowLeft, Bell } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
@@ -195,11 +196,14 @@ export default function NotificationsPage() {
                 <CardContent className="p-4 sm:p-6">
                   <Link href={notification.actionUrl || `/released/${notification.movieSlug}`}>
                     <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
-                      <img
-                        src={notification.movieImage || "/placeholder.svg"}
-                        alt={notification.movieTitle}
-                        className="w-16 h-24 sm:w-20 sm:h-28 object-cover rounded-lg flex-shrink-0"
-                      />
+                      <div className="relative w-16 h-24 sm:w-20 sm:h-28 flex-shrink-0">
+                        <Image
+                          src={notification.movieImage || "/placeholder.svg"}
+                          alt={notification.movieTitle}
+                          fill
+                          className="object-cover rounded-lg"
+                        />
+                      </div>
                       <div className="flex-1 min-w-0">
                         <div className="flex items-start justify-between gap-3 sm:gap-4 mb-2 sm:mb-3">
                           <div className="flex items-center gap-2 flex-wrap">
